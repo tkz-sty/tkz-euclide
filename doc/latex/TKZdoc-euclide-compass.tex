@@ -1,0 +1,126 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex 
+
+\section{Utilisation du compas}    
+
+\subsection{Macro principale \tkzcname{tkzCompass}} 
+\begin{NewMacroBox}{tkzCompass}{\oarg{local options}\parg{A,B}}
+\emph{Attention les arguments sont des listes de deux ou bien de trois points. Cette macro est, soit utilisée en partenariat  avec \tkzcname{tkzGetPoint} et/ou \tkzcname{tkzGetLength}, soit en utilisant \tkzname{tkzPointResult} s'il n'est pas nécessaire de conserver le nom.}
+  
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{delta} {0}{} 
+\TOline{length}{0.75}{} 
+\TOline{ratio} {.5}{} 
+\bottomrule
+\end{tabular}
+\end{NewMacroBox} 
+
+\subsubsection{Option \tkzname{length}} 
+\begin{tkzexample}[latex=7cm]
+  \begin{tikzpicture}
+      \tkzInit[xmax=7,ymax=6]
+      \tkzDefPoint[pos=left](1,1){A}
+      \tkzDefPoint(6,1){B}
+      \tkzInterCC[R](A,4cm)(B,3cm)
+      \tkzGetPoints{C}{D}
+      \tkzDrawPoint(C)
+      \tkzCompass[color=red,length=1.5](A,C)
+      \tkzCompass[color=red](B,C)
+      \tkzDrawSegments(A,B A,C B,C)
+  \end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Option \tkzname{delta}} 
+\begin{tkzexample}[latex=7cm]
+  \begin{tikzpicture} 
+    \tkzInit[xmax=5,ymax=5]\tkzGrid[sub]
+    \tkzClip
+    \tkzDefPoint(0,0){A} 
+    \tkzDefPoint(5,0){B}
+    \tkzInterCC[R](A,4cm)(B,3cm)
+    \tkzGetPoints{C}{D}
+    \tkzDrawPoints(A,B,C) 
+    \tkzCompass[color=red,delta=20](A,C)
+    \tkzCompass[color=red,delta=20](B,C) 
+    \tkzDrawPolygon(A,B,C)  
+    \tkzMarkAngle(A,C,B)
+  \end{tikzpicture}
+\end{tkzexample} 
+
+\newpage
+\subsection{Multiples constructions \tkzcname{tkzCompasss}} 
+\begin{NewMacroBox}{tkzCompasss}{\oarg{local options}\parg{pt1,pt2 pt3,pt4,...}}
+\emph{Attention les arguments sont des listes de deux points. Cela permet d'économiser quelques lignes de codes.}
+  
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{delta} {0}{} 
+\TOline{length}{0.75}{} 
+\TOline{ratio} {.5}{} 
+\end{tabular}
+\end{NewMacroBox} 
+
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoint(2,2){A}  \tkzDefPoint(5,-2){B}
+ \tkzDefPoint(3,4){C}  \tkzDrawPoints(A,B) 
+ \tkzDrawPoint[color=red,shape=cross out](C)    
+ \tkzCompasss[color  = orange,length = 1](A,B A,C B,C C,B) 
+ \tkzShowLine[mediator,color=red,dashed,length = 2](A,B)
+ \tkzShowLine[parallel = through C,color    = blue,length   = 2](A,B)
+ \tkzDefLine[mediator](A,B)           \tkzGetPoints{i}{j}
+ \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{D}
+ \tkzDrawLines[add=.6 and .6](C,D A,C B,D)
+ \tkzDrawLines(i,j) \tkzDrawPoints(A,B,C,i,j,D)  
+ \tkzLabelPoints(A,B,C,i,j,D)
+\end{tikzpicture}
+\end{tkzexample} 
+\end{center}
+
+
+
+\newpage 
+
+\subsection{Macro de configuration \tkzcname{tkzSetUpCompass}} 
+
+\begin{NewMacroBox}{tkzSetUpCompass}{\oarg{local options}\parg{A,B} ou \parg{A,B,C}}
+\begin{tabular}{lll}
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{line width}  {0.4pt}{épaisseur du trait} 
+\TOline{color}  {black!50}{couleur du trait} 
+\TOline{style}  {solid}{style du trait solid, dashed,dotted,...}
+\end{tabular}
+\end{NewMacroBox} 
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzInit[xmax=9,ymax=7] \tkzClip 
+  \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+  \tkzDrawPolygon(A,B,C)  
+  \tkzSetUpCompass[color=brown,line width=.3 pt,style=dashed]
+  \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
+  \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
+  \tkzShowLine[bisector,size=2,gap=3](B,A,C)
+  \tkzShowLine[bisector,size=1,gap=3](C,B,A)   
+  \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
+  \tkzDefPointBy[projection= onto A--B](I) \tkzGetPoint{H}
+  \tkzDrawCircle[radius,color=red](I,H) 
+  \tkzDrawSegments[color=Maroon!50](I,H)
+  \tkzDrawLines[add=0 and 5,color=Maroon!50 ](A,a B,b) 
+\end{tikzpicture} 
+\end{tkzexample} 
+\end{center}
+
+

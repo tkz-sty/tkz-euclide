@@ -1,0 +1,325 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+
+\section{Quelques outils}
+
+
+\subsection{Dupliquer un segment} 
+
+Il s'agit de construire un segment sur une demi-droite donnée  de même longueur qu'un segment donné.
+
+\begin{NewMacroBox}{tkzDuplicateLen}{\parg{pt1,pt2}\parg{pt3,pt4}\marg{pt5}}
+Il s'agit de créer un segment  sur une demi-droite  donnée de même longueur qu'un segment donné . Il s'agit en fait de la définition d'un point.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(pt1,pt2)(pt3,pt4)\{pt5\}} {\tkzcname{tkzDuplicateLen}(A,B)(E,F)\{C\}}{AC=EF et $C \in [AB)$} \\                                                                         
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{La macro \tkzcname{tkzDuplicateSegment} est identique à celle-ci. }
+\end{NewMacroBox}
+
+\subsubsection{Proportion d'or avec \tkzcname{tkzDuplicateLen}} 
+
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[rotate=-90]
+ \tkzInit[xmax=10,ymax=10]
+ \tkzClip[space=1]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(10,0){B}
+ \tkzDefMidPoint(A,B)       \tkzGetPoint{I}
+ \tkzDefPointWith[orthogonal,K=-.75](B,A)
+    \tkzGetPoint{C}
+ \tkzInterLC(B,C)(B,I)      \tkzGetSecondPoint{D}
+ \tkzDuplicateLen(B,D)(D,A) \tkzGetPoint{E}
+ \tkzInterLC(A,B)(A,E)      \tkzGetPoints{N}{M}
+ \tkzDrawArc[delta=10](D,E)(B)
+ \tkzDrawArc[delta=10](A,M)(E)
+ \tkzDrawLines(A,B B,C A,D)
+ \tkzDrawArc[delta=10](B,D)(I)
+ \tkzDrawPoints(A,B,D,C,M,I,N)
+ \tkzLabelPoints(A,B,D,C,M,I,N)
+\end{tikzpicture}
+\end{tkzexample}
+  
+
+\subsection{Déterminer une pente}
+Il s'agit de déterminer si elle existe, la pente d'une droite définie par deux points. Aucune vérification de l'existence n'est faite.
+
+\begin{NewMacroBox}{tkzFindSlope}{\parg{pt1,pt2}\marg{name of macro}}
+Le résultat est stocké dans une macro.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(pt1,pt2){pt3}} {\tkzcname{tkzFindSlope}(A,B)\{slope\}}{\tkzcname{slope} donnera le résultat de $\frac{y_B-y_A}{x_B-x_A}$} \\                                                                         
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Attention à ne pas avoir $x_B=x_A$ }
+\end{NewMacroBox} 
+
+\begin{center}
+\begin{tkzexample}[vbox] 
+\begin{tikzpicture}[scale=1.5]
+  \tkzInit[xmax=5,ymax=5]\tkzGrid[sub]
+  \tkzDefPoint(1,2){A}    \tkzDefPoint(3,4){B} 
+  \tkzDefPoint(3,2){C}    \tkzDefPoint(3,1){D}
+  \tkzDrawSegments(A,B A,C A,D)
+  \tkzDrawPoints[color=red](A,B,C,D)  \tkzLabelPoints(A,B,C,D)
+  \tkzFindSlope(A,B){SAB} \tkzFindSlope(A,C){SAC}\tkzFindSlope(A,D){SAD}
+  \tkzText[fill=Gold!50,draw=brown](2.5,0){La pente de (AB) est : \SAB}
+  \tkzText[fill=Gold!50,draw=brown](2.5,-.5){La pente de (AC) est : \SAC}
+  \tkzText[fill=Gold!50,draw=brown](2.5,-1){La pente de (AD) est : \SAD}   
+\end{tikzpicture}
+\end{tkzexample} 
+\end{center}
+
+
+\newpage
+\subsection{Angle formé par une droite avec l'axe horizontal} 
+Beaucoup plus intéressante que la précédente. Le résultat est compris entre -180 degrés et +180 degrés. 
+
+\begin{NewMacroBox}{tkzFindSlopeAngle}{\parg{pt1,pt2}}
+Le résultat est stocké dans une macro \tkzcname{tkzAngleResult}.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(pt1,pt2)} {\tkzcname{tkzFindSlopeAngle}(A,B)}{\tkzcname{tkzGetAngle} peut récupèrer le résultat}                                                                       
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Si la récupération n'est pas nécessaire, il est possible d'utiliser \tkzcname{tkzAngleResult}}
+\end{NewMacroBox}  
+
+
+\subsubsection{exemple d'utilisation de \tkzcname{tkzFindSlopeAngle}}
+Voici une autre version de la construction d'une médiatrice
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+ \tkzInit   
+ \tkzDefPoint(0,0){A}        \tkzDefPoint(3,2){B}
+ \tkzDefLine[mediator](A,B)  \tkzGetPoints{I}{J} 
+ \tkzCalcLength[cm](A,B)     \tkzGetLength{dAB}
+ \tkzFindSlopeAngle(A,B)     \tkzGetAngle{tkzangle}  
+ \begin{scope}[rotate=\tkzangle] 
+   \tikzset{arc/.style={color=gray,delta=10}}
+   \tkzDrawArc[R,arc](B,3/4*\dAB)(120,240) 
+   \tkzDrawArc[R,arc](A,3/4*\dAB)(-45,60) 
+   \tkzDrawLine(I,J)         \tkzDrawSegment(A,B) 
+  \end{scope}
+  \tkzDrawPoints(A,B,I,J)    \tkzLabelPoints(A,B) 
+   \tkzLabelPoints[right](I,J) 
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+  
+
+\newpage
+\subsection{Récupérer un angle} 
+Dans l'exemple précédent, j'ai utilisé la macro  \tkzcname{tkzGetAngle} qui permet de récupérer un angle.
+
+\begin{NewMacroBox}{tkzGetAngle}{\marg{name of macro}}
+Cette macro récupère  \tkzcname{tkzAngleResult} et stocke le résultat dans une nouvelle macro.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{name of macro} {\tkzcname{tkzGetAngle}\{ang\}}{\tkzcname{ang} contient la valeur de l'angle.}                                                                       
+\end{tabular}
+\end{NewMacroBox}
+
+\subsection{exemple d'utilisation de \tkzcname{tkzGetAngle}}
+ Il s'agit ici que $(AB)$ soit la bissectrice de $\widehat{CAD}$, tel que la pente $AD$ soit nulle. On récupère la pente de $(AB)$ puis on effectue deux rotations.
+ 
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture} 
+  \tkzInit
+  \tkzDefPoint(1,5){A} \tkzDefPoint(5,2){B}  \tkzDrawSegment(A,B) 
+  \tkzFindSlopeAngle(A,B)\tkzGetAngle{tkzang}
+  \tkzDefPointBy[rotation= center A angle \tkzang ](B) \tkzGetPoint{C} 
+  \tkzDefPointBy[rotation= center A angle -\tkzang ](B) \tkzGetPoint{D} 
+  \tkzCompass[length=1,dashed,color=red](A,C) 
+  \tkzCompass[delta=10,Maroon](B,C)   \tkzDrawPoints(A,B,C,D) 
+  \tkzLabelPoints(B,C,D)  \tkzLabelPoints[above left](A) 
+  \tkzDrawSegments[style=dashed,color=bistre](A,C A,D)
+\end{tikzpicture}
+\end{tkzexample} 
+\end{center}
+
+
+
+
+\newpage
+\subsection{Angle formé par trois points} 
+
+
+\begin{NewMacroBox}{tkzFindAngle}{\parg{pt1,pt2,pt3}}
+Le résultat est stocké dans une macro \tkzcname{tkzAngleResult}. 
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(pt1,pt2,pt3)} {\tkzcname{tkzFindAngle}(A,B,C)}{\tkzcname{tkzAngleResult} donne l'angle ($\overrightarrow{BA},\overrightarrow{BC}$)}                                                                         
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Le résultat est compris entre -180 degrés et +180 degrés. pt2 est le sommet et  \tkzcname{tkzGetAngle} peut récupérer l'angle. }
+\end{NewMacroBox}   
+
+\subsection{Exemple d'utilisation de \tkzcname{tkzFindAngle} }
+
+\begin{center}
+\begin{tkzexample}[vbox,small]
+\begin{tikzpicture}
+  \tkzInit[xmin=-1,ymin=-1,xmax=7,ymax=7]
+  \tkzClip  
+  \tkzDefPoint (0,0){O}  \tkzDefPoint (6,0){A}
+  \tkzDefPoint (5,5){B}  \tkzDefPoint (3,4){M}
+  \tkzFindAngle (A,O,M)  \tkzGetAngle{an}   
+  \tkzDefPointBy[rotation=center O angle \an](A) \tkzGetPoint{C}
+  \tkzDrawSector[fill = blue!50,opacity=.5](O,A)(C)
+  \tkzFindAngle(M,B,A)   \tkzGetAngle{am}
+  \tkzDefPointBy[rotation = center O angle \am](A) \tkzGetPoint{D} 
+  \tkzDrawSector[fill = red!50,opacity = .5](O,A)(D) 
+  \tkzDrawPoints(O,A,B,M,C,D)   \tkzLabelPoints(O,A,B,M,C,D) 
+  \FPround\an\an{2} \FPround\am\am{2} \tkzDrawSegments(M,B B,A)
+  \tkzText(4,2){$\widehat{AOC}=\widehat{AOM}=\an^{\circ}$} 
+  \tkzText(1,4){$\widehat{AOD}=\widehat{MBA}=\am^{\circ}$}  
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+ 
+
+\newpage
+\subsection{Longueur d'un segment \tkzcname{tkzVecLen}}
+Il existe dans \TIKZ\ une option \tkzname{veclen}. Cette option
+ permet de calculer AB si A et B sont deux points.
+
+Le seul problème pour moi est que la version de \TIKZ\ n'est pas assez précise dans certains cas particuliers. Ma version utilise le package \tkzNamePack{fp.sty} et est plus lente, mais plus précise
+
+\begin{NewMacroBox}{tkzVecLen}{\oarg{local options}\parg{pt1,pt2}\marg{name of macro}}
+Le résultat est stocké dans une macro.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(pt1,pt2)\{name of macro\}} {\tkzcname{tkzVecLen}(A,B)\{dAB\}}{\tkzcname{dAB} donne  $AB$ en pt}                                                                        
+\bottomrule
+\end{tabular}
+
+\medskip
+Une seule option 
+
+\begin{tabular}{lll}
+\toprule
+options             & défaut & exemple                         \\ 
+\midrule
+\TOline{cm}  {false}{\tkzcname{tkzVecLen}[cm](A,B)\{dAB\} \tkzcname{dAB} donne AB en cm}
+\end{tabular}
+\end{NewMacroBox} 
+
+\subsubsection{Construction d'un carré au compas}
+ 
+\begin{tkzexample}[vbox,small]    
+\begin{tikzpicture}[scale=1.2] 
+  \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+  \tkzDrawLine[add= .6 and .2](A,B)
+  \tkzCalcLength[cm](A,B)\tkzGetLength{dAB}
+  \tkzDefLine[perpendicular=through A](A,B)
+  \tkzDrawLine(A,tkzPointResult) \tkzGetPoint{D}
+  \tkzShowLine[orthogonal=through A,gap=2](A,B)
+  \tkzMarkRightAngle(B,A,D)
+  \tkzVecKOrth[-1](B,A){C}
+  \tkzCompasss(A,D D,C)   \tkzDrawArc[R](B,\dAB)(80,110) 
+  \tkzDrawPoints(A,B,C,D) \tkzDrawSegments[color=gray,style=dashed](B,C C,D) 
+  \tkzLabelPoints(A,B,C,D)
+\end{tikzpicture}
+\end{tkzexample} 
+
+\newpage
+\subsection{Transformation de pt en cm ou de cm en pt}
+Pas sûr que cela soit nécessaire et il ne s'agit que d'une division par 28,45274 et d'un multiplication par ce même nombre. Les macros sont :
+
+\begin{NewMacroBox}{tkzpttocm}{\parg{nombre}\marg{name of macro}}
+Le résultat est stocké dans une macro.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(nombre){name of macro}} {\tkzcname{tkzpttocm}(120)\{len\}}{\tkzcname{len} donne un nombre de tkzname{cm}}                                                                        
+\bottomrule
+\end{tabular}
+
+\medskip
+\noindent\emph{Il faudra utiliser \tkzcname{len} accompagné de  \tkzname{cm}} 
+\end{NewMacroBox}  
+
+\begin{NewMacroBox}{tkzcmtopt}{\parg{nombre}\marg{name of macro}}
+Le résultat est stocké dans une macro.
+
+\medskip
+  
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{(nombre){name of macro}}{\tkzcname{tkzcmtopt}(5)\{len\}}{\tkzcname{len} donne un nombre de tkzname{pt}}                                                                        
+\bottomrule
+\end{tabular}
+
+\medskip
+\noindent\emph{Il faudra utiliser \tkzcname{len} accompagné de  \tkzname{pt}} 
+\end{NewMacroBox}
+
+\subsubsection{Exemple}
+La macro    \tkzcname{tkzDefCircle[radius](A,B)} définit le rayon que l'on récupère avec     \tkzcname{tkzGetLength}, mais ce résultat est en \tkzname{pt}. 
+
+\begin{tkzexample}[latex=8cm]
+  \begin{tikzpicture}
+     \tkzDefPoint(0,4){A}
+     \tkzDefPoint(3,2){B}
+     \tkzDefCircle[radius](A,B) 
+     \tkzGetLength{rABpt}
+     \tkzpttocm(\rABpt){rABcm}
+     \tkzDrawCircle(A,B)
+     \tkzDrawPoints(A,B)
+     \tkzLabelPoints(A,B)
+  \end{tikzpicture}
+\end{tkzexample}
+  
+   
+\endinput

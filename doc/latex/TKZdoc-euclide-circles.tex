@@ -1,0 +1,628 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+\section{Les Cercles}
+
+Parmi les macros suivantes, l'une  va permettre de tracer un cercle, ce qui n'est pas un réel exploit. Pour cela, il va falloir connaître le centre du cercle et soit le rayon du cercle, soit un point de la circonférence. Il m'a semblé que l'utilisation la plus fréquente était de tracer un cercle de centre donné passant par un point donné. Ce sera la méthode par défaut, sinon il faudra utiliser l'option \tkzname{R}. Il existe un grand nombre de cercles particuliers, par exemple le cercle circonscrit à un triangle.
+
+\begin{itemize}
+  \item  J'ai  créé une première macro \tkzcname{tkzDefCircle} qui permet en fonction d'un cercle
+ particulier de récupérer son centre et la mesure du rayon en cm. Cette récupération  se fait avec les macros \tkzcname{tkzGetPoint} et \tkzcname{tkzGetLength},
+ 
+ \item ensuite une macro \tkzcname{tkzDrawCircle},
+ 
+ \item puis une macro qui permet de colorier un disque, mais sans tracer le cercle \tkzcname{tkzFillCircle},
+ 
+ \item parfois, il est nécessaire qu'un dessin soit contenu dans un disque c'est le rôle attribuer à \tkzcname{tkzClipCircle},
+
+ 
+ \item  Il reste enfin à pouvoir donner un label pour désigner un cercle et si plusieurs possibilités sont offertes, nous verrons ici \tkzcname{tkzLabelCircle}.
+\end{itemize}
+ 
+
+\subsection{Caractéristiques d'un cercle : \tkzcname{tkzDefCircle}}
+ 
+Pour le moment, il est possible de récupérer les caractéristiques des cercles suivants (le premier est là pour que l'ensemble soit homogène)
+\begin{itemize}
+\item  \tkzname{radius}  cercle caractérisé par deux points définissant un rayon,
+\item  \tkzname{diameter}  cercle caractérisé par  deux points définissant un diamètre,
+\item \tkzname{circum} cercle circonscrit à un triangle,
+\item \tkzname{in} cercle inscrit dans à un triangle,
+\item \tkzname{euler} cercle d'Euler d'un triangle,
+\item \tkzname{apollonius} cercle d'Apollonius caractérisé par un segment et un ratio.  
+\end{itemize}   
+
+\begin{NewMacroBox}{tkzDefCircle}{\oarg{local options}\parg{A,B} ou \parg{A,B,C}}
+\emph{Attention les arguments sont des listes de deux ou bien de trois points. Cette macro est, soit utilisée en partenariat  avec \tkzcname{tkzGetPoint} et/ou \tkzcname{tkzGetLength} pour obtenir le centre et le rayon du cercle, soit en utilisant \tkzname{tkzPointResult} et \tkzname{tkzLengthResult} s'il n'est pas nécessaire de conserver les résultats.}
+  
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{radius}  {radius}{cercle caractérisé par deux points définissant un rayon} 
+\TOline{diameter} {radius}{cercle caractérisé par  deux points définissant un diamètre }
+\TOline{circum}{radius}{cercle circonscrit à un triangle} 
+\TOline{in}    {radius}{cercle inscrit dans à un triangle } 
+\TOline{euler}{radius}{Cercle d'Euler }
+\TOline{apollonius} {radius}{Cercle d'Apollonius} 
+\TOline{orthogonal} {radius}{Cercle de centre donné orthogonal à un autre cercle}
+\TOline{orthogonal through}{radius}{Cercle orthogonal à un autre cercle passant par deux points} 
+\TOline{K} {2}{Coefficient utilisé pour un cercle d'Apollonius} 
+\TOline{color}   {black}{couleur du cercle} 
+\TOline{fill}   {}{couleur du disque, si présent }  
+\TOline{line width}   {.4pt}{épaisseur du trait }    \bottomrule
+\end{tabular}
+
+\medskip\emph{Dans les exemples suivants, je trace les cercles avec une macro pas encore présentée, mais ce n'est pas nécessaire. Dans certains cas on peut seulement avoir besoin du centre ou encore du rayon.}
+\end{NewMacroBox}  
+
+\subsubsection{Exemple}
+\begin{tkzexample}[latex=7 cm]
+\begin{tikzpicture}
+   \tkzDefPoint(0,4){A}
+   \tkzDefPoint(3,2){B}
+   \tkzDefCircle[radius](A,B) 
+   \tkzGetLength{rABpt}
+   \tkzpttocm(\rABpt){rABcm}
+   \tkzDrawCircle(A,B)
+   \tkzDrawPoints(A,B)
+   \tkzLabelPoints(A,B)
+   \tkzLabelCircle[draw,fill=Gold,%
+    text width=3cm,text centered](A,B)(-90)%
+  {La mesure du rayon est : 
+  \rABpt pt soit \rABcm cm}
+\end{tikzpicture} 
+ \end{tkzexample}   
+% 
+ \subsubsection{Exemple avec un point aléatoire} 
+% 
+\begin{tkzexample}[latex=7 cm]
+ \begin{tikzpicture}
+    \tkzDefPoint(0,4){A}
+    \tkzDefPoint(3,2){B}
+    \tkzDefMidPoint(A,B) \tkzGetPoint{I}
+    \tkzGetRandPointOn[segment = I--B]{C}
+    \tkzDefCircle[radius](A,C) 
+   \tkzGetLength{rACpt}
+   \tkzpttocm(\rACpt){rACcm} 
+    \tkzDrawCircle(A,C)
+    \tkzDrawPoints(A,B,C)
+    \tkzLabelPoints(A,B,C) 
+    \tkzLabelCircle[draw,fill=Gold,%
+    text width=3cm,text centered](A,C)(-90)%
+    {La mesure du rayon est :
+     \rACpt pt soit \rACcm cm}  
+ \end{tikzpicture}     
+ \end{tkzexample}      
+
+\newpage
+ \subsubsection{Cercles inscrit et circonscrit pour un triangle donné}
+\begin{tkzexample}[vbox]  
+\begin{tikzpicture}[scale=1.5]
+   \tkzDefPoint(2,2){A} 
+   \tkzDefPoint(5,-2){B}
+   \tkzDefPoint(1,-2){C}
+   \tkzDefCircle[in](A,B,C)
+   \tkzGetPoint{I}    \tkzGetLength{rIN}
+   \tkzDefCircle[circum](A,B,C)
+   \tkzGetPoint{K}   \tkzGetLength{rCI}
+   \tkzDrawPoints(A,B,C,I,K)    
+   \tkzDrawCircle[R,blue](I,\rIN pt) 
+   \tkzDrawCircle[R,red](K,\rCI pt) 
+   \tkzLabelPoints[below](B,C)
+   \tkzLabelPoints[above left](A,I,K)
+   \tkzDrawPolygon(A,B,C)
+\end{tikzpicture} 
+\end{tkzexample}
+
+   
+\newpage
+ \subsubsection{Cercles d'Apollonius colorié pour un segment donné} 
+Wikipedia donne comme définition :
+ 
+Apollonius de Perga propose de définir le cercle comme l'ensemble des points M du plan pour lesquels le rapport des distances MA/MB reste constant, les points A et B étant donnés. 
+Théorème — Si A et B sont deux points distincts et $k$ est un réel autre que 0 et 1, le cercle d'Apollonius du triplet (A,B,$k$) est l'ensemble des points M du plan tels que MA/MB = $k$.
+                                      
+
+\begin{tkzexample}[vbox]    
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,0){A} 
+  \tkzDefPoint(4,0){B}
+  \tkzDefCircle[apollonius,K=2](A,B)
+  \tkzGetPoint{K1}
+  \tkzGetLength{rAp}
+  \tkzDrawCircle[R,color = blue!50!black,fill=blue!20,opacity=.4](K1,\rAp pt)
+  \tkzDefCircle[apollonius,K=3](A,B)
+  \tkzGetPoint{K2}   \tkzGetLength{rAp}
+  \tkzDrawCircle[R,color=red!50!black,fill=red!20,opacity=.4](K2,\rAp pt) 
+  \tkzLabelPoints[below](A,B,K1,K2)
+  \tkzDrawPoints(A,B,K1,K2) 
+  \tkzDrawLine[add=.2 and 1](A,B)  
+\end{tikzpicture}
+\end{tkzexample}   
+
+Les cercles ont été tracés et les disques coloriés, simplement avec les outils de \TIKZ.       
+
+\newpage
+ \subsubsection{Cercle d'Euler pour un triangle donné}
+\begin{center}
+\begin{tkzexample}[vbox]  
+\begin{tikzpicture}[scale=1.5]
+   \tkzInit[xmin=-1,ymin=-1,xmax=8,ymax=6] \tkzClip
+   \tkzDefPoint(5,3.5){A} \tkzDefPoint(0,0){B} \tkzDefPoint(7,0){C}
+   \tkzDefCircle[euler](A,B,C)
+   \tkzGetPoint{E}  \tkzGetLength{rEuler}
+   \tkzDrawPoints(A,B,C,E)    
+   \tkzDrawCircle[R,blue](E,\rEuler pt)
+   \tkzDrawPolygon(A,B,C)    
+   \tkzLabelPoints[below](B,C)  \tkzLabelPoints[left](A,E)   
+\end{tikzpicture}
+\end{tkzexample}
+ \end{center}  
+     
+ Il est possible avec les outils d'intersection de déterminer les points communs du cercle d'Euler et du triangle.   
+
+\newpage
+\subsubsection{Cercle orthogonal de centre donné} 
+Nous allons chercher deux cercles orthogonaux au  cercle de centre O passant par A, leurs centres B et C étant donnés.   
+ 
+\begin{center}
+  \begin{tkzexample}[vbox]  
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}  \tkzDefPoint(1,0){A} 
+  \tkzDefPoint(1.5,1.25){B}  \tkzDefPoint(-2,-3){C} 
+  \tkzDrawCircle(O,A)
+  \tkzDefCircle[orthogonal from=B](O,A)
+  \tkzDrawCircle[thick,color=red](B,tkzFirstPointResult)
+  \tkzDefCircle[orthogonal from=C](O,A)
+  \tkzDrawCircle[thick,color=red](C,tkzFirstPointResult)
+  \tkzDrawPoints(tkzFirstPointResult,tkzSecondPointResult,O,A,B,C) 
+  \tkzLabelPoints(O,A,C,B)  
+\end{tikzpicture} 
+\end{tkzexample}
+\end{center}  
+
+\newpage  
+ \subsubsection{Cercle orthogonal passant par deux points donnés} 
+ Nous allons cette fois récupéré le centre.  
+ 
+\begin{center}
+\begin{tkzexample}[vbox]  
+\begin{tikzpicture}[scale=3]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDrawCircle(O,A) 
+  \tkzDefPoint(-1.5,-1.5){z1}
+  \tkzDefPoint(1.5,-1.25){z2} 
+  \tkzDefCircle[orthogonal through=z1 and z2](O,A) \tkzGetPoint{c}    
+  \tkzDrawCircle[thick,color=red](tkzPointResult,z1)
+  \tkzDrawPoints[fill=red,color=black,size=4](O,A,z1,z2,c)   
+  \tkzLabelPoints(O,A,z1,z2,c) 
+\end{tikzpicture}   
+\end{tkzexample}
+\end{center}  
+
+
+\newpage     
+\subsection{Tracer un cercle}  
+\begin{NewMacroBox}{tkzDrawCircle}{\oarg{local options}\parg{A,B} ou \parg{A,B,C}}
+\noindent\emph{Attention les arguments sont des listes de deux ou bien de trois points. Les cercles que l'on peut tracer sont les mêmes que pour la macro précédente. Une option supplémentaire \tkzname{R} afin de donner directement une mesure.}
+  
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{radius}{radius}{cercle avec deux points définissant un rayon}
+\TOline{diameter}{radius}{cercle avec deux points définissant un diamètre}
+\TOline{R} {radius}{cercle caractérisé par  un point et la mesure d'un rayon}
+\TOline{circum}{radius}{cercle circonscrit à un triangle}
+\TOline{in}{radius}{cercle inscrit dans à un triangle}
+\TOline{euler}{radius}{Le cercle d'Euler}
+\TOline{apollonius}{radius}{Le cercle d'Apollonius}
+\TOline{K}{2}{Coefficient utilisé pour un cercle d'Apollonius}
+\TOline{orthogonal}{radius}{Cercle de centre donné orthogonal à un autre cercle}
+\TOline{orthogonal through}{radius}{Cercle orthogonal à un autre cercle passant par deux points}    
+ \bottomrule
+\end{tabular}
+
+\medskip
+\emph{Il faut ajouter bien sûr tous les styles de \TIKZ pour les tracés}
+\end{NewMacroBox}
+ 
+ \subsubsection{Cercles et styles, tracer un cercle et colorier le disque}
+ On va voir qu'il est possible de colorier un disque, tout en traçant le cercle.
+ 
+\begin{tkzexample}[latex=7cm]
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O} 
+  \tkzDefPoint(3,0){A}
+ % cercle de centre O et passant par A
+  \tkzDrawCircle[color=blue,style=dashed](O,A) 
+ % cercle de diamètre $[OA]$
+  \tkzDrawCircle[diameter,color=red,%
+                 line width=2pt,fill=red!40,%
+                 opacity=.5](O,A)
+ % cercle de centre O et de rayon = exp(1) cm
+  \FPeval\rayon{exp(1)}
+  \tkzDrawCircle[R,color=orange](O,\rayon cm) 
+\end{tikzpicture} 
+\end{tkzexample}  
+
+ \subsubsection{Cercle orthogonal à un cercle donné passant par deux points donnés } 
+ 
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=2]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDrawCircle(O,A) 
+  \tkzDefPoint(0.5,-0.25){z1}
+  \tkzDefPoint(-0.5,-0.5){z2}
+  \tkzDrawPoints[color = black,fill   = red,size=12](O,z1,z2)
+  \tkzDefPointBy[inversion = center O through A](z1) \tkzGetPoint{Z1} 
+  \tkzCircumCenter(z1,z2,Z1) \tkzGetPoint{c}
+  \tkzDrawCircle(c,Z1)
+  \tkzDrawPoints(c,Z1)
+  \tkzLabelPoints(O,A,z1,z2,Z1,c) 
+\end{tikzpicture} 
+\end{tkzexample}
+\end{center}
+
+ 
+ \newpage
+ \subsubsection{Cardioïde}  
+ D'après une idée d'O. Reboux réalisée avec pst-eucl ( module de Pstricks)  de D. Rodriguez.
+
+Son nom vient du grec kardia (cœur), en référence à sa forme, et lui fut donné par Johan Castillon. Wikipedia     
+% 
+% %   BibTeX
+% % 
+% %  @misc{ wiki:xxx,
+% %    author = "Wikipédia",
+% %    title = "Cardioïde --- Wikipédia{,} l'encyclopédie libre",
+% %    year = "2010",
+% %    url = "http://fr.wikipedia.org/w/index.php?title=Cardio%C3%AFde&oldid=53868968",
+% %    note = "[En ligne; Page disponible le 27-juin-2010]"
+% %  }
+% % 
+% % Lorsque vous utilisez la package url sous LaTeX (\usepackage{url} quelque part dans le préambule) qui améliore l'affichage des adresses internet, veuillez utiliser de préférence ce format:
+% % 
+% % 
+% %  @misc{ wiki:xxx,
+% %    author = "Wikipédia",
+% %    title = "Cardioïde --- Wikipédia{,} l'encyclopédie libre",
+% %    year = "2010",
+% %    url = "\url{http://fr.wikipedia.org/w/index.php?title=Cardio%C3%AFde&oldid=53868968}",
+% %    note = "[En ligne; Page disponible le 27-juin-2010]"
+% %  }   
+
+\begin{center}
+  \begin{tkzexample}[vbox]
+  \begin{tikzpicture}[scale=1.25]
+    \tkzDefPoint(0,0){O} 
+    \tkzDefPoint(2,0){A}
+    \foreach \ang in {5,10,...,360}{%
+       \tkzDefPoint(\ang:2){M}
+       \tkzDrawCircle(M,A) 
+     }  
+  \end{tikzpicture} 
+  \end{tkzexample}
+\end{center}
+  
+
+ \subsubsection{Ceci est une mappemonde }
+  
+\begin{tkzexample}[latex=5.5cm,small]
+\begin{tikzpicture}[scale=.333]   
+ \tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+ \tkzDefPoint(0 , 0){O}
+ \tkzDefPoint(9 , 0){A}
+ \tkzDefPoint(-9, 0){C} 
+ \tkzDefPoint(0 , 9){B}
+ \tkzDefPoint(0 ,-9){D}
+ \tkzClipCircle(O,A) 
+ \foreach \pti in {1,2,...,8}{
+ \tkzDefPoint(10*\pti:9){P\pti}
+ \tkzDefPoint(90:\pti){MP\pti}
+ \tkzDefPoint(0: \pti){NP\pti}
+ \tkzDefLine[mediator](MP\pti,P\pti) 
+ \tkzInterLL(B,D)(tkzFirstPointResult,tkzSecondPointResult) 
+ \tkzDrawCircle[color=Maroon](tkzPointResult,P\pti)
+ } 
+ \foreach \pti in {-1,-2,...,-8}{
+ \tkzDefPoint(10*\pti:9){P\pti}
+ \tkzDefPoint(-90:-\pti){MP\pti}
+ \tkzDefPoint(0: -\pti){NP\pti}
+ \tkzDefLine[mediator](MP\pti,P\pti)
+ \tkzInterLL(B,D)(tkzFirstPointResult,tkzSecondPointResult)
+ \tkzDrawCircle[color=Maroon](tkzPointResult,P\pti)
+ } 
+ \foreach \pti in {1,2,...,8}{
+ \tkzDefLine[mediator](B,NP\pti)  
+ \tkzInterLL(A,C)(tkzFirstPointResult,tkzSecondPointResult)
+ \tkzDrawCircle[color=Maroon](tkzPointResult,NP\pti)
+ }
+ \foreach \pti in {1,2,...,8}{
+ \tkzDefPoint(0: -\pti){NP\pti}
+ \tkzDefLine[mediator](B,NP\pti) 
+ \tkzInterLL(A,C)(tkzFirstPointResult,tkzSecondPointResult)
+ \tkzDrawCircle[color=Maroon](tkzPointResult,NP\pti)
+ }  
+  \tkzDrawCircle[R,color=Maroon](O,9 cm)
+  \tkzDrawSegments[color=Maroon](A,C B,D)  
+\end{tikzpicture}     
+ \end{tkzexample}
+
+
+\clearpage \newpage
+
+
+\newpage     
+\subsection{Colorier un disque}
+C'était possible avec la macro précédente, mais le tracé du disque était obligatoire, là ce n'est plus le cas.
+  
+\begin{NewMacroBox}{tkzFillCircle}{\oarg{local options}\parg{A,B}}
+\begin{tabular}{lll}
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{radius}  {radius}{deux points définissent un rayon}
+\TOline{R} {radius}{un point et la mesure d'un rayon }
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Il n'est pas nécessaire de mettre \tkzname{radius} car c'est l'option par défaut. Il faut ajouter bien sûr tous les styles de \TIKZ pour les tracés}
+\end{NewMacroBox}  
+
+ \subsubsection{Exemple de \tkzcname{tkzFillCircle} provenant d'un sangaku} 
+\begin{center}
+  \begin{tkzexample}[vbox,small]
+  \begin{tikzpicture}
+   \tkzInit[xmin=0,xmax = 6,ymin=0,ymax=6] \tkzClip
+   \tkzDefPoint(0,0){B}  \tkzDefPoint(6,0){C}%
+   \tkzDefSquare(B,C)    \tkzGetPoints{D}{A} 
+   \tkzClipPolygon(B,C,D,A) 
+   \tkzDefMidPoint(A,D)  \tkzGetPoint{F}
+   \tkzDefMidPoint(B,C)  \tkzGetPoint{E}
+   \tkzDefMidPoint(B,D)  \tkzGetPoint{Q}           
+   \tkzTangent[from = B](F,A) \tkzGetPoints{G}{H} 
+   % \tkzTgtFromP(F,A)(B) est obsolète
+   \tkzInterLL(F,G)(C,D) \tkzGetPoint{J}
+   \tkzInterLL(A,J)(F,E) \tkzGetPoint{K}
+   \tkzDefPointBy[projection=onto B--A](K)   \tkzGetPoint{M}  
+   \tkzFillPolygon[color = green](A,B,C,D)
+   \tkzFillCircle[color = orange](B,A)
+   \tkzFillCircle[color = blue!50!black](M,A)
+   \tkzFillCircle[color = purple](E,B)
+   \tkzFillCircle[color = yellow](K,Q)  
+  \end{tikzpicture}
+  \end{tkzexample} 
+\end{center}
+
+  
+\newpage     
+\subsection{Clipper un disque}
+
+\begin{NewMacroBox}{tkzClipCircle}{\oarg{local options}\parg{A,B}}
+\begin{tabular}{lll}
+%\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{radius}  {radius}{cercle caractérisé par deux points définissant un rayon} 
+\TOline{R} {radius}{cercle caractérisé par  un point et la mesure d'un rayon }  
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Il n'est pas nécessaire de mettre \tkzname{radius} car c'est l'option par défaut.}
+\end{NewMacroBox}
+
+ \subsubsection{Exemple 1 de \tkzcname{tkzClipCircle}} 
+\begin{tkzexample}[latex=6cm,small] 
+  \begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5]
+  \tkzGrid \tkzClip 
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(2,2){O}
+  \tkzDefPoint(4,4){B}
+  \tkzDefPoint(6,6){C}
+  \tkzDrawPoints(O,A,B,C) 
+  \tkzLabelPoints(O,A,B,C)
+  \tkzDrawCircle(O,A) 
+  \tkzClipCircle(O,A)
+  \tkzDrawLine(A,C)
+  \tkzDrawCircle[fill=red!20,opacity=.5](C,O) 
+\end{tikzpicture} 
+\end{tkzexample}
+
+ \subsubsection{Exemple 2 de \tkzcname{tkzClipCircle}}
+\begin{tkzexample}[latex=6cm,small] 
+  \begin{tikzpicture}
+  \tkzInit[xmax=6,ymax=6]
+  \tkzGrid \tkzClip
+   \tkzDefPoint(0,0){A}
+   \tkzDefPoint(2,2){O}
+   \tkzDefPoint(4,4){B}
+   \tkzDefPoint(6,6){C}
+   \tkzDrawPoints(O,A,B,C) 
+   \tkzLabelPoints(O,A,B,C)
+   \tkzDrawCircle(O,A) 
+   \begin{scope}
+    \tkzClipCircle(O,A)
+    \tkzDrawLine(A,C)
+   \end{scope}
+   \tkzClipCircle[R](B,1cm)
+  \tkzDrawCircle[fill=red!20,opacity=.5](C,B)
+\end{tikzpicture} 
+\end{tkzexample}  
+
+ \subsubsection{Exemple 3 de \tkzcname{tkzClipCircle}}
+\begin{tkzexample}[latex=8cm,small]  
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoint(0,0){A} 
+ \tkzDefPoint(8,0){B}
+ \tkzDefSquare(A,B)\tkzGetPoints{C}{D} 
+ \tkzDrawPolygon(A,B,C,D)
+ \tkzClipPolygon(A,B,C,D)
+ \begin{scope}
+  \tkzClipCircle(D,C)
+  \tkzFillCircle[color=gray!50,%
+                opacity=.5](B,A) 
+ \end{scope}
+ \tkzDrawCircle(B,C) 
+ \tkzDrawCircle(D,C)
+\end{tikzpicture}
+\end{tkzexample}
+
+ \subsubsection{Exemple 4 de \tkzcname{tkzClipCircle} provenant d'un sangaku}
+\begin{tkzexample}[latex=7cm,small] 
+\begin{tikzpicture}[scale=.75]
+ \tkzInit[xmin=-5,ymin=-5,xmax=5,ymax=5]
+ \tkzClip
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(-2,-3){A}
+ \tkzDefPoint(2,-3){B}
+ \tkzDefPoint(0,3){Q}
+ \tkzDrawCircle[R](O,5 cm)
+ \tkzInterLC[R](A,B)(O,5 cm) 
+     \tkzGetPoints{M}{N}
+ \tkzDrawPoints(M,N)
+ \tkzClipCircle[R](O,5 cm)
+ \tkzDrawLines[add= 1 and 1](A,B M,Q N,Q)
+ \tkzDefMidPoint(M,N) \tkzGetPoint{R}
+ \tkzDefLine[orthogonal=through Q](O,Q)
+ \tkzGetPoint(q)
+ \tkzCalcLength(R,Q) \tkzGetLength{dRQ}
+ \tkzCalcLength(M,Q) \tkzGetLength{dMQ} 
+ \pgfmathparse{(\dMQ)/(\dRQ)*1.5}
+ \edef\tkz@q{\pgfmathresult}%
+ \tkzDefPoint(\tkz@q,3){K}
+ \tkzDefPointBy[projection=onto N--Q](K) 
+    \tkzGetPoint{G}
+  \tkzDrawCircle[R](K,1.5cm)
+  \tkzFillCircle[R,color=purple!50,%
+  opacity=.5](K,1.5 cm)
+\end{tikzpicture}
+  \end{tkzexample}
+
+\newpage
+\subsection{Donner un label à un cercle}
+\begin{NewMacroBox}{tkzLabelCircle}{\oarg{local options}\parg{A,B}\parg{angle}\marg{label}}
+\begin{tabular}{lll}
+%\toprule
+options             & défaut & définition                         \\
+\midrule
+\TOline{radius}  {radius}{cercle caractérisé par deux points définissant un rayon}
+\TOline{R} {radius}{cercle caractérisé par  un point et la mesure d'un rayon }
+\bottomrule
+\end{tabular} 
+
+\medskip
+\emph{Il n'est pas nécessaire de mettre \tkzname{radius} car c'est l'option par défaut. On peut utiliser les styles de \TIKZ. Le label est créé et donc "passé" entre accolades. }
+\end{NewMacroBox} 
+
+ \subsubsection{Exemple  de \tkzcname{tkzLabelCircle}}  
+\begin{tkzexample}[latex=5cm,small] 
+\begin{tikzpicture}
+  \tkzInit[ymin=-2.25,ymax=2.25,xmin=-2.25,xmax=2.25]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,0){N}
+  \tkzDefPointBy[rotation=center O angle 50](N) 
+      \tkzGetPoint{M}
+  \tkzDefPointBy[rotation=center O angle -20](N) 
+       \tkzGetPoint{P}
+  \tkzDefPointBy[rotation=center O angle 125](N) 
+       \tkzGetPoint{P'}
+  \tkzLabelCircle[above=4pt](O,N)(120){$\mathcal{C}$}
+  \tkzDrawCircle(O,M) 
+  \tkzFillCircle[color=blue!20,opacity=.4](O,M) 
+  \tkzLabelCircle[R,draw,fill=Gold,%
+  text width=2cm,text centered](O,3 cm)(-60)%
+          {Le cercle\\ $\mathcal{C}$}  
+  \tkzDrawSegment[dashed](O,P)
+  \tkzDrawPoints(M,P)\tkzLabelPoints[right](M,P)   
+\end{tikzpicture}      
+\end{tkzexample} 
+
+\subsection{Tangente à un cercle}
+Deux constructions sont proposées. La première est la construction d'une tangente à un cercle en un point donné de ce cercle et la seconde est la construction d'une tangente à un cercle passant par un point donné hors d'un disque. Ces macros remplacent d'anciennes macros qui existent encore \tkzcname{tkzTgtFromP} ou  \tkzcname{tkzTgtFromPR} ainsi que   \tkzcname{tkzTgtAt}. 
+
+\begin{NewMacroBox}{tkzTangent}{\oarg{local options}\parg{pt1,pt2} ou \parg{pt1,dim}}
+\emph{Le paramètre entre parenthèses est le centre du cercle ou bien le centre du cercle et un point du cercle ou encore le centre et le rayon.}
+
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{at=pt}{at}{tangente en un point du cercle} 
+\TOline{from=pt} {at}{tangente à un cercle passant par un point}
+\TOline{from with R=pt} {at}{idem, mais le cercle est défini par centre+rayon}  
+\bottomrule
+\end{tabular}
+
+\emph{La tangente n'est pas tracée.Un second point de celle-ci est donné par \tkzname{tkzPointResult}.}
+\end{NewMacroBox}
+
+ \subsubsection{Exemple  de tangente passant par un point du cercle } 
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.5]
+  \tkzInit
+  \tkzDefPoint(0,0){O}
+   \tkzDefPoint(6,6){E}
+  \tkzGetRandPointOn[circle=center O radius 4cm]{A}
+  \tkzDrawSegment(O,A)
+   \tkzDrawCircle(O,A)
+  \tkzTangent[at=A](O) 
+   \tkzGetPoint{h}
+  \tkzTangent[from=E](O,A)  \tkzGetPoints{e}{f} 
+    \tkzTangent[from with R=E](O,4 cm)  
+    \tkzGetPoints{k}{l} 
+    \tkzDrawLine[add = 5 and 4](A,h)
+    \tkzMarkRightAngle[fill=red!30](O,A,h)
+    \tkzDrawLines[](E,e E,l)
+\end{tikzpicture}
+\end{tkzexample} 
+
+
+ \subsubsection{Exemple  de tangentes passant par un point extérieur } 
+
+\begin{tkzexample}[latex=6cm,small]
+\begin{tikzpicture}[scale=0.75] 
+  \tkzDefPoint(3,3){c}
+  \tkzDefPoint(6,3){a0}  
+  \tkzRadius=1 cm 
+  \tkzDrawCircle[R](c,\tkzRadius) 
+\foreach \an in {0,10,...,350}{
+    \tkzDefPointBy[rotation=center c angle \an](a0)  
+    \tkzGetPoint{a}  
+    \tkzTangent[from with R = a](c,\tkzRadius)  
+    \tkzGetPoints{e}{f} 
+    \tkzDrawLines[color=magenta](a,f a,e) 
+   \tkzDrawSegments(c,e c,f)}
+\end{tikzpicture} 
+\end{tkzexample}
+
+\newpage
+ \subsubsection{Exemple  d'Andrew Mertz }
+
+\begin{tkzexample}[vbox]
+ \begin{tikzpicture}[scale=1] 
+   \tkzInit[xmin=-4.1,xmax=5.2,ymin=-4.1,ymax=8]
+   \tkzClip[space=.5]
+   \tkzDefPoint(100:8){A}\tkzDefPoint(50:8){B}  
+   \tkzDefPoint(0,0){C} \tkzDefPoint(0,4){R} 
+   \tkzDrawCircle(C,R)
+   \tkzTangent[from = A](C,R)  \tkzGetPoints{D}{E}
+   \tkzTangent[from = B](C,R)  \tkzGetPoints{F}{G}
+   \tkzDrawSector[fill=blue!80!black,opacity=0.5](A,D)(E)
+   \tkzFillSector[color=red!80!black,opacity=0.5](B,F)(G)
+   \tkzInterCC(A,D)(B,F) \tkzGetSecondPoint{I}
+   \tkzDrawPoint[color=black](I)
+ \end{tikzpicture}
+\end{tkzexample}
+\url{http://www.texample.net/tikz/examples/}  
+
+\endinput

@@ -1,0 +1,124 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+
+\section{Définition aléatoire de points}
+Il y a pour le moment quatre possibilités :
+\begin{enumerate}
+  \item point dans un rectangle,
+  \item sur un segment,
+  \item sur une droite,
+  \item sur un cercle.
+\end{enumerate}
+
+\begin{NewMacroBox}{tkzGetRandPointOn}{\oarg{local options}\marg{name} }
+
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options     &     & définition                         \\ 
+\midrule
+\TOline{rectangle =  \#1 and \#2}{}{\#1 et \#2 sont des noms de points}
+\TOline{segment =  \#1--\#2}{}{\#1 et \#2 sont des noms de points}
+\TOline{line =  \#1--\#2}{}{\#1 et \#2 sont des noms de points}
+\TOline{circle = center \#1 radius \#1 }{}{\#1 est un point et \#1 une mesure}
+ \bottomrule
+\end{tabular}
+
+\medskip
+\noindent\emph{Cette macro est assez simple à utiliser, voyez les exemples.}
+\end{NewMacroBox} 
+
+\subsection{Point aléatoire dans un rectangle} 
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5]  \tkzGrid   
+  \tkzDefPoint(0,0){A}  \tkzDefPoint(2,2){B}
+  \tkzDefPoint(5,5){C}
+  \tkzGetRandPointOn[rectangle = A and B]{a}
+  \tkzGetRandPointOn[rectangle = B and C]{d}
+  \tkzDrawLine(a,d)
+  \tkzDrawPoints(A,B,C,a,d) 
+  \tkzLabelPoints(A,B,C,a,d)  
+\end{tikzpicture} 
+\end{tkzexample} 
+\end{center}
+
+
+\subsection{Point aléatoire sur un segment}  
+\begin{tkzexample}[latex=6cm] 
+\begin{tikzpicture}  
+  \tkzInit[xmax=5,ymax=5] \tkzGrid   
+  \tkzDefPoint(0,0){A} \tkzDefPoint(2,2){B}
+  \tkzDefPoint(3,3){C} \tkzDefPoint(5,5){D}
+  \tkzGetRandPointOn[segment = A--B]{a}
+  \tkzGetRandPointOn[segment = C--D]{d}
+  \tkzDrawPoints(A,B,C,D,a,d) 
+  \tkzLabelPoints(A,B,C,D,a,d)
+\end{tikzpicture} 
+\end{tkzexample}
+
+\subsection{Point aléatoire sur une droite}  
+\begin{tkzexample}[latex=6cm] 
+\begin{tikzpicture} 
+  \tkzInit[xmax=5,ymax=5] \tkzGrid   
+  \tkzDefPoint(0,0){A}  \tkzDefPoint(2,2){B}
+  \tkzDefPoint(3,3){C}  \tkzDefPoint(5,5){D}
+  \tkzGetRandPointOn[line = A--B]{a}
+  \tkzGetRandPointOn[line = C--D]{d}
+  \tkzDrawPoints(A,B,C,D,a,d) 
+  \tkzLabelPoints(A,B,C,D,a,d)   
+\end{tikzpicture}    
+\end{tkzexample}
+
+\subsection{Point aléatoire sur un cercle}  
+
+\begin{tkzexample}[latex=5cm] 
+\begin{tikzpicture} 
+  \tkzInit[xmax=5,ymax=5]  \tkzGrid   
+  \tkzDefPoint(3,2){A}  \tkzDefPoint(1,1){B}
+  \tkzCalcLength[cm](A,B) \tkzGetLength{rAB}
+  \tkzDrawCircle[R](A,\rAB cm) 
+  \tkzGetRandPointOn[circle = center A radius \rAB cm]{a}
+  \tkzDrawSegment(A,a)
+  \tkzDrawPoints(A,B,a) 
+  \tkzLabelPoints(A,B,a)  
+\end{tikzpicture}
+\end{tkzexample}
+
+
+\newpage
+\subsection{Milieu d'un segment au compas}  
+ Pour terminer cette section, voici un exemple plus complexe. Il s'agit de déterminer le milieu d'un segment, uniquement avec un compas. 
+ 
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}  
+  \tkzGetRandPointOn[circle= center A radius 4cm]{B}
+  \tkzDrawPoints(A,B)
+  \tkzDefPointBy[rotation= center A angle 180](B) 
+  \tkzGetPoint{C}
+  \tkzInterCC[R](A,4 cm)(B,4 cm) 
+  \tkzGetPoints{I}{I'}
+  \tkzInterCC[R](A,4 cm)(I,4 cm) 
+  \tkzGetPoints{J}{B}
+  \tkzInterCC(B,A)(C,B) 
+  \tkzGetPoints{D}{E}
+  \tkzInterCC(D,B)(E,B) 
+  \tkzGetPoints{M}{M'} 
+  \tikzset{arc/.style={color=brown,style=dashed,delta=10}} 
+  \tkzDrawArc[arc](C,D)(E) 
+  \tkzDrawArc[arc](B,E)(D)
+  \tkzDrawCircle[color=brown,line width=.2pt](A,B) 
+  \tkzDrawArc[arc](D,B)(M) 
+  \tkzDrawArc[arc](E,M)(B)
+  \tkzCompasss[color=red,style=solid](B,I I,J J,C) 
+  \tkzDrawPoints(B,C,D,E,M)    
+ \end{tikzpicture}  
+ \end{tkzexample}
+\end{center}
+
+\endinput

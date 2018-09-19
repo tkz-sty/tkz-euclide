@@ -1,0 +1,106 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+\section{Personnalisation}
+   
+
+ 
+\subsection{Fichier de configuration: \tkzname{tkz-base.cfg}}
+
+Vous pouvez créer votre propre fichier \tkzname{tkz-base.cfg} que vous placerez dans un dossier qui sera prioritaire au sein du \tkzname{texmf}.
+Dans \tkzname{tkz-base.cfg}, il est possible de modifier les couleurs, ls épaisseurs des lignes. La lecture de ce fichier doit suffire à déterminer le rôle de chaque variable.
+
+\subsection{\tkzcname{tkzSetUpLine}} \label{tkzsetupline}
+\begin{NewMacroBox}{tkzSetUpLine}{\oarg{local options}}
+\begin{tabular}{lll}
+options &  défaut  & définition                 \\ 
+\midrule
+\TOline{color}{black}{couleur des arcs de cercle de construction} 
+\TOline{line width}{0.4pt}{épaisseur des arcs de cercle de construction} 
+\TOline{style}{solid}{style des arcs de cercle de construction}
+\TOline{add}{.2 and .2}{modification de la longueur d'un segment} 
+\end{tabular}  
+\end{NewMacroBox}
+ 
+Construire un triangle avec trois segments donnés
+
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.6] 
+ \tkzDefPoint(1,0){A} \tkzDefPoint(4,0){B}
+ \tkzDefPoint(1,1){C} \tkzDefPoint(5,1){D}
+ \tkzDefPoint(1,2){E} \tkzDefPoint(6,2){F}
+ \tkzDefPoint(0,4){A'}\tkzDefPoint(3,4){B'}
+ \tkzDrawSegments(A,B C,D E,F)
+ \tkzDrawLine(A',B')
+ \tkzSetUpLine[style=dashed,color=gray]
+ \tkzCompass(A',B')
+ \tkzCalcLength[cm](C,D)  \tkzGetLength{rCD} 
+ \tkzDrawCircle[R](A',\rCD cm)
+ \tkzCalcLength[cm](E,F)  \tkzGetLength{rEF} 
+ \tkzDrawCircle[R](B',\rEF cm)
+ \tkzInterCC[R](A',\rCD cm)(B',\rEF cm) 
+ \tkzGetPoints{I}{J} 
+ \tkzSetUpLine[color=red] \tkzDrawLine(A',B')
+ \tkzDrawSegments(A',I B',I)
+ \tkzDrawPoints(A,B,C,D,E,F,A',B',I,J)
+ \tkzLabelPoints(A,B,C,D,E,F,A',B',I,J)
+\end{tikzpicture}
+\end{tkzexample}
+
+Par défaut, dans \tkzname{tkz-base.cfg}, ces styles sont définis par :
+
+\begin{tkzltxexample}[]
+\global\edef\tkz@euc@linecolor{\tkz@mainlinecolor}
+\global\def\tkz@euc@linewidth{0.6pt}
+\global\def\tkz@euc@linestyle{solid}
+\global\def\tkz@euc@lineleft{.2}
+\global\def\tkz@euc@lineright{.2}  
+\end{tkzltxexample}  
+
+
+
+\subsection{\tkzcname{tkzSetUpCompass}}
+
+\begin{NewMacroBox}{tkzSetUpCompass}{\oarg{local options}}
+\begin{tabular}{lll}
+options &  défaut  & définition                 \\ 
+\midrule
+\TOline{color}{black}{couleur des arcs de cercle de construction} 
+\TOline{line width}{0.4pt}{épaisseur des arcs de cercle de construction} 
+\TOline{style}{solid}{style des arcs de cercle de construction} 
+\end{tabular}
+\end{NewMacroBox}   
+
+Par défaut, dans \tkzname{tkz-base.cfg}, ces styles sont définis par :
+
+\begin{tkzltxexample}[]
+  \global\edef\tkz@euc@compasscolor{\tkz@otherlinecolor}
+  \global\def\tkz@euc@compasswidth{0.4pt}
+  \global\def\tkz@euc@compassstyle{solid} 
+\end{tkzltxexample}
+
+Vous pouvez créer votre propre fichier \tkzname{tkz-base.cfg} que vous placerez dans un dossier qui sera prioritaire au sein du \tkzname{texmf}. 
+
+\begin{center}
+  \begin{tkzexample}[vbox]
+  \begin{tikzpicture}[scale=0.75]
+    \tkzInit[ymax=8] \tkzClip 
+    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}      
+    \tkzDrawPolygon(A,B,C)  
+    \tkzSetUpCompass[color=red,line width=.2 pt] 
+    \tkzDefLine[bisector](A,C,B) \tkzGetPoint{c}
+    \tkzDefLine[bisector](B,A,C) \tkzGetPoint{a}
+    \tkzDefLine[bisector](C,B,A) \tkzGetPoint{b} 
+    \tkzShowLine[bisector,size=2,gap=3](A,C,B)
+    \tkzShowLine[bisector,size=2,gap=3](B,A,C)
+    \tkzShowLine[bisector,size=1,gap=2](C,B,A)
+    \tkzDrawLines[add=0 and 0 ](B,b C,c)    
+    \tkzDrawLine[add=0 and -.4 ](A,a)  
+    \tkzLabelPoints(A,B) \tkzLabelPoints[above](C)
+  \end{tikzpicture}      
+  \end{tkzexample}
+\end{center}
+
+
+
+% section: (end)
+\endinput

@@ -1,0 +1,411 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+
+\section{Intersections}
+
+
+
+Il est possible de déterminer les coordonnées des points d'intersection entre deux droites, une droite et un cercle et deux cercles.
+
+Les commandes associées n'ont pas d'arguments optionnels et l'usager doit lui même déterminer l'existence des points d'intersection.
+
+
+\subsection{Intersection de deux droites}
+
+
+ \begin{NewMacroBox}{tkzInterLL}{\parg{$A,B$}\parg{$C,D$}}
+\emph{Définit le point d'intersection \tkzname{tkzPointResult} des deux droites $(AB)$ and $(CD)$. Les points connus sont donnés en couple (deux par droite) entre parenthèses, quant au point obtenu, son nom est placé entre accolades.}       
+
+ \end{NewMacroBox}   
+% 
+
+\medskip
+\subsubsection{exemple d'intersection entre deux droites}
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[rotate=-30]
+   \tkzDefPoint(2,1){A}   \tkzDefPoint(6,5){B}
+   \tkzDefPoint(3,6){C}   \tkzDefPoint(5,2){D}
+   \tkzDrawLines(A,B C,D)
+   \tkzInterLL(A,B)(C,D)  \tkzGetPoint{I}
+   \tkzDrawPoints[color=blue](A,B,C,D) \tkzDrawPoint[color=red](I)
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}  
+
+De nombreux points particuliers sont obtenus avec cette macro par exemple l'orthocentre (OrthoCenter) voir \tkzcname{tkzOrthoCenter}, le centre du cercle circonscrit à un triangle \tkzcname{tkzCircumCenter}. 
+
+\newpage
+\subsection{Intersection d'une droite et d'un cercle} % (fold)
+\label{sub:intersection_d_une_droite_et_d_un_cercle}
+Pour avoir une syntaxe homogène, l'option pour définir le cercle à l'aide de la mesure du rayon est \tkzname{R} comme pour les macros pour  le cercle , les arcs et les secteurs.    
+
+Comme précédemment, la droite est définie par un couple de points. Le cercle
+ est aussi défini par un un couple :
+ \begin{itemize}
+  \item $(O,C)$ qui est un couple de points, le premier désigne le centre et le second est un point quelconque du cercle.
+  \item $(O,r)$  La mesure $r$ est celle du rayon. Elle est exprimée soint en \emph{cm}, soit en \emph{pt}.
+ \end{itemize}
+ 
+
+\begin{NewMacroBox}{tkzInterLC}{\parg{$A,B$}\parg{$O,C/r$}\marg{$I$}\marg{$J$}}
+Les arguments sont donc deux couples. Le premier couple est un couple de points, le second est soit un couple de points si aucune option n'est utilisée ou bien si l'option \tkzname{N} est utilisée sinon le couple est constitué d'un point (le centre du cercle et d'une mesure, celle du rayon).
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options            & défaut  & définition                         \\ 
+\midrule
+\TOline{N}        {N}    { (O,C) détermine le cercle}
+\TOline{R}        {N}    { (O, 1 cm) ou (O, 120 pt)}  
+\bottomrule
+\end{tabular}
+
+\medskip   
+\emph{La macro définit les points d' intersection $I$ et $J$ de la droite $(AB)$ et du cercle de centre $O$ de rayon $r$ s'ils existent; dans le cas contraire, une erreur sera signalée dans le fichier .log}
+\end{NewMacroBox}
+
+\subsubsection{Exemple simple d'intersection droite-cercle}
+
+Dans l'exemple suivant, le tracé du cercle utilise deux points et  l'intersection de la droite et du cercle utilise deux couples de points
+
+\begin{tkzexample}[latex=7cm]
+\begin{tikzpicture}
+   \tkzInit[xmax=5,ymax=4]
+ \tkzDefPoint(1,1){O} 
+ \tkzDefPoint(0,4){A} 
+ \tkzDefPoint(5,0){B} 
+ \tkzDefPoint(3,3){C}
+ \tkzInterLC(A,B)(O,C)  \tkzGetPoints{D}{E}  
+ \tkzDrawCircle(O,C)
+ \tkzDrawPoints[color=blue](O,A,B,C)
+ \tkzDrawPoints[color=red](D,E)
+ \tkzDrawLine(A,B)
+ \tkzLabelPoints[above right](O,A,B,C,D,E)
+\end{tikzpicture} 
+\end{tkzexample}  
+
+\subsubsection{Exemple plus complexe d'intersection droite-cercle}
+\url{http://gogeometry.com/problem/p190_tangent_circle}
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=0,xmax=8,ymin=-4,ymax=4]  \tkzClip[space=.4]
+  \tkzDefPoint(0,0){A}  \tkzDefPoint(8,0){B}
+  \tkzDefMidPoint(A,B)  \tkzGetPoint{O}
+  \tkzDrawCircle(O,B)
+  \tkzDefMidPoint(O,B)  \tkzGetPoint{O'}
+  \tkzDrawCircle(O',B)
+  \tkzTangent[from=A](O',B) \tkzGetSecondPoint{E}
+  \tkzInterLC(A,E)(O,B)     \tkzGetSecondPoint{D}
+  \tkzDefPointBy[projection=onto A--B](D)  \tkzGetPoint{F}
+  \tkzMarkRightAngle(D,F,B)
+  \tkzDrawSegments(A,D A,B D,F) 
+  \tkzDrawSegments[color=red,line width=1pt,opacity=.4](A,O F,B)
+  \tkzDrawPoints(A,B,O,O',E,D)  \tkzLabelPoints(A,B,O,O',E,D) 
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+ 
+
+\newpage
+\subsubsection{Cercle défini par un centre et une mesure, et cas particuliers}
+Regardons quelques cas particuliers comme des droites tangentes au cercle. 
+
+\begin{center}
+ 
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,8){A}  \tkzDefPoint(8,0){B}
+  \tkzDefPoint(8,8){C}  \tkzDefPoint(4,4){I}
+  \tkzDefPoint(2,7){E}  \tkzDefPoint(6,4){F}  
+  \tkzDrawCircle[R](I,4 cm)
+  \tkzInterLC[R](A,C)(I,4 cm)  \tkzGetPoints{I1}{I2}
+  \tkzInterLC[R](B,C)(I,4 cm)  \tkzGetPoints{J1}{J2}
+  \tkzInterLC[R](A,B)(I,4 cm)  \tkzGetPoints{K1}{K2}
+  \tkzDrawPoints[color=red](I1,J1,K1,K2)
+  \tkzDrawLines(A,B B,C A,C)
+  \tkzInterLC[R](E,F)(I,4 cm)  \tkzGetPoints{I2}{J2}  
+  \tkzDrawPoints[color=blue](E,F)
+  \tkzDrawPoints[color=red](I2,J2)
+  \tkzDrawLine(I2,J2)\end{tikzpicture}
+\end{tkzexample}  
+ 
+\end{center}
+
+\newpage
+\subsubsection{Exemple plus complexe}
+Attention à la syntaxe. Tout d'abord, les calculs pour les points peuvent être faits pendant le passage des arguments, mais il faut respecter la syntaxe de \tkzname{fp}. Vous pouvez constater que j'utilise la macro  \tkzcname{FPpi} car \tkzname{fp} travaille en radians !. De plus quand des calculs nécéssitent l'emploi de parenthèses, celles-ci doivent être insérées dans un groupe \TEX \{ \dots \}.
+
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=2.5,rotate=180]
+  \tkzDefPoint(0,1){J} \tkzDefPoint(0,0){O}
+  \tkzDrawCircle[R](O,1 cm)
+  \tkzDrawArc[R,line width=1pt,color=Gold](J,2.5 cm)(180,0)
+  \foreach \i in {0,-5,-10,...,-85}{
+     \tkzDefPoint({2.5*cos(\i*\FPpi/180)},{1+2.5*sin(\i*\FPpi/180)}){P}
+     \tkzDrawSegment[color=orange](J,P)
+     \tkzInterLC[R](P,J)(O,1 cm) \tkzGetPoints{M}{N}
+     \tkzDrawPoints(N)} 
+  \foreach \i in {-90,-95,...,-175,-180}{
+    \tkzDefPoint({2.5*cos(\i*\FPpi/180)},{1+2.5*sin(\i*\FPpi/180)}){P} 
+    \tkzDrawSegment[color=orange](J,P)
+    \tkzInterLC[R](P,J)(O,1 cm) \tkzGetPoints{M}{N}
+    \tkzDrawPoints(M)}   
+\end{tikzpicture}
+\end{tkzexample} 
+\end{center}
+
+\newpage
+\subsubsection{Calcul de la mesure du rayon} 
+ Avec \tkzname{pgfmath} et \tkzcname{pgfmathsetmacro}   
+ 
+La mesure du rayon peut être le résultat d'un calcul que l'on ne fera pas au sein de la macro d'intersection, mais avant. 
+On peut calculer une longueur de plusieurs façons. Il est possible bien sûr,
+ d'utiliser le module \tkzname{pgfmath} et la macro \tkzcname{pgfmathsetmacro}. Dans certains, les résultats obtenus ne sont pas assez précis ainsi le calcul suivant $0.0002 \div 0.0001$ donne 1.98 avec pgfmath alors que fp.sty donnera 2. C'est pour cela que j'ai préféré interdire le calcul pendant le passage de paramètres, cela permet à chacun de choisir sa méthode.
+   
+\begin{tkzexample}[latex=7cm]
+\begin{tikzpicture}  
+  \tkzDefPoint(2,2){A}
+  \tkzDefPoint(5,4){B}
+  \tkzDefPoint(4,4){O}
+  \pgfmathsetmacro{\tkzLen}{0.0002/0.0001}
+  \tkzDrawCircle[R](O,\tkzLen cm)
+  \tkzInterLC[R](A,B)(O, \tkzLen cm) 
+  \tkzGetPoints{I}{J}
+  \tkzDrawPoints[color=blue](A,B)
+  \tkzDrawPoints[color=red](I,J)
+  \tkzDrawLine(I,J) 
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Calcul de la mesure du rayon} 
+Avec \tkzname{fp} et \tkzcname{FPeval}
+  
+\begin{tkzexample}[latex=7cm]
+  \begin{tikzpicture}  
+  \tkzDefPoint(2,2){A}
+  \tkzDefPoint(5,4){B}
+  \tkzDefPoint(4,4){O}
+  \FPeval{\tkzLen}{0.0002/0.0001} 
+  \tkzDrawCircle[R](O,\tkzLen cm)
+  \tkzInterLC[R](A,B)(O, \tkzLen cm) 
+  \tkzGetPoints{I}{J}
+  \tkzDrawPoints[color=blue](A,B)
+  \tkzDrawPoints[color=red](I,J)
+  \tkzDrawLine(I,J) 
+\end{tikzpicture}
+  \end{tkzexample}
+
+\subsubsection{Calcul de la mesure du rayon} 
+ Avec \TEX\ et \tkzcname{tkzLength}. 
+ 
+ Cette dimension a été créée avec \tkzcname{newdimen}. 2 cm a été transformé en points. Il est bien sûr possible  d'utiliser \TEX\ pour calculer.
+
+\begin{tkzexample}[latex=7cm]   
+\begin{tikzpicture}
+  \tkzDefPoint(2,2){A}
+  \tkzDefPoint(5,4){B}
+  \tkzDefPoint(4,4){O}
+  \tkzLength=2cm 
+  \tkzDrawCircle[R](O,\tkzLength pt)
+  \tkzInterLC[R](A,B)(O, \tkzLength pt)
+   \tkzGetPoints{I}{J}
+  \tkzDrawPoints[color=blue](A,B)
+  \tkzDrawPoints[color=red](I,J)
+  \tkzDrawLine(I,J) 
+\end{tikzpicture}
+\end{tkzexample} 
+
+
+
+\subsubsection{Des carrés dans un demi-disque}
+Un air de Sangaku ! Il s'agit de prouver que l'on peut inscrire dans un demi-disque, deux carrés, et de déterminer la longueur de leurs côtés respectifs en fonction du rayon.
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.5]
+ \tkzInit[xmax=8,ymax=5]\tkzClip[space=.25] 
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(8,0){B}
+ \tkzDefPoint(4,0){I}
+ \tkzDefSquare(A,B)    
+   \tkzGetPoints{C}{D}
+ \tkzInterLC(I,C)(I,B) 
+   \tkzGetPoints{E'}{E}
+ \tkzInterLC(I,D)(I,B) 
+   \tkzGetPoints{F'}{F} 
+ \tkzDefPointsBy[projection = onto A--B](E,F){H,G}
+ \tkzDefPointsBy[symmetry   = center H](I){J}
+ \tkzDefSquare(H,J)
+   \tkzGetPoints{K}{L}
+ \tkzDrawSector[fill=Maroon!30](I,B)(A)
+ \tkzFillPolygon[color=red!40](H,E,F,G)
+ \tkzFillPolygon[color=blue!40](H,J,K,L)
+ \tkzDrawPolySeg[color=red](H,E,F,G) 
+ \tkzDrawPolySeg[color=red](J,K,L)
+ \tkzDrawPoints(E,G,H,F,J,K,L)
+\end{tikzpicture}
+\end{tkzexample}      
+\end{center}
+
+
+\clearpage \newpage
+\subsection{Intersection de deux cercles} 
+
+Le cas le plus fréquent est celui de deux cercles définis par leur centre et un point, mais comme précédemment l'option \tkzname{R} permet d'utiliser les mesures des rayons
+
+\begin{NewMacroBox}{tkzInterCC}{\oarg{options}\parg{$O,A/r$}\parg{$O',A'/r'$}\marg{$I$}\marg{$J$}}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options       & défaut  & définition                         \\ 
+\midrule
+\TOline{N}   {N}    {OA et O'A' sont des rayons, O et O' les centres}
+\TOline{R}   {N}    {$r$ et $r'$ sont des dimensions et mesurent les rayons}   
+\bottomrule
+\end{tabular}
+
+\medskip
+\noindent
+\emph{Cette macro définit le(s) point(s) d' intersection $I$ et $J$ des deux cercles de centre $O$ et $O'$. Si les deux cercles n'ont pas de point commun alors la macro se termine par une erreur qui n'est pas gérée. \\ 
+Il est également possible d'utiliser directement \tkzcname{tkzInterCCN} et  \tkzcname{tkzInterCCR}.}
+\end{NewMacroBox}   
+
+\subsubsection{Construction d'un triangle connaissant les mesures des côtés}
+On veut obtenir le triangle de Pythagore (3,4,5)  
+\begin{center}
+\begin{tkzexample}[vbox]  
+\begin{tikzpicture}[scale=.8]
+  \tkzDefPoint(0,0){A} \tkzDefPoint(5,0){B}
+  \tkzDrawCircle[R,dashed](A,4 cm) \tkzDrawCircle[R,dashed](B,3 cm)
+  \tkzInterCC[R](A,4 cm)(B,3 cm) \tkzGetPoints{C}{D}
+  \tkzDrawPolygon(A,B,C)
+  \tkzCompasss(A,C B,C) 
+  \tkzLabelSegment[below](A,B){$5$ cm}
+  \tkzLabelSegment[above left](A,C){$4$ cm}
+  \tkzLabelSegment[above right](B,C){$3$ cm}
+  \tkzDrawPoints[color=red](C) 
+  \tkzDrawPoints[color=blue](A,B)
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+\subsubsection{Dupliquer un triangle} 
+Trois segments étant donnés, construire un triangle. Il s'agit de récupérer les mesures des longueurs avec \tkzcname{tkzCalcLength}.
+
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+ \tkzDefPoint(1,0){A}  \tkzDefPoint(4,0){B}   % On place les points   
+ \tkzDefPoint(1,1){C}  \tkzDefPoint(5,1){D}
+ \tkzDefPoint(1,2){E}  \tkzDefPoint(6,2){F}
+ \tkzDefPoint(0,4){A'} \tkzDefPoint(3,4){B'}
+ \tkzCalcLength[cm](C,D)\tkzGetLength{rCD}
+ \tkzCalcLength[cm](E,F)\tkzGetLength{rEF}
+ \tkzInterCC[R](A',\rCD cm)(B',\rEF cm)\tkzGetPoints{I}{J}
+ \tkzDrawSegments[red](A,B C,D E,F) % Les tracés   
+ \tkzDrawLine(A',B')    
+ \tkzDrawPoints(D,E,I,J)
+ \tkzDrawPolygon[color=red](A',B',I)
+ \tkzSetUpLine[color=gray]
+ \tkzCompass(A',B')
+ \tkzDrawCircle[R](A',\rCD cm)
+ \tkzDrawCircle[R](B',\rEF cm)
+ \tkzDrawPoints(A,B,C,D,E,F,A',B',I)
+ \tkzLabelPoints[left](A,C,E)
+ \tkzLabelPoints[right](B,D,F)
+ \tkzLabelPoints[below](A',B')
+ \tkzLabelPoint[above left](I){$C'$}   
+\end{tikzpicture} 
+\end{tkzexample}
+
+\subsubsection{Construction d'un triangle équilatéral}
+
+\begin{tkzexample}[vbox] 
+\begin{tikzpicture}[rotate=30] 
+ \tkzDefPoint(1,1){A}
+ \tkzDefPoint(5,1){B}
+ \tkzInterCC(A,B)(B,A)\tkzGetPoints{C}{D}
+ \tkzDrawPoint[color=black](C)
+ \tkzDrawCircle[dashed](A,B)
+ \tkzDrawCircle[dashed](B,A)
+ \tkzCompass[color=red](A,C)
+ \tkzCompass[color=red](B,C)
+ \tkzDrawPolygon(A,B,C)
+ \tkzLabelSegment[above left](A,C){$4$ cm}
+ \tkzLabelSegment[above right](B,C){$4$ cm}
+ \tkzLabelSegment[below](A,B){$4$ cm} 
+ \tkzLabelPoints[](A,B)
+ \tkzLabelPoint[above](C){$C$} 
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Un triangle isocèle.}
+
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[rotate=30] 
+ \tkzDefPoint(1,2){A}
+ \tkzDefPoint(5,1){B}
+ \tkzInterCC[R](A,5cm)(B,5cm)\tkzGetPoints{C}{D}
+ \tkzDrawCircle[R,dashed](A,5 cm)
+ \tkzDrawCircle[R,dashed](B,5 cm) 
+ \tkzDrawPoint[color=blue](C) 
+ \tkzCompass[color=red](A,C)
+ \tkzCompass[color=red](B,C)
+ \tkzDrawPolygon(A,B,C)
+ \tkzLabelSegment[above left](A,C){$5$ cm}
+ \tkzLabelSegment[above right](B,C){$5$ cm}
+ \tkzLabelPoints[](A,B)
+ \tkzLabelPoint[above](C){$C$}     
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsubsection{Exemple une médiatrice}
+
+\begin{center}
+\begin{tkzexample}[]
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A} 
+  \tkzDefPoint(3,3){B}  
+  \tkzDrawCircle[color=blue](B,A)
+  \tkzDrawCircle[color=blue](A,B)
+  \tkzInterCC(B,A)(A,B)\tkzGetPoints{M}{N}
+  \tkzDrawLine(A,B)
+  \tkzDrawPoints(M,N)
+  \tkzDrawLine[color=red](M,N)
+\end{tikzpicture}
+\end{tkzexample}
+\end{center} 
+
+\newpage
+\subsubsection{Trisection d'un segment}
+Voici un exemple complet utilisant toutes les macros précédentes. Il s'agit de partager avec une règle et un compas, un segment en trois segments de même longueur. 
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=.8] 
+ \tkzDefPoint(0,0){A}  \tkzDefPoint(3,2){B}
+ \tkzInterCC(A,B)(B,A) \tkzGetPoints{C}{D}
+ \tkzInterCC(D,B)(B,A) \tkzGetPoints{A}{E}  
+ \tkzInterCC(D,B)(A,B) \tkzGetPoints{F}{B}
+ \tkzInterLC(E,F)(F,A) \tkzGetPoints{D}{G}   
+ \tkzInterLL(A,G)(B,E) \tkzGetPoint{O}      
+ \tkzInterLL(O,D)(A,B) \tkzGetPoint{J}
+ \tkzInterLL(O,F)(A,B) \tkzGetPoint{I}
+ \tkzDrawCircle(D,A)    \tkzDrawCircle(A,B)
+ \tkzDrawCircle(B,A)    \tkzDrawCircle(F,A)
+ \tkzDrawSegments[color=red](O,G O,B O,D O,F)
+ \tkzDrawPoints(A,B,D,E,F,G,I,J)  \tkzLabelPoints(A,B,D,E,F,G,I,J)
+ \tkzDrawSegments[blue](A,B B,D A,D A,F F,G E,G B,E)
+ \tkzMarkSegments[mark=s|](A,I I,J J,B)
+\end{tikzpicture}
+\end{tkzexample} 
+\end{center}
+ 
+ \endinput 
+

@@ -1,0 +1,105 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\section{Résumé de tkz-base}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+
+\subsection{Utilité de \tkzname{tkz-base}}
+\tkzNamePack{tkz-base} permet de simplifier l'utilisation d'intervalles de valeurs divers, ce package est nécessaire pour utiliser \tkzname{tkz-tukey}, un package pour dessiner les représentations graphiques en statistiques élémentaires (ce package n'est pas encore en version officielle). Il est aussi nécessaire  avec \tkzNamePack{tkz-fct}, pas plus officiel que le précédent et qui permet de dessiner les représentations graphiques des fonctions. Il utile également avec \tkzname{tkz-euclide}, mais pas pour les mêmes raisons, car l'unité par défaut, le cm, convient parfaitement.
+
+Premièrement, il faut savoir qu'il n'est pas nécessaire de s'occuper avec \TIKZ\ de la taille du support (background). Cependant il est parfois nécessaire, soit de tracer une grille, soit de tracer des axes, soit de travailler avec une unité différente que le centimètre, soit finalement de contrôler la taille de ce qui sera affiché.
+ Pour cela, il faut avoir préparé le repère dans lequel vous allez travailler, c'est le rôle de \tkzNamePack{tkz-base} et de sa macro principale  \tkzNameMacro{tkzInit}. Par exemple, si l'on veut travailler sur un carré de 10 cm de côté, mais  tel que l'unité soit le dm alors il faudra utiliser.
+
+\tkzcname{tkzInit[xmax=1,ymax=1,xstep=0.1,ystep=0.1]}
+
+ en revanche pour des valeurs de $x$ comprises entre \numprint{0} et \numprint{10000} et des valeurs de $y$ comprises entre \numprint{0} et \numprint{100000}, il faudra écrire
+ 
+\tkzcname{tkzInit[xmax=10000,ymax=100000,xstep=1000,ystep=10000]}
+
+Tout cela a peu de sens pour faire de la géométrie euclidienne, et dans ce cas, il est recommandé de laisser l'unité graphique égale à 1 cm. Je n'ai d'ailleurs pas testé si toutes les macros  destinées à la géométrie euclidienne, acceptaient d'autres valeurs que \tkzname{xstep=1} et \tkzname{ystep=1}. En revanche pour certains dessins, il est intéressant de fixer les valeurs extrêmes et de « clipper » le rectangle de définition afin de contrôler au mieux la taille de la figure.
+
+Les principales macros de \tkzNamePack{tkz-base} sont:
+\begin{itemize}
+   \item \tkzcname{tkzInit}
+   \item \tkzcname{tkzClip}
+   \item \tkzcname{tkzAxeXY}
+   \item \tkzcname{tkzAxeX}
+   \item \tkzcname{tkzAxeY}
+   \item \tkzcname{tkzDrawX}
+   \item \tkzcname{tkzDrawY}
+   \item \tkzcname{tkzLabelX}
+   \item \tkzcname{tkzLabelY}
+   \item \tkzcname{tkzGrid}
+   \item \tkzcname{tkzRep}
+\end{itemize}
+
+Vous trouverez de multiples exemples dans la documentation de \tkzname{tkz-base}.
+ 
+\newpage
+\subsection{Exemple avec \tkzcname{tkzInit}} 
+
+\begin{center}
+\begin{tkzexample}[latex=8cm]
+\begin{tikzpicture}
+ \tkzInit[xmax=3,ymax=3]  
+ \tkzAxeXY 
+ \tkzGrid
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}  
+
+
+\subsection{\tkzcname{tkzClip}}
+Le rôle de cette macro est de « clipper » le rectangle initial afin que ne soient affichés que les tracés contenus dans ce rectangle.
+
+\begin{tkzexample}[latex=8cm]
+\begin{tikzpicture}
+ \tkzInit[xmax=4, ymax=3]
+ \tkzAxeXY 
+ \tkzGrid
+ \tkzClip
+ \draw[red] (-1,-1)--(5,5);
+\end{tikzpicture}
+\end{tkzexample} 
+
+Il est possible d'ajouter un peu d'espace
+\begin{tkzltxexample}[]
+  \tkzClip[space=1]
+\end{tkzltxexample} 
+
+\subsection{\tkzcname{tkzClip} et l'option \tkzname{space}} 
+
+\begin{tkzexample}[latex=8cm]
+\begin{tikzpicture}
+ \tkzInit[xmax=4, ymax=3]
+ \tkzAxeXY 
+ \tkzGrid
+ \tkzClip[space=-1]
+ \draw[red] (-1,-1)--(5,5);
+\end{tikzpicture}
+\end{tkzexample}   
+les dimensions du rectangle clippé sont \tkzname{xmin-1}, \tkzname{ymin-1}, \tkzname{xmax+1} et \tkzname{ymax+1}. 
+
+\subsection{\tkzcname{tkzGrid} et l'option \tkzname{sub}}
+L'option \tkzname{sub} permet d'afficher un grille secondaire plus fine.
+\begin{tkzexample}[latex=8cm]
+\begin{tikzpicture}
+ \tkzInit[xmax=4, ymax=3]
+ \tkzAxeXY
+ \tkzGrid[sub]
+\end{tikzpicture}
+\end{tkzexample}  
+
+\subsection{\tkzcname{tkzGrid} et les couleurs}
+L'option \tkzname{sub} permet d'afficher un grille secondaire plus fine.
+\begin{tkzexample}[latex=8cm]
+\begin{tikzpicture}
+ \tkzInit[xmax=4, ymax=3]
+ \tkzAxeXY 
+ \tkzGrid[sub,color=bistre,
+          subxstep=.5,subystep=.5]
+\end{tikzpicture}
+\end{tkzexample}  
+
+\endinput

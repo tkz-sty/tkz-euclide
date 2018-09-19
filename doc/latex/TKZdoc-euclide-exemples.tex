@@ -1,0 +1,142 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+
+\section{Quelques exemples intéressants}
+
+\subsection{Triangles isocèles semblables}
+
+Ce qui suit provient de l'excellent site \textbf{Descartes et les Mathématiques}. Je n'ai pas modifié le texte  et je ne suis l'auteur que de la programmation des figures.
+
+\url{http://debart.pagesperso-orange.fr/seconde/triangle.html}
+
+Bibliographie : Géométrie au Bac - Tangente, hors série no 8 - Exercice 11, page 11
+
+Élisabeth Busser et Gilles Cohen : 200 nouveaux problèmes du Monde - POLE 2007
+
+Affaire de logique n° 364 - Le Monde 17 février 2004
+
+
+Deux énoncés ont été proposés, l'un par la revue \emph{Tangente}, et l'autre par le journal \emph{Le Monde}.
+
+\vspace*{2cm}
+\emph{Rédaction de la revue Tangente} : \textcolor{orange}{On construit deux triangles isocèles semblables AXB et BYC de sommets principaux X et Y, tels que A, B et C soient alignés et que ces triangles soient « indirect ». Soit $\alpha$ l'angle au sommet $\widehat{AXB}$ = $\widehat{BYC}$. On construit ensuite un troisième triangle isocèle XZY semblable aux deux premiers, de sommet principal Z et « indirect ».\\
+On demande de démontrer que le point Z appartient à la droite (AC).}
+
+\vspace*{2cm}
+\emph{Rédaction du Monde} : \textcolor{orange}{On construit deux triangles isocèles semblables AXB et BYC de sommets principaux X et Y, tels que A, B et C soient alignés et que ces triangles soient « indirect ». Soit $\alpha$ l'angle au sommet $\widehat{AXB}$ = $\widehat{BYC}$. Le point Z du segment [AC] est équidistant des deux sommets X et Y.\\
+Sous quel angle voit-il ces deux sommets ?}
+
+\vspace*{2cm}  Les constructions et leurs codes associés sont sur les deux pages suivantes, mais vous pouvez chercher avant de regarder. La programmation respecte (il me semble ...), mon raisonnement dans les deux cas.
+\newpage  
+
+ \subsubsection{version revue "Tangente"} 
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=.8,rotate=60]
+  \tkzDefPoint(6,0){X}   \tkzDefPoint(3,3){Y}
+  \tkzDefShiftPoint[X](-110:6){A}    \tkzDefShiftPoint[X](-70:6){B}
+  \tkzDefShiftPoint[Y](-110:4.2){A'} \tkzDefShiftPoint[Y](-70:4.2){B'}
+  \tkzDefPointBy[translation= from A' to B ](Y) \tkzGetPoint{Y}
+  \tkzDefPointBy[translation= from A' to B ](B') \tkzGetPoint{C}
+  \tkzInterLL(A,B)(X,Y) \tkzGetPoint{O}
+  \tkzDefMidPoint(X,Y) \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal](I,Y)
+  \tkzInterLL(I,tkzPointResult)(A,B) \tkzGetPoint{Z}
+  \tkzDrawCircle[circum](X,Y,B)
+  \tkzDrawLines[add = 0 and 1.5](A,C) \tkzDrawLines[add = 0 and 3](X,Y)
+  \tkzDrawSegments(A,X B,X B,Y C,Y)   \tkzDrawSegments[color=red](X,Z Y,Z)
+  \tkzDrawPoints(A,B,C,X,Y,O,Z)
+  \tkzLabelPoints(A,B,C,Z)   \tkzLabelPoints[above right](X,Y,O)
+\end{tikzpicture} 
+\end{tkzexample}  
+
+
+ \newpage 
+ 
+  \subsubsection{version  "Le Monde"} 
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,0){A} 
+  \tkzDefPoint(3,0){B}
+  \tkzDefPoint(9,0){C}
+  \tkzDefPoint(1.5,2){X}
+  \tkzDefPoint(6,4){Y}
+   \tkzDefCircle[circum](X,Y,B) \tkzGetPoint{O}
+  \tkzDefMidPoint(X,Y)               \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal](I,Y)  \tkzGetPoint{i}
+  \tkzDrawLines[add = 2 and 1,color=orange](I,i)
+  \tkzInterLL(I,i)(A,B)              \tkzGetPoint{Z}
+  \tkzInterLC(I,i)(O,B)              \tkzGetSecondPoint{M}
+    \tkzDefPointWith[orthogonal](B,Z)  \tkzGetPoint{b}
+  \tkzDrawCircle(O,B)
+  \tkzDrawLines[add = 0 and 2,color=orange](B,b)
+   \tkzDrawSegments(A,X B,X B,Y C,Y A,C X,Y)
+   \tkzDrawSegments[color=red](X,Z Y,Z)
+  \tkzDrawPoints(A,B,C,X,Y,Z,M,I)
+   \tkzLabelPoints(A,B,C,Z)
+   \tkzLabelPoints[above right](X,Y,M,I)
+\end{tikzpicture}
+\end{tkzexample} 
+\end{center}
+
+
+\newpage
+\subsection{Hauteurs d'un triangle}
+
+Ce qui suit provient encore de l'excellent site \textbf{Descartes et les Mathématiques}. 
+
+\url{http://debart.pagesperso-orange.fr/geoplan/geometrie_triangle.html}
+
+Les trois hauteurs d'un triangle sont concourantes au même point H.
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin= 0,xmax=8 ,ymin=0 ,ymax=7 ] \tkzClip[space=.5]
+   \tkzDefPoint(0,0){C} 
+   \tkzDefPoint(7,0){B}
+   \tkzDefPoint(5,6){A}
+   \tkzDrawPolygon(A,B,C)
+   \tkzDefMidPoint(C,B)          \tkzGetPoint{I}
+   \tkzDrawArc(I,B)(C)
+   \tkzInterLC(A,C)(I,B)        \tkzGetSecondPoint{B'}
+   \tkzInterLC(A,B)(I,B)        \tkzGetFirstPoint{C'}
+   \tkzInterLL(B,B')(C,C')      \tkzGetPoint{H}
+   \tkzInterLL(A,H)(C,B)        \tkzGetPoint{A'}
+   \tkzDrawCircle[circum,color=red](A,B',C') 
+   \tkzDrawSegments[color=orange](B,B' C,C' A,A')
+   \tkzMarkRightAngles(C,B',B B,C',C C,A',A)
+   \tkzDrawPoints(A,B,C,A',B',C',H)
+   \tkzLabelPoints(A,B,C,A',B',C',H)
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+\newpage
+\subsection{Hauteurs - autre construction}
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzClip[space=1]
+  \tkzDefPoint(0,0){A}\tkzDefPoint(8,0){B}\tkzDefPoint(3.5,10){C} 
+  \tkzDefMidPoint(A,B) \tkzGetPoint{O} 
+  \tkzDefPointBy[projection=onto A--B](C) \tkzGetPoint{P}
+  \tkzInterLC(C,A)(O,A)  \tkzGetSecondPoint{M}
+  \tkzInterLC(C,B)(O,A)  \tkzGetFirstPoint{N}
+  \tkzInterLL(B,M)(A,N)  \tkzGetPoint{I}
+  \tkzDrawCircle[diameter](A,B)
+  \tkzDrawSegments(C,A C,B A,B B,M A,N) 
+  \tkzMarkRightAngles[fill=Maroon!20](A,M,B A,N,B A,P,C)
+  \tkzDrawSegment[style=dashed,color=orange](C,P)
+  \tkzLabelPoints(O,A,B,P)
+  \tkzLabelPoint[left](M){$M$} 
+  \tkzLabelPoint[right](N){$N$}
+  \tkzLabelPoint[above](C){$C$}  
+  \tkzLabelPoint[fill=fondpaille,above right](I){$I$}
+  \tkzDrawPoints[color=red](M,N,P,I) \tkzDrawPoints[color=Maroon](O,A,B,C)  
+\end{tikzpicture}
+\end{tkzexample}  
+\end{center}
+
+\endinput

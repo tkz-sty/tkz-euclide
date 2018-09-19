@@ -1,0 +1,239 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\section{Présentation}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+\subsection{À propos de Ti\emph{k}Z et que peut apporter \tkzname{tkz-euclide.sty} ? }
+\TIKZ\ est un outil que je trouve très agréable à utiliser. J'ai trouvé si simple son utilisation que je me suis demandé si cela avait un sens de créer un package pour  la création de dessins en 2d et en particulier pour créer des dessins liés à la géométrie euclidienne.  Quels arguments peuvent intervenir? 
+
+\begin{enumerate}
+
+\item Certains utilisateurs n'ont pas envie d'apprendre quoi que ce soit sur  \TIKZ, cela est respectable et une simplification du code par l'intermédiaire d'un package peut avoir une certaine utilité. La syntaxe n'est plus tout à fait celle de  \TIKZ, mais ressemble davantage à celle de \LATEX.
+
+\item  Les noms des macros ont une signification plus mathématique.
+
+\item La grande différence avec \TIKZ\ est qu'il est possible d'utiliser des grandes valeurs ainsi que des très petites, car la majorité des calculs sont faits à l'aide de \tkzNamePack{fp.sty}. C'est plus lent, mais nettement plus précis.
+
+\item Il est possible de modifier facilement les styles pour  les objets principaux que sont les points, les droites, les cercles, les arcs, etc. 
+
+\item Des exemples de constructions géométriques sont fournies et peuvent être utiles au débutant.
+  
+\item  Et pour terminer, cela peut être une approche en douceur de l'utilisation de \TIKZ\, par l'intermédiaire des options. Dans cette nouvelle version, j'ai essayé que les options de \TIKZ\ soient pratiquement toujours disponibles.
+
+\end{enumerate}
+
+Je vous encourage toutefois à étudier \TIKZ. En effet, l'utilisation de \tkzname{tkz-euclide.sty} fait perdre la notion de \tkzname{path}. Je donnerai quelques exemples pour voir les différences entre les codes. Cela dit, il est toujours possible de mélanger les différents codes et différentes syntaxes, cela n'est pas franchement satisfaisant, mais peut permettre de résoudre certains problèmes.
+
+
+\subsection{À propos de \tkzname{tkz-euclide}}
+
+Le but est donc de créer des dessins en 2D sur une page à priori A4, mais si je me suis préoccupé d'utiliser une surface inférieure, j'avoue ne pas avoir testé la possibilité de travailler sur une page de taille supérieure.
+
+Avec \tkzname{tkz-euclide}, l'unité est le centimètre. Si votre travail ne concerne que de la géométrie classique, je vous conseille de conserver cette unité.
+
+\emph{Pourquoi \tkzname{tkz-2d} disparait-il?}
+
+Je n'étais pas content de la syntaxe qui était confuse, je n'avais pas utilisé pgf 2.00 et surtout j'ai généralisé l'utilisation de \tkzname{fp.sty}.
+
+\clearpage \newpage
+\section{Syntaxe}
+Quelques mots sur la syntaxe.
+
+ Les accolades sont réservés pour la création d'objets et les parenthèses ne sont utilisées que pour des objets, déjà existants~:
+ 
+ \tkzcname{tkzDefPoint(1,2)\{A\}} crée le point nommé $A$.
+ 
+\tkzcname{tkzLabelSegment[below](O,A)\{\$1\$\}} crée le label $1$ pour le segment $[OA]$.
+ 
+ Enfin des macros comme \tkzcname{tkzDefMidPoint(O,A)} crée un point, qui est ici, le milieu d'un segment. Le point est nommé \tkzname{tkzPointResult}. 
+
+Soit la création est une étape intermédiaire, et vous n'avez pas besoin de conserver ce point, alors tant qu'aucune macro ne modifie  l'attribution de \tkzname{tkzPointResult}, vous pouvez utiliser ce nom pour faire référence au milieu; soit   vous voulez conserver ce point, car il sera utilisé plusieurs fois, alors la macro  \tkzcname{tkzGetPoint\{M\}} permet d'attribuer le nom \tkzname{M} au point.
+
+ Quant une macro donne comme résultat deux points, le premier est nommé \tkzname{tkzFirstPointResult} et le second \tkzname{tkzSecondPointResult}, la macro qui permet de récupérer les points est :
+ 
+ \begin{itemize}
+   \item \tkzcname{tkzGetPoints\{M\}\{N\}} qui attribue deux noms;
+   \item \tkzcname{tkzGetFirstPoint\{M\}} seul le premier point sera utilisé;
+   \item \tkzcname{tkzGetSecondPoint\{N\}} cette fois, seul le second point est nommé.
+ \end{itemize}
+Il est difficile de conserver un découpage du code comme dans l'exemple, si on ne veut pas nommer un point par exemple H dans l'\hyperlink{firstex}{exemple} minimal, mais complet de la section suivante.
+
+Le code pourrait devenir :
+
+\begin{tkzltxexample}[]
+ \tkzDefPointWith[orthogonal](I,M) %\tkzGetPoint{H}
+ \tkzDrawSegment[style=dashed](I,tkzPointResult)
+ \tkzInterLC(I,tkzPointResult)(M,A)    \tkzGetSecondPoint{B}
+\end{tkzltxexample}
+
+\subsection{Notions générales}
+
+Le principe est de définir des points en utilisant des coordonnées cartésiennes ou des coordonnées polaires et même des coordonnées barycentriques. 
+
+Ensuite, il est possible d'obtenir d'autres points comme intersections d'objets, comme images d'autres points à l'aide de transformations ou bien encore des points issus de propriétés vectorielles.
+
+\begin{itemize}
+   \item \tkzcname{tkzDefPoint} pour l'usage de coordonnées,
+      \item \tkzcname{tkzDefPointBy} pour l'usage des transformations,
+      \item \tkzcname{tkzDefPointWith} pour l'usage des propriétés vectorielles,
+   \item et enfin \tkzcname{tkzInterLL}, \tkzcname{tkzInterLC} et \tkzcname{tkzInterCC} sont les trois types d'intersections possibles  de droites et de cercles. Pour ces trois macros, j'ai préféré utiliser \tkzname{fp.sty} afin d'obtenir des résultats plus précis.
+\end{itemize}
+
+
+Puis à l'aide de ces points, nous pouvons tracer des objets comme des segments, des demi-droites, des droites, des triangles,  des cercles, des arcs etc.
+
+Cela se fait à l'aide de macros dont le nom commence par \tkzcname{tkzDraw...}.
+
+Enfin il est possible de placer des labels à l'aide de macros dont le nom commence par \tkzcname{tkzLabel...}.
+
+Cela permet à ceux qui le souhaitent, de décomposer la création des figures en quatre étapes~:
+\begin{enumerate}
+   \item Définir les points dont les coordonnées sont connues ou bien calculables.
+   \item Création de nouveaux points à l'aide de méthodes (intersection, transformation,etc.).
+   \item Tracés des objets dans un ordre choisi.
+   \item Placement des labels.
+\end{enumerate}
+
+
+Les coordonnées peuvent être obtenues à l'aide de calculs en utilisant pgfmath, fp ou encore \TEX. Toutes les macros n'acceptent pas que les calculs soient  faits pendant leurs assignations. Après avoir toléré ce comportement, je l'ai abandonné afin de laisser plus de souplesse à l'utilisateur. \tkzNamePack{fp.sty} est plus précis \tkzNamePack{pgfmath}, plus rapide aussi tout dépend des constructions demandées.
+
+D'une façon générale, la syntaxe est plus homogène. Les noms des points créés sont entre accolades alors que les noms des points utilisés sont entre parenthèses. 
+
+Après beaucoup d'hésitations, j'ai choisi le procédé suivant. Quand une macro crée un point, deux points, donne la mesure d'un angle alors le résultat est rangé dans un nom de générique. Ainsi l'intersection de deux droites définit un point appelé \tkzname{tkzPointResult}, celle de deux cercles donne \tkzname{tkzFirstPointResult} et \tkzname{tkzSecondPointResult}. Certaines macros définissent  une mesure de rayon qui sera alors dans une macro \tkzcname{tkzLengthResult} et d'autres la mesure d'un angle \tkzcname{tkzAngleResult}.
+ Des macros sont fournies pour nommer différemment ces résultats et les conserver. Il pourrait paraître plus simple de donner un paramètre supplémentaire à la macro pour nommer directement le résultat, mais par exemple, on peut n'avoir besoin que d'un point sur deux après une intersection, une macro peut définir trois résultats un angle , une longueur et un point. Ensuite il est facile à l'utilisateur de créer des macros qui feront tout cela d'un seul coup si cela est nécessaire. 
+
+\tkzcname{tkzDefPoint} utilise des accolades ainsi que les macros créant des labels. Il en est de même des transformations quand elles agissent sur une liste de points. 
+
+
+\clearpage \newpage
+\section{Exemple minimal, mais complet}
+Cet exemple se trouve dans le dossier du package, et vous permet de tester votre installation.
+
+Une unité de longueur étant choisie, l'exemple montre comment obtenir un segment de longueur $\sqrt{a}$ à partir d'un segment de longueur $a$, à l'aide d'une règle et d'un compas. 
+
+$IM=a$, $OI=1$
+
+\vspace{12pt}
+\hypertarget{firstex}{}
+\begin{center}
+\begin{tikzpicture}[scale=.8]
+   \tkzInit[ymin=-1,ymax=6,xmin=-1,xmax=10]    
+   \tkzClip[space=.5]
+   \tkzDefPoint(0,0){O}
+   \tkzDefPoint(1,0){I}
+   \tkzDefPoint(10,0){A}
+   \tkzDefMidPoint(O,A)  \tkzGetPoint{M} 
+   \tkzDefPointWith[orthogonal](I,M) \tkzGetPoint{H} 
+   \tkzInterLC(I,H)(M,A)  \tkzGetSecondPoint{B}
+   \tkzDrawSegment(O,A)
+   \tkzDrawSegment[style=dashed](I,H)
+   \tkzDrawPoints(O,I,A,B,M)
+   \tkzDrawArc(M,A)(O)
+   \tkzMarkRightAngle(A,I,B)
+   \tkzLabelSegment[right=4pt](I,B){$\sqrt{a}$}
+   \tkzLabelSegment[below](O,I){$1$} 
+   \tkzLabelSegment[below](I,M){$a/2$}
+   \tkzLabelSegment[below](M,A){$a/2$}
+   \tkzLabelPoints(I,M,B,A) 
+   \tkzLabelPoint[below left](O){$O$} 
+\end{tikzpicture} 
+\end{center}
+
+\emph{Commentaires}
+
+ Voyons tout d'abord le préambule. Il faut charger \tkzname{xcolor.sty} avant  \tkzname{tkz-euclide.sty} c'est à dire avant \TIKZ. Les options de \tkzname{xcolor.sty} dépendent des couleurs que vous utiliserez. Sinon, Il n'y  rien de particulier à signaler, à l'exception du fait que \TIKZ{} peut poser des problèmes avec les caractères actifs de \tkzname{frenchb} de \tkzNamePack{babel}, aussi j'ai créé deux macros \tkzNameMacro{tkzActivOff}  et \tkzNameMacro{tkzActivOn} pour désactiver puis réactiver ces caractères.
+
+\begin{center}
+\begin{tkzltxexample}[]
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc} 
+\usepackage[upright]{fourier} 
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+\usepackage{tkz-euclide} 
+\usetkzobj{all} % on charge tous les objets
+\usepackage[frenchb]{babel}
+\end{tkzltxexample}
+\end{center}
+
+
+\emph{Commentaires}
+
+Le code suivant comprend quatre parties : 
+\begin{itemize}
+   \item la première prépare le support. Ici, les deux  lignes \tkzimp{2} et \tkzimp{3} permettent de limiter la taille du dessin.
+  \item la deuxième comprend les définitions de points nécessaires à la contruction, ce sont les lignes qui vont de \tkzimp{4} et \tkzimp{9};
+  
+  \item la troisième comprend les différents tracés,  les lignes de \textcolor{brown}{10} et \textcolor{brown}{14};
+ 
+ \item la dernière ne s'occupe que du placement des labels.
+\end{itemize}
+
+\begin{enumerate}
+\item  Mise en place
+\begin{tkzltxexample}[num]
+\begin{tikzpicture}[scale=.8]
+   \tkzInit[ymin=-1,ymax=5,xmin=-1,xmax=10]
+   \tkzClip
+   \end{tkzltxexample}
+\item  Création des points
+\begin{tkzltxexample}[global num]
+   \tkzDefPoint(0,0){O}
+   \tkzDefPoint(1,0){I}
+   \tkzDefPointBy[homothety=center O ratio  10 ](I)  \tkzGetPoint{A}
+   \tkzDefMidPoint(O,A)              \tkzGetPoint{M}
+   \tkzDefPointWith[orthogonal](I,M) \tkzGetPoint{H}
+   \tkzInterLC(I,H)(M,A)             \tkzGetSecondPoint{B}
+   \end{tkzltxexample}
+\item  Tracés
+\begin{tkzltxexample}[global num]
+   \tkzDrawSegment(O,A)
+   \tkzDrawSegment[style=dashed](I,H)
+   \tkzDrawPoints(O,I,A,B,M)
+   \tkzDrawArc(M,A)(O)
+   \tkzMarkRightAngle(A,I,B)\end{tkzltxexample}
+\item  Création des labels pour les points et les segments
+\begin{tkzltxexample}[global num]
+   \tkzLabelSegment[right=4pt](I,B){$\sqrt{a}$}
+   \tkzLabelSegment[below](O,I){$1$} 
+   \tkzLabelSegment[below](I,M){$a/2$}
+   \tkzLabelSegment[below](M,A){$a/2$}
+   \tkzLabelPoints(I,M,B,A) 
+   \tkzLabelPoint[below left](O){$O$}
+\end{tikzpicture}\end{tkzltxexample}
+\end{enumerate}
+
+\endinput
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\section{Syntaxe}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+% \macro[options](){}
+Toutes les macros commencent par \tkzname{tkz}. Elles permettent de définir un objet ( en général un point), de tracer cette objet, de placer un label ou encore une marque
+\begin{itemize}
+  \item \tkzhname{\hyperlink{defpt}{tkzDefPoint}}
+  \item \tkzhname{\hyperlink{defpts}{tkzDefPoints}}
+  \item \tkzhname{\hyperlink{defptby}{tkzDefPointBy}}
+  \item \tkzhname{\hyperlink{defptwith}{tkzDefPointWith}}
+  \item \tkzhname{\hyperlink{defptmid}{tkzDefMidPoint}}
+  \item \tkzhname{\hyperlink{defptequi}{tkzDefEquiPoint}}
+  \item \tkzhname{\hyperlink{defl}{tkzDefLine}}
+  \item \tkzhname{\hyperlink{defc}{tkzDefCircle}}
+  \item \tkzhname{\hyperlink{defequi}{tkzDefEquilateral}}
+  \item \tkzhname{\hyperlink{defsq}{tkzDefSquare}}
+  \item \tkzhname{\hyperlink{defll}{tkzDefLLgram}}
+  \item \tkzhname{\hyperlink{drpt}{tkzDrawPoint}}
+  \item \tkzhname{\hyperlink{drpts}{tkzDrawPoints}}
+  \item \tkzhname{\hyperlink{drl}{tkzDrawLine}}
+  \item \tkzhname{\hyperlink{drls}{tkzDrawLines}}
+  \item \tkzhname{\hyperlink{drs}{tkzDrawSegment}}
+  \item \tkzhname{\hyperlink{drss}{tkzDrawSegments}}
+  \item \tkzhname{\hyperlink{drc}{tkzDrawCircle}}
+  \item \tkzhname{\hyperlink{dra}{tkzDrawArc}}
+  \item \tkzhname{\hyperlink{drsec}{tkzDrawSector}}   
+  \item \tkzhname{\hyperlink{drp}{tkzDrawPolygon}}
+  \item \tkzhname{\hyperlink{drps}{tkzDrawPolySeg}}
+  \item \tkzhname{\hyperlink{drm}{tkzDrawMark}}
+  \item \tkzhname{\hyperlink{drms}{tkzDrawMarks}}    
+  \item \tkzhname{\hyperlink{fa}{tkzFindAngle}}
+\end{itemize} 

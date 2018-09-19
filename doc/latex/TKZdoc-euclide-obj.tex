@@ -1,0 +1,98 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+\section{Utilisation des objets complémentaires}
+
+Ces objets complémentaires peuvent être des points, des segments, des droites.
+Il est possible d'utiliser certains de ces objets sans charger complètement \tkzname{tkz-euclide} mais en utilisant la macro \tkzcname{usetkzobj}. Attention, il faut utiliser  \tkzname{tkz-euclide} pour avoir la possibilité d'utiliser des outils comme les transformations ou encore les intersections.
+
+Voici la liste actuelle des objets et ceux qui sont chargés par défaut par \tkzname{tkz-base}.
+\begin{NewMacroBox}{usetkzobj}{\marg{liste d'objets}}
+
+\begin{tabular}{lll}
+options  &  & définition   \\   
+\midrule 
+\TAline{all}  {absent} {tous les objets sont chargés}
+\TAline{points}{présent}{définir, nommer, tracer des points }
+\TAline{lines}{absent} {définir, nommer, tracer des droites}
+\TAline{segments} {présent}{définir, nommer, tracer des segments}
+\TAline{vectors} {absent}{définir, nommer, tracer des des vecteurs}
+\TAline{circles} {absent}{définir, nommer, tracer des cercles}
+\TAline{polygons}{absent}{définir, nommer, tracer des quadrilatères}
+\TAline{arcs}   {absent}{définir, nommer, tracer des arcs}
+\TAline{sectors}{absent}{définir, nommer, tracer des secteurs}
+\TAline{protractor}{absent}{tracer un rapporteur}
+\TAline{marks}{présent}{définir, nommer, tracer des marques}
+\end{tabular} 
+ \end{NewMacroBox}
+
+
+\subsection{Nuage de points} 
+\subsubsection{\tkzcname{usetkzobj\{points,segments\}}} 
+
+\begin{tkzexample}[vbox,small]
+\begin{tikzpicture}
+      \tkzInit[xmax=12,ymin=1000,ymax=9000,ystep=1000]
+      \tkzAxeX[below=12pt,label=mois] 
+      \tkzAxeY[label=Recette]  
+      \tkzGrid 
+      \tkzDefPoint(1,2000){A} 
+      \tkzDefPoint(2,3000){B}
+      \tkzDefPoint(4,2500){C} 
+      \tkzDefPoint(6,4200){D} 
+      \tkzDefPoint(8,5200){E}
+      \tkzDefPoint(10,5000){F}
+      \tkzDefPoint(12,8400){G}
+      \tkzDrawPoints[shape=circle,color=red,size=10](A,B,C,D,E,F,G)
+      \tkzDrawPolySeg[line width=1pt,color=blue](A,B,C,D,E,F,G) 
+      \tkzText[draw,
+               color     = red,
+               text      = blue,
+               fill      = orange!20,
+               inner sep = 12pt](6,-500)
+             {Recette en fonction du mois}
+\end{tikzpicture} 
+\end{tkzexample}
+ 
+
+\subsubsection{\tkzcname{usetkzobj\{marks\}}}
+
+\begin{tkzexample}[vbox,small]
+\begin{tikzpicture}
+\tkzInit[xmax=12,ymin=1000,ymax=9000,ystep=1000]
+\tkzClip[space=2]
+\tkzX[label=mois,poslabel={below=10pt}]
+\tkzY[label=Recette] 
+\tkzDefSetOfPoints(1/2000,
+                2/3000,
+                4/2500,
+                5/4200,
+                6/4800,
+                7/4600,
+                8/5200,
+                9/6200,
+               10/7000,
+               11/7400,
+               12/10000)
+\tkzJoinMarks[]
+\tkzText[draw,color = red,fill = red!10,text width=3cm](5,6000)%
+{\begin{center}\color{blue}Recette en fonction du mois\end{center}}  
+\end{tikzpicture} 
+\end{tkzexample}
+
+\subsubsection{\tkzcname{usetkzobj\{marks,segments\}}}
+ 
+\begin{tkzexample}[vbox,small]
+\begin{tikzpicture}
+   \tkzInit[xmin = 1900,xmax = 2000,xstep  = 10,
+            ymin = 1000,ymax = 9000,ystep = 1000]
+   \tkzAxeX[label    = Année,below=16pt]
+   \tkzAxeY[label    = Recette]
+   \tkzDefSetOfPoints[mark = oplus,mark size=3pt](%
+                   1900/2000,%
+                   1940/8000,%
+                   1960/5000,%
+                   2000/7000)
+   \tkzDrawSegments(tkzPt1,tkzPt2 tkzPt2,tkzPt3 tkzPt3,tkzPt4)
+\end{tikzpicture}
+\end{tkzexample}  
+\endinput

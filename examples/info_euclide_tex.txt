@@ -1,0 +1,17 @@
+2011/06/01
+
+ 
+This archive contains all the examples of the documentation about tkz-euclide.
+
+You need to compile a file with pdflatex or pfdtex to have in the same directory the file tkzeuclpreamble.ltx. This file is present in the archive.
+
+You can also find  Makefile in the archive. The way to use the Makefile is :
+
+$ cd <path of the archive>
+$ make
+
+Best regards 
+
+Alain Matthes
+
+                                          

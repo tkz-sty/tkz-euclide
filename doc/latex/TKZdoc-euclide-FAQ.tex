@@ -1,0 +1,49 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+\section{FAQ} 
+\subsection{Erreurs les plus fréquentes}
+ Je me base pour le moment sur les miennes, car ayant changé plusieurs fois de syntaxes, j'ai commis un certain nombre d'erreurs. Cette section est amenée à se développer.
+ 
+ \begin{itemize}\setlength{\itemsep}{10pt}
+  \item \tkzcname{tkzDrawPoint(A,B)} alors qu'il faut  \tkzcname{tkzDrawPoints}
+  \item  \tkzcname{tkzGetPoint(A)} Quand on définit un objet, il faut utiliser des accolades et non des parenthèses, il faut donc écrire~: \tkzcname{tkzGetPoint\{A\}}
+  
+    \item \tkzcname{tkzGetPoint\{A\}} à la place de \tkzcname{tkzGetFirstPoint\{A\}}. Quant une macro donne deux points comme résultats, soit on récupère ces points  à l'aide de \tkzcname{tkzGetPoints\{A\}\{B\}}, soit on ne récupère que l'un des deux points, à l'aide  \tkzcname{tkzGetFirstPoint\{A\}} ou bien de \tkzcname{tkzGetSecondPoint\{A\}}. Ces deux points peuvent être utilisés avec comme référence \tkzname{tkzFirstPointResult} ou  \tkzname{tkzSecondPointResult}. Il est possible qu'un troisième point soit donné sous la référence \tkzname{tkzPointResult}  
+     
+  \item \tkzcname{tkzDrawSegment(A,B A,C)} alors qu'il faut  \tkzcname{tkzDrawSegments}. Il est possible de n'utiliser que les versions avec un « s » mais c'est moins efficace!
+  \item Mélange option et arguments; toutes les macros  qui utilisent un cercle ont besoin de connaître le rayon de celui-ci. Si le rayon est donné par une mesure alors l'option comprend un \tkzname{R}.
+
+\item  \tkzcname{tkzDrawSegments[color = gray,style=dashed]\{B,B' C,C'\}} est une erreur. Seules, les macros qui définissent un objet utilisent des accolades.   
+  \item Les angles sont donnés en degrés 
+  
+  \item Si une erreur survient dans un calcul lors d'un passage de paramètres, alors il est préférable de faire ces calculs avant d'appeler la macro.
+  \item Ne pas mélanger la syntaxe de \tkzNamePack{pgfmath} et celle de \tkzNamePack{fp.sty}. J'ai choisi souvent \tkzname{fp.sty} mais si vous préférez  pgfmath alors effectuez vos calculs avant le passage de paramètres.
+
+%\tkzDrawLines[add=0 and 8]( A,a B,b) au lieu de \tkzDrawLines[add=0 and 8](A,a B,b)
+
+%\tkzActivOff 
+%\tkzDrawSegment[color=Maroon!50](I,H)
+
+\item usage de \tkzcname{tkzClip} : Afin d'avoir des résultats  précis, j'ai évité de passer par des vecteurs normalisés. L'avantage de la normalisation est de contrôler la dimension des objets manipulés, le désavantage est qu'avec TeX, cela implique des erreurs. Ces erreurs sont souvent minimes, de l'ordre du millième, mais entraînent des catastrophes si le dessin est agrandi. Ne pas normaliser implique que certains points se trouvent bien loin de la zone de travail et seul \tkzcname{tkzClip} permet de réduire la taille du dessin. 
+
+
+\item  une erreur se produit si vous utilisez la macro \tkzcname{tkzDrawAngle}
+ avec un angle trop petit. L'erreur est produite par la librairie  \NameLib{decoration} quand on veut placer une marque sur un arc. Même si la marque est absente, l'erreur, elle, reste présente. Il est possible de contourner cette difficulté avec l'option \tkzname{mkpos=.2} par exemple, qui placera la marque avant l'arc. Une autre possibilité est d'utiliser la macro \tkzcname{tkzFillAngle}
+\item Somme de deux vecteurs
+
+Comment obtenir le point D tel que $\overrightarrow{AD} = \overrightarrow{AB} + \overrightarrow{AC}$?
+
+\begin{tkzexample}[latex=5 cm,small]
+  \begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(1,1){A}
+  \tkzDefPoint(8,0){B}
+  \tkzDefPoint(3,4){C} 
+  \tkzDefVector[colinear= at C](A,B){D}
+  \tkzDrawVectors[color=blue](A,B A,C) 
+  \tkzDrawVector[color=red](A,D) 
+  \tkzLabelPoints(A,B,C,D)  
+\end{tikzpicture}
+\end{tkzexample}
+
+  \end{itemize}    
+\endinput

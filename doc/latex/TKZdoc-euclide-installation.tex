@@ -1,0 +1,167 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+\section{Installation}    \NameDist{TeXLive}
+
+
+Lorsque vous lirez ce document, il est possible que \tkzname{tkz-euclide}  soit présent sur le serveur du \tkzname{CTAN}\footnote{\tkzname{tkz-euclide} ne fait pas encore partie de \tkzname{TeXLive}} alors  \tkzname{tlmgr} vous permettra de l'installer.  Si  \tkzname{tkz-euclide} ne fait pas encore partie de votre distribution, cette section vous montre comment l'installer, elle est aussi nécessaire si vous avez envie d'installer une version beta  ou personnalisée de \tkzname{tkz-euclide}. Si le package est présent 
+ sur le serveur du \tkzname{CTAN} et que vous n'utilisez pas \tkzname{tlmgr},  je vous conseille de la télécharger à partir de ce serveur, sinon vous le trouverez sur mon site.
+ Pour distinguer les anciennes versions de la nouvelle, j'ai repris la numérotation à 1.00 et j'ai ajouté « c »\footnote{pour CTAN}  . Vous allez donc installer la version \tkzname{1.13 c}.
+
+Le plus simple est de créer un dossier \tikz[remember picture,baseline=(n1.base)]\node [fill=blue!30,draw] (n1) {tkz};\footnote{ou bien un autre nom}  avec comme chemin : \colorbox{blue!20}{ texmf/tex/latex/tkz}.
+
+\medskip
+\begin{enumerate}
+\item Après l'avoir décompressé, placez le dossier \tikz[remember picture,baseline=(n2.base)]\node [fill=blue!20,draw] (n2) {tkzeuclide}; dans le dossier \tikz[baseline=(tk.base)]\node [fill=blue!30,draw] (tk) {tkz};. Le dossier \tkzname{tkzbase} doit se trouver aussi dans le dossier \tkzname{tkz}.
+
+
+\medskip
+\begin{tikzpicture} [remember picture,rotate=90] 
+
+\node (texmf)   at (4,2)  [draw,fill=blue!30 ] {texmf};
+
+\node (tex)     at (6,0)   [draw ] {tex}; 
+\node (doc)     at (2,0)   [draw ] {doc};
+
+\node (texgen)  at (7,-2)  [draw ] {generic};
+\node (docgen)  at (0,-2)  [draw ] {generic};
+
+\node (latex)   at (4,-2)  [draw ] {latex}; 
+
+\node (genpgf)  at (7,-4)  [draw] {pgf};
+\node (latpgf)  at (5,-4)  [draw] {pgf};
+\node (tkz)     at (4,-4)  [draw,fill=blue!20 ] {tkz};
+
+\node (docpgf)  at (0,-4)  [draw] {pgf};
+
+\node (fct)     at (6,-6)  [draw,fill=orange!20] {tkz-fct.sty};
+\node (tkb)     at (4,-6)  [draw,fill=blue!20] {tkzeuclide};
+\node (tke)     at (2,-6)  [draw,fill=blue!20] {tkzbase};
+
+\node (sym)     at (10,-11)  [draw,fill=green!20] {tkz-lib-symbols.tex};
+\node (add)     at (9,-11)  [draw,fill=green!20] {tkz-obj-addpoints.tex};  
+\node (tuti)     at (8,-11)  [draw,fill=green!20] {tkz-obj-angles.tex}; 
+\node (tmisc)    at (7,-11)  [draw,fill=green!20] {tkz-obj-arcs.tex};
+\node (tmath)    at (6,-11)  [draw,fill=green!20] {tkz-obj-circles.tex};
+\node (tbas)     at (5,-11)  [draw,fill=green!20] {tkz-obj-lines.tex};
+\node (base)     at (4,-11)  [draw,fill=green!20] {tkz-euclide.sty}; 
+\node (cfg)      at (3,-11)  [draw,fill=green!20]   {tkz-obj-protractor.tex};
+\node (mark)     at (2,-11)  [draw,fill=green!20]   {tkz-obj-polygons.tex}; 
+\node (pts)      at (1,-11)  [draw,fill=green!20]   {tkz-obj-sectors.tex};
+\node (int) at (0,-11)  [draw,fill=green!20]   {tkz-tools-intersections.tex}; 
+\node (tsf) at (-1,-11) [draw,fill=green!20]  {tkz-tools-transformations.tex};
+
+\draw[-open triangle 90](texmf.north east) --(tex.south west)    ;
+\draw[-open triangle 90](texmf.south east) -- (doc.north west)   ;
+
+\draw[-open triangle 90](tex.north east) --(texgen.south west)    ;
+\draw[-open triangle 90](tex.south east) -- (latex.north west)   ; 
+\draw[-open triangle 90](texgen.east) -- (genpgf.west)   ;  
+
+\draw[-open triangle 90](doc.south east) -- (docgen.north west)   ; 
+\draw[-open triangle 90](docgen.east) -- (docpgf.west)   ; 
+
+\draw[-open triangle 90](latex.north east) -- (latpgf.south west)   ; 
+\draw[-open triangle 90](latex.east) -- (tkz.west)   ;    
+ 
+\draw[-open triangle 90,blue!40](tkz.east) to[out=-90,in=90](fct.west) ;
+\draw[-open triangle 90,blue!40](tkz.east) to[out=-90,in=90](tkb.west) ; 
+\draw[-open triangle 90,blue!40](tkz.east) to[out=-90,in=90](tke.west) ; 
+
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](sym.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](add.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tuti.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tmisc.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tmath.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tbas.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](base.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](cfg.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](mark.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](pts.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](int.west) ; 
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tsf.west) ; 
+
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,overlay]
+        \path[->,thin,red!40,>=latex] (n1) edge [bend left] (tkz);
+        \path[->,thin,red!40,>=latex] (n2) edge [bend left] (tkb);
+\end{tikzpicture}    
+
+\newpage 
+
+Il est nécessaire   que \tkzname{tkz-base} soit aussi installé. Le plus simple est d'installer \tkzname{tkz} complètement.   
+
+\item Ouvrir un terminal, puis faire \colorbox{red!20}{|sudo texhash|} si nécessaire.
+\item Vérifier que  \tkzname{fp}, \tkzname{numprint} et \tkzname{tikz 2.10} sont installés car ils sont obligatoires, pour le bon fonctionnement de \tkzname{tkz-euclide}.
+
+\end{enumerate}  
+
+ Voici les chemins du dossier tkz sur mes deux ordinateurs:      
+
+\medskip
+\begin{itemize}\setlength{\itemsep}{5pt}
+\item   sous OS X \colorbox{blue!30}{\textbf{/Users/ego/Library/texmf}}; 
+\item   sous Ubuntu \colorbox{blue!30}{\textbf{/home/ego/texmf}}.
+\end{itemize}\NameSys{Linux}\NameSys{OS X} 
+
+
+Je suppose que si vous mettez vos packages ailleurs, vous savez pourquoi !
+
+\emph{remarque : l'installation proposée n'est valable que pour un utilisateur.}  
+
+\subsection{Avec MikTeX sous Windows XP}\NameDist{MikTeX}\NameSys{Windows XP}
+
+Je ne connais pas grand-chose à ce système, mais un utilisateur de mes packages \tkzimp{Wolfgang Buechel} a eu la gentillesse de me faire parvenir ce qui suit~:
+
+Pour ajouter \tkzname{tkzeuclide} à MiKTeX\footnote{Essai réalisé avec la version \tkzname{2.7}}:
+
+\begin{itemize}\setlength{\itemsep}{10pt}
+  \item ajouter un dossier \tkzname{tkz} dans le dossier
+       \textcolor{blue!60!black}{\texttt{[MiKTeX-dir]/tex/latex}}
+  \item copier \tkzname{tkzeuclide} et tous les fichiers présents  dans le dossier \tkzname{tkz},
+  \item mettre à jour  MiKTeX, pour cela dans shell DOS lancer la commande   \textbf{\textcolor{red}{|mktexlsr -u|}} 
+  
+   ou bien encore, choisir \textcolor{red!50}{|Start/Programs/Miktex/Settings/General|}
+   
+    puis appuyer sur le bouton  \textbf{\textcolor{red}{|Refresh FNDB|}}.
+\end{itemize} 
+
+\subsection{Liste des fichiers des dossiers \tkzname{tkzbase}  et \tkzname{tkzeuclide}}
+
+Dans le dossier \tkzname{base}  :
+
+\begin{itemize}
+\item  \tkzname{tkz-base.cfg            }
+\item  \tkzname{tkz-base.sty            }
+\item  \tkzname{tkz-obj-marks.tex       }
+\item  \tkzname{tkz-obj-points.tex      }
+\item  \tkzname{tkz-obj-segments.tex    }
+\item  \tkzname{tkz-tools-arith.tex     }
+\item  \tkzname{tkz-tools-base.tex      }
+\item  \tkzname{tkz-tools-math.tex      }
+\item  \tkzname{tkz-tools-misc.tex      }
+\item  \tkzname{tkz-tools-utilities.tex }
+\end{itemize}
+
+Dans le dossier \tkzname{euclide}  : 
+ 
+\begin{itemize} 
+\item   \tkzname{tkz-euclide.sty              }
+\item   \tkzname{tkz-lib-symbols.tex          }
+\item   \tkzname{tkz-obj-addpoints.tex        }
+\item   \tkzname{tkz-obj-angles.tex           }
+\item   \tkzname{tkz-obj-arcs.tex             }
+\item   \tkzname{tkz-obj-circles.tex          }
+\item   \tkzname{tkz-obj-lines.tex            }
+\item   \tkzname{tkz-obj-protractor.tex       }
+\item   \tkzname{tkz-obj-polygons.tex         }
+\item   \tkzname{tkz-obj-sectors.tex          }
+\item   \tkzname{tkz-obj-vectors.tex          }
+\item   \tkzname{tkz-tools-intersections.tex  }
+\item   \tkzname{tkz-tools-transformations.tex}
+\end{itemize}
+
+\subsection{Chargement des fichiers avec \tkzname{usetkzobj}}
+Il n'était pas nécessaire de tout charger en une seule fois, seuls les fichiers indispensables sont installés. \tkzcname{usepackage\{tkz-base\}} charge tous les fichiers présents dans le dossier  \tkzname{tkzbase}; en particulier, les fichiers "objets" \tkzname{tkz-obj-points.tex} et \tkzname{tkz-obj-segments.tex} et \tkzname{tkz-obj-marks.tex}.
+\tkzcname{usepackage\{tkz-euclide\}} va ajouter des outils indispensables, mais vous devrez indiquer quels objets vous seront utiles. Pour tout charger, vous pouvez écrire :  \tkzcname{usetkzobj\{all\}}  mais sinon vous pouvez demander :
+   \tkzcname{usetkzobj\{cercles, arcs, protractor\}}.
+\endinput
+

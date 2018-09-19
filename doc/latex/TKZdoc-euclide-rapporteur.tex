@@ -1,0 +1,156 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+
+\section{Rapporteurs} % (fold)
+\label{sec:rapporteurs}
+
+D'après une idée de Yves Combe., la  macro suivante permet de dessiner un rapporteur. J'ai ajouté mon propre rapporteur qui est obtenu avec l'option \tkzname{full} (par défaut), celui de Yves est obtenu avec \tkzname{half}.
+
+
+\begin{NewMacroBox}{tkzProtractor}{\oarg{local options}\parg{$O,A$}}
+ 
+\medskip
+\begin{tabular}{lll}
+\toprule
+options            & défaut  & définition                         \\ 
+\midrule
+\TOline{with}     {full}    { full ou bien half}
+\TOline{lw}  {0.4 pt} { épaisseur des lignes}
+\TOline{scale}   {1} { ratio : permet d'ajuster la taille du rapporteur} \TOline{return} {false} { sens indirect du cercle trigonométrique}
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Le principe de fonctionnement est encore plus simple. Il suffit de nommer une demi-droite. Le rapporteur sera placé sur l'origine $O$ la direction de la demi-droites est donnée par $A$. L'angle est mesuré dans le sens direct du cercle trigonométrique} 
+\end{NewMacroBox}
+
+
+\subsection{Le rapporteur circulaire} 
+
+Mesure dans le sens direct
+
+\begin{tkzltxexample}[] 
+\begin{tikzpicture}[scale=.75]
+\tkzDefPoint(2,3){A}
+\tkzDefPoint[shift={(2,3)}](31:8){B}
+\tkzDefPoint[shift={(2,3)}](158:8){C}
+\tkzDrawSegments[color = red,
+           line width = 1pt](A,B A,C)
+\tkzProtractor[with  = full,
+               scale = 1.25](A,B)  
+\end{tikzpicture}  
+\end{tkzltxexample}
+ 
+\vspace*{6cm}\hspace*{6cm}   
+\begin{tikzpicture}[scale=.75,overlay]
+\tkzDefPoint(2,3){A}
+\tkzDefPoint[shift={(2,3)}](31:8){B}
+\tkzDefPoint[shift={(2,3)}](158:8){C}
+\tkzDrawSegments[color = red,
+           line width = 1pt](A,B A,C)
+\tkzProtractor[with  = full,
+               scale = 1.25](A,B)  
+\end{tikzpicture}  
+
+\newpage
+\subsection{Le rapporteur circulaire, transparent et retourné}
+Mesure dans le sens indirect, on retourne le rapporteur.
+
+\begin{center}
+  \begin{tkzexample}[vbox] 
+\begin{tikzpicture}
+  \tkzInit[xmin=-4,xmax=9,ymin=-3,ymax=9]
+  \tkzClip
+  \tkzDefPoint(2,3){A}
+  \tkzDefPoint[shift={(2,3)}](31:8){B}  
+  \tkzDefPoint[shift={(2,3)}](158:8){C}   
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzProtractor[scale=1.25,with=full,return](A,C) 
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}    
+ 
+\newpage
+\subsection{Le rapporteur original semi-circulaire (Yves Combes)}
+
+Mesure dans le sens direct avec un rapporteur semi-circulaire
+\begin{center} 
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzInit[xmin=-5,xmax=9,ymin=-3,ymax=10]
+  \tkzClip     
+  \tkzDefPoint(2,3){A}
+  \tkzDefPoint[shift={(2,3)}](31:8){B}  
+  \tkzDefPoint[shift={(2,3)}](158:8){C} 
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzProtractor[scale=1.25,with=half](A,B) 
+\end{tikzpicture}
+\end{tkzexample}  
+\end{center}
+\subsection{Le rapporteur semi-circulaire dans le sens indirect}
+
+\begin{center} 
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzInit[xmin=-5,xmax=9,ymin=-3,ymax=10]
+  \tkzClip      
+  \tkzDefPoint(2,3){A}
+  \tkzDefPoint[shift={(2,3)}](31:8){B}  
+  \tkzDefPoint[shift={(2,3)}](158:8){C}  
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzProtractor[scale=1.25,with=half,return](A,C) 
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+le cas échéant vous pouvez utiliser la macro originale de Yves
+
+\begin{NewMacroBox}{tkzOriProtractor}{\oarg{local options}}
+ 
+\medskip
+\begin{tabular}{lll}
+\toprule
+options            & défaut  & définition                         \\ 
+\midrule
+\TOline{with}  {full} {full ou bien half}   
+\TOline{lw}  {0.4 pt} {épaisseur des lignes} 
+\TOline{shift} {(x;y)}{permet de faire glisser le rapporteur} 
+\TOline{rotate}  {0}  {permet de faire pivoter le rapporteur}
+\TOline{scale}   {1}  {ratio : permet d'ajuster la taille du rapporteur} \TOline{return}{false}{sens indirect du cercle trigonométrique} 
+\bottomrule
+\end{tabular}
+
+\medskip
+\emph{Le principe de fonctionnement est encore plus simple. Il suffit de nommer une demi-droite. Le rapporteur sera placé sur l'origine.} 
+\end{NewMacroBox}
+
+\subsection{Le rapporteur semi-circulaire avec la macro originale} 
+\begin{center} 
+  \begin{tkzexample}[vbox] 
+\begin{tikzpicture}
+  \tkzInit[xmin=-5,xmax=9,ymin=-3,ymax=10]
+  \tkzClip  
+  \tkzDefPoint(2,3){A} 
+  \tkzDefPoint[shift={(2,3)}](158:8){B}
+  \tkzDefPoint[shift={(2,3)}](31:8){C}  
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzOriProtractor[shift = {(2,3)},scale=1.25, rotate = +31,with=half]
+\end{tikzpicture}
+\end{tkzexample}
+\end{center} 
+
+\subsection{Le rapporteur semi-circulaire avec la macro originale dans le sens indirect} 
+\begin{center} 
+  \begin{tkzexample}[vbox] 
+\begin{tikzpicture}
+  \tkzInit[xmin=-5,xmax=9,ymin=-3,ymax=10]
+  \tkzClip  
+  \tkzDefPoint(2,3){A} 
+  \tkzDefPoint[shift={(2,3)}](158:8){B}
+  \tkzDefPoint[shift={(2,3)}](31:8){C}  
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzOriProtractor[shift = {(2,3)},scale=1.25, rotate = -22,with=half]
+\end{tikzpicture}
+   \end{tkzexample}
+\end{center}    
+\endinput

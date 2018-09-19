@@ -1,0 +1,551 @@
+%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\section{Polygones}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\subsection{Définition des  triangles} 
+Les macros suivantes  vont permettre de définir ou de construire un triangle à partir \tkzname{au moins} de deux points. 
+
+ Pour le moment, il est possible de définir les triangles suivants :
+ \begin{itemize}
+\item  \tkzname{two angles}  détermine un triangle connaissant deux angles,
+\item  \tkzname{equilateral}  détermine un triangle équilatéral,
+\item \tkzname{half} détermine un triangle rectangle tel que le rapport des mesures des deux côtés adjacents à l'angle droit soit égal à $2$,
+\item \tkzname{pythagore} détermine un triangle rectangle dont les mesures des côtés sont proportionnelles à 3, 4 et 5,
+\item \tkzname{school} détermine un triangle rectangle dont les angles sont 30, 60 et 90 degrés,
+\item \tkzname{golden} détermine un triangle rectangle tel que le rapport des mesures des deux côtés adjacents à l'angle droit soit égal $\Phi=1,618034$, J'ai choisi comme dénomination « triangle doré » car il rpovient du rectangle d'or et j'ai conservé la dénomination « triangle d'or »  ou encore « triangle d'Euclide » pour le triangle isocèle dont les angles à la base sont de 72 degrés,
+
+\item \tkzname{gold} ou \tkzname{euclide} pour le triangle d'or,
+
+\item \tkzname{cheops} détermine un troisième point tel que le triangle soit isocèle  dont les mesures des côtés sont proportionnelles à $2$, $\Phi$ et $\Phi$.
+\end{itemize}    
+
+\begin{NewMacroBox}{tkzDefTriangle}{\oarg{local options}\parg{A,B}}
+\emph{les points sont ordonnés car le triangle est construit en suivant le sens direct du cercle trigonométrique. Cette macro est soit utilisée en partenariat  avec \tkzcname{tkzGetPoint} soit en utilisant \tkzname{tkzPointResult} s'il n'est pas nécessaire de conserver le nom. }
+  
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{two angles= \#1 and \#2}{no defaut}{triangle connaissant deux angles} 
+\TOline{equilateral} {no defaut}{triangle équilatéral }
+\TOline{pythagore}{no defaut}{proportionnel au triangle de pythagore 3-4-5}
+\TOline{school} {no defaut}{ angles de 30, 60 et 90 degrés }
+\TOline{gold}{no defaut}{ angles de 72, 72 et 36 degrés, $A$ est le sommet }
+\TOline{euclide} {no defaut}{identique au précédent mais $[AB]$ est la base}
+\TOline{golden} {no defaut}{rectangle en B et $AB/AC = \Phi$} 
+\TOline{cheops} {no defaut}{AC=BC, AC et BC sont proportionnels à $2$ et $\Phi$.} 
+\end{tabular}
+\end{NewMacroBox}  
+
+\subsubsection{triangle doré (golden)}
+\begin{tkzexample}[latex=6 cm,small]
+\begin{tikzpicture}[scale=.8]
+\tkzInit[xmax=5,ymax=3] \tkzClip[space=.5]
+  \tkzDefPoint(0,0){A}      \tkzDefPoint(4,0){B}
+  \tkzDefTriangle[golden](A,B)\tkzGetPoint{C}
+  \tkzDrawPolygon(A,B,C) \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints(A,B) \tkzDrawBisector(A,C,B)
+  \tkzLabelPoints[above](C) 
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsubsection{triangle équilatéral}
+\begin{tkzexample}[latex=7 cm,small]
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,0){B}
+  \tkzDefTriangle[equilateral](A,B) 
+  \tkzGetPoint{C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDefTriangle[equilateral](B,A) 
+  \tkzGetPoint{D}
+  \tkzDrawPolygon(B,A,D)
+  \tkzDrawPoints(A,B,C,D)
+  \tkzLabelPoints(A,B,C,D) 
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsubsection{triangle d'or  (euclide)}
+\begin{tkzexample}[latex=7 cm,small] 
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+ \tkzDefTriangle[euclide](A,B)\tkzGetPoint{C}
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints(A,B)
+ \tkzLabelPoints[above](C)
+ \tkzDrawBisector(A,C,B) 
+\end{tikzpicture}
+\end{tkzexample}
+
+\newpage
+\subsection{Tracé des  triangles}          
+ \begin{NewMacroBox}{tkzDrawTriangle}{\oarg{local options}\parg{A,B}}
+\emph{Macro semblable à la macro précédente mais les côtés sont tracés.}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & défaut & définition                         \\ 
+\midrule
+\TOline{two angles= \#1 and \#2}{no defaut}{triangle connaissant deux angles} 
+\TOline{equilateral} {no defaut}{triangle équilatéral }
+\TOline{pythagore}{no defaut}{proportionnel au triangle de pythagore 3-4-5}
+\TOline{school} {no defaut}{les angles sont 30, 60 et 90 degrés }
+\TOline{gold}{no defaut}{les angles sont 72, 72 et 36 degrés, $A$ est le sommet }
+\TOline{euclide} {no defaut}{identique au précédent mais $[AB]$ est la base}
+\TOline{golden} {no defaut}{rectangle en B et $AB/AC = \Phi$} 
+\TOline{cheops} {no defaut}{isocèle en C et $AC/AB = \frac{\Phi}{2}$} 
+\bottomrule
+ \end{tabular}
+
+\medskip
+\emph{Dans toutes ses définitions, les dimensions du triangle dépendent des deux points de départ.}
+\end{NewMacroBox}
+ 
+ 
+\subsubsection{triangle de Pythagore}
+Ce triangle a des côtés dont les longueurs sont proportionnelles à 3, 4 et 5.
+
+\begin{tkzexample}[latex=6 cm,small]
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(4,0){B}
+ \tkzDrawTriangle[pythagore,fill=blue!30](A,B)
+\end{tikzpicture}
+\end{tkzexample}
+
+ 
+ \subsubsection{triangle 30 60 90 (school)}
+ Les angles font 30, 60 et 90 degrés.
+ 
+\begin{tkzexample}[latex=6 cm,small]
+\begin{tikzpicture}
+  \tkzInit[ymin=-2.5,ymax=0,xmin=-5,xmax=0]
+  \tkzClip[space=.5] 
+    \begin{scope}[rotate=-180] 
+  \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+  	\tkzDrawTriangle[school,fill=red!30](A,B) 
+  \end{scope}
+  \end{tikzpicture}
+\end{tkzexample}
+
+\newpage
+\subsection{Les médianes}
+
+ \begin{NewMacroBox}{tkzDrawMedian}{\oarg{local options}\parg{point,point}\parg{point}}
+\emph{Il y aura sans doute une autre syntaxe pour ces segments.}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+arguments             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2}\parg{pt3}}{\parg{A,B}\parg{C}}{[AB] est le segment cible C est le sommet}
+\bottomrule
+ \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Médiane}
+\begin{tkzexample}[latex=7 cm,small]
+   \begin{tikzpicture}[scale=1.25]
+    \tkzInit[xmin=0,xmax=4,ymin=0,ymax=3] \tkzClip 
+    \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+    \tkzDefPoint(1,3){C} \tkzDrawPolygon(A,B,C)
+    \tkzSetUpLine[color=blue]
+    \tkzDrawMedian(A,B)(C)
+    \tkzDrawMedian(A,C)(B)
+    \tkzDrawMedian(B,C)(A)
+   \end{tikzpicture}
+\end{tkzexample}
+
+
+\subsection{Les hauteurs}
+
+ \begin{NewMacroBox}{tkzDrawAltitude}{\oarg{local options}\parg{point,point}\parg{point}}
+\emph{Il y aura sans doute une autre syntaxe pour ces segments }
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2}\parg{pt3}}{\parg{A,B}\parg{C}}{[AB] est le segment cible C est le sommet}
+\bottomrule
+ \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Hauteur}
+
+\begin{tkzexample}[latex=7 cm,small]
+\begin{tikzpicture}[scale=1.25]
+ \tkzInit[xmin=0,xmax=4,ymin=0,ymax=3] \tkzClip 
+ \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+ \tkzDefPoint(1,3){C} \tkzDrawPolygon(A,B,C)
+ \tkzSetUpLine[color=magenta]
+ \tkzDrawAltitude(A,B)(C)
+ \tkzDrawAltitude(A,C)(B)
+ \tkzDrawAltitude(B,C)(A)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{Les bissectrices}
+
+ \begin{NewMacroBox}{tkzDrawBisector}{\oarg{local options}\parg{point,point}\parg{point}}
+\emph{Il faut donner l'angle dans le sens direct}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2,pt3}}{\parg{A,B,C}}{Le sommet est B}
+\bottomrule
+ \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Bissectrices dans un triangle}
+Il faut donner les angles dans le sens direct.
+
+\begin{tkzexample}[latex=7 cm,small]
+\begin{tikzpicture}[scale=1.5]
+ \tkzInit[xmin=0,xmax=4,ymin=0,ymax=3] \tkzClip 
+ \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+ \tkzDefPoint(1,3){C} \tkzDrawPolygon(A,B,C)
+ \tkzSetUpLine[color=purple]
+ \tkzDrawBisector(C,B,A)
+ \tkzDrawBisector(B,A,C)
+ \tkzDrawBisector(A,C,B)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{Le parallélogramme} 
+
+Il n'y a pas de macro particulière pour tracer un parallélogramme. Le plus simple est d'employer 
+
+ \tkzcname{tkzDefPointWith[colinear= at ..]}
+
+
+\subsubsection{Exemple simple avec \tkzcname{colinear= at}}
+
+\begin{tkzexample}[latex=7 cm,small]
+\begin{tikzpicture}[scale=1.5]
+ \tkzInit[xmin=0,xmax=4,ymin=0,ymax=2]
+ \tkzClip[space=.5]   \tkzDefPoint(0,0){A} 
+ \tkzDefPoint(3,0){B} \tkzDefPoint(4,2){C}
+ \tkzDefPointWith[colinear= at C](B,A) 
+ \tkzGetPoint{D}
+ \tkzDrawPolygon(A,B,C,D)
+ \tkzLabelPoints(A,B) 
+ \tkzLabelPoints[above right](C,D)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Construction du rectangle d'or avec \tkzcname{colinear= at}}
+
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.5]
+  \tkzInit[xmax=14,ymax=10]
+  \tkzClip[space=1]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(8,0){B}
+  \tkzDefMidPoint(A,B)\tkzGetPoint{I}
+  \tkzDefSquare(A,B)\tkzGetPoints{C}{D}
+  \tkzDrawSquare(A,B)
+  \tkzInterLC(A,B)(I,C)\tkzGetPoints{G}{E}
+  \tkzDrawArc[style=dashed,color=gray](I,E)(D)
+  \tkzDefPointWith[colinear= at C](E,B)
+  \tkzGetPoint{F}
+  \tkzDrawPoints(C,D,E,F)
+  \tkzLabelPoints(A,B,C,D,E,F)
+  \tkzDrawSegments[style=dashed,color=gray]%
+(E,F C,F B,E)  
+\end{tikzpicture}
+\end{tkzexample}
+
+
+\subsection{Définir les points d'un carré} 
+ \begin{NewMacroBox}{tkzDefSquare}{\parg{pt1,pt2}}
+ \emph{Le carré est défini dans le sens direct. À partir de deux points, on obtient deux autres points tel que les quatre pris dans l'ordre forme un carré. Le carré est défini dans le sens direct.    Les résultats sont dans \tkzname{tkzFirstPointResult} et \tkzname{tkzSecondPointResult}.\\
+On peut les renommer avec \tkzcname{tkzGetPoints}}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2}}{\tkzcname{tkzDefSquare}\parg{A,B}}{Le carré est défini dans le sens direct}
+\bottomrule
+ \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Utilisation de \tkzcname{tkzDefSquare} avec deux points}
+
+Il faut remarquer l'inversion des deux premiers points et le résultat.
+
+\begin{tkzexample}[latex=4cm,small]
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(0,0){A} \tkzDefPoint(3,0){B}
+  \tkzDefSquare(A,B)
+  \tkzDrawPolygon[color=Maroon](A,B,tkzFirstPointResult,%
+               tkzSecondPointResult)
+  \tkzDefSquare(B,A)
+  \tkzDrawPolygon[color=Gold](B,A,tkzFirstPointResult,%
+               tkzSecondPointResult) 
+\end{tikzpicture} 
+\end{tkzexample}
+
+ On peut n'avoir besoin que d'un point pour tracer un triangle isocèle rectangle alors on utilise \tkzcname{tkzGetFirstPoint} ou \tkzcname{tkzGetSecondPoint}
+
+\subsubsection{Utilisation de \tkzcname{tkzDefSquare} pour obtenir un triangle isocèle rectangle}
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefSquare(A,B) \tkzGetFirstPoint{C}
+  \tkzDrawPolygon[color=Maroon,fill=bistre](A,B,C)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Théorème de Pythagore et \tkzcname{tkzDefSquare} }
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.75]
+\tkzInit
+\tkzDefPoint(0,0){C}
+\tkzDefPoint(4,0){A}
+\tkzDefPoint(0,3){B}
+\tkzDefSquare(B,A)\tkzGetPoints{E}{F}
+\tkzDefSquare(A,C)\tkzGetPoints{G}{H}
+\tkzDefSquare(C,B)\tkzGetPoints{I}{J}
+\tkzFillPolygon[fill = red!50 ](A,C,G,H)
+\tkzFillPolygon[fill = blue!50 ](C,B,I,J)
+\tkzFillPolygon[fill = purple!50](B,A,E,F)
+\tkzFillPolygon[fill = orange,opacity=.5](A,B,C)
+\tkzDrawPolygon[line width = 1pt](A,B,C)
+\tkzDrawPolygon[line width = 1pt](A,C,G,H)
+\tkzDrawPolygon[line width = 1pt](C,B,I,J)
+\tkzDrawPolygon[line width = 1pt](B,A,E,F)
+\tkzLabelSegment[above](C,A){$a$}
+\tkzLabelSegment[right](B,C){$b$}
+\tkzLabelSegment[below left](B,A){$c$}
+\end{tikzpicture}
+\end{tkzexample}
+ 
+\newpage
+\subsection{Tracé un carré} 
+
+ \begin{NewMacroBox}{tkzDrawSquare}{\oarg{local options}\parg{pt1,pt2}}
+ \emph{La macro trace un carré mais pas les sommets. Il est possible de colorier l'intérieur. L'ordre des points est celui du sens direct du cercle trigonométrique}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2}}{\tkzcname{tkzDrawSquare}\parg{A,B}}{}
+\bottomrule
+ \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Il s'agit d'inscrire deux carrés dans un demi-cercle.}
+
+\begin{tkzexample}[latex=6 cm,small]
+\begin{tikzpicture}[scale=.75] 
+   \tkzInit[ymax=8,xmax=8]
+ \tkzClip[space=.25]    \tkzDefPoint(0,0){A}
+ \tkzDefPoint(8,0){B}  \tkzDefPoint(4,0){I}
+ \tkzDefSquare(A,B)    \tkzGetPoints{C}{D}
+ \tkzInterLC(I,C)(I,B) \tkzGetPoints{E'}{E}
+ \tkzInterLC(I,D)(I,B) \tkzGetPoints{F'}{F} 
+ \tkzDefPointsBy[projection=onto A--B](E,F){H,G}
+ \tkzDefPointsBy[symmetry   = center H](I){J}
+ \tkzDefSquare(H,J)    \tkzGetPoints{K}{L}
+ \tkzDrawSector[fill=yellow](I,B)(A)
+ \tkzFillPolygon[color=red!40](H,E,F,G)
+ \tkzFillPolygon[color=blue!40](H,J,K,L)
+ \tkzDrawPolySeg[color=red](H,E,F,G) 
+ \tkzDrawPolySeg[color=red](J,K,L)
+ \tkzDrawPoints(E,G,H,F,J,K,L)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{Le rectangle d'or} 
+ \begin{NewMacroBox}{tkzDefGoldRectangle}{\parg{point,point}}
+\emph{La macro détermine un rectangle dont le rapport des dimensions est le nombre $\Phi$. Les points créés sont dans \tkzname{tkzFirstPointResult} et \tkzname{tkzSecondPointResult}. On peut les obtenir avec la macro \tkzcname{tkzGetPoints}. La macro suivante permet de tracer le rectangle.}
+
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\
+\midrule
+\TAline{\parg{pt1,pt2}}{\parg{A,B}}{Si C et D sont créés alors $AB/BC=\Phi$}
+ \end{tabular}
+\end{NewMacroBox}
+
+ \begin{NewMacroBox}{tkzDrawGoldRectangle}{\oarg{local options}\parg{point,point}}
+\begin{tabular}{lll}
+options             & exemple & explication                         \\
+\midrule
+\TAline{\parg{pt1,pt2}}{\parg{A,B}}{Trace le rectangle d'or basé sur le segment $[AB]$}
+ \end{tabular}
+\end{NewMacroBox}
+
+% 
+\subsubsection{Rectangles d'or}
+ 
+\begin{tkzexample}[latex=6 cm,small]
+\begin{tikzpicture}[scale=.6]
+ \tkzDefPoint(0,0){A}      \tkzDefPoint(8,0){B}
+ \tkzDefGoldRectangle(A,B) \tkzGetPoints{C}{D}
+ \tkzDefGoldRectangle(B,C) \tkzGetPoints{E}{F}
+ \tkzDrawPolygon[color=red,fill=red!20](A,B,C,D)
+ \tkzDrawPolygon[color=blue,fill=blue!20](B,C,E,F)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{Tracer un polygone} 
+
+ \begin{NewMacroBox}{tkzDrawPolygon}{\oarg{local options}\parg{liste de points}}
+\emph{Il suffit de donner une liste de points et la macro trace le polygone en utilisant les options de \TIKZ\ présentes.}
+
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\
+\midrule
+\TAline{\parg{pt1,pt2}}{\parg{A,B}}{}
+ \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Tracer un polygone}
+
+\begin{tkzexample}[latex=7 cm,small]
+  \begin{tikzpicture}[rotate=25,scale=1.25]
+\tkzDefPoints{-1/0/A,0/-2/B,4/0/C,0/1/D}
+\tkzDrawPolygon[fill=green!50!blue,
+line width=10pt,rounded corners](A,B,C,D)
+\end{tikzpicture}
+\end{tkzexample}
+
+\begin{tkzexample}[latex=7cm, small]  
+\begin{tikzpicture} [rotate=18,scale=1.5]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(2.25,0.2){B}
+ \tkzDefPoint(2.5,2.75){C}
+ \tkzDefPoint(-0.75,2){D}
+ \tkzDrawPolygon[fill=black!50!blue!20!](A,B,C,D)
+ \tkzDrawSegments[style=dashed](A,C B,D) 
+\end{tikzpicture}\end{tkzexample}
+
+\begin{tkzexample}[latex=7cm, small]
+\begin{tikzpicture} [shift={(0,-5)},
+                     rotate=-28,scale=1.5]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(2.25,0.2){C}
+ \tkzDefPoint(2.5,2.75){B}
+ \tkzDefPoint(-0.75,2){D}
+ \tkzDrawPolygon[fill=black!50!blue!20!](A,B,C,D)   
+ \tkzDrawSegments[style=dashed](A,C B,D)
+\end{tikzpicture}\end{tkzexample}
+
+\begin{tkzexample}[latex=7cm, small]
+\begin{tikzpicture} [shift={(0,-9)},
+                    rotate=-58,scale=1.5]
+ \tkzDefPoint(1.5,1.5){A}
+ \tkzDefPoint(2.25,0.2){B}
+ \tkzDefPoint(2.5,2.75){C}
+ \tkzDefPoint(-0.75,2){D}
+ \tkzDrawPolygon[fill=black!50!blue!20!,%
+    opacity=.5](A,B,C,D) 
+ \tkzDrawSegments[style=dashed](A,C B,D)
+\end{tikzpicture}
+\end{tkzexample}
+
+ 
+\subsection{Clipper un polygone} 
+ \begin{NewMacroBox}{tkzClipPolygon}{\oarg{local options}\parg{liste de points}}
+\emph{Cette macro permet de contenir les différentes tracés dans le polygone désigné.}
+
+\medskip
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2}}{\parg{A,B}}{}
+%\bottomrule
+ \end{tabular}
+\end{NewMacroBox}
+\subsubsection{Exemple simple avec \tkzcname{tkzClipPolygon}} 
+\begin{tkzexample}[latex=7 cm,small]
+\begin{tikzpicture}[scale=1.25]
+ \tkzInit[xmin=0,xmax=4,ymin=0,ymax=3] 
+ \tkzClip[space=.5] 
+ \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+ \tkzDefPoint(1,3){C} \tkzDrawPolygon(A,B,C)
+ \tkzDefPoint(0,2){D}  \tkzDefPoint(2,0){E}
+ \tkzDrawPoints(D,E) \tkzLabelPoints(D,E) 
+ \tkzClipPolygon(A,B,C)
+ \tkzDrawLine[color=red](D,E)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Exemple Sangaku dans un carré} 
+\begin{tkzexample}[latex=7cm, small]  
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoint(0,0){A} \tkzDefPoint(8,0){B}
+ \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
+ \tkzDrawPolygon(B,C,D,A)
+ \tkzClipPolygon(B,C,D,A)
+ \tkzDefPoint(4,8){F}
+ \tkzDefTriangle[equilateral](C,D) 
+ \tkzGetPoint{I}
+ \tkzDrawPoint(I)
+ \tkzDefPointBy[projection=onto B--C](I) 
+ \tkzGetPoint{J}
+ \tkzInterLL(D,B)(I,J)  \tkzGetPoint{K}
+ \tkzDefPointBy[symmetry=center K](B) 
+ \tkzGetPoint{M}
+ \tkzDrawCircle(M,I)
+ \tkzCalcLength(M,I)   \tkzGetLength{dMI}
+ \tkzFillPolygon[color = orange](A,B,C,D)
+ \tkzFillCircle[R,color = yellow](M,\dMI pt)
+ \tkzFillCircle[R,color = blue!50!black](F,4 cm)%
+\end{tikzpicture}
+\end{tkzexample}
+ 
+\subsection{Colorier un polygone} 
+ \begin{NewMacroBox}{tkzFillPolygon}{\oarg{local options}\parg{liste de points}}
+    \emph{On peut colorier en traçant le polygone mais là on colorie l'intrieur du polygone sans le tracer.}
+    
+    \medskip
+\begin{tabular}{lll}
+\toprule
+options             & exemple & explication                         \\ 
+\midrule
+\TAline{\parg{pt1,pt2,\dots}}{\parg{A,B,\dots}}{}
+%\bottomrule
+ \end{tabular}
+\end{NewMacroBox} 
+
+\subsubsection{Colorier un polygone} 
+\begin{tkzexample}[latex=7cm, small]  
+\begin{tikzpicture}[scale=0.7]
+\tkzInit[xmin=-3,xmax=6,ymin=-1,ymax=6]
+\tkzDrawX[noticks]
+\tkzDrawY[noticks]    
+\tkzDefPoint(0,0){O}  \tkzDefPoint(4,2){A}
+\tkzDefPoint(-2,6){B}
+\tkzPointShowCoord[xlabel=$x$,ylabel=$y$](A)
+\tkzPointShowCoord[xlabel=$x'$,ylabel=$y'$,%
+                   ystyle={right=2pt}](B) 
+\tkzDrawVectors(O,A O,B)
+\tkzLabelSegment[above=3pt](O,A){$\vec{u}$}
+\tkzLabelSegment[above=3pt](O,B){$\vec{v}$}
+\tkzMarkAngle[fill= yellow,size=1.8cm,%
+              opacity=.5](A,O,B)
+\tkzFillPolygon[red!30,opacity=0.25](A,B,O)
+\tkzLabelAngle[pos = 1.5](A,O,B){$\alpha$} 
+\end{tikzpicture}
+\end{tkzexample}
+\endinput
