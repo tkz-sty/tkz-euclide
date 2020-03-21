@@ -1,0 +1,285 @@
+\section{Definition of points by transformation; \tkzcname{tkzDefPointBy} }
+These transformations are:
+
+\begin{itemize}
+   \item translation;
+   \item homothety;
+   \item orthogonal reflection or symmetry;
+   \item central symmetry;
+   \item orthogonal projection;
+   \item rotation (degrees or radians);
+   \item inversion with respect to a circle.
+\end{itemize}
+
+The choice of transformations is made through the options. There are two macros, one for the transformation of a single point \tkzcname{tkzDefPointBy} and the other for the transformation of a list of points \tkzcname{tkzDefPointsBy}. By default the image of $A$ is $A'$. For example, we'll write:
+\begin{tkzltxexample}[]
+\tkzDefPointBy[translation= from A to A'](B) 
+\end{tkzltxexample}
+The result is in \tkzname{tkzPointResult}
+\medskip
+\begin{NewMacroBox}{tkzDefPointBy}{\oarg{local options}\parg{pt}}%
+The argument is a simple existing point and its image is stored in \tkzname{tkzPointResult}. If you want to keep this point then the macro \tkzcname{tkzGetPoint\{M\}} allows you to assign the name \tkzname{M} to the point.
+
+\begin{tabular}{lll}%
+\toprule
+arguments &  definition & examples               \\ 
+\midrule
+\TAline{pt}   {existing point name}   {$(A)$}
+\bottomrule
+\end{tabular}
+
+\begin{tabular}{lll}%
+options     &     & examples                         \\ 
+\midrule
+\TOline{translation}{= from \#1 to \#2}{[translation=from A to B](E)}
+\TOline{homothety}  {= center \#1 ratio \#2}{[homothety=center A ratio .5](E)}
+\TOline{reflection} {= over \#1--\#2}{[reflection=over A--B](E)}
+\TOline{symmetry }  {= center \#1}{[symmetry=center A](E)}
+\TOline{projection }{= onto \#1--\#2}{[projection=onto A--B](E)}
+\TOline{rotation }  {= center \#1 angle \#2}{[rotation=center O angle 30](E)}
+\TOline{rotation in rad}{= center \#1 angle \#2}{[rotation in rad=center O angle pi/3](E)} 
+\TOline{inversion}{= center \#1 through \#2}{[inversion =center O through A](E)} 
+\bottomrule
+\end{tabular}
+
+The image is only defined and not drawn.
+\end{NewMacroBox} 
+
+\subsection{Examples of transformations}
+\subsubsection{Example of translation} 
+
+\subsection{Example of translation}
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[>=latex] 
+ \tkzDefPoint(0,0){A}  \tkzDefPoint(3,1){B}
+ \tkzDefPoint(3,0){C}  
+ \tkzDefPointBy[translation= from B to A](C) 
+ \tkzGetPoint{D} 
+ \tkzDrawPoints[teal](A,B,C,D)
+ \tkzLabelPoints[color=teal](A,B,C,D) 
+ \tkzDrawSegments[orange,->](A,B D,C) 
+\end{tikzpicture} 
+\end{tkzexample}
+
+\subsubsection{Example of reflection (orthogonal symmetry)} 
+
+\begin{tkzexample}[vbox,small]
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{1.5/-1.5/C,-4.5/2/D}    
+ \tkzDefPoint(-4,-2){O} 
+ \tkzDefPoint(-2,-2){A}
+ \foreach \i in {0,1,...,4}{%
+ \pgfmathparse{0+\i * 72}
+ \tkzDefPointBy[rotation=%
+ center O angle \pgfmathresult](A)
+  \tkzGetPoint{A\i} 
+ \tkzDefPointBy[reflection = over C--D](A\i)
+  \tkzGetPoint{A\i'}}
+ \tkzDrawPolygon(A0, A2, A4, A1, A3)    
+ \tkzDrawPolygon(A0', A2', A4', A1', A3')
+ \tkzDrawLine[add= .5 and .5](C,D)
+\end{tikzpicture}
+\end{tkzexample}
+
+
+\subsubsection{Example of \tkzname{homothety} and \tkzname{projection}}
+
+\begin{tkzexample}[vbox,small] 
+\begin{tikzpicture}[scale=1.2] 
+  \tkzDefPoint(0,1){A}   \tkzDefPoint(5,3){B}   \tkzDefPoint(3,4){C} 
+  \tkzDefLine[bisector](B,A,C)                     \tkzGetPoint{a} 
+  \tkzDrawLine[add=0 and 0,color=magenta!50 ](A,a) 
+  \tkzDefPointBy[homothety=center A ratio .5](a)   \tkzGetPoint{a'} 
+  \tkzDefPointBy[projection = onto A--B](a')       \tkzGetPoint{k'}  
+  \tkzDefPointBy[projection = onto A--B](a)       \tkzGetPoint{k} 
+  \tkzDrawLines[add= 0 and .3](A,k A,C)   
+  \tkzDrawSegments[blue](a',k' a,k) 
+  \tkzDrawPoints(a,a',k,k',A)
+  \tkzDrawCircles(a',k' a,k)   
+  \tkzLabelPoints(a,a',k,A)
+\end{tikzpicture}
+\end{tkzexample}  
+
+
+\subsubsection{Example of projection}
+\begin{tkzexample}[vbox,small] 
+\begin{tikzpicture}[scale=1.5]  
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(0,4){B}
+ \tkzDefTriangle[pythagore](B,A) \tkzGetPoint{C}
+ \tkzDefLine[bisector](B,C,A) \tkzGetPoint{c}
+ \tkzInterLL(C,c)(A,B)        \tkzGetPoint{D}
+ \tkzDefPointBy[projection=onto B--C](D) \tkzGetPoint{G}
+ \tkzInterLC(C,D)(D,A) \tkzGetPoints{E}{F}
+ \tkzDrawPolygon[teal](A,B,C)
+ \tkzDrawSegment(C,D)
+ \tkzDrawCircle(D,A)
+ \tkzDrawSegment[orange](D,G)
+ \tkzMarkRightAngle[fill=orange!20](D,G,B)
+ \tkzDrawPoints(A,C,F) \tkzLabelPoints(A,C,F)
+ \tkzDrawPoints(B,D,E,G)   
+ \tkzLabelPoints[above right](B,D,E,G)
+ \end{tikzpicture}
+ \end{tkzexample} 
+
+\subsubsection{Example of symmetry}
+\begin{tkzexample}[vbox,small] 
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-1){A}
+  \tkzDefPoint(2,2){B}
+  \tkzDefPointsBy[symmetry=center O](B,A){}
+  \tkzDrawLine(A,A')
+  \tkzDrawLine(B,B')
+  \tkzMarkAngle[mark=s,arc=lll,
+      size=2 cm,mkcolor=red](A,O,B) 
+  \tkzLabelAngle[pos=1,circle,draw,
+     fill=blue!10](A,O,B){$60^{\circ}$} 
+  \tkzDrawPoints(A,B,O,A',B') 
+  \tkzLabelPoints(A,B,O,A',B') 
+\end{tikzpicture}  
+\end{tkzexample}
+
+\subsubsection{Example of rotation} 
+\begin{tkzexample}[latex=7cm,small] 
+\begin{tikzpicture}[scale=0.5] 
+ \tkzDefPoint(0,0){A} 
+ \tkzDefPoint(5,0){B}
+ \tkzDrawSegment(A,B)
+ \tkzDefPointBy[rotation=center A angle 60](B) 
+ \tkzGetPoint{C} 
+ \tkzDefPointBy[symmetry=center C](A) 
+ \tkzGetPoint{D} 
+ \tkzDrawSegment(A,tkzPointResult) 
+ \tkzDrawLine(B,D)
+ \tkzDrawArc[orange,delta=10](A,B)(C) 
+ \tkzDrawArc[orange,delta=10](B,C)(A)
+ \tkzDrawArc[orange,delta=10](C,D)(D)  
+ \tkzMarkRightAngle(D,B,A)  
+\end{tikzpicture}  
+\end{tkzexample}  
+
+\subsubsection{Example of rotation in radian} 
+\begin{tkzexample}[latex=6cm,small]
+\begin{tikzpicture}
+  \tkzDefPoint["$A$" left](1,5){A}
+  \tkzDefPoint["$B$" right](5,2){B}
+  \tkzDefPointBy[rotation in rad= center A angle pi/3](B)
+  \tkzGetPoint{C}  
+  \tkzDrawSegment(A,B)
+  \tkzDrawPoints(A,B,C) 
+  \tkzCompass[color=red](A,C)
+  \tkzCompass[color=red](B,C) 
+  \tkzLabelPoints(C)
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsubsection{Inversion of points}
+\begin{tkzexample}[latex=8cm,small]  
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDefPoint(-1.5,-1.5){z1}
+  \tkzDefPoint(0.35,0){z2} 
+  \tkzDefPointBy[inversion =%
+      center O through A](z1)
+  \tkzGetPoint{Z1} 
+  \tkzDefPointBy[inversion =%
+      center O through A](z2)
+  \tkzGetPoint{Z2}
+  \tkzDrawCircle(O,A)  
+  \tkzDrawPoints[color=black,
+      fill=red,size=4](Z1,Z2)    
+  \tkzDrawSegments(z1,Z1 z2,Z2)
+  \tkzDrawPoints[color=black,
+      fill=red,size=4](O,z1,z2)
+  \tkzLabelPoints(O,A,z1,z2,Z1,Z2)  
+\end{tikzpicture}
+\end{tkzexample} 
+
+
+\subsubsection{Point Inversion: Orthogonal Circles} 
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDrawCircle(O,A) 
+  \tkzDefPoint(0.5,-0.25){z1}
+  \tkzDefPoint(-0.5,-0.5){z2}
+  \tkzDefPointBy[inversion = %
+     center O through A](z1)
+  \tkzGetPoint{Z1} 
+  \tkzCircumCenter(z1,z2,Z1)
+  \tkzGetPoint{c}
+  \tkzDrawCircle(c,Z1)
+  \tkzDrawPoints[color=black,
+     fill=red,size=4](O,z1,z2,Z1,O,A) 
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{Transformation of multiple points; \tkzcname{tkzDefPointsBy} }
+Variant of the previous macro for defining multiple images.
+You must give the names of the images as arguments, or indicate that the names of the images are formed from the names of the antecedents, leaving the argument empty. 
+
+\begin{tkzltxexample}[]
+\tkzDefPointsBy[translation= from A to A'](B,C){}
+\end{tkzltxexample}
+The images are $B'$ and $C'$.
+
+\begin{tkzltxexample}[]
+\tkzDefPointsBy[translation= from A to A'](B,C){D,E} 
+\end{tkzltxexample}
+The images are $D$ and $E$.
+
+\begin{tkzltxexample}[]
+\tkzDefPointsBy[translation= from A to A'](B)
+\end{tkzltxexample}
+The image is $B'$.
+\begin{NewMacroBox}{tkzDefPointsBy}{\oarg{local options}\parg{list of points}\marg{list of points}}%
+\begin{tabular}{lll}%
+arguments &  examples  &                  \\ 
+\midrule
+\TAline{\parg{list of points}\marg{list of pts}}{(A,B)\{E,F\}}{$E$ is the image of $A$ and $F$ is the image of $B$.}   \\
+\bottomrule
+\end{tabular}
+
+\medskip
+If the list of images is empty then the name of the image is the name of the antecedent to which " ' " is added.
+
+\medskip
+\begin{tabular}{lll}%
+\toprule
+options     &     & examples                         \\ 
+\midrule
+\TOline{translation = from \#1 to \#2}{}{[translation=from A to B](E)\{\}}
+\TOline{homothety = center \#1 ratio \#2}{}{[homothety=center A ratio .5](E)\{F\}}
+\TOline{reflection = over \#1--\#2}{}{[reflection=over A--B](E)\{F\}}
+\TOline{symmetry = center \#1}{}{[symmetry=center A](E)\{F\}}
+\TOline{projection = onto \#1--\#2}{}{[projection=onto A--B](E)\{F\}}
+\TOline{rotation = center \#1 angle \#2}{}{[rotation=center  angle 30](E)\{F\}}
+\TOline{rotation in rad = center \#1 angle \#2}{}{for instance angle pi/3}
+\bottomrule
+\end{tabular}
+
+\medskip
+The points are only defined and not drawn.
+\end{NewMacroBox}
+
+\subsubsection{Example of translation}
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[>=latex] 
+ \tkzDefPoint(0,0){A}  \tkzDefPoint(3,1){A'}
+ \tkzDefPoint(3,0){B}  \tkzDefPoint(1,2){C} 
+ \tkzDefPointsBy[translation= from A to A'](B,C){} 
+ \tkzDrawPolygon[color=blue](A,B,C)
+ \tkzDrawPolygon[color=red](A',B',C')
+ \tkzDrawPoints[color=blue](A,B,C)
+ \tkzDrawPoints[color=red](A',B',C') 
+ \tkzLabelPoints(A,B,A',B')  
+ \tkzLabelPoints[above](C,C')
+ \tkzDrawSegments[color = gray,->,
+              style=dashed](A,A' B,B' C,C') 
+\end{tikzpicture}
+\end{tkzexample}
+
+\endinput

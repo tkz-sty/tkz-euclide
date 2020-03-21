@@ -1,0 +1,7 @@
+## project-specific
+build/*
+code/*
+doc/examples/*
+doc/sourcedoc/*
+*.zip
+*.curlopt

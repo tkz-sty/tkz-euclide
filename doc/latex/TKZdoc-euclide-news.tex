@@ -1,0 +1,45 @@
+\section{News and compatibility}
+
+
+Some changes have been made to make the syntax more homogeneous and especially to distinguish the definition and search for coordinates from the rest, i.e. drawing, marking and labelling.
+In the future, the definition macros being isolated, it will be easier to introduce a phase of coordinate calculations using \tkzimp{Lua}.
+
+An important novelty is the recent replacement of the \tkzNamePack{fp} package by \tkzNamePack{xfp}.  This is to improve the calculations a little bit more and to make it easier to use.
+
+
+Here are some of the changes. 
+\vspace{1cm}
+ \begin{itemize}\setlength{\itemsep}{10pt} 
+
+\item Improved code and bug fixes;
+
+\item With \tkzimp{tkz-euclide} loads all objects, so there's no need to place \tkzcname{usetkzobj\{all\}};\item The bounding box is now controlled in each macro (hopefully) to avoid the use of \tkzcname{tkzInit} followed by \tkzcname{tkzClip};\item Added macros for the bounding box: \tkzcname{tkzSaveBB} \tkzcname{tkzClipBB} and so on;\item  Logically most macros accept \TIKZ\ options. So I removed the "duplicate" options when possible thus the "label options" option is removed;
+
+\item Random points are now in \tkzname{\tkznameofpack} and the macro \tkzcname{tkzGetRandPointOn} is replaced by \tkzcname{tkzDefRandPointOn}. For homogeneity reasons, the points must be retrieved with \tkzcname{tkzGetPoint};
+
+\item The options \tkzname{end} and \tkzname{start} which allowed to give a label to a straight  line are removed. You now have to use the macro \tkzcname{tkzLabelLine};
+
+\item Introduction of the libraries \NameLib{quotes} and \NameLib{angles}; it allows to give a label to a point, even if I am not in favour of this practice;
+
+\item  The notion of vector disappears, to draw a vector just pass "->" as an option to \tkzcname{tkzDrawSegment};
+
+\item Many macros still exist, but are obsolete and will disappear:
+\begin{itemize}
+
+\item |\tkzDrawMedians| trace and create midpoints on the sides of a triangle. The creation and drawing separation is not respected so it is preferable to first create the coordinates of these points with |\tkzSpcTriangle[median]| and then to choose the ones you are going to draw with |\tkzDrawSegments| or |\tkzDrawLines|;
+
+\item |\tkzDrawMedians(A,B)(C)| is now spelled |\tkzDrawMedians(A,C,B)|. This defines the median from $C$;
+  
+\item Another example |\tkzDrawTriangle[equilateral]| was handy but it is better to get the third point with |\tkzDefTriangle[equilateral]| and then draw with |\tkzDrawPolygon|;
+  
+\item |\tkzDefRandPointOn| is replaced by |\tkzGetRandPointOn|;\item now |\tkzTangent| is replaced by |\tkzDefTangent|;
+
+\item You can use |global path name| if you want find intersection  but it's very slow like in \TIKZ.
+
+\end{itemize}
+
+
+\item Appearance of the macro \tkzcname{usetkztool} which allows to load new "tools".
+\end{itemize}
+
+\endinput
