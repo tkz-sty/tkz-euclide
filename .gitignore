@@ -3,5 +3,6 @@ build/*
 code/*
 doc/examples/*
 doc/sourcedoc/*
+**/doc/*.pdf
 *.zip
 *.curlopt
