@@ -1,0 +1,10 @@
+The correct locations in the TDS structure are:
+TDS:doc/latex/tkz-euclide/cheatsheet_euclide_2.pdf
+TDS:doc/latex/tkz-euclide/cheatsheet_euclide_1.pdf
+TDS:doc/latex/tkz-euclide/Euclidean_geometry.pdf
+TDS:doc/latex/tkz-euclide/TKZdoc-euclide.pdf
+TDS:doc/latex/tkz-euclide/README.md
+TDS:doc/latex/tkz-euclide/examples/*.*
+TDS:doc/latex/tkz-euclide/sourcedoc/*.*
+TDS:tex/latex/tkz-euclide/*.*
+Thanks

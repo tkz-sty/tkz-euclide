@@ -3,9 +3,5 @@ build/*
 code/*
 doc/examples/*
 doc/sourcedoc/*
-**/doc/TKZdoc-euclide.pdf
-ctan.ann
-ctan.note
-Alaindata.lua
 *.zip
 *.curlopt
