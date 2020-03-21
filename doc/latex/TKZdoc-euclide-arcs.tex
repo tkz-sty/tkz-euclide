@@ -1,54 +1,51 @@
-%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
+\section{The arcs} 
+\begin{NewMacroBox}{tkzDrawArc}{\oarg{local options}\parg{O,\dots}\parg{\dots}}%
 
-\section{Les arcs} 
-
-\begin{NewMacroBox}{tkzDrawArc}{\oarg{local options}\parg{O,\dots}\parg{\dots} }
-
- \emph{Cette macro trace un arc de centre O. Suivant les options, les arguments diffèrent.   Il s'agit de déterminer un point de départ et un point d'arrivée. Soit le point de départ est donné, c'est ce qu'il y a de plus simple, soit on donne le rayon de l'arc. Dans ce dernier cas, il est nécessaire d'avoir deux angles. On peut soit donner directement les angles, soit donner des nodes qui associés au centre permettront de les déterminer.}   
-  
+This macro traces the arc of center $O$. Depending on the options, the arguments differ.   It is a question of determining a starting point and an end point. Either the starting point is given, which is the simplest, or the radius of the arc is given. In the latter case, it is necessary to have two angles. Either the angles can be given directly, or nodes associated with the center can be given to determine them. The angles are in degrees.
 
 \medskip
 
-\begin{tabular}{lll}
+\begin{tabular}{lll}%
 \toprule
-options             & défaut & définition                         \\ 
+options             & default & definition                        \\ 
 \midrule
-\TOline{towards}{towards}{O est le centre et l'arc par de A vers (OB)} 
-\TOline{rotate} {towards}{l'arc part de A et l'angle détermine sa longueur } 
-\TOline{R}{towards}{On donne le rayon et deux angles} 
-\TOline{R with nodes}{towards}{On donne le rayon et deux points}
-\TOline{delta}{0}{angle ajouté de chaque côté } 
+\TOline{towards}{towards}{$O$ is the center and the arc from $A$ to $(OB)$} 
+\TOline{rotate} {towards}{the arc starts from $A$ and the angle determines its length} 
+\TOline{R}{towards}{We give the radius and two angles} 
+\TOline{R with nodes}{towards}{We give the radius and two points}
+\TOline{angles}{towards}{We give the radius and two points}
+\TOline{delta}{0}{angle added on each side } 
 \bottomrule
 \end{tabular}
 
 \medskip
-\emph{Il faut ajouter bien sûr tous les styles de \TIKZ pour les tracés}
+Of course, you have to add all the styles of \TIKZ\ for the tracings...
 
 \medskip
 
-\begin{tabular}{lll}
+\begin{tabular}{lll}%
 \toprule
-options             & arguments & exemple                         \\ 
+options             & arguments & example                         \\ 
 \midrule
 \TOline{towards}{\parg{pt,pt}\parg{pt}}{\tkzcname{tkzDrawArc[delta=10](O,A)(B)}} 
 \TOline{rotate} {\parg{pt,pt}\parg{an}}{\tkzcname{tkzDrawArc[rotate,color=red](O,A)(90)}}
-\TOline{R}{\parg{pt,$r$}\parg{an,an}}{\tkzcname{tkzDrawArc[R,color=blue](O,2 cm)(30,90)}}
+\TOline{R}{\parg{pt,$r$}\parg{an,an}}{\tkzcname{tkzDrawArc[R](O,2 cm)(30,90)}}
 \TOline{R with nodes}{\parg{pt,$r$}\parg{pt,pt}}{\tkzcname{tkzDrawArc[R with nodes](O,2 cm)(A,B)}}
-\bottomrule
+\TOline{angles}{\parg{pt,pt}\parg{an,an}}{\tkzcname{tkzDrawArc[angles](O,A)(0,90)}}
 \end{tabular}
 \end{NewMacroBox}
 
-Quelques exemples : 
+Here are a few examples: 
 
-\subsection{\tkzcname{tkzDrawArc} et \tkzname{towards}}
-Il est inutile de mettre \tkzname{towards}. Dans ce premier exemple l'arc part de A et va sur B. L'arc qui va de B vers A est différent. On obtient le saillant en allant dans le sens direct du cercle trigonométrique.
-\begin{tkzexample}[latex=6cm]
+\subsection{Option \tkzname{towards}}
+It's useless to put \tkzname{towards}. In this first example the arc starts from $A$ and goes to $B$. The arc going from $B$ to $A$ is different. The salient is obtained by going in the direct direction of the trigonometric circle.
+\begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-1){A}
   \tkzDefPointBy[rotation= center O angle 90](A)
   \tkzGetPoint{B}
-  \tkzDrawArc[color=blue](O,A)(B) 
+  \tkzDrawArc[color=blue,<->](O,A)(B) 
   \tkzDrawArc(O,B)(A)
   \tkzDrawLines[add = 0 and .5](O,A O,B)
   \tkzDrawPoints(O,A,B)
@@ -57,16 +54,16 @@ Il est inutile de mettre \tkzname{towards}. Dans ce premier exemple l'arc part d
 \end{tkzexample}
 
 
-\subsection{\tkzcname{tkzDrawArc} et \tkzname{towards}}
-Dans celui-ci, l'arc part de A mais s'arrête sur la droite (OB).
+\subsection{Option \tkzname{towards}}
+In this one, the arc starts from A but stops on the right (OB).
  
-\begin{tkzexample}[latex=6cm]
+\begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=1.5] 
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-1){A}
   \tkzDefPoint(1,1){B} 
-  \tkzDrawArc[color=blue](O,A)(B)
-  \tkzDrawArc[color=Maroon](O,B)(A)
+  \tkzDrawArc[color=blue,->](O,A)(B)
+  \tkzDrawArc[color=gray](O,B)(A)
   \tkzDrawArc(O,B)(A)
   \tkzDrawLines[add = 0 and .5](O,A O,B) 
   \tkzDrawPoints(O,A,B)
@@ -74,8 +71,8 @@ Dans celui-ci, l'arc part de A mais s'arrête sur la droite (OB).
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsection{\tkzcname{tkzDrawArc} et \tkzname{rotate}}
-\begin{tkzexample}[latex=5cm] 
+\subsection{Option \tkzname{rotate}}
+\begin{tkzexample}[latex=5cm,small] 
 \begin{tikzpicture} 
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-2){A}
@@ -88,20 +85,20 @@ Dans celui-ci, l'arc part de A mais s'arrête sur la droite (OB).
 \end{tkzexample} 
 
 
-\subsection{\tkzcname{tkzDrawArc} et \tkzname{R}} 
-\begin{tkzexample}[latex=5cm]   
+\subsection{Option \tkzname{R}} 
+\begin{tkzexample}[latex=5cm,small]   
 \begin{tikzpicture}
   \tkzDefPoints{0/0/O}
   \tikzset{compass style/.append style={<->}}   
-  \tkzDrawArc[R, color=orange,double](O,3cm)(270,360)
-  \tkzDrawArc[R, color=blue,double](O,2cm)(0,270) 
+  \tkzDrawArc[R,color=orange,double](O,3cm)(270,360)
+  \tkzDrawArc[R,color=blue,double](O,2cm)(0,270) 
   \tkzDrawPoint(O)
   \tkzLabelPoint[below](O){$O$}  
 \end{tikzpicture} 
 \end{tkzexample}
 
-\subsection{\tkzcname{tkzDrawArc} et \tkzname{R with nodes}} 
-\begin{tkzexample}[latex=5cm]
+\subsection{Option \tkzname{R with nodes}} 
+\begin{tkzexample}[latex=5cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-1){A}
@@ -111,30 +108,70 @@ Dans celui-ci, l'arc part de A mais s'arrête sur la droite (OB).
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsection{\tkzcname{tkzDrawArc} et \tkzname{delta}}
-Cette option permet un peu comme \tkzcname{tkzCompass} de placer un arc et de déborder de chaque côté. delta est une mesure en degré.
+\subsection{Option \tkzname{delta}}
+This option allows a bit like \tkzcname{tkzCompass} to place an arc and overflow on either side. delta is a measure in degrees.
 
-\begin{tkzexample}[latex=7cm] 
+\begin{tkzexample}[latex=7cm,small] 
 \begin{tikzpicture} 
- \tkzInit
  \tkzDefPoint(0,0){A}
  \tkzDefPoint(5,0){B}
- \tkzDefPointBy[rotation= center A%
-                angle 60](B) \tkzGetPoint{C} 
+ \tkzDefPointBy[rotation= center A angle 60](B)
+ \tkzGetPoint{C} 
  \tkzSetUpLine[color=gray]
  \tkzDefPointBy[symmetry= center C](A)
-    \tkzGetPoint{D} 
+ \tkzGetPoint{D} 
  \tkzDrawSegments(A,B A,D)
  \tkzDrawLine(B,D)
  \tkzSetUpCompass[color=orange]
- \tkzDrawArc[delta=10](A,B)(C)
- \tkzDrawArc[delta=10](B,C)(A)
- \tkzDrawArc[delta=10](C,D)(D)
+ \tkzDrawArc[orange,delta=10](A,B)(C)
+ \tkzDrawArc[orange,delta=10](B,C)(A)
+ \tkzDrawArc[orange,delta=10](C,D)(D)
  \tkzDrawPoints(A,B,C,D)
  \tkzLabelPoints(A,B,C,D)
  \tkzMarkRightAngle(D,B,A)
 \end{tikzpicture}
 \end{tkzexample} 
+
+\subsection{Option \tkzname{angles}: example 1}
+
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,0){B}  
+  \tkzDefPoint(2.5,0){O} 
+  \tkzDefPointBy[rotation=center O angle 60](B)
+  \tkzGetPoint{D}
+  \tkzDefPointBy[symmetry=center D](O)
+  \tkzGetPoint{E}
+  \tkzSetUpLine[color=Maroon]   
+  \tkzDrawArc[angles](O,B)(0,180)
+  \tkzDrawArc[angles,](B,O)(100,180)  
+  \tkzCompass[delta=20](D,E) 
+  \tkzDrawLines(A,B O,E B,E)
+  \tkzDrawPoints(A,B,O,D,E)
+  \tkzLabelPoints(A,B,O,D,E)
+  \tkzMarkRightAngle(O,B,E) 
+\end{tikzpicture} 
+\end{tkzexample}
+
+\subsection{Option \tkzname{angles}: example 2}
+
+
+\begin{tkzexample}[latex=7cm,small]
+  \begin{tikzpicture}
+   \tkzDefPoint(0,0){O}
+   \tkzDefPoint(5,0){I} 
+   \tkzDefPoint(0,5){J}
+   \tkzInterCC(O,I)(I,O)\tkzGetPoints{B}{C}  
+   \tkzInterCC(O,I)(J,O)\tkzGetPoints{D}{A}
+   \tkzInterCC(I,O)(J,O)\tkzGetPoints{L}{K}
+   \tkzDrawArc[angles](O,I)(0,90)
+   \tkzDrawArc[angles,color=gray,style=dashed](I,O)(90,180)
+   \tkzDrawArc[angles,color=gray,style=dashed](J,O)(-90,0)
+   \tkzDrawPoints(A,B,K)
+   \foreach \point in {I,A,B,J,K}{\tkzDrawSegment(O,\point)} 
+  \end{tikzpicture} 
+\end{tkzexample}
 
 
  \endinput

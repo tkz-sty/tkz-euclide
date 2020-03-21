@@ -1,176 +1,216 @@
-%  encoding : utf8 
-%  doc de tkz-euclide.sty
-%  Created by Alain Matthes  on 2010-04-04.
-%  Copyright (C) 2010 Alain Matthes  
+% !TEX TS-program = lualatex
+%  encoding : utf8
+%  Documentation of tkz-euclide
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
 %
-% This file may be distributed and/or modified
+% This work has the LPPL maintenance status “maintained”.
 %
-% 1. under the LaTeX Project Public License , either version 1.3
-% of this license or (at your option) any later version and/or
-% 2. under the GNU Public License.
+% The Current Maintainer of this work is Alain Matthes.
 %
-% See the file doc/generic/pgf/licenses/LICENSE for more details.%
-% See http://www.latex-project.org/lppl.txt for details.
-%
-%
-% TKZdoc-euclide-main is the french  doc of tkz-euclide
+% This work consists of the files:
+% TKZdoc-euclide-pointby.tex
+% TKZdoc-euclide-presentation.tex
+% TKZdoc-euclide-exemples.tex
+% TKZdoc-euclide-rapporteur.tex
+% TKZdoc-euclide-compass.tex
+% TKZdoc-euclide-intersec.tex
+% TKZdoc-euclide-tools.tex
+% TKZdoc-euclide-arcs.tex
+% TKZdoc-euclide-circles.tex
+% TKZdoc-euclide-polygons.tex
+% TKZdoc-euclide-triangles.tex
+% TKZdoc-euclide-lines.tex
+% TKZdoc-euclide-pointwith.tex
+% TKZdoc-euclide-pointsSpc.tex
+% TKZdoc-euclide-points.tex
+% TKZdoc-euclide-installation.tex
+% TKZdoc-euclide-angles.tex
+% TKZdoc-euclide-config.tex
+% TKZdoc-euclide-base.tex
+% TKZdoc-euclide-FAQ.tex
+% TKZdoc-euclide-show.tex
+% TKZdoc-euclide-sectors.tex
+% TKZdoc-euclide-rnd.tex
+% TKZdoc-euclide-news.tex
 
-\documentclass[DIV         = 12,
+\documentclass[DIV         = 14,
                fontsize    = 10,
                headinclude = false,
                index       = totoc,
                footinclude = false,
                twoside,
                headings    = small]{tkz-doc}
-%\usepackage{svn-multi}
+\usepackage{etoc}
+\gdef\tkznameofpack{tkz-euclide}
+\gdef\tkzversionofpack{3.05c}
+\gdef\tkzdateofpack{2020/03/08}
+\gdef\tkznameofdoc{doc-tkz-euclide}
+\gdef\tkzversionofdoc{3.05c}
+\gdef\tkzdateofdoc{2020/03/08}
+\gdef\tkzauthorofpack{Alain Matthes}
+\gdef\tkzadressofauthor{}
+\gdef\tkznamecollection{AlterMundus}
+\gdef\tkzurlauthor{}
+\gdef\tkzengine{lualatex}
+\gdef\tkzurlauthorcom{http://altermundus.fr}
+% -- Packages ---------------------------------------------------
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{calc}
 \usepackage{tkz-euclide}
-\usetkzobj{all}
-\tkzSetUpColors[background=fondpaille,text=Maroon]
-\usepackage[frenchb]{babel}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+      linkcolor=Gray,
+      citecolor=Green,
+      filecolor=Mulberry,
+      urlcolor=NavyBlue,
+      menucolor=Gray,
+      runcolor=Mulberry,
+      linkbordercolor=Gray,
+      citebordercolor=Green,
+      filebordercolor=Mulberry,
+      urlbordercolor=NavyBlue,
+      menubordercolor=Gray,
+      runbordercolor=Mulberry,
+      pdfsubject={Euclidean Geometry},
+      pdfauthor={\tkzauthorofpack},
+      pdftitle={\tkznameofpack},
+      pdfcreator={\tkzengine}
+}
+\usepackage{tkzexample}
+\usepackage{fontspec}
+\setmainfont{texgyrepagella}%
+ [Extension = .otf ,
+  UprightFont = *-regular,
+  ItalicFont = *-italic,
+  BoldFont = *-bold,
+  BoldItalicFont = *-bolditalic,
+  Ligatures=TeX,
+  Numbers={Lowercase,Monospaced}]
+\usepackage{unicode-math}
+\usepackage{fourier-otf} % ,zorna
+\newfontfamily\zorna{ORNA4___.TTF}
+\usepackage{datetime,multicol,lscape}
+\usepackage[english]{babel}
 \usepackage[autolanguage]{numprint}
-\usepackage[pdftex,
-            unicode,
-            colorlinks    = true,
-            pdfpagelabels, 
-            urlcolor      = blue,
-            filecolor     = pdffilecolor,
-            linkcolor     = blue,
-            breaklinks    = false,
-            hyperfootnotes= false,
-            bookmarks     = false,
-            bookmarksopen = false, 
-            linktocpage   = true,
-            pdfsubject    ={Euclidean geometry},
-            pdfauthor     ={Alain Matthes},
-            pdftitle      ={tkz-euclide},
-            pdfkeywords   ={euclide,compass,rule,point,line},
-            pdfcreator    ={pdfeTeX}
-            ]{hyperref}    
-\usepackage{url}
-\def\UrlFont{\small\ttfamily}
-\usepackage[protrusion = true,
-            expansion,
-            final,
-            verbose    = false]{microtype}
-
-\DisableLigatures{encoding = T1, family = tt*} 
-\usepackage{tkzexample}  
-% \usepackage[saved]{tkzexample}  
-% \def\tkzFileSavedPrefix{tkzEucl}%    
-\usepackage[parfill]{parskip}
-\gdef\nameofpack{tkz-euclide}
-\gdef\versionofpack{1.13 c}
-\gdef\dateofpack{2011/01/20}
-\gdef\nameofdoc{doc-tkz-euclide}
-\gdef\dateofdoc{2011/02/18}
-\gdef\authorofpack{Alain Matthes}
-\gdef\adressofauthor{}
-\gdef\namecollection{AlterMundus}
-\gdef\urlauthor{http://altermundus.fr}
-\gdef\urlauthorcom{http://altermundus.com}
-\title{The package : tkz-euclide.sty}
-\author{Alain Matthes}
-
-%\usepackage{hvindex}
-   
+\usepackage[normalem]{ulem}
+\usepackage{microtype}
+\usepackage{array,multirow,multido,booktabs}
 \usepackage{shortvrb,fancyvrb}
-\makeatletter
-\renewcommand*\l@subsubsection{\bprot@dottedtocline{3}{3.8em}{4em}}
-\makeatother
-\AtBeginDocument{\MakeShortVerb{\|}}
 
-\pdfcompresslevel=9
-\pdfinfo{
-    /Title (doc-tkz-euclide.pdf)
-    /Creator (TeX)
-    /Producer (pdfeTeX)
-    /Author (Alain Matthes)
-    /CreationDate (18 février 2011)
-    /Subject (Documentation du package tkz-euclide v 1.13 c)
-    /Keywords (pdfeTeX, geometry, compass, triangle, segment, line, pdflatex) }
-
-%<---------------------------------------------------------------------------> 
+\renewcommand{\labelitemi}{--}
+\setlength\parindent{0pt}
+\RequirePackage{imakeidx}
+\makeindex
+% \def\tkzref{\arabic{section}-\arabic{subsection}-\arabic{subsubsection}}
+% \renewenvironment{tkzexample}[1][]{%
+%  \tkz@killienc \VerbatimOut{tkzeuclide-\tkzref.tex}%
+%   }{%
+% \endVerbatimOut
+% }
+%<--------------------------------------------------------------------------->
+\AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
 \begin{document}
 
-\title{\nameofpack}
+\parindent=0pt
+\author{\tkzauthorofpack}
+\title{\tkznameofpack}
 \date{\today}
 \clearpage
 \thispagestyle{empty}
 \maketitle
+\null
+\AddToShipoutPicture*{%
+\setlength\unitlength{1mm}
+\put(70,120){%
+\begin{tikzpicture}
+ \node at (30pt,30pt){\fontsize{60}{60}\selectfont \zorna{c}};
+ \node at (270pt,30pt){\fontsize{60}{60}\selectfont \zorna{d}};
+ \node at (30pt,210pt){\fontsize{60}{60}\selectfont \zorna{a}};
+ \node at (270pt,210pt){\fontsize{60}{60}\selectfont \zorna{b}};
+ \draw[line width=2pt,double,color=MidnightBlue,
+ fill=myblue!10,opacity=.5] (0,0) rectangle (300pt,240pt);
+ \node[text width=240pt] at (150 pt,120 pt){%
+  \begin{center}
+	  \color{MidnightBlue}
+      \fontsize{24}{48}
+	  \selectfont tkz-euclide\\
+                tool for \\
+                Euclidean Geometry
+ \end{center}};
+\end{tikzpicture}}
+}
 
 \clearpage
-\pagecolor{fondpaille} 
-\color{Maroon}    
-\colorlet{graphicbackground}{fondpaille}
-\colorlet{codebackground}{Peach!30}
-\colorlet{codeonlybackground}{Peach!30}    
-\colorlet{numbackground}{fondpaille}
-\colorlet{textcodecolor}{Maroon}
-\colorlet{numcolor}{gray}  
+\tkzSetUpColors[background=white,text=darkgray]
 
-\nameoffile{\nameofpack} 
-\defoffile{Le package \textbf{tkz-euclide.sty} est un ensemble de macros spécialisées permettant de construire des objets géométriques en 2D dans un plan muni d'un repère. Il est construit au-dessus de PGF et son interface TikZ. Ce document fournit les définitions des différentes macros ainsi que des exemples dont la complexité est graduée. \textbf{tkz-euclide.sty} remplace \textbf{tkz-2d.sty} dont le code n'est plus maintenu. Ce package nécessite la version 2.1 de \TIKZ.}
+\let\rmfamily\ttfamily
+\nameoffile{\tkznameofpack}
+\defoffile{\lefthand\
+The \tkzname{\tkznameofpack} is a set of convenient macros for drawing in a plane (fundamental two-dimensional object) with a Cartesian coordinate system. It  handles the most classic situations in Euclidean Geometry. \tkzname{\tkznameofpack} is built on top of PGF and its associated front-end \TIKZ\ and is a (La)TeX-friendly drawing package. The aim is to provide a high-level user interface  to build graphics  relatively simply. It uses a Cartesian coordinate system orthogonal provided by the \tkzimp{tkz-base} package as well as tools to define the unique coordinates of points and to manipulate them. The idea is to allow you to follow step by step a construction that would be done by hand as naturally as possible.\\
+Now the package needs the version 3.0 of \TIKZ.  English is  not my native language so there  might be some errors.
+}
 
-\presentation  
+\presentation
 
-\vspace*{1cm}  
-\noindent\lefthand\ Je souhaite remercier \textbf{Till Tantau} pour avoir créé le merveilleux outil \href{http://sourceforge.net/projects/pgf/}{Ti\emph{k}Z}, ainsi que \tkzimp{Michel Bovani} pour \tkzname{fourier}, dont l'association avec \tkzname{utopia} est excellente. 
-
-\vspace*{12pt} 
-\noindent\lefthand\ Je  remercie \textbf{Yve Combe} pour avoir partagé son travail sur le rapporteur et les constructions à l'aide du compas. Je souhaite remercier également,  \tkzimp{David Arnold} qui a corrigé un grand nombre d'erreurs et qui a testé de nombreux exemples,  \tkzimp{Wolfgang Büchel} qui a corrigé également des erreurs et a construit de superbes scripts pour obtenir les fichiers d'exemples,  \tkzimp{John Kitzmiller} et \tkzimp{Dimitri Kapetas}  pour leurs exemples, et enfin  \tkzimp{Gaétan Marris} pour ses remarques et corrections.
+\vspace*{1cm}
+\lefthand\ Firstly, I would like to thank \textbf{Till Tantau} for the  beautiful \LaTeX{}  package, namely  \href{http://sourceforge.net/projects/pgf/}{\TIKZ}.
 
 \vspace*{12pt}
-\noindent\lefthand\ Vous trouverez de nombreux exemples sur mes sites~: 
-\href{http://altermundus.com/pages/download.html}{altermundus.com} ou 
-\href{http://altermundus.fr/pages/download.html}{altermundus.fr}    
+\lefthand\ I received much valuable advice, remarks, corrections and examples from \tkzimp{Jean-Côme Charpentier}, \tkzimp{Josselin Noirel}, \tkzimp{Manuel Pégourié-Gonnard}, \tkzimp{Franck Pastor}, \tkzimp{David Arnold}, \tkzimp{Ulrike Fischer}, \tkzimp{Stefan Kottwitz}, \tkzimp{Christian Tellechea}, \tkzimp{Nicolas Kisselhoff}, \tkzimp{David Arnold}, \tkzimp{Wolfgang Büchel}, \tkzimp{John Kitzmiller}, \tkzimp{Dimitri Kapetas}, \tkzimp{Gaétan Marris}, \tkzimp{Mark Wibrow}, \tkzimp{Yves Combe} for his work on a protractor, \tkzimp{Paul Gaborit} and \tkzimp{Laurent} for all his corrections, remarks and questions.
 
-\vfill   
-Vous pouvez envoyer vos remarques, et les rapports sur des erreurs que vous aurez constatées à l'adresse suivante~: \href{mailto:al.ma@mac.com}{\textcolor{blue}{Alain Matthes}}.
- 
-This file can be redistributed and/or modified under the terms of the LATEX 
+\vspace*{12pt}
+\lefthand\ I would also like to thank Eric Weisstein, creator of MathWorld:
+\href{http://mathworld.wolfram.com/about/author.html}{MathWorld}.
+
+\vspace*{12pt}
+\lefthand\ You can find some examples on my site:
+\href{http://altermundus.fr}{altermundus.fr}. \hspace{2cm} under construction!
+
+\vfill
+Please report typos or any other comments to this documentation to: \href{mailto:al.ma@mac.com}{\textcolor{blue}{Alain Matthes}}.
+
+This file can be redistributed and/or modified under the terms of the \LaTeX{}
 Project Public License Distributed from \href{http://www.ctan.org/}{CTAN}\  archives.
-
-\vspace{1cm}
-\begin{center}
-  \begin{tikzpicture}[decoration=snake,color=Peach,line width=1pt]
-    \draw[decorate] (0,0)--(\textwidth-1cm,0);
-  \end{tikzpicture}
-\end{center}
 
 \clearpage
 \tableofcontents
 
-\vspace{1cm}
-\begin{center}
-  \begin{tikzpicture}[decoration=snake,color=Peach,line width=1pt]
-    \draw[decorate] (0,0)--(\textwidth-1cm,0);
-  \end{tikzpicture}
-\end{center}
-\clearpage   \newpage
+\clearpage
+\newpage
 
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-\include{TKZdoc-euclide-installation}
 \include{TKZdoc-euclide-presentation}
-\include{TKZdoc-euclide-base}
-\include{TKZdoc-euclide-points} 
-\include{TKZdoc-euclide-alea}
-\include{TKZdoc-euclide-transf}
-\include{TKZdoc-euclide-intersec}
+\include{TKZdoc-euclide-installation}
+\include{TKZdoc-euclide-news}
+\include{TKZdoc-euclide-points}
+\include{TKZdoc-euclide-pointsSpc}
+\include{TKZdoc-euclide-pointby}
+\include{TKZdoc-euclide-pointwith}
+\include{TKZdoc-euclide-rnd}
 \include{TKZdoc-euclide-lines}
-\include{TKZdoc-euclide-segments}
-\include{TKZdoc-euclide-vec}  
-\include{TKZdoc-euclide-polygons}  
-\include{TKZdoc-euclide-circles} 
-\include{TKZdoc-euclide-compass}
+\include{TKZdoc-euclide-triangles}
+\include{TKZdoc-euclide-polygons}
+\include{TKZdoc-euclide-circles}
+\include{TKZdoc-euclide-intersec}
+\include{TKZdoc-euclide-angles}
 \include{TKZdoc-euclide-sectors}
 \include{TKZdoc-euclide-arcs}
-\include{TKZdoc-euclide-rapporteur}
 \include{TKZdoc-euclide-tools}
-\include{TKZdoc-euclide-config}
+\include{TKZdoc-euclide-compass}
+\include{TKZdoc-euclide-show}
+\include{TKZdoc-euclide-rapporteur}
 \include{TKZdoc-euclide-exemples}
-\include{TKZdoc-euclide-example}
-\include{TKZdoc-euclide-FAQ}         
-\clearpage\newpage
-\printindex
+\include{TKZdoc-euclide-config}
+\include{TKZdoc-euclide-base}
+\include{TKZdoc-euclide-FAQ}
 
+\clearpage\newpage
+\small\printindex
 \end{document}

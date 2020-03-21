@@ -1,30 +1,24 @@
-%!TEX root = /Users/ego/Boulot/TKZ/tkz-euclide/doc_fr/TKZdoc-euclide-main.tex
-
-\section{Les secteurs}
-
-\begin{NewMacroBox}{tkzDrawSector}{\oarg{local options}\parg{O,\dots}\parg{\dots}}
-\noindent\emph{Attention les arguments varient en fonction des options.}
-
-\medskip
-\begin{tabular}{lll}
-\toprule
-options             & défaut & définition                         \\ 
+\section{Sectors}
+\subsection{\tkzcname{tkzDrawSector}} 
+\tkzHandBomb\  Attention the arguments vary according to the options.
+\begin{NewMacroBox}{tkzDrawSector}{\oarg{local options}\parg{O,\dots}\parg{\dots}}%
+\begin{tabular}{lll}%
+options             & default & definition                         \\ 
 \midrule
-\TOline{towards}{towards}{O est le centre et l'arc par de A vers (OB)}
-\TOline{rotate} {towards}{l'arc part de A et l'angle détermine sa longueur } 
-\TOline{R}{towards}{On donne le rayon et deux angles}
-\TOline{R with nodes}{towards}{On donne le rayon et deux points}
+\TOline{towards}{towards}{$O$ is the center and the arc from $A$ to $(OB)$}
+\TOline{rotate} {towards}{the arc starts from $A$ and the angle determines its length } 
+\TOline{R}{towards}{We give the radius and two angles}
+\TOline{R with nodes}{towards}{We give the radius and two points}
 \bottomrule
 \end{tabular} 
 
 \medskip
-\emph{Il faut ajouter bien sûr tous les styles de \TIKZ\ pour les tracés}
+You have to add, of course, all the styles of \TIKZ\ for tracings...
 
 \medskip
-
-\begin{tabular}{lll}
+\begin{tabular}{lll}%
 \toprule
-options             & arguments & exemple                         \\ 
+options             & arguments & example                         \\ 
 \midrule
 \TOline{towards}{\parg{pt,pt}\parg{pt}}{\tkzcname{tkzDrawSector(O,A)(B)}}
 \TOline{rotate} {\parg{pt,pt}\parg{an}}{\tkzcname{tkzDrawSector[rotate,color=red](O,A)(90)}} 
@@ -34,10 +28,11 @@ options             & arguments & exemple                         \\
 \end{tabular}
 \end{NewMacroBox}
 
-Quelques exemples : 
+Here are a few examples: 
 
-\subsection{\tkzcname{tkzDrawSector} et \tkzname{towards}} 
-Il est inutile de mettre \tkzname{towards}.
+\subsubsection{\tkzcname{tkzDrawSector} and \tkzname{towards}} 
+There's no need to put \tkzname{towards}. You can use \tkzname{fill} as an option.
+
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=1]
   \tkzDefPoint(0,0){O}
@@ -53,46 +48,45 @@ Il est inutile de mettre \tkzname{towards}.
 \end{tikzpicture}   
 \end{tkzexample}
 
-\subsection{\tkzcname{tkzDrawSector} et \tkzname{rotate}}  
-
-\begin{tkzexample}[latex=7cm]
-\begin{tikzpicture}[scale=2]       
-   \tkzDefPoint(0,0){O}
-   \tkzDefPoint(2,2){A}
-   \tkzDrawSector[rotate,draw=red!50!black,%
-   fill=red!20](O,A)(30)
-   \tkzDrawSector[rotate,draw=blue!50!black,%
-   fill=blue!20](O,A)(-30)
+\subsubsection{\tkzcname{tkzDrawSector} and \tkzname{rotate}}  
+\begin{tkzexample}[latex=7cm,small]  
+\begin{tikzpicture}[scale=2]
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(2,2){A}
+ \tkzDrawSector[rotate,draw=red!50!black,%
+ fill=red!20](O,A)(30)
+ \tkzDrawSector[rotate,draw=blue!50!black,%
+ fill=blue!20](O,A)(-30)
 \end{tikzpicture} 
 \end{tkzexample}  
 
-\subsection{\tkzcname{tkzDrawSector} et \tkzname{R}}  
-\begin{tkzexample}[latex=7cm]   
+\subsubsection{\tkzcname{tkzDrawSector} and \tkzname{R}}  
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=1.25]
-   \tkzDefPoint(0,0){O}
-   \tkzDefPoint(2,-1){A}
-   \tkzDrawSector[R,draw=white,%
-   fill=red!50](O,2cm)(30,90)
-   \tkzDrawSector[R,draw=white,%
-   fill=red!60](O,2cm)(90,180)
-   \tkzDrawSector[R,draw=white,%
-   fill=red!70](O,2cm)(180,270)
-   \tkzDrawSector[R,draw=white,%
-   fill=red!90](O,2cm)(270,360) 
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(2,-1){A}
+ \tkzDrawSector[R,draw=white,%
+ fill=red!50](O,2cm)(30,90)
+ \tkzDrawSector[R,draw=white,%
+ fill=red!60](O,2cm)(90,180)
+ \tkzDrawSector[R,draw=white,%
+ fill=red!70](O,2cm)(180,270)
+ \tkzDrawSector[R,draw=white,%
+ fill=red!90](O,2cm)(270,360) 
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsection{\tkzcname{tkzDrawSector} et \tkzname{R}}  
-\begin{tkzexample}[latex=7cm]     
+\subsubsection{\tkzcname{tkzDrawSector} and \tkzname{R}}  
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=1.25]
- \tkzDefPoint[pos=left](0,0){O}
+ \tkzDefPoint(0,0){O}
  \tkzDefPoint(4,-2){A}
  \tkzDefPoint(4,1){B}
  \tkzDefPoint(3,3){C}
  \tkzDrawSector[R with nodes,%
                 fill=blue!20](O,1 cm)(B,C)
  \tkzDrawSector[R with nodes,%
-                fill=red!20](O,1 cm)(A,B)  
+                fill=red!20](O,1.25 cm)(A,B)  
 \tkzDrawSegments(O,A O,B O,C)
 \tkzDrawPoints(O,A,B,C) 
 \tkzLabelPoints(A,B,C) 
@@ -100,40 +94,64 @@ Il est inutile de mettre \tkzname{towards}.
 \end{tikzpicture}
 \end{tkzexample}
 
-\begin{NewMacroBox}{tkzFillSector}{\oarg{local options}\parg{O,\dots}\parg{\dots}}
-\noindent\emph{Attention les arguments varient en fonction des options.}
+\subsubsection{\tkzcname{tkzDrawSector} and \tkzname{R with nodes}} 
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture} [scale=.5]
+ \tkzDefPoint(-1,-2){A}  
+ \tkzDefPoint(1,3){B} 
+ \tkzDefRegPolygon[side,sides=6](A,B) 
+ \tkzGetPoint{O} 
+ \tkzDrawPolygon[fill=black!10,
+                 draw=blue](P1,P...,P6) 
+ \tkzLabelRegPolygon[sep=1.05](O){A,...,F}
+ \tkzDrawCircle[dashed](O,A)
+ \tkzLabelSegment[above,sloped,
+                  midway](A,B){\(A B = 16m\)}
+ \foreach \i  [count=\xi from 1]  in {2,...,6,1}
+   {%
+    \tkzDefMidPoint(P\xi,P\i)
+    \path (O) to [pos=1.1] node {\xi} (tkzPointResult) ;
+    }
+  \tkzDefRandPointOn[segment = P3--P5] 
+  \tkzGetPoint{S}
+  \tkzDrawSegments[thick,dashed,red](A,S S,B)
+  \tkzDrawPoints(P1,P...,P6,S)
+  \tkzLabelPoint[left,above](S){$S$}
+  \tkzDrawSector[R with nodes,fill=red!20](S,2 cm)(A,B)
+  \tkzLabelAngle[pos=1.5](A,S,B){$\alpha$}
+\end{tikzpicture}
+\end{tkzexample}
 
-\medskip
-
-\begin{tabular}{lll}
-\toprule
-options             & défaut & définition                         \\ 
+\subsection{\tkzcname{tkzFillSector}}
+\tkzHandBomb\ Attention the arguments vary according to the options. 
+\begin{NewMacroBox}{tkzFillSector}{\oarg{local options}\parg{O,\dots}\parg{\dots}}%
+\begin{tabular}{lll}%
+options          & default & definition      \\ 
 \midrule
-\TOline{towards}{towards}{O est le centre et l'arc par de A vers (OB)}
-\TOline{rotate} {towards}{l'arc part de A et l'angle détermine sa longueur } 
-\TOline{R}{towards}{On donne le rayon et deux angles}
-\TOline{R with nodes}{towards}{On donne le rayon et deux points}
+\TOline{towards}{towards}{$O$ is the center and the arc from $A$ to $(OB)$}
+\TOline{rotate} {towards}{the arc starts from A and the angle determines its length } 
+\TOline{R}{towards}{We give the radius and two angles}
+\TOline{R with nodes}{towards}{We give the radius and two points}
 \bottomrule
 \end{tabular} 
 
 \medskip
-\emph{Il faut ajouter bien sûr tous les styles de \TIKZ pour les tracés}
+Of course, you have to add all the styles of \TIKZ\ for the tracings...
 
 \medskip
-\begin{tabular}{lll}
+\begin{tabular}{lll}%
 \toprule
-options             & arguments & exemple                         \\ 
+options             & arguments & example                         \\ 
 \midrule
 \TOline{towards}{\parg{pt,pt}\parg{pt}}{\tkzcname{tkzFillSector(O,A)(B)}}
 \TOline{rotate} {\parg{pt,pt}\parg{an}}{\tkzcname{tkzFillSector[rotate,color=red](O,A)(90)}}
 \TOline{R}{\parg{pt,$r$}\parg{an,an}}{\tkzcname{tkzFillSector[R,color=blue](O,2 cm)(30,90)}} 
 \TOline{R with nodes}{\parg{pt,$r$}\parg{pt,pt}}{\tkzcname{tkzFillSector[R with nodes](O,2 cm)(A,B)}}
-\bottomrule
 \end{tabular}   
 \end{NewMacroBox} 
 
-\subsection{\tkzcname{tkzFillSector} et \tkzname{towards}} 
-Il est inutile de mettre \tkzname{towards} et vous remarquerez que les contours ne sont pas tracés,seule la surface est colorée.
+\subsubsection{\tkzcname{tkzFillSector} and \tkzname{towards}} 
+It is useless to put \tkzname{towards} and you will notice that the contours are not drawn, only the surface is colored.
 \begin{tkzexample}[latex=5.75cm,small]
 \begin{tikzpicture}[scale=.6]
   \tkzDefPoint(0,0){O}
@@ -150,7 +168,7 @@ Il est inutile de mettre \tkzname{towards} et vous remarquerez que les contours 
 \end{tkzexample}
 
 
-\subsection{\tkzcname{tkzFillSector} et \tkzname{rotate}} 
+\subsubsection{\tkzcname{tkzFillSector} and \tkzname{rotate}} 
 \begin{tkzexample}[latex=5.75cm,small]
 \begin{tikzpicture}[scale=1.5]
  \tkzDefPoint(0,0){O} \tkzDefPoint(2,2){A}
@@ -159,54 +177,48 @@ Il est inutile de mettre \tkzname{towards} et vous remarquerez que les contours 
 \end{tikzpicture}    
 \end{tkzexample} 
 
-\newpage
-\begin{NewMacroBox}{tkzClipSector}{\oarg{local options}\parg{O,\dots}\parg{\dots}}
-\noindent\emph{Attention les arguments varient en fonction des options.}
-
-\medskip
-
-\begin{tabular}{lll}
-\toprule
-options             & défaut & définition                         \\ 
+\subsection{\tkzcname{tkzClipSector}}
+\tkzHandBomb\  Attention the arguments vary according to the options. 
+\begin{NewMacroBox}{tkzClipSector}{\oarg{local options}\parg{O,\dots}\parg{\dots}}%
+\begin{tabular}{lll}%
+options             & default & definition                         \\ 
 \midrule
-\TOline{towards}{towards}{O est le centre et le secteur part de A vers (OB)}
-\TOline{rotate} {towards}{le secteur part de A et l'angle détermine son amplitude } 
-\TOline{R}{towards}{On donne le rayon et deux angles} 
+\TOline{towards}{towards}{$O$ is the centre and the sector starts from $A$ to $(OB)$}
+\TOline{rotate} {towards}{The sector starts from $A$ and the angle determines its amplitude. } 
+\TOline{R}{towards}{We give the radius and two angles} 
 \bottomrule
 \end{tabular} 
 
-
 \medskip
-\emph{Il faut ajouter bien sûr tous les styles de \TIKZ\ pour les tracés}
+You have to add, of course, all the styles of \TIKZ\ for tracings...
 
 \medskip   
-\begin{tabular}{lll}
+\begin{tabular}{lll}%
 \toprule
-options             & arguments & exemple                         \\ 
+options             & arguments & example                         \\ 
 \midrule
 \TOline{towards}{\parg{pt,pt}\parg{pt}}{\tkzcname{tkzClipSector(O,A)(B)}}
 \TOline{rotate} {\parg{pt,pt}\parg{angle}}{\tkzcname{tkzClipSector[rotate](O,A)(90)}} 
 \TOline{R}{\parg{pt,$r$}\parg{angle 1,angle 2}}{\tkzcname{tkzClipSector[R](O,2 cm)(30,90)}}
-\bottomrule
 \end{tabular}
 \end{NewMacroBox}
 
-\begin{center}
-\begin{tkzexample}[vbox] 
-\begin{tikzpicture}[scale=2] 
+\subsubsection{\tkzcname{tkzClipSector}} 
+\begin{tkzexample}[latex=7cm,small] 
+\begin{tikzpicture}[scale=1.5] 
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-1){A}
   \tkzDefPoint(1,1){B} 
-  \tkzDrawSector[color=bistre,dashed](O,A)(B)
-  \tkzDrawSector[color=Maroon](O,B)(A)
+  \tkzDrawSector[color=blue,dashed](O,A)(B)
+  \tkzDrawSector[color=blue](O,B)(A)
+  \tkzClipBB
+  \begin{scope}
+    \tkzClipSector(O,B)(A)
+    \draw[fill=gray!20] (-1,0) rectangle (3,3);
+  \end{scope}
   \tkzDrawPoints(A,B,O)
-  \tkzClipSector(O,B)(A)
-\draw[fill=red!20] (-1,0) rectangle (3,3);
 \end{tikzpicture} 
 \end{tkzexample}
-\end{center}
- 
 
- 
-  \endinput  
-  
+\endinput
+
