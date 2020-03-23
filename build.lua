@@ -433,7 +433,7 @@ end
 local function type_manual()
   local file = jobname("doc/sourcedoc/TKZdoc-euclide.tex")
   errorlevel = (runcmd("lualatex --draftmode "..file..".tex", typesetdir, {"TEXINPUTS","LUAINPUTS"})
-              + runcmd("lualatex --draftmode "..file..".tex", typesetdir, {"TEXINPUTS","LUAINPUTS"})
+              + runcmd("makeindex "..file..".idx", typesetdir, {"TEXINPUTS","LUAINPUTS"})
               + runcmd("lualatex "..file..".tex", typesetdir, {"TEXINPUTS","LUAINPUTS"}))
   if errorlevel ~= 0 then
     error("Error!!: Typesetting "..file..".tex")
@@ -462,10 +462,10 @@ uploadconfig = {
   summary     = "Tools for drawing Euclidean geometry",
   description = [[The tkz-euclide package is a set of files designed to give math teachers and students easy access to the programming of Euclidean geometry with TikZ]],
   topic       = { "Graphics use", "Maths" },
-  ctanPath    = "/macros/latex/contrib/tkz/" .. ctanpkg,
-  repository  = "https://github.com/tkz-sty/" .. ctanpkg,
-  bugtracker  = "https://github.com/tkz-sty/" .. ctanpkg .. "/issues",
-  support     = "https://github.com/tkz-sty/" .. ctanpkg .. "/issues",
+  ctanPath    = "/macros/latex/contrib/tkz/"..ctanpkg,
+  repository  = "https://github.com/tkz-sty/"..ctanpkg,
+  bugtracker  = "https://github.com/tkz-sty/"..ctanpkg.."/issues",
+  support     = "https://github.com/tkz-sty/"..ctanpkg.."/issues",
   announcement_file="ctan.ann",
   note_file   = "ctan.note",
   update      = true,
