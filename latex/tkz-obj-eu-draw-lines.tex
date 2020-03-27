@@ -9,13 +9,13 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-% 
+%
 % The Current Maintainer of this work is Alain Matthes.
 
 %  utf8 encoding
 \def\fileversion{3.05c}
-\def\filedate{2020/03/08} 
-\typeout{2020/03/08 3.05c tkz-obj-eu-draw-lines.tex}   
+\def\filedate{2020/03/08}
+\typeout{2020/03/08 3.05c tkz-obj-eu-draw-lines.tex}
 \makeatletter
 \def\tkz@numdl{0}
 \pgfkeys{/tkzdrawl/.cd,
@@ -25,14 +25,14 @@
       none/.code                    =   \def\tkz@numdl{3},
       none,
    /tkzdrawl/.search also={/tikz}
-} 
+}
 %<--------------------------------------------------------------------------–>
 %            Drawing a line                                                  >
 %<--------------------------------------------------------------------------–>
 \def\tkzDrawLine{\pgfutil@ifnextchar[{\tkz@DrawLine}{\tkz@DrawLine[]}}
-\def\tkz@DrawLine[#1](#2){%    
-\begingroup 
-\pgfqkeys{/tkzdrawl}{#1}  
+\def\tkz@DrawLine[#1](#2){%
+\begingroup
+\pgfqkeys{/tkzdrawl}{#1}
 \ifcase\tkz@numdl%
     \tkzDrawMedian[#1](#2)
   \or% 1
@@ -40,8 +40,8 @@
   \or% 2
     \tkzDrawBisector[#1](#2)
  \or% 3
-   \tkzDrawSLine[#1](#2) 
- \fi    
+   \tkzDrawSLine[#1](#2)
+ \fi
 \endgroup
 }
 %<--------------------------------------------------------------------------–>
@@ -49,12 +49,12 @@
 %<--------------------------------------------------------------------------–>
 %
 %<--------------------------------------------------------------------------–>
-\def\tkzDrawSLine{\pgfutil@ifnextchar[{\tkz@DrawSLine}{\tkz@DrawSLine[]}} 
+\def\tkzDrawSLine{\pgfutil@ifnextchar[{\tkz@DrawSLine}{\tkz@DrawSLine[]}}
 \def\tkz@DrawSLine[#1](#2,#3){%
 \begingroup
 \draw[line style,#1] (#2) to (#3);
 \endgroup
-}% 
+}%
 %<--------------------------------------------------------------------------–>
 %                        median
 %<--------------------------------------------------------------------------–>
@@ -102,7 +102,7 @@
           \pgfpointadd{\pgfpointanchor{#2}{center}}{%
                        \pgfpointanchor{\tkz@last}{center}}%
       }}%
-    \protected@edef\tkz@temp{\noexpand  
+    \protected@edef\tkz@temp{\noexpand
          \tkzDrawLine[add= 0 and 0,/DrawTLines/.cd,\tkz@opttline](#4,#1)}\tkz@temp%
    \ifx\tkzutil@empty\tkz@newpoint@name
      \else
@@ -112,7 +112,7 @@
 \def\tkzDrawMedians{\pgfutil@ifnextchar[{\tkz@Medians}{\tkz@Medians[]}}
 \def\tkz@Medians[#1](#2)#3{%
 \begingroup
-   \xdef\tkz@opttline{#1} 
+   \xdef\tkz@opttline{#1}
    \tkz@@Medians(#2,#2)(#3,\tkz@stop)
    \endgroup
 }
@@ -125,10 +125,10 @@
    \ifx\tkz@tmp\tkz@stop\else\tkz@@Altitudes(#2,#3)(#5)\fi
       \tkz@recuplast(#3)
       \tkzUProjection(#2,\tkz@last)(#1)
-      \pgfnodealias{tkz@tmp@pt}{tkzPointResult}  
+      \pgfnodealias{tkz@tmp@pt}{tkzPointResult}
  \protected@edef\tkz@temp{%
-   \noexpand  
-   \tkzDrawLine[add= 0 and 0,/DrawTLines/.cd,\tkz@opttline](#1,tkz@tmp@pt)}\tkz@temp%   
+   \noexpand
+   \tkzDrawLine[add= 0 and 0,/DrawTLines/.cd,\tkz@opttline](#1,tkz@tmp@pt)}\tkz@temp%
      \ifx\tkzutil@empty\tkz@newpoint@name
      \else
         \coordinate (\tkz@newpoint@name#4) at (tkz@tmp@pt);
@@ -137,7 +137,7 @@
 \def\tkzDrawAltitudes{\pgfutil@ifnextchar[{\tkz@DrawAltitudes}{\tkz@DrawAltitudes[]}}
 \def\tkz@DrawAltitudes[#1](#2)#3{%
 \begingroup
-   \xdef\tkz@opttline{#1} 
+   \xdef\tkz@opttline{#1}
    \tkz@@Altitudes(#2,#2)(#3,\tkz@stop)
    \endgroup
    }
@@ -161,10 +161,10 @@
   \fi
 }
 \def\tkzDrawBisectors{\pgfutil@ifnextchar[{\tkz@DrawBisectors}{\tkz@DrawBisectors[]}}
-   
+
 \def\tkz@DrawBisectors[#1](#2)#3{%
 \begingroup
-   \xdef\tkz@opttline{#1} 
+   \xdef\tkz@opttline{#1}
    \tkz@@Bisectors(#2,#2)(#3,\tkz@stop)
 \endgroup
 }
@@ -181,27 +181,27 @@
       name/.initial                 = {},
       name                          = {},
    /DrawTLines/.search also={/tikz}
-} 
+}
 %<--------------------------------------------------------------------------–>
 %            Drawing tr lines                                                >
 %<--------------------------------------------------------------------------–>
 \def\tkzDrawTLines{\pgfutil@ifnextchar[{\tkz@DrawTLines}{\tkz@DrawTLines[]}}
-\def\tkz@DrawTLines[#1](#2)#3{%    
-\begingroup 
-\pgfqkeys{/DrawTLines}{#1}  
+\def\tkz@DrawTLines[#1](#2)#3{%
+\begingroup
+\pgfqkeys{/DrawTLines}{#1}
 \ifcase\tkz@numdtls%
     \tkzDrawMedians[#1](#2){#3}
   \or% 1
     \tkzDrawAltitudes[#1](#2){#3}
   \or% 2
     \tkzDrawBisectors[#1](#2){#3}
- \fi    
+ \fi
 \endgroup
 }
 %<-------------------------------------------------------------------------–
-%         tkzDrawLines 
+%         tkzDrawLines
 %<-------------------------------------------------------------------------–
-\def\tkz@@multiLines#1 #2\@nil{% 
+\def\tkz@@multiLines#1 #2\@nil{%
   \protected@edef\tkz@temp{
     \noexpand \tkzDrawLine[\tkz@optline](#1)}\tkz@temp%
    \def\tkz@nextArg{#2}%
@@ -212,19 +212,19 @@
 }
 %<--------------------------------------------------------------------------–>
 \def\tkzDrawLines{\pgfutil@ifnextchar[{\tkz@DrawLines}{%
-           \tkz@DrawLines[]}}  
+           \tkz@DrawLines[]}}
 \def\tkz@DrawLines[#1](#2){%
-\xdef\tkz@optline{#1} 
+\xdef\tkz@optline{#1}
 \begingroup
    \let\next\tkz@@multiLines
-   \next#2 \@nil %    
-\endgroup     
-}%  
-%<-------------------------------------------------------------------------–> 
+   \next#2 \@nil %
+\endgroup
+}%
+%<-------------------------------------------------------------------------–>
 %   Label
-%<-------------------------------------------------------------------------–> 
-\def\tkzLabelLine{\pgfutil@ifnextchar[{\tkz@AddLabelLine}{\tkz@AddLabelLine[]}} 
-\def\tkz@AddLabelLine[#1](#2,#3)#4{\path  (#2) to node[#1]{#4}(#3);} 
+%<-------------------------------------------------------------------------–>
+\def\tkzLabelLine{\pgfutil@ifnextchar[{\tkz@AddLabelLine}{\tkz@AddLabelLine[]}}
+\def\tkz@AddLabelLine[#1](#2,#3)#4{\path  (#2) to node[#1]{#4}(#3);}
 
 %<--------------------------------------------------------------------------–>
 %                                Setup   Line
@@ -237,7 +237,7 @@
    add/.code args   =   {#1 and #2} {\xdef\tkz@line@left{#1}%
                                     \xdef\tkz@line@right{#2}},
        /tkzsuline/.search also={/tikz}%
-} 
+}
 %<--------------------------------------------------------------------------–>
 \def\tkzSetUpLine{\pgfutil@ifnextchar[{\tkz@SetUpLine}{% remove tkzActivOff 3.03
                                       \tkz@SetUpLine[]}}
@@ -247,7 +247,7 @@
       line width   = \tkz@euc@linewidth,
       color        = \tkz@euc@linecolor,
       style        = \tkz@euc@linestyle,
-      add          = {\tkz@euc@lineleft} and {\tkz@euc@lineright}}  
+      add          = {\tkz@euc@lineleft} and {\tkz@euc@lineright}}
 \pgfqkeys{/tkzsuline}{#1}
 %<--------------------------------------------------------------------------–>
 %                              Line style
@@ -258,38 +258,38 @@
         line width        = \tkz@line@lw,
         style             = \tkz@line@style,
         add               = {\tkz@line@left} and {\tkz@line@right}
-}}}% end setup  
+}}}% end setup
 %<--------------------------------------------------------------------------–>
 %                             draw      segment  (s)
-%<--------------------------------------------------------------------------–>  
+%<--------------------------------------------------------------------------–>
 \pgfkeys{/tkzdraws/.cd,
   /tkzdraws/.search also={/tikz},
-}                              
+}
 \def\tkzDrawSegment{\pgfutil@ifnextchar[{\tkz@DrawSegment}{%
-                                         \tkz@DrawSegment[]}} 
-\def\tkz@DrawSegment[#1](#2,#3){%    
+                                         \tkz@DrawSegment[]}}
+\def\tkz@DrawSegment[#1](#2,#3){%
 \begingroup
   \pgfqkeys{/tkzdraws}{#1}
-  \draw[line style,add=0 and 0,#1] (#2) to (#3); 
-\endgroup   
-}%    
+  \draw[line style,add=0 and 0,#1] (#2) to (#3);
+\endgroup
+}%
 
 \def\tkz@multiDrawSeg#1 #2\@nil{%
  \protected@edef\tkz@temp{
-   \noexpand \tkzDrawSegment[\tkz@optseg](#1)}\tkz@temp%   
+   \noexpand \tkzDrawSegment[\tkz@optseg](#1)}\tkz@temp%
    \def\tkz@nextArg{#2}%
    \ifx\tkzutil@empty\tkz@nextArg
      \let\next\@gobble
    \fi
    \next#2\@nil
-} 
+}
 \def\tkzDrawSegments{\pgfutil@ifnextchar[{\tkz@DrawSegments}{%
                                          \tkz@DrawSegments[]}}
-\def\tkz@DrawSegments[#1](#2){% 
-\def\tkz@optseg{#1} 
+\def\tkz@DrawSegments[#1](#2){%
+\def\tkz@optseg{#1}
 \begingroup
   \let\next\tkz@multiDrawSeg
-  \next#2 \@nil %  
+  \next#2 \@nil %
 \endgroup
 }
 %<--------------------------------------------------------------------------–>
@@ -312,8 +312,8 @@
 \begingroup
  \pgfqkeys{/@tkzmarkoptions}{#1}
 \def\tkz@mymark{\pgfsetplotmarksize{\tkz@mksize}\pgfuseplotmark{\tkz@markseg}}
-\begin{scope} 
-  [decoration={markings,mark=at position \tkz@mkpos with {\tkz@mymark}}] 
+\begin{scope}
+  [decoration={markings,mark=at position \tkz@mkpos with {\tkz@mymark}}]
   \path [\tkz@mkcolor,/@tkzmarkoptions/.cd,#1,postaction={decorate}] (#2) -- (#3);
 \end{scope}
 \endgroup
@@ -331,23 +331,23 @@
 }
 %<--------------------------------------------------------------------------–>
 \def\tkzMarkSegments{\pgfutil@ifnextchar[{\tkz@MarkSegments}{\tkz@MarkSegments[]}}
-\def\tkz@MarkSegments[#1](#2){% 
-\def\tkz@optsg{#1} 
+\def\tkz@MarkSegments[#1](#2){%
+\def\tkz@optsg{#1}
   \begingroup
    \let\next\tkz@multiMS
    \next#2 \@nil %
-\endgroup 
-} 
-%<-------------------------------------------------------------------------–> 
-%             Label on segment  
-%<-------------------------------------------------------------------------–> 
+\endgroup
+}
+%<-------------------------------------------------------------------------–>
+%             Label on segment
+%<-------------------------------------------------------------------------–>
 \def\tkzLabelSegment{\pgfutil@ifnextchar[{\tkz@LabelSegment}%
                      {\tkz@LabelSegment[]}}
 \def\tkz@LabelSegment[#1](#2,#3)#4{%
-\begingroup    
-  \path  (#2) to node[label seg style,#1]{#4} (#3) ;  
-\endgroup 
-} 
+\begingroup
+  \path  (#2) to node[label seg style,#1]{#4} (#3) ;
+\endgroup
+}
 %<--------------------------------------------------------------------------–>
 % multiple
 \def\tkz@multiLS#1 #2\@nil{%
@@ -361,19 +361,19 @@
 }
 %<--------------------------------------------------------------------------–>
 \def\tkzLabelSegments{\pgfutil@ifnextchar[{\tkz@LabelSegments}{\tkz@LabelSegments[]}}
-\def\tkz@LabelSegments[#1](#2)#3{% 
+\def\tkz@LabelSegments[#1](#2)#3{%
 \def\tkz@optls{#1}
 \def\tkz@labelseg{#3}
   \begingroup
    \let\next\tkz@multiLS
-   \next#2 \@nil %    
-\endgroup 
-} 
+   \next#2 \@nil %
+\endgroup
+}
 %<--------------------------------------------------------------------------–>
 %             PolySeg
 %<--------------------------------------------------------------------------–>
 \def\tkzDrawPolySeg{\pgfutil@ifnextchar[{\tkz@DrawPolySeg}{\tkz@DrawPolySeg[]}}
-\def\tkz@DrawPolySeg[#1](#2,#3){% 
+\def\tkz@DrawPolySeg[#1](#2,#3){%
 \begingroup
 \draw[line style,#1] (#2)
      \foreach \pt in {#2,#3}{--(\pt)};%
@@ -387,20 +387,20 @@
     % \draw[dim={7cm,10pt,transform shape}]  (B) --  (C);
     % \draw[dim={X,,}]  (A) --  (C);
 %<--------------------------------------------------------------------------–>
-\pgfkeys{/pgf/decoration/.cd, distance/.initial = 10pt}  
+\pgfkeys{/pgf/decoration/.cd, distance/.initial = 10pt}
 
 \pgfdeclaredecoration{add dim}{final}{
-\state{final}{% 
+\state{final}{%
 \pgfmathsetmacro{\dist}{\pgfkeysvalueof{/pgf/decoration/distance}}
-          \pgfpathmoveto{\pgfpoint{0pt}{0pt}}             
-          \pgfpathlineto{\pgfpoint{0pt}{1.2*\dist}}   
-          \pgfpathmoveto{\pgfpoint{\pgfdecoratedpathlength}{0pt}} 
-          \pgfpathlineto{\pgfpoint{(\pgfdecoratedpathlength}{1.2*\dist}}     
+          \pgfpathmoveto{\pgfpoint{0pt}{0pt}}
+          \pgfpathlineto{\pgfpoint{0pt}{1.2*\dist}}
+          \pgfpathmoveto{\pgfpoint{\pgfdecoratedpathlength}{0pt}}
+          \pgfpathlineto{\pgfpoint{(\pgfdecoratedpathlength}{1.2*\dist}}
           \pgfsetarrowsstart{latex}
           \pgfsetarrowsend{latex}
           \pgfpathmoveto{\pgfpoint{0pt}{\dist}}
-          \pgfpathlineto{\pgfpoint{\pgfdecoratedpathlength}{\dist}} 
-          \pgfusepath{stroke} 
+          \pgfpathlineto{\pgfpoint{\pgfdecoratedpathlength}{\dist}}
+          \pgfusepath{stroke}
           \pgfpathmoveto{\pgfpoint{0pt}{0pt}}
           \pgfpathlineto{\pgfpoint{\pgfdecoratedpathlength}{0pt}}
 }}
@@ -425,11 +425,11 @@
     dim/.default={,0pt,}
 }
 
-%<---------------------------  style line ---------------------------------> 
+%<---------------------------  style line --------------------------------->
 \tikzset{add/.style args={#1 and #2}{to path={%
  ($(\tikztostart)!-#1!(\tikztotarget)$)--($(\tikztotarget)!-#2!(\tikztostart)$)%
   \tikztonodes}}
-} 
-%<--------------------------------------------------------------------------–> 
+}
+%<--------------------------------------------------------------------------–>
 \makeatother
 \endinput

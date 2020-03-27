@@ -18,18 +18,18 @@ This is the new version that replaces  \tkzcname{tkzGetRandPointOn}.
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\ 
+options             & default & definition                         \\
 \midrule
-\TOline{rectangle=pt1 and pt2}  {}{[rectangle=A and B]} 
+\TOline{rectangle=pt1 and pt2}  {}{[rectangle=A and B]}
 \TOline{segment= pt1--pt2} {}{[segment=A--B]}
-\TOline{line=pt1--pt2}{}{[line=A--B]} 
-\TOline{circle =center pt1 radius dim}{}{[circle = center A radius 2 cm]} 
+\TOline{line=pt1--pt2}{}{[line=A--B]}
+\TOline{circle =center pt1 radius dim}{}{[circle = center A radius 2 cm]}
 \TOline{circle through=center pt1 through pt2}{}{[circle through= center A through B]}
 \TOline{disk through=center pt1 through pt2}{}{[disk through=center A through B]}
 \end{tabular}
-\end{NewMacroBox} 
+\end{NewMacroBox}
 
-\subsection{Random point in a rectangle} 
+\subsection{Random point in a rectangle}
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
@@ -40,19 +40,19 @@ options             & default & definition                         \\
   \tkzDefRandPointOn[rectangle = B and C]
   \tkzGetPoint{d}
   \tkzDrawLine(a,d)
-  \tkzDrawPoints(A,B,C,a,d) 
-  \tkzLabelPoints(A,B,C,a,d)  
-\end{tikzpicture} 
-\end{tkzexample} 
+  \tkzDrawPoints(A,B,C,a,d)
+  \tkzLabelPoints(A,B,C,a,d)
+\end{tikzpicture}
+\end{tkzexample}
 
-\subsection{Random point on a segment}  
+\subsection{Random point on a segment}
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}  
-  \tkzInit[xmax=5,ymax=5] \tkzGrid 
-  \tkzDefPoints{0/0/A,2/2/B,3/3/C,5/5/D}  
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5] \tkzGrid
+  \tkzDefPoints{0/0/A,2/2/B,3/3/C,5/5/D}
   \tkzDefRandPointOn[segment = A--B]\tkzGetPoint{a}
   \tkzDefRandPointOn[segment = C--D]\tkzGetPoint{d}
-  \tkzDrawPoints(A,B,C,D,a,d) 
+  \tkzDrawPoints(A,B,C,D,a,d)
   \tkzLabelPoints(A,B,C,D,a,d)
 \end{tikzpicture}
 \end{tkzexample}
@@ -61,7 +61,7 @@ options             & default & definition                         \\
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
   \tkzInit[xmax=5,ymax=5] \tkzGrid
-  \tkzDefPoints{0/0/A,2/2/B,3/3/C,5/5/D}  
+  \tkzDefPoints{0/0/A,2/2/B,3/3/C,5/5/D}
   \tkzDefRandPointOn[line = A--B]\tkzGetPoint{E}
   \tkzDefRandPointOn[line = C--D]\tkzGetPoint{F}
   \tkzDrawPoints(A,...,F)
@@ -74,7 +74,7 @@ options             & default & definition                         \\
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
  \tkzDefPoints{0/0/A,2/2/B,-1/-1/C}
- \tkzDefCircle[through=](A,C) 
+ \tkzDefCircle[through=](A,C)
  \tkzGetLength{rAC}
  \tkzDrawCircle(A,C)
  \tkzDrawCircle(A,B)
@@ -96,16 +96,16 @@ options             & default & definition                         \\
 
 \subsection{Random point on a circle}
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture} 
-  \tkzInit[xmax=5,ymax=5]  \tkzGrid   
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5]  \tkzGrid
   \tkzDefPoints{3/2/A,1/1/B}
   \tkzCalcLength[cm](A,B) \tkzGetLength{rAB}
-  \tkzDrawCircle[R](A,\rAB cm) 
+  \tkzDrawCircle[R](A,\rAB cm)
   \tkzDefRandPointOn[circle = center A radius
    \rAB cm]\tkzGetPoint{a}
   \tkzDrawSegment(A,a)
-  \tkzDrawPoints(A,B,a) 
-  \tkzLabelPoints(A,B,a)  
+  \tkzDrawPoints(A,B,a)
+  \tkzLabelPoints(A,B,a)
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -114,9 +114,9 @@ options             & default & definition                         \\
 \begin{tikzpicture}[scale=1]
  \tkzDefPoints{0/0/A,3/0/B}
  \def\coeffK{2}
- \tkzApolloniusCenter[K=\coeffK](A,B) 
+ \tkzApolloniusCenter[K=\coeffK](A,B)
  \tkzGetPoint{P}
- \tkzDefApolloniusPoint[K=\coeffK](A,B) 
+ \tkzDefApolloniusPoint[K=\coeffK](A,B)
  \tkzGetPoint{M}
  \tkzDefApolloniusRadius[K=\coeffK](A,B)
  \tkzDrawCircle[R,color = blue!50!black,
@@ -139,7 +139,7 @@ options             & default & definition                         \\
 
 
 \subsection{Middle of a compass segment}
- To conclude this section, here is a more complex example. It involves determining the middle of a segment, using only a compass. 
+ To conclude this section, here is a more complex example. It involves determining the middle of a segment, using only a compass.
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
@@ -147,7 +147,7 @@ options             & default & definition                         \\
   \tkzDefRandPointOn[circle= center A radius 4cm]
   \tkzGetPoint{B}
   \tkzDrawPoints(A,B)
-  \tkzDefPointBy[rotation= center A angle 180](B) 
+  \tkzDefPointBy[rotation= center A angle 180](B)
   \tkzGetPoint{C}
   \tkzInterCC[R](A,4 cm)(B,4 cm)
   \tkzGetPoints{I}{I'}
@@ -161,14 +161,13 @@ options             & default & definition                         \\
   \tkzDrawArc[arc](C,D)(E)
   \tkzDrawArc[arc](B,E)(D)
   \tkzDrawCircle[color=brown,line width=.2pt](A,B)
-  \tkzDrawArc[arc](D,B)(M) 
+  \tkzDrawArc[arc](D,B)(M)
   \tkzDrawArc[arc](E,M)(B)
   \tkzCompasss[color=red,style=solid](B,I I,J J,C)
   \tkzDrawPoints(B,C,D,E,M)
   \tkzLabelPoints(A,B,M)
  \end{tikzpicture}
  \end{tkzexample}
-   
+
 \endinput
 
- 

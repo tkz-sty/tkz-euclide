@@ -9,62 +9,62 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-% 
+%
 % The Current Maintainer of this work is Alain Matthes.
 %  utf8 encoding
 \def\fileversion{3.05c}
-\def\filedate{2020/03/08} 
-\typeout{2020/03/08 3.05c tkz-obj-eu-points-with.tex}   
+\def\filedate{2020/03/08}
+\typeout{2020/03/08 3.05c tkz-obj-eu-points-with.tex}
 \makeatletter
 %<--------------------------------------------------------------------------–>
 %                          Vectors
 %<--------------------------------------------------------------------------–>
 % Objet :  outils mathématiques pour la géométrie euclideienne avec pgf/tikz
-% utilisable de préférence avec un repère orthonormé et le cm comme unité 
+% utilisable de préférence avec un repère orthonormé et le cm comme unité
 % utile pour la compatibilité avec pgf 2
 %<--------------------------------------------------------------------------–>
 %             Duplicate Length      à revoir pas de pt pas de global
-% ||v(CN)||= ||v(AB)|| et v(CN) colineaire à v(CD) 
+% ||v(CN)||= ||v(AB)|| et v(CN) colineaire à v(CD)
 % A-->#1 B-->#2 C-->#3 D-->#4 N-->#5   ?????
 %<--------------------------------------------------------------------------–>
 %<--------------------------------------------------------------------------–>
 %                 Outils pour les vecteurs
 %<--------------------------------------------------------------------------–>
-%  ce sont des outils élémentaires qui à partir de deux points en définissent 
-% un troisième 
+%  ce sont des outils élémentaires qui à partir de deux points en définissent
+% un troisième
 % #1 si c'est une option alors c'est un nombre réel
 % #2 et #3 sont deux points
 % #4 est le nom du point qui résulte de la transformation
 % exemple : \tkzVecKNorm (A,B){C} définit un point C tel que AC = 1 et C est %  %  un point de la droite (AC). #1 peut être négatif
 
 \def\tkzDuplicateSegment(#1,#2)(#3,#4){%
-\begingroup 
-    \tkzCalcLength(#1,#2)\tkzGetLength{tkz@firstlen}% 
+\begingroup
+    \tkzCalcLength(#1,#2)\tkzGetLength{tkz@firstlen}%
     \tkzCalcLength(#3,#4)\tkzGetLength{tkz@secondlen}%
 	 \edef\tkz@ratio{\fpeval{\tkz@firstlen/\tkz@secondlen}}
     \tkz@VecKCoLinear[\tkz@ratio](#3,#4,#3)%
-\endgroup 
+\endgroup
 }
-\let\tkzDuplicateLength\tkzDuplicateSegment     
+\let\tkzDuplicateLength\tkzDuplicateSegment
 %<--------------------------------------------------------------------------–>
-%                    Coordonnées d'un vecteur  (couple de points)  
+%                    Coordonnées d'un vecteur  (couple de points)
 % Deux points A et B donc un vecteur on récupère les coordonnées de v(AB)
-% en cm 
+% en cm
 % tkzGetVecCoord en cm ou en pt ???
 %<--------------------------------------------------------------------------–>
-%result in #3x et #3y #1 et #2 sont les points  
-% passage en cm avec fp ? 
+%result in #3x et #3y #1 et #2 sont les points
+% passage en cm avec fp ?
 % 28.45274 =1 cm
 \def\tkzGetVectxy(#1,#2)#3{%
-\begingroup 
+\begingroup
 \pgfpointdiff{\pgfpointanchor{#1}{center}}%
              {\pgfpointanchor{#2}{center}}%
 \pgfmathparse{\pgf@sys@tonumber{\pgf@x}/1cm}%
 \let\tkzresultx\pgfmathresult
 \pgfmathparse{\pgf@sys@tonumber{\pgf@y}/1cm}%
 \let\tkzresulty\pgfmathresult
-\global\expandafter\edef\csname #3x\endcsname{\tkzresultx}% 
-\global\expandafter\edef\csname #3y\endcsname{\tkzresulty}% 
+\global\expandafter\edef\csname #3x\endcsname{\tkzresultx}%
+\global\expandafter\edef\csname #3y\endcsname{\tkzresulty}%
 \endgroup
 }
 %<--------------------------------------------------------------------------–>
@@ -72,7 +72,7 @@
 %
 %<--------------------------------------------------------------------------–>
 %<--------------------------------------------------------------------------–>
-%          tkzDefPointWith  
+%          tkzDefPointWith
 %<--------------------------------------------------------------------------–>
 \def\tkz@numv{0}
 \pgfkeys{/@pointwith/.cd,
@@ -87,13 +87,13 @@
       normed/.is if               =  tkz@line@normed,
       normed/.default             =  true,
       normed                      =  false,
-      orthogonal  
-} 
-\def\tkzDefPointWith{\pgfutil@ifnextchar[{\tkz@DefPointWith}{\tkz@DefPointWith[]}}  
+      orthogonal
+}
+\def\tkzDefPointWith{\pgfutil@ifnextchar[{\tkz@DefPointWith}{\tkz@DefPointWith[]}}
 
 \def\tkz@DefPointWith[#1](#2,#3){%
-\begingroup 
-\pgfkeys{/@pointwith/.cd,K=1}  
+\begingroup
+\pgfkeys{/@pointwith/.cd,K=1}
 \pgfqkeys{/@pointwith}{#1}
 \ifcase\tkz@numv%
  % first case 0
@@ -108,11 +108,11 @@
    \tkz@VecKNorm[\tkz@coeff](#2,#3)
   \or% 5
    \tkz@VecKColinearNorm[\tkz@coeff](#2,#3)
-  \fi    
+  \fi
 \endgroup
-} 
+}
 %<--------------------------------------------------------------------------–>
-%         tkzDefVectorfrom  
+%         tkzDefVectorfrom
 %<--------------------------------------------------------------------------–>
 % tkz@numv 0
 \def\tkz@DefVectorColinearat[#1](#2,#3){%
@@ -128,14 +128,14 @@
   \endpgfinterruptboundingbox
 \endgroup
 \fi
-} 
+}
 %<--------------------------------------------------------------------------–>
 %     tkzVector K Orth   coeff dans #1
-%     v(AN) perp v(AB)  (v(AB) , v(AN) ) sens direct cercle trigo 
+%     v(AN) perp v(AB)  (v(AB) , v(AN) ) sens direct cercle trigo
 %     ||v(AN)||=||v(AB)||
 %<--------------------------------------------------------------------------–>
 % tkz@numv 1
-\def\tkzVecKOrth{\pgfutil@ifnextchar[{\tkz@VecKOrth}{\tkz@VecKOrth[1]}}  
+\def\tkzVecKOrth{\pgfutil@ifnextchar[{\tkz@VecKOrth}{\tkz@VecKOrth[1]}}
 \def\tkz@VecKOrth[#1](#2,#3){%
 \iftkz@line@normed
    \tkz@VecKOrthNorm[#1](#2,#3)
@@ -144,7 +144,7 @@
   \pgfpointdiff{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}%
   \pgf@xa=-\pgf@y%
   \pgf@ya=\pgf@x%
-  \pgfinterruptboundingbox 
+  \pgfinterruptboundingbox
   \path (#2)--++(\tkz@coeff\pgf@xa,\tkz@coeff\pgf@ya) coordinate (tkzPointResult);
   \endpgfinterruptboundingbox
 \endgroup
@@ -152,68 +152,68 @@
 }%
 
 %<--------------------------------------------------------------------------–>
-%         v(AN)=#1 x v(AB)     
-%   #1 le coeff; #2--> A #3--> B   #4-->N  tq    #4-#2 = #1*(#3-#2)                                 
+%         v(AN)=#1 x v(AB)
+%   #1 le coeff; #2--> A #3--> B   #4-->N  tq    #4-#2 = #1*(#3-#2)
 %<--------------------------------------------------------------------------–>
 % tkz@numv 2
-\def\tkzVecK{\pgfutil@ifnextchar[{\tkz@VecK}{\tkz@VecK[1]}} 
-\def\tkz@VecK[#1](#2,#3){% 
+\def\tkzVecK{\pgfutil@ifnextchar[{\tkz@VecK}{\tkz@VecK[1]}}
+\def\tkz@VecK[#1](#2,#3){%
 \iftkz@line@normed
    \tkz@VecKNorm[#1](#2,#3)
 \else
-\begingroup 
+\begingroup
    \pgfpointdiff{\pgfpointanchor{#2}{center}}%
                 {\pgfpointanchor{#3}{center}}%
    \pgf@xa=\pgf@x\relax%
    \pgf@ya=\pgf@y\relax%
    \pgfmathparse{#1}
    \let\tkz@coeff\pgfmathresult
-      \pgfinterruptboundingbox 
+      \pgfinterruptboundingbox
    \path (#2)--++(\tkz@coeff\pgf@xa,\tkz@coeff\pgf@ya) coordinate (tkzPointResult);
-    \endpgfinterruptboundingbox   
+    \endpgfinterruptboundingbox
 \endgroup
 \fi
-}% 
+}%
 %<--------------------------------------------------------------------------–>
 %              tkzVecKOrthNorm   coeff dans #1
-%    v(AN) perp v(AB)  v(AB) v(AN) sens direct cercle trigo 
+%    v(AN) perp v(AB)  v(AB) v(AN) sens direct cercle trigo
 % ||v(AN||=1 si #1 est vide ou =1 sinon ||v(AN||=K
 %<--------------------------------------------------------------------------–>
 % tkz@numv 3
 \def\tkzVecKOrthNorm{\pgfutil@ifnextchar[{\tkz@VecKOrthNorm}%
                                          {\tkz@VecKOrthNorm[1]}}
-\def\tkz@VecKOrthNorm[#1](#2,#3){%    
+\def\tkz@VecKOrthNorm[#1](#2,#3){%
 \begingroup
  \tkzpointnormalised{\pgfpointdiff{\pgfpointanchor{#2}{center}}%
-                                  {\pgfpointanchor{#3}{center}}} 
+                                  {\pgfpointanchor{#3}{center}}}
   \pgf@xa=-\pgf@y\relax%
   \pgf@ya=\pgf@x\relax%
   \edef\tkz@x{\fpeval{28.45274*(#1)*\pgf@xa}}
   \edef\tkz@y{\fpeval{28.45274*(#1)*\pgf@ya}}
-  \pgfinterruptboundingbox 
+  \pgfinterruptboundingbox
   \path (#2)--++(\tkz@x pt,\tkz@y pt) coordinate (tkzPointResult);
-  \endpgfinterruptboundingbox   
+  \endpgfinterruptboundingbox
 \endgroup
-}%      
+}%
 %<--------------------------------------------------------------------------–>
 %              VectorNormalised ou K*VectorNormalised
-% A-->#2 B-->#3 N-->#4      v(AB)  devient v(AN) tq ||v(AN)||=1 si #1=1  
-%  sinon ||v(AN)||=#1 
+% A-->#2 B-->#3 N-->#4      v(AB)  devient v(AN) tq ||v(AN)||=1 si #1=1
+%  sinon ||v(AN)||=#1
 %<--------------------------------------------------------------------------–>
 % tkz@numv 4
-\def\tkzVecKNorm{\pgfutil@ifnextchar[{\tkz@VecKNorm}{\tkz@VecKNorm[1]}} 
+\def\tkzVecKNorm{\pgfutil@ifnextchar[{\tkz@VecKNorm}{\tkz@VecKNorm[1]}}
 \def\tkz@VecKNorm[#1](#2,#3){%
 \begingroup
     \tkzpointnormalised{%
     \pgfpointdiff{\pgfpointanchor{#2}{center}}
                  {\pgfpointanchor{#3}{center}}}
     \pgf@xa=\pgf@x\relax%
-    \pgf@ya=\pgf@y\relax% 
+    \pgf@ya=\pgf@y\relax%
     \edef\tkz@x{\fpeval{28.45274*(#1)*\pgf@xa}}
     \edef\tkz@y{\fpeval{28.45274*(#1)*\pgf@ya}}
-    \pgfinterruptboundingbox 
+    \pgfinterruptboundingbox
     \path (#2)--++(\tkz@x pt,\tkz@y pt) coordinate (tkzPointResult);
-    \endpgfinterruptboundingbox   
+    \endpgfinterruptboundingbox
 \endgroup
 }%
 %<--------------------------------------------------------------------------–>
@@ -221,12 +221,12 @@
 %<--------------------------------------------------------------------------–>
 %% tkz@numv 5
 \def\tkz@VecKColinearNorm[#1](#2,#3){%
-\begingroup   
+\begingroup
     \tkzpointnormalised{%
     \pgfpointdiff{\pgfpointanchor{#2}{center}}
                  {\pgfpointanchor{#3}{center}}}
     \pgf@xa=\pgf@x\relax%
-    \pgf@ya=\pgf@y\relax% 
+    \pgf@ya=\pgf@y\relax%
     \edef\tkz@x{\fpeval{28.45274*(#1)*\pgf@xa}}
     \edef\tkz@y{\fpeval{28.45274*(#1)*\pgf@ya}}
     \pgfinterruptboundingbox
@@ -235,34 +235,34 @@
 \endgroup
 }%
 %<--------------------------------------------------------------------------–>
-%  VecKCoLinear  CN = K x AB  #1 pt #2 pt #3 pt #4 nb #5 pt result   
+%  VecKCoLinear  CN = K x AB  #1 pt #2 pt #3 pt #4 nb #5 pt result
 % il faut modifier cette macro : on supprime #3 pour la colinéarité
 % Il suffit d'utiliser Replicate ou Duplicate     coeff dans #1
-% v(CD)=#1 x v(AB) #1 le coeff; #2-->A #3-->B #4-->C 
+% v(CD)=#1 x v(AB) #1 le coeff; #2-->A #3-->B #4-->C
 %<--------------------------------------------------------------------------–>
-\def\tkz@VecKCoLinear[#1](#2,#3,#4){% 
+\def\tkz@VecKCoLinear[#1](#2,#3,#4){%
 \begingroup
    \pgfpointdiff{\pgfpointanchor{#2}{center}}%
                 {\pgfpointanchor{#3}{center}}%
    \pgf@xa=\pgf@x\relax%
-   \pgf@ya=\pgf@y\relax% 
+   \pgf@ya=\pgf@y\relax%
    \edef\tkz@coeff{\fpeval{#1}}
-   \pgfinterruptboundingbox 
+   \pgfinterruptboundingbox
    \path (#4)--+(\tkz@coeff\pgf@xa,\tkz@coeff\pgf@ya)  coordinate (tkzPointResult);
-   \endpgfinterruptboundingbox                     
+   \endpgfinterruptboundingbox
 \endgroup
-}%  
-\def\tkz@VecCoLinear(#1,#2,#3){% 
+}%
+\def\tkz@VecCoLinear(#1,#2,#3){%
 \begingroup
    \pgfpointdiff{\pgfpointanchor{#1}{center}}%
                 {\pgfpointanchor{#2}{center}}%
    \pgf@xa=\pgf@x\relax%
-   \pgf@ya=\pgf@y\relax% 
-   \pgfinterruptboundingbox 
+   \pgf@ya=\pgf@y\relax%
+   \pgfinterruptboundingbox
    \path (#3)--+(\pgf@xa,\pgf@ya)  coordinate (tkzPointResult);
-   \endpgfinterruptboundingbox                     
+   \endpgfinterruptboundingbox
 \endgroup
-}% 
-%<-------------------------------------------------------------------------–> 
+}%
+%<-------------------------------------------------------------------------–>
 \makeatother
 \endinput

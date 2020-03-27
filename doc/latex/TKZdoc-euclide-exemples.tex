@@ -400,7 +400,7 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
                      hidden pt/.style={fill=gray!40},
                      mra/.style={color=gray!70,tkzdotted,/tkzrightangle/size=.2},
                      scale=3]
-  \tkzSetUpPoint[size=2]                
+  \tkzSetUpPoint[size=2]
   \tkzDefPoints{0/0/A,2.5/0/B,1.33/0.75/D,0/2.5/E,2.5/2.5/F}
   \tkzDefLine[parallel=through D](A,B) \tkzGetPoint{I1}
   \tkzDefLine[parallel=through B](A,D) \tkzGetPoint{I2}
@@ -423,19 +423,19 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
   \tkzInterLL(H,F)(U,P) \tkzGetPoint{K}
   \tkzDefLine[parallel=through K](D,H) \tkzGetPoint{I7}
   \tkzInterLL(K,I7)(B,D) \tkzGetPoint{O}
-  
+
   \tkzFillPolygon[pol](P,Q,R,S,T,U)
-  \tkzDrawSegments[seg](K,O K,L P,Q R,S T,U 
+  \tkzDrawSegments[seg](K,O K,L P,Q R,S T,U
                     C,D H,D A,D M,N B,D)
   \tkzDrawSegments(E,H B,C G,F G,H G,C Q,R S,T U,P H,F)
   \tkzDrawPolygon(A,B,F,E)
   \tkzDrawPoints(A,B,C,E,F,G,H,P,Q,R,S,T,U,K)
   \tkzDrawPoints[hidden pt](M,N,O,D)
   \tkzMarkRightAngle[mra](L,O,K)
-  \tkzMarkSegments[mark=|,size=1pt,thick,color=gray](A,S B,S B,R C,R 
-                    Q,C Q,G G,P H,P 
+  \tkzMarkSegments[mark=|,size=1pt,thick,color=gray](A,S B,S B,R C,R
+                    Q,C Q,G G,P H,P
                     E,U H,U E,T A,T)
-  
+
   \tkzLabelAngle[pos=.3](K,L,O){$\alpha$}
   \tkzLabelPoints[below](O,A,S,B)
   \tkzLabelPoints[above](H,P,G)
@@ -491,9 +491,9 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
 \begin{tkzexample}[vbox,small]
   \begin{tikzpicture}[scale=.5]
   \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
-  \tkzDefTriangleCenter[euler](A,B,C)        \tkzGetPoint{N} 
-  \tkzDefTriangleCenter[circum](A,B,C)       \tkzGetPoint{O} 
-  \tkzDefTriangleCenter[lemoine](A,B,C)      \tkzGetPoint{K} 
+  \tkzDefTriangleCenter[euler](A,B,C)        \tkzGetPoint{N}
+  \tkzDefTriangleCenter[circum](A,B,C)       \tkzGetPoint{O}
+  \tkzDefTriangleCenter[lemoine](A,B,C)      \tkzGetPoint{K}
   \tkzDefTriangleCenter[spieker](A,B,C)      \tkzGetPoint{Sp}
   \tkzDefExCircle(A,B,C)     \tkzGetPoint{Jb}
   \tkzDefExCircle(C,A,B)     \tkzGetPoint{Ja}
@@ -521,7 +521,7 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
   \tkzDrawLines[add=1.5 and 1.5,dashed](A,B B,C A,C)
   \tkzDrawPolygon[color=blue](A,B,C)
   \tkzDrawPolygon[dashed,color=blue](Ja,Jb,Jc)
-  \tkzDrawCircles[ex](A,B,C B,C,A C,A,B) 
+  \tkzDrawCircles[ex](A,B,C B,C,A C,A,B)
   \tkzDrawLines[add=0 and 0,dashed](Ca,Bc B,Za A,Ba B',C')
   \tkzDrawLine[add=1 and 1,dashed](Xb,Xc)
   \tkzDrawLine[add=7 and 3,blue](O,K)
@@ -535,5 +535,5 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
 \end{tkzexample}
 
 
- 
+
 \endinput

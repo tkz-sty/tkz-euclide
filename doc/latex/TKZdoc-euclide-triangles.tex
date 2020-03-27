@@ -126,7 +126,7 @@ The angles are 30, 60 and 90 degrees.
 \begin{tikzpicture}
   \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
   \tkzDrawTriangle[school,fill=red!30](A,B)
-  \tkzMarkRightAngles(tkzPointResult,B,A)  
+  \tkzMarkRightAngles(tkzPointResult,B,A)
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -144,7 +144,7 @@ The angles are 30, 60 and 90 degrees.
 \begin{tikzpicture}[scale=1]
  	\tkzDefPoint(5,-5){I}
  	\tkzDefPoint(8,-5){J}
- 	\tkzDrawTriangle[gold,color=blue!50](I,J) 
+ 	\tkzDrawTriangle[gold,color=blue!50](I,J)
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -252,8 +252,8 @@ The excentral triangle of a triangle $ABC$ is the triangle $J_aJ_bJ_c$ with vert
  \tkzLabelPoints(A,B,C)
  \tkzLabelPoints[red](J_b,J_c)
  \tkzLabelPoints[red,above](J_a)
- \tkzClipBB \tkzShowBB 
- \tkzDrawCircles[gray](J_a,T_a J_b,T_b J_c,T_c) 
+ \tkzClipBB \tkzShowBB
+ \tkzDrawCircles[gray](J_a,T_a J_b,T_b J_c,T_c)
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -265,7 +265,7 @@ The contact triangle of a triangle $ABC$, also called the intouch triangle, is t
 We obtain the intersections of the bisectors with the sides.
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
- \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}					 
+ \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
  \tkzDefSpcTriangle[intouch,name=X](A,B,C){_a,_b,_c}
  \tkzInCenter(A,B,C)\tkzGetPoint{I}
  \tkzDrawPolygon[red](A,B,C)
@@ -277,7 +277,7 @@ We obtain the intersections of the bisectors with the sides.
 (X_a,X_b,X_c)
  \tkzAutoLabelPoints[center=I,red,font=\scriptsize]%
 (A,B,C)
-\end{tikzpicture} 
+\end{tikzpicture}
 \end{tkzexample}
 
 \subsubsection{Option \tkzname{extouch}}
@@ -345,29 +345,29 @@ The Feuerbach triangle is the triangle formed by the three points of tangency of
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Option   \tkzname{tangential}} 
-The tangential triangle is the triangle $T_aT_bT_c$ formed by the lines tangent to the circumcircle of a given triangle $ABC$ at its vertices. It is therefore antipedal triangle of $ABC$ with respect to the circumcenter $O$.\\ 
+\subsubsection{Option   \tkzname{tangential}}
+The tangential triangle is the triangle $T_aT_bT_c$ formed by the lines tangent to the circumcircle of a given triangle $ABC$ at its vertices. It is therefore antipedal triangle of $ABC$ with respect to the circumcenter $O$.\\
 \href{http://mathworld.wolfram.com/TangentialTriangle.html}{Weisstein, Eric W. "Tangential Triangle." From MathWorld--A Wolfram Web Resource. }
 
 
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[scale=.5,rotate=80]
-  \tkzDefPoints{0/0/A,6/0/B,1.8/4/C}           
+  \tkzDefPoints{0/0/A,6/0/B,1.8/4/C}
   \tkzDefSpcTriangle[tangential,
     name=T](A,B,C){_a,_b,_c}
   \tkzDrawPolygon[red](A,B,C)
   \tkzDrawPolygon[blue](T_a,T_b,T_c)
   \tkzDrawPoints[red](A,B,C)
   \tkzDrawPoints[blue](T_a,T_b,T_c)
-  \tkzDefCircle[circum](A,B,C)  
-  \tkzGetPoint{O} 
+  \tkzDefCircle[circum](A,B,C)
+  \tkzGetPoint{O}
   \tkzDrawCircle(O,A)
   \tkzLabelPoints[red](A,B,C)
   \tkzLabelPoints[blue](T_a,T_b,T_c)
-\end{tikzpicture} 
-\end{tkzexample} 
+\end{tikzpicture}
+\end{tkzexample}
 
-\subsubsection{Option   \tkzname{euler}} 
+\subsubsection{Option   \tkzname{euler}}
 The Euler triangle of a triangle $ABC$ is the triangle $E_AE_BE_C$ whose vertices are the midpoints of the segments joining the orthocenter $H$ with the respective vertices. The vertices of the triangle are known as the Euler points, and lie on the nine-point circle.
 
 \begin{tkzexample}[latex=7cm,small]

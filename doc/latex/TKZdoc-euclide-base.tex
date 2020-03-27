@@ -1,6 +1,6 @@
 \section{Summary of tkz-base}
 
-\subsection{Utility of \tkzname{tkz-base}} 
+\subsection{Utility of \tkzname{tkz-base}}
 
 First of all, you don't have to deal with \TIKZ\ the size of the bounding box. Early versions of \tkzNamePack{tkz-euclide} did not control the size of the bounding box, now the size of the bounding box is limited.
 
@@ -24,7 +24,7 @@ The rectangle around the figure shows you the bounding box.
  \tkzGrid
  \tkzShowBB[red,line width=2pt]
 \end{tikzpicture}
-\end{tkzexample} 
+\end{tkzexample}
 
 \subsection{\tkzcname{tkzClip}}
 The role of this macro is to "clip" the initial rectangle so that only the paths contained in this rectangle are drawn.
@@ -32,30 +32,30 @@ The role of this macro is to "clip" the initial rectangle so that only the paths
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
  \tkzInit[xmax=4, ymax=3]
- \tkzAxeXY 
+ \tkzAxeXY
  \tkzGrid
  \tkzClip
  \draw[red] (-1,-1)--(5,2);
 \end{tikzpicture}
-\end{tkzexample} 
+\end{tkzexample}
 
 It is possible to add a bit of space
 \begin{tkzltxexample}[]
   \tkzClip[space=1]
-\end{tkzltxexample} 
+\end{tkzltxexample}
 
-\subsection{\tkzcname{tkzClip} and the option \tkzname{space}} 
+\subsection{\tkzcname{tkzClip} and the option \tkzname{space}}
 This option allows you to add some space around the "clipped" rectangle.
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
  \tkzInit[xmax=4, ymax=3]
- \tkzAxeXY 
+ \tkzAxeXY
  \tkzGrid
  \tkzClip[space=1]
  \draw[red] (-1,-1)--(5,2);
 \end{tikzpicture}
-\end{tkzexample}   
-The dimensions of the "clipped" rectangle are \tkzname{xmin-1}, \tkzname{ymin-1}, \tkzname{xmax+1} and \tkzname{ymax+1}. 
+\end{tkzexample}
+The dimensions of the "clipped" rectangle are \tkzname{xmin-1}, \tkzname{ymin-1}, \tkzname{xmax+1} and \tkzname{ymax+1}.
 
 
 \endinput

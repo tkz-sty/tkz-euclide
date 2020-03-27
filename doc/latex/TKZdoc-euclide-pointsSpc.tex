@@ -83,7 +83,7 @@ options             & default & definition                         \\
 \subsubsection{Option \tkzname{in}}
 In geometry, the incircle or inscribed circle of a triangle is the largest circle contained in the triangle; it touches (is tangent to) the three sides. The center of the incircle is a triangle center called the triangle's incenter.
 The center of the incircle, called the incenter, can be found as the intersection of the three internal angle bisectors. The center of an excircle is the intersection of the internal bisector of one angle (at vertex $A$, for example) and the external bisectors of the other two. The center of this excircle is called the excenter relative to the vertex $A$, or the excenter of $A$. Because the internal bisector of an angle is perpendicular to its external bisector, it follows that the center of the incircle together with the three excircle centers form an orthocentric system.(\url{https://en.wikipedia.org/wiki/Incircle_and_excircles_of_a_triangle})
- 
+
  \medskip
  We get the centre of the inscribed circle of the triangle. The result is of course in \tkzname{tkzPointResult}. We can retrieve it with \tkzcname{tkzGetPoint}.
 
@@ -213,19 +213,19 @@ Let $Ta$ be the point at which the excircle with center $Ja$ meets the side $BC$
 \end{tkzexample}
 
 
-\subsubsection{Option   \tkzname{mittenpunkt}} 
+\subsubsection{Option   \tkzname{mittenpunkt}}
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[scale=.5]
  \tkzDefPoints{0/0/A,6/0/B,4/6/C}
  \tkzDefSpcTriangle[centroid](A,B,C){Ma,Mb,Mc}
  \tkzDefSpcTriangle[ex](A,B,C){Ja,Jb,Jc}
  \tkzDefSpcTriangle[extouch](A,B,C){Ta,Tb,Tc}
- \tkzDefTriangleCenter[mittenpunkt](A,B,C) 
+ \tkzDefTriangleCenter[mittenpunkt](A,B,C)
  \tkzGetPoint{Mi}
  \tkzDrawPoints(Ma,Mb,Mc,Ja,Jb,Jc)
  \tkzClipBB
  \tkzDrawPolygon[blue](A,B,C)
- \tkzDrawLines[add=0 and 1](Ja,Ma 
+ \tkzDrawLines[add=0 and 1](Ja,Ma
                Jb,Mb Jc,Mc)
  \tkzDrawLines[add=1 and 1](A,B A,C B,C)
  \tkzDrawCircles[gray](Ja,Ta Jb,Tb Jc,Tc)
@@ -313,9 +313,9 @@ options             & default & definition \\
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
-  \tkzDefPoint(1,3){A} 
-  \tkzDefPoint(4,1){B} 
-  \tkzDefPoint(0,0){C} 
+  \tkzDefPoint(1,3){A}
+  \tkzDefPoint(4,1){B}
+  \tkzDefPoint(0,0){C}
   \tkzDrawPoints[size=6,color=red,
                fill=red!50](A,B,C)
 \end{tikzpicture}
@@ -364,11 +364,11 @@ options       & default & definition \\
   \begin{tikzpicture}
   \tkzDefPoints{0/0/A,4/0/B}
   \tkzDrawLine[red](A,B)
-  \tkzDefPointOnLine[pos=1.2](A,B) 
+  \tkzDefPointOnLine[pos=1.2](A,B)
   \tkzGetPoint{P}
-  \tkzDefPointOnLine[pos=-0.2](A,B) 
+  \tkzDefPointOnLine[pos=-0.2](A,B)
   \tkzGetPoint{R}
-  \tkzDefPointOnLine[pos=0.5](A,B) 
+  \tkzDefPointOnLine[pos=0.5](A,B)
   \tkzGetPoint{S}
   \tkzDrawPoints(A,B,P)
   \tkzLabelPoints(A,B)
@@ -394,14 +394,14 @@ options   & default & definition \\
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
- \tkzDefPoints{0/0/A,4/0/B,0.8/3/C}  
+ \tkzDefPoints{0/0/A,4/0/B,0.8/3/C}
  \tkzDefPointOnCircle[angle=90,center=B,radius=1 cm]
- \tkzGetPoint{I}    
+ \tkzGetPoint{I}
  \tkzDefCircle[circum](A,B,C)
  \tkzGetPoint{G} \tkzGetLength{rG}
  \tkzDefPointOnCircle[angle=30,center=G,radius=\rG pt]
  \tkzGetPoint{J}
- \tkzDrawCircle[R,teal](B,1cm) 
+ \tkzDrawCircle[R,teal](B,1cm)
  \tkzDrawPoint[teal](I)
  \tkzDrawPoints(A,B,C)
  \tkzDrawCircle(G,J)

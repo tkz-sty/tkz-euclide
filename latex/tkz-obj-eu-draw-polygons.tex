@@ -9,16 +9,16 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-% 
+%
 % The Current Maintainer of this work is Alain Matthes.
 
 %  utf8 encoding
 \def\fileversion{3.05c}
-\def\filedate{2020/03/08} 
-\typeout{2020/03/08 3.05c tkz-obj-eu-polygons.tex} 
-\makeatletter  
+\def\filedate{2020/03/08}
+\typeout{2020/03/08 3.05c tkz-obj-eu-polygons.tex}
+\makeatletter
 %<--------------------------------------------------------------------------–>
-%                                 Polygon 
+%                                 Polygon
 %<--------------------------------------------------------------------------–>
 %<----------------------------   Draw       --------------------------------–>
 %
@@ -30,20 +30,20 @@
  \draw[line style,#1] (#2)
      \foreach \pt in {#2,#3}{--(\pt)}--cycle;%
  \endgroup
-} 
+}
 %<----------------------------   FILL       --------------------------------–>
 %
 %<--------------------------------------------------------------------------–>
 \def\tkzFillPolygon{\pgfutil@ifnextchar[{\tkz@FillPolygon}{%
-                                         \tkz@FillPolygon[]}} 
+                                         \tkz@FillPolygon[]}}
 \def\tkz@FillPolygon[#1](#2,#3){%
  \begingroup
      \fill[#1] (#2)
-	 \foreach \pt in {#2,#3}{--(\pt)}--cycle;%  
+	 \foreach \pt in {#2,#3}{--(\pt)}--cycle;%
 \endgroup
 }
 %<--------------------------------------------------------------------------–>
-\def\tkzDrawSquare{\pgfutil@ifnextchar[{\tkz@DrawSquare}{\tkz@DrawSquare[]}} 
+\def\tkzDrawSquare{\pgfutil@ifnextchar[{\tkz@DrawSquare}{\tkz@DrawSquare[]}}
 \def\tkz@DrawSquare[#1](#2,#3){%
 \begingroup
    \tkzDefSquare(#2,#3)
@@ -52,7 +52,7 @@
 }
 %<--------------------------------------------------------------------------–>
 \def\tkzDrawRectangle{\pgfutil@ifnextchar[{\tkz@DrawRectangle}%
-										  {\tkz@DrawRectangle[]}} 
+										  {\tkz@DrawRectangle[]}}
 \def\tkz@DrawRectangle[#1](#2,#3){%
 \begingroup
    \draw[#1](#2) -| (#3) -| (#2);
@@ -75,19 +75,19 @@
 			sep/.store in     	=   \tkz@regpolsep,
 			name				=	P,
 			sep					=	1.1
-}   
- 
+}
+
 \def\tkzLabelRegPolygon{\pgfutil@ifnextchar[{\tkz@labelPolygon}{%
-                                             \tkz@labelPolygon[]}}  
-\def\tkz@labelPolygon[#1](#2)#3{% 
-\begingroup 
-\pgfqkeys{/deflabelregpoly}{#1}  
+                                             \tkz@labelPolygon[]}}
+\def\tkz@labelPolygon[#1](#2)#3{%
+\begingroup
+\pgfqkeys{/deflabelregpoly}{#1}
  \foreach \v [count=\vi from 1]  in {#3}  {%
- 	\path (#2) to [pos=1.1] node {$\v$} (\tkz@regpolname\vi) ; 
- 	\pgfnodealias{\v}{\tkz@regpolname\vi} 
-  } 
+ 	\path (#2) to [pos=1.1] node {$\v$} (\tkz@regpolname\vi) ;
+ 	\pgfnodealias{\v}{\tkz@regpolname\vi}
+  }
 \endgroup
-} 
+}
 
 \makeatother
 \endinput

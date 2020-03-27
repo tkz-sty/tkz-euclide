@@ -9,7 +9,7 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-% 
+%
 % The Current Maintainer of this work is Alain Matthes.
 
 %  utf8 encoding
@@ -33,14 +33,14 @@
                                               \def\tkz@beta{#2}},
       equilateral,
    /drawtriangle/.search also={/tikz}
-} 
+}
 
 \def\tkzDrawTriangle{\pgfutil@ifnextchar[{\tkz@DrawTriangle}{%
                                          \tkz@DrawTriangle[]}}
-\def\tkz@DrawTriangle[#1](#2,#3){% 
+\def\tkz@DrawTriangle[#1](#2,#3){%
 \begingroup
-\pgfkeys{/drawtriangle/.cd,equilateral}   
-\pgfqkeys{/drawtriangle}{#1}  
+\pgfkeys{/drawtriangle/.cd,equilateral}
+\pgfqkeys{/drawtriangle}{#1}
 \ifcase\tkz@numdtr%
    \tkzDefEquilateral(#2,#3)
 \or% 1
@@ -54,13 +54,13 @@
 \or% 5
    \tkzDefEuclideTriangle(#2,#3)
 \or% 6
-   \tkzDefGoldTriangle(#2,#3) 
+   \tkzDefGoldTriangle(#2,#3)
 \or% 7
-   \tkzDefCheopsTriangle(#2,#3)  
+   \tkzDefCheopsTriangle(#2,#3)
 \or% 8
-   \tkzDefTwoAnglesTriangle(#2,#3)  
+   \tkzDefTwoAnglesTriangle(#2,#3)
 \fi
- \draw[/drawtriangle/.cd,line style,#1] (#2)--(#3)--(tkzPointResult)--cycle;  
+ \draw[/drawtriangle/.cd,line style,#1] (#2)--(#3)--(tkzPointResult)--cycle;
 \endgroup
 }
 

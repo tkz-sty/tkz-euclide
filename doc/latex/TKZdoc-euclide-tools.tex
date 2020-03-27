@@ -1,44 +1,44 @@
 \section{Miscellaneous tools}
-\subsection{Duplicate a segment} 
+\subsection{Duplicate a segment}
 This involves constructing a segment on a given half-line of the same length as a given segment.
 
 \begin{NewMacroBox}{tkzDuplicateSegment}{\parg{pt1,pt2}\parg{pt3,pt4}\marg{pt5}}%
 This involves creating a segment on a given half-line of the same length as a given segment . It is in fact the definition of a point.
 \tkzcname{tkzDuplicateSegment} is the new name of \tkzcname{tkzDuplicateLen}.
-\medskip  
+\medskip
 \begin{tabular}{lll}%
 \toprule
-arguments             & example & explication                         \\ 
+arguments             & example & explication                         \\
 
 \midrule
-\TAline{(pt1,pt2)(pt3,pt4)\{pt5\}} {\tkzcname{tkzDuplicateSegment}(A,B)(E,F)\{C\}}{AC=EF and $C \in [AB)$} \\  
+\TAline{(pt1,pt2)(pt3,pt4)\{pt5\}} {\tkzcname{tkzDuplicateSegment}(A,B)(E,F)\{C\}}{AC=EF and $C \in [AB)$} \\
 \bottomrule
 \end{tabular}
 
 \medskip
-The macro \tkzcname{tkzDuplicateLength} is identical to this one. 
+The macro \tkzcname{tkzDuplicateLength} is identical to this one.
 \end{NewMacroBox}
 
 \begin{tkzexample}[latex=6cm,small]
    \begin{tikzpicture}
    \tkzDefPoint(0,0){A}
    \tkzDefPoint(2,-3){B}
-   \tkzDefPoint(2,5){C} 
+   \tkzDefPoint(2,5){C}
    \tkzDrawSegments[red](A,B A,C)
-   \tkzDuplicateSegment(A,B)(A,C)  
+   \tkzDuplicateSegment(A,B)(A,C)
    \tkzGetPoint{D}
    \tkzDrawSegment[green](A,D)
-   \tkzDrawPoints[color=red](A,B,C,D) 
+   \tkzDrawPoints[color=red](A,B,C,D)
    \tkzLabelPoints[above right=3pt](A,B,C,D)
- \end{tikzpicture} 
-\end{tkzexample} 
+ \end{tikzpicture}
+\end{tkzexample}
 
-\subsubsection{Proportion of gold with \tkzcname{tkzDuplicateSegment}} 
+\subsubsection{Proportion of gold with \tkzcname{tkzDuplicateSegment}}
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[rotate=-90,scale=.75]
  \tkzDefPoint(0,0){A}
  \tkzDefPoint(10,0){B}
- \tkzDefMidPoint(A,B)   
+ \tkzDefMidPoint(A,B)
  \tkzGetPoint{I}
  \tkzDefPointWith[orthogonal,K=-.75](B,A)
  \tkzGetPoint{C}
@@ -76,7 +76,7 @@ arguments    & example & explication       \\
 Only one option
 
 \begin{tabular}{lll}%
-   
+
 \toprule
  options    & default & example       \\
 \midrule
@@ -130,7 +130,7 @@ arguments             & example & explication                         \\
 \end{tabular}
 
 \medskip
-The result is stored in a macro. The result can be used with \tkzcname{len} \tkzname{pt}. 
+The result is stored in a macro. The result can be used with \tkzcname{len} \tkzname{pt}.
 \end{NewMacroBox}
 
 \subsubsection{Example}
@@ -153,10 +153,10 @@ The macro \tkzcname{tkzDefCircle[radius](A,B)} defines the radius that we retrie
 
 \subsection{Get point coordinates}
 %<--------------------------------------------------------------------------–>
-%                    Coordonnées d'un point 
+%                    Coordonnées d'un point
 %    result in #2x and #2y    #1 is the point and we get its coordinates
 % use either $A$ one point \tkzGetPointCoord(A){V} then \Vx = xA and \Vy = yA
-% in cm 
+% in cm
 % tkzGetPointCoord with [#1] cm or  pt ?? todo
 %<--------------------------------------------------------------------------–>
 \begin{NewMacroBox}{tkzGetPointCoord}{\parg{$A$}\marg{name of macro}}%
@@ -202,4 +202,4 @@ Stores in two macros the coordinates of a point. If the name of the macro is \tk
 \end{tikzpicture}
 \end{tkzexample}
 
-\endinput  
+\endinput

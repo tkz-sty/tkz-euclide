@@ -9,12 +9,12 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-% 
+%
 % The Current Maintainer of this work is Alain Matthes.
 %  utf8 encoding
 \def\fileversion{3.05c}
-\def\filedate{2020/03/08} 
-\typeout{2020/03/08 3.05c tkz-tools-angles.tex}   
+\def\filedate{2020/03/08}
+\typeout{2020/03/08 3.05c tkz-tools-angles.tex}
 \makeatletter
 %<--------------------------------------------------------------------------–>
 %<--------------------------------------------------------------------------–>
@@ -40,16 +40,16 @@
      \fi
    \fi
  \endgroup
- }  
+ }
 %<--------------------------------------------------------------------------–>
-%                          Angle 
+%                          Angle
 % Recherche l'angle formé par #1 et #2 par rapport à l'horizontale
 %<--------------------------------------------------------------------------–>
 \def\tkzFindSlopeAngle(#1,#2){%
 \begingroup
 	\pgfmathanglebetweenpoints{\pgfpointanchor{#1}{center}}{%
-                               \pgfpointanchor{#2}{center}} 
-	\global\let\tkzAngleResult\pgfmathresult  
+                               \pgfpointanchor{#2}{center}}
+	\global\let\tkzAngleResult\pgfmathresult
 \endgroup
 }
 %<--------------------------------------------------------------------------–>
@@ -69,6 +69,6 @@
 %<--------------------------------------------------------------------------–>
 \def\tkzGetAngle#1{%
 	\global\expandafter\edef\csname #1\endcsname{\tkzAngleResult}
-}  
+}
 \makeatother
 \endinput
