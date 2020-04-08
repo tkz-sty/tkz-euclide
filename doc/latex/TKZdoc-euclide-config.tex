@@ -15,10 +15,11 @@ options &  default & definition                 \\
 \end{NewMacroBox}
 
 \subsubsection{Example 1: change line width}
+
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
-   \tkzSetUpLine[color=blue,line width=1pt]
-\begin{scope}[rotate=-90]
+  \tkzSetUpLine[color=blue,line width=1pt]
+  \begin{scope}[rotate=-90]
     \tkzDefPoint(10,6){C}
     \tkzDefPoint( 0,6){A}
     \tkzDefPoint(10,0){B}
@@ -28,48 +29,47 @@ options &  default & definition                 \\
     \tkzMarkRightAngle[size=.4,fill=blue!20](B,C,A)
     \tkzMarkRightAngle[size=.4,fill=red!20](B,H,C)
     \tkzDrawSegment[color=red](C,H)
-\end{scope}
- \tkzLabelSegment[below](C,B){$a$}
- \tkzLabelSegment[right](A,C){$b$}
- \tkzLabelSegment[left](A,B){$c$}
- \tkzLabelSegment[color=red](C,H){$h$}
- \tkzDrawPoints(A,B,C)
- \tkzLabelPoints[above left](H)
- \tkzLabelPoints(B,C)
- \tkzLabelPoints[above](A)
+  \end{scope}
+  \tkzLabelSegment[below](C,B){$a$}
+  \tkzLabelSegment[right](A,C){$b$}
+  \tkzLabelSegment[left](A,B){$c$}
+  \tkzLabelSegment[color=red](C,H){$h$}
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints[above left](H)
+  \tkzLabelPoints(B,C)
+  \tkzLabelPoints[above](A)
 \end{tikzpicture}
 \end{tkzexample}
 
-
-
+\newpage
 
 \subsubsection{Example 2: change style of line}
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.6]
- \tkzDefPoint(1,0){A} \tkzDefPoint(4,0){B}
- \tkzDefPoint(1,1){C} \tkzDefPoint(5,1){D}
- \tkzDefPoint(1,2){E} \tkzDefPoint(6,2){F}
- \tkzDefPoint(0,4){A'}\tkzDefPoint(3,4){B'}
- \tkzCalcLength[cm](C,D)  \tkzGetLength{rCD}
- \tkzCalcLength[cm](E,F)  \tkzGetLength{rEF}
- \tkzInterCC[R](A',\rCD cm)(B',\rEF cm)
- \tkzGetPoints{I}{J}
- \tkzSetUpLine[style=dashed,color=gray]
- \tkzDrawLine(A',B')
- \tkzCompass(A',B')
- \tkzDrawSegments(A,B C,D E,F)
- \tkzDrawCircle[R](A',\rCD cm)
- \tkzDrawCircle[R](B',\rEF cm)
- \tkzSetUpLine[color=red]
- \tkzDrawSegments(A',I B',I)
- \tkzDrawPoints(A,B,C,D,E,F,A',B',I,J)
- \tkzLabelPoints(A,B,C,D,E,F,A',B',I,J)
+  \tkzDefPoint(1,0){A} \tkzDefPoint(4,0){B}
+  \tkzDefPoint(1,1){C} \tkzDefPoint(5,1){D}
+  \tkzDefPoint(1,2){E} \tkzDefPoint(6,2){F}
+  \tkzDefPoint(0,4){A'}\tkzDefPoint(3,4){B'}
+  \tkzCalcLength[cm](C,D)  \tkzGetLength{rCD}
+  \tkzCalcLength[cm](E,F)  \tkzGetLength{rEF}
+  \tkzInterCC[R](A',\rCD cm)(B',\rEF cm)
+  \tkzGetPoints{I}{J}
+  \tkzSetUpLine[style=dashed,color=gray]
+  \tkzDrawLine(A',B')
+  \tkzCompass(A',B')
+  \tkzDrawSegments(A,B C,D E,F)
+  \tkzDrawCircle[R](A',\rCD cm)
+  \tkzDrawCircle[R](B',\rEF cm)
+  \tkzSetUpLine[color=red]
+  \tkzDrawSegments(A',I B',I)
+  \tkzDrawPoints(A,B,C,D,E,F,A',B',I,J)
+  \tkzLabelPoints(A,B,C,D,E,F,A',B',I,J)
 \end{tikzpicture}
 \end{tkzexample}
 
-
 \subsubsection{Example 3: extend lines}
+
 \begin{tkzexample}[latex=7cm,small]
   \begin{tikzpicture}
   \tkzSetUpLine[add=.5 and .5]
@@ -80,6 +80,7 @@ options &  default & definition                 \\
 
 
 \subsection{Points style}
+
 \begin{NewMacroBox}{tkzSetUpPoint}{\oarg{local options}}%
 \begin{tabular}{lll}%
 options &  default & definition                 \\
@@ -91,7 +92,10 @@ options &  default & definition                 \\
 \end{tabular}
 \end{NewMacroBox}
 
+\newpage
+
 \subsubsection{Use of \tkzcname{tkzSetUpPoint}}
+
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
   \tkzSetUpPoint[shape = cross out,color=blue]
@@ -105,25 +109,23 @@ options &  default & definition                 \\
 
 \subsubsection{Use of \tkzcname{tkzSetUpPoint} inside a group}
 \begin{tkzexample}[latex=8cm,small]
-  \begin{tikzpicture}
-    \tkzInit[ymin=-0.5,ymax=3,xmin=-0.5,xmax=7]
-    \tkzDefPoint(0,0){A}
-    \tkzDefPoint(02.25,04.25){B}
-    \tkzDefPoint(4,0){C}
-    \tkzDefPoint(3,2){D}
-    \tkzDrawSegments(A,B A,C A,D)
-  {\tkzSetUpPoint[shape=cross out,
+\begin{tikzpicture}
+  \tkzInit[ymin=-0.5,ymax=3,xmin=-0.5,xmax=7]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(02.25,04.25){B}
+  \tkzDefPoint(4,0){C}
+  \tkzDefPoint(3,2){D}
+  \tkzDrawSegments(A,B A,C A,D)
+    {\tkzSetUpPoint[shape=cross out,
               fill= teal!50,
               size=4,color=teal]
-    \tkzDrawPoints(A,B)}
-    \tkzSetUpPoint[fill= teal!50,size=4,
+      \tkzDrawPoints(A,B)}
+  \tkzSetUpPoint[fill= teal!50,size=4,
                  color=teal]
-     \tkzDrawPoints(C,D)
-    \tkzLabelPoints(A,B,C,D)
-  \end{tikzpicture}
+  \tkzDrawPoints(C,D)
+  \tkzLabelPoints(A,B,C,D)
+\end{tikzpicture}
 \end{tkzexample}
-
-
 
 \subsection{Use of \tkzcname{tkzSetUpCompass}}
 
@@ -137,60 +139,67 @@ options &  default & definition                 \\
 \end{tabular}
 \end{NewMacroBox}
 
+\vspace*{-30pt}
+
 \subsubsection{Use of \tkzcname{tkzSetUpCompass} with bisector}
+
 \begin{tkzexample}[latex=7cm,small]
-  \begin{tikzpicture}[scale=0.75]
-    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
-    \tkzDrawPolygon(A,B,C)
-    \tkzSetUpCompass[color=red,line width=.2 pt]
-    \tkzDefLine[bisector](A,C,B) \tkzGetPoint{c}
-    \tkzDefLine[bisector](B,A,C) \tkzGetPoint{a}
-    \tkzDefLine[bisector](C,B,A) \tkzGetPoint{b}
-    \tkzShowLine[bisector,size=2,gap=3](A,C,B)
-    \tkzShowLine[bisector,size=2,gap=3](B,A,C)
-    \tkzShowLine[bisector,size=1,gap=2](C,B,A)
-    \tkzDrawLines[add=0 and 0 ](B,b)
-    \tkzDrawLines[add=0 and -.4 ](A,a  C,c)
-    \tkzLabelPoints(A,B) \tkzLabelPoints[above](C)
-  \end{tikzpicture}
-  \end{tkzexample}
+\begin{tikzpicture}[scale=0.7]
+  \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzSetUpCompass[color=red,line width=.2 pt]
+  \tkzDefLine[bisector](A,C,B) \tkzGetPoint{c}
+  \tkzDefLine[bisector](B,A,C) \tkzGetPoint{a}
+  \tkzDefLine[bisector](C,B,A) \tkzGetPoint{b}
+  \tkzShowLine[bisector,size=2,gap=3](A,C,B)
+  \tkzShowLine[bisector,size=2,gap=3](B,A,C)
+  \tkzShowLine[bisector,size=1,gap=2](C,B,A)
+  \tkzDrawLines[add=0 and 0 ](B,b)
+  \tkzDrawLines[add=0 and -.4 ](A,a  C,c)
+  \tkzLabelPoints(A,B) \tkzLabelPoints[above](C)
+\end{tikzpicture}
+\end{tkzexample}
+
+\newpage
 
 \subsubsection{Another example of of\tkzcname{tkzSetUpCompass}}
+
 \begin{tkzexample}[latex=7cm,small]
-  \begin{tikzpicture}[scale=1,rotate=90]
-    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
-    \tkzDrawPolygon(A,B,C)
-    \tkzSetUpCompass[color=brown,
-            line width=.3 pt,style=tkzdotted]
-    \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
-    \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
-    \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
-    \tkzDefPointBy[projection= onto A--B](I)
-    \tkzGetPoint{H}
-    \tkzMarkRightAngle(I,H,A)
-    \tkzDrawCircle[radius,color=red](I,H)
-    \tkzDrawSegments[color=red](I,H)
-    \tkzDrawLines[add=0 and -.5,,color=red](A,a)
-    \tkzDrawLines[add=0 and 0,color=red](B,b)
-    \tkzShowLine[bisector,size=2,gap=3](B,A,C)
-    \tkzShowLine[bisector,size=1,gap=3](C,B,A)
-    \tkzLabelPoints(A,B)\tkzLabelPoints[left](C)
-  \end{tikzpicture}
+\begin{tikzpicture}[scale=1,rotate=90]
+  \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzSetUpCompass[color=brown,
+          line width=.3 pt,style=tkzdotted]
+  \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
+  \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
+  \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
+  \tkzDefPointBy[projection= onto A--B](I)
+  \tkzGetPoint{H}
+  \tkzMarkRightAngle(I,H,A)
+  \tkzDrawCircle[radius,color=red](I,H)
+  \tkzDrawSegments[color=red](I,H)
+  \tkzDrawLines[add=0 and -.5,,color=red](A,a)
+  \tkzDrawLines[add=0 and 0,color=red](B,b)
+  \tkzShowLine[bisector,size=2,gap=3](B,A,C)
+  \tkzShowLine[bisector,size=1,gap=3](C,B,A)
+  \tkzLabelPoints(A,B)\tkzLabelPoints[left](C)
+\end{tikzpicture}
 \end{tkzexample}
 
 \subsection{Own style}
+
 You can set the normal style with |tkzSetUpPoint| and your own style
 
 \begin{tkzexample}[latex=2cm,small]
 \tkzSetUpPoint[color=blue!50!white, fill=gray!20!red!50!white]
 \tikzset{/tikz/mystyle/.style={color=blue!20!black,fill=blue!20}}
-  \begin{tikzpicture}
-    \tkzDefPoint(0,0){O}
-    \tkzDefPoint(0,1){A}
-    \tkzDrawPoints(O) % general style
-    \tkzDrawPoints[mystyle,size=4](A) % my style
-    \tkzLabelPoints(O,A)
-  \end{tikzpicture}
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(0,1){A}
+  \tkzDrawPoints(O) % general style
+  \tkzDrawPoints[mystyle,size=4](A) % my style
+  \tkzLabelPoints(O,A)
+\end{tikzpicture}
 \end{tkzexample}
 
 \endinput

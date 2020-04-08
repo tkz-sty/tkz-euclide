@@ -1,40 +1,62 @@
 \section{Some examples}
+
 \subsection{Some interesting examples}
 
 \subsubsection{Similar isosceles triangles}
 
-The following is from the excellent site \textbf{Descartes et les Mathématiques}. I did not modify the text and I am only the author of the programming of the figures.
+The following is from the excellent site \textbf{Descartes et les
+Mathématiques}. I did not modify the text and I am only the author of the
+programming of the figures.
 
-\url{http://debart.pagesperso-orange.fr/seconde/triangle.html}
+\url{https://debart.pagesperso-orange.fr/seconde/triangle.html}
 
 Bibliography:
 
 \begin{itemize}
 
-\item   Géométrie au Bac - Tangente, special issue no. 8 - Exercise 11, page 11
+\item Géométrie au Bac - Tangente, special issue no. 8 - Exercise 11, page 11
 
 
-\item   Elisabeth Busser and Gilles Cohen: 200 nouveaux problèmes du "Monde" - POLE 2007 (200 new problems of "Le Monde")
+\item Elisabeth Busser and Gilles Cohen: 200 nouveaux problèmes du \enquote{Monde} -
+POLE 2007 (200 new problems of "Le Monde")
 
 
-\item   Affaire de logique n° 364 - Le Monde February 17, 2004
+\item Affaire de logique n° 364 - Le Monde February 17, 2004
 \end{itemize}
 
 
-Two statements were proposed, one by the magazine \textit{Tangente} and the other by \textit{Le Monde}.
+Two statements were proposed, one by the magazine \textit{Tangente} and the
+other by \textit{Le Monde}.
 
 \vspace*{2cm}
-\emph{Editor of the magazine "Tangente"}: \textcolor{orange}{Two similar isosceles triangles $AXB$ and $BYC$ are constructed with main vertices $X$ and $Y$, such that $A$, $B$ and $C$ are aligned and that these triangles are "indirect". Let $\alpha$ be the angle at vertex $\widehat{AXB}$ = $\widehat{BYC}$. We then construct a third isosceles triangle $XZY$ similar to the first two, with main vertex $Z$ and "indirect".
+
+\emph{Editor of the magazine "Tangente"}: \textcolor{orange}{Two similar
+isosceles triangles $AXB$ and $BYC$ are constructed with main vertices $X$ and
+$Y$, such that $A$, $B$ and $C$ are aligned and that these triangles are
+\enquote{indirect}. Let $\alpha$ be the angle at vertex $\widehat{AXB}$ =
+$\widehat{BYC}$. We then construct a third isosceles triangle $XZY$ similar to
+the first two, with main vertex $Z$ and "indirect".
 We ask to demonstrate that point $Z$ belongs to the straight line $(AC)$.}
 
 \vspace*{2cm}
-\emph{Editor of  "Le Monde"}: \textcolor{orange}{We construct two similar isosceles triangles $AXB$ and $BYC$ with principal vertices $X$ and $Y$, such that $A$, $B$ and $C$ are aligned and that these triangles are "indirect". Let $\alpha$ be the angle at vertex $\widehat{AXB}$ = $\widehat{BYC}$. The point Z of the line segment $[AC]$ is equidistant from the two vertices $X$ and $Y$.\\
+
+\emph{Editor of  \enquote{Le Monde}}: \textcolor{orange}{We construct two similar
+isosceles triangles $AXB$ and $BYC$ with principal vertices $X$ and $Y$, such
+that $A$, $B$ and $C$ are aligned and that these triangles are \enquote{indirect}. Let
+$\alpha$ be the angle at vertex $\widehat{AXB}$ = $\widehat{BYC}$. The point Z
+of the line segment $[AC]$ is equidistant from the two vertices $X$ and $Y$.\\
 At what angle does he see these two vertices?}
 
-\vspace*{2cm} The constructions and their associated codes are on the next two pages, but you can search before looking. The programming respects (it seems to me ...) my reasoning in both cases.
+\vspace*{2cm}
+The constructions and their associated codes are on the next two pages, but
+you can search before looking. The programming respects (it seems to me \dots)
+my reasoning in both cases.
 
- \subsubsection{Revised version of "Tangente"}
-\begin{tkzexample}[]
+\newpage
+
+\subsubsection{Revised version of \enquote{Tangente}}
+
+\begin{tkzexample}[small]
 \begin{tikzpicture}[scale=.8,rotate=60]
   \tkzDefPoint(6,0){X}   \tkzDefPoint(3,3){Y}
   \tkzDefShiftPoint[X](-110:6){A}    \tkzDefShiftPoint[X](-70:6){B}
@@ -54,16 +76,18 @@ At what angle does he see these two vertices?}
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{"Le Monde" version}
+\newpage
 
-\begin{tkzexample}[]
+\subsubsection{\enquote{Le Monde} version}
+
+\begin{tkzexample}[small]
 \begin{tikzpicture}[scale=1.25]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(3,0){B}
   \tkzDefPoint(9,0){C}
   \tkzDefPoint(1.5,2){X}
   \tkzDefPoint(6,4){Y}
-  \tkzDefCircle[circum](X,Y,B) \tkzGetPoint{O}
+  \tkzDefCircle[circum](X,Y,B)       \tkzGetPoint{O}
   \tkzDefMidPoint(X,Y)               \tkzGetPoint{I}
   \tkzDefPointWith[orthogonal](I,Y)  \tkzGetPoint{i}
   \tkzDrawLines[add = 2 and 1,color=orange](I,i)
@@ -80,45 +104,48 @@ At what angle does he see these two vertices?}
 \end{tikzpicture}
 \end{tkzexample}
 
+\newpage
+
 \subsubsection{Triangle altitudes}
 
-The following is again from the excellent site \textbf{Descartes et les Mathématiques} (Descartes and the Mathematics).
+The following is again from the excellent site \textbf{Descartes et les
+Mathématiques} (Descartes and the Mathematics).
 
-\url{http://debart.pagesperso-orange.fr/geoplan/geometrie_triangle.html}
+\url{https://debart.pagesperso-orange.fr/geoplan/geometrie_triangle.html}
 
 The three altitudes of a triangle intersect at the same H-point.
 
-\begin{tkzexample}[latex=7cm]
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.8]
-   \tkzDefPoint(0,0){C}
-   \tkzDefPoint(7,0){B}
-   \tkzDefPoint(5,6){A}
-   \tkzDrawPolygon(A,B,C)
-   \tkzDefMidPoint(C,B)
-   \tkzGetPoint{I}
-   \tkzDrawArc(I,B)(C)
-   \tkzInterLC(A,C)(I,B)
-   \tkzGetSecondPoint{B'}
-   \tkzInterLC(A,B)(I,B)
-   \tkzGetFirstPoint{C'}
-   \tkzInterLL(B,B')(C,C')
-   \tkzGetPoint{H}
-   \tkzInterLL(A,H)(C,B)
-   \tkzGetPoint{A'}
-     \tkzDefCircle[circum](A,B',C')
-    \tkzGetPoint{O}
-   \tkzDrawCircle[color=red](O,A)
-   \tkzDrawSegments[color=orange](B,B' C,C' A,A')
-   \tkzMarkRightAngles(C,B',B B,C',C C,A',A)
-   \tkzDrawPoints(A,B,C,A',B',C',H)
-   \tkzLabelPoints(A,B,C,A',B',C',H)
+  \tkzDefPoint(0,0){C}
+  \tkzDefPoint(7,0){B}
+  \tkzDefPoint(5,6){A}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDefMidPoint(C,B)
+  \tkzGetPoint{I}
+  \tkzDrawArc(I,B)(C)
+  \tkzInterLC(A,C)(I,B)
+  \tkzGetSecondPoint{B'}
+  \tkzInterLC(A,B)(I,B)
+  \tkzGetFirstPoint{C'}
+  \tkzInterLL(B,B')(C,C')
+  \tkzGetPoint{H}
+  \tkzInterLL(A,H)(C,B)
+  \tkzGetPoint{A'}
+  \tkzDefCircle[circum](A,B',C')
+  \tkzGetPoint{O}
+  \tkzDrawCircle[color=red](O,A)
+  \tkzDrawSegments[color=orange](B,B' C,C' A,A')
+  \tkzMarkRightAngles(C,B',B B,C',C C,A',A)
+  \tkzDrawPoints(A,B,C,A',B',C',H)
+  \tkzLabelPoints(A,B,C,A',B',C',H)
 \end{tikzpicture}
 \end{tkzexample}
 
 \subsubsection{Altitudes - other construction}
 
-\begin{tkzexample}[latex=7cm]
-\begin{tikzpicture}[scale=.75]
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=0.65]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(8,0){B}
   \tkzDefPoint(3.5,10){C}
@@ -148,27 +175,28 @@ The three altitudes of a triangle intersect at the same H-point.
 
 \subsection{Different authors}
 
-\subsubsection{ Square root of the integers}
+\subsubsection{Square root of the integers}
+
 How to get $1$, $\sqrt{2}$, $\sqrt{3}$ with a rule and a compass.
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=1.5]
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(1,0){a0}
-   \tkzDrawSegment[blue](O,a0)
+  \tkzDrawSegment[blue](O,a0)
   \foreach \i [count=\j] in {0,...,10}{%
     \tkzDefPointWith[orthogonal normed](a\i,O)
     \tkzGetPoint{a\j}
     \tkzDrawPolySeg[color=blue](a\i,a\j,O)}
- \end{tikzpicture}
+\end{tikzpicture}
 \end{tkzexample}
-
 
 \subsubsection{About right triangle}
 
-We have a segment $[AB]$ and we want to determine a point $C$ such that $AC=8$~cm    and $ABC$ is a right triangle in $B$.
+We have a segment $[AB]$ and we want to determine a point $C$ such that
+$AC=8$~cm    and $ABC$ is a right triangle in $B$.
 
-\begin{tkzexample}[latex=7cm]
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.5]
   \tkzDefPoint["$A$" left](2,1){A}
   \tkzDefPoint(6,4){B}
@@ -186,27 +214,31 @@ We have a segment $[AB]$ and we want to determine a point $C$ such that $AC=8$~c
 \end{tikzpicture}
 \end{tkzexample}
 
-
 \subsubsection{Archimedes}
 
-This is an ancient problem   proved by the great Greek mathematician Archimedes .
-The figure below shows a semicircle, with diameter $AB$. A tangent line is drawn and  touches the semicircle at $B$.   An other tangent line at a point, $C$, on the semicircle is drawn. We project the point $C$ on the line segment $[AB]$  on a point $D$. The two tangent lines intersect at the point $T$.
+This is an ancient problem proved by the great Greek mathematician Archimedes.
+The figure below shows a semicircle, with diameter $AB$. A tangent line is drawn
+and  touches the semicircle at $B$. An other tangent line at a point, $C$, on
+the semicircle is drawn. We project the point $C$ on the line segment $[AB]$  on
+a point $D$. The two tangent lines intersect at the point $T$.
 
 Prove that the line $(AT)$ bisects $(CD)$
 
-\begin{tkzexample}[]
+\newpage
+
+\begin{tkzexample}[small]
 \begin{tikzpicture}[scale=1.25]
   \tkzDefPoint(0,0){A}\tkzDefPoint(6,0){D}
   \tkzDefPoint(8,0){B}\tkzDefPoint(4,0){I}
   \tkzDefLine[orthogonal=through D](A,D)
   \tkzInterLC[R](D,tkzPointResult)(I,4 cm) \tkzGetFirstPoint{C}
-  \tkzDefLine[orthogonal=through C](I,C)    \tkzGetPoint{c}
-  \tkzDefLine[orthogonal=through B](A,B)    \tkzGetPoint{b}
+  \tkzDefLine[orthogonal=through C](I,C)   \tkzGetPoint{c}
+  \tkzDefLine[orthogonal=through B](A,B)   \tkzGetPoint{b}
   \tkzInterLL(C,c)(B,b) \tkzGetPoint{T}
   \tkzInterLL(A,T)(C,D) \tkzGetPoint{P}
   \tkzDrawArc(I,B)(A)
   \tkzDrawSegments(A,B A,T C,D I,C) \tkzDrawSegment[color=orange](I,C)
-  \tkzDrawLine[add = 1 and 0](C,T)   \tkzDrawLine[add = 0 and 1](B,T)
+  \tkzDrawLine[add = 1 and 0](C,T)  \tkzDrawLine[add = 0 and 1](B,T)
   \tkzMarkRightAngle(I,C,T)
   \tkzDrawPoints(A,B,I,D,C,T)
   \tkzLabelPoints(A,B,I,D)  \tkzLabelPoints[above right](C,T)
@@ -216,11 +248,11 @@ Prove that the line $(AT)$ bisects $(CD)$
 
 \subsubsection{Example: Dimitris Kapeta}
 
-You need in this example to use \tkzname{mkpos=.2} with \tkzcname{tkzMarkAngle} because the measure of $ \widehat{CAM}$ is too small.
+You need in this example to use \tkzname{mkpos=.2} with \tkzcname{tkzMarkAngle}
+because the measure of $ \widehat{CAM}$ is too small.
 Another possiblity is to use \tkzcname{tkzFillAngle}.
 
-
-\begin{tkzexample}[]
+\begin{tkzexample}[small]
 \begin{tikzpicture}[scale=1.25]
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2.5,0){N}
@@ -244,11 +276,9 @@ Another possiblity is to use \tkzcname{tkzFillAngle}.
 \end{tikzpicture}
 \end{tkzexample}
 
-
-\subsubsection{Example 1: John Kitzmiller }
+\subsubsection{Example 1: John Kitzmiller}
 
 Prove that $\bigtriangleup LKJ$ is equilateral.
-
 
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}[scale=2]
@@ -282,14 +312,17 @@ Prove that $\bigtriangleup LKJ$ is equilateral.
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example 2:  John Kitzmiller }
+\subsubsection{Example 2: John Kitzmiller}
+
 Prove that $\dfrac{AC}{CE}=\dfrac{BD}{DF}$.
 
-Another interesting example from John, you can see how to use some extra options like \tkzname{decoration} and \tkzname{postaction}  from \TIKZ\ with \tkzname{tkz-euclide}.
+Another interesting example from John, you can see how to use some extra options
+like \tkzname{decoration} and \tkzname{postaction}  from \TIKZ\ with
+\tkzname{tkz-euclide}.
 
 \begin{tkzexample}[vbox,small]
-\begin{tikzpicture}[scale=2,decoration={markings,
-  mark=at position 3cm with {\arrow[scale=2]{>}}}]
+\begin{tikzpicture}[scale=1.75,decoration={markings,
+   mark=at position 3cm with {\arrow[scale=2]{>}}}]
   \tkzDefPoints{0/0/E, 6/0/F, 0/1.8/P, 6/1.8/Q, 0/3/R, 6/3/S}
   \tkzDrawLines[postaction={decorate}](E,F P,Q R,S)
   \tkzDefPoints{3.5/3/A, 5/3/B}
@@ -309,20 +342,20 @@ Another interesting example from John, you can see how to use some extra options
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example 3:  John Kitzmiller }
+\subsubsection{Example 3: John Kitzmiller}
+
 Prove that $\dfrac{BC}{CD}=\dfrac{AB}{AD} \qquad$ (Angle Bisector).
 
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}[scale=2]
-  \tkzDefPoints{0/0/B, 5/0/D}       \tkzDefPoint(70:3){A}
+  \tkzDefPoints{0/0/B, 5/0/D}   \tkzDefPoint(70:3){A}
   \tkzDrawPolygon(B,D,A)
-  \tkzDefLine[bisector](B,A,D)      \tkzGetPoint{a}
-  \tkzInterLL(A,a)(B,D)           \tkzGetPoint{C}
+  \tkzDefLine[bisector](B,A,D)  \tkzGetPoint{a}
+  \tkzInterLL(A,a)(B,D)         \tkzGetPoint{C}
   \tkzDefLine[parallel=through B](A,C) \tkzGetPoint{b}
-  \tkzInterLL(A,D)(B,b)           \tkzGetPoint{P}
-  \begin{scope}[decoration={markings,
-   mark=at position .5 with {\arrow[scale=2]{>}}}]
-   \tkzDrawSegments[postaction={decorate},dashed](C,A P,B)
+  \tkzInterLL(A,D)(B,b)         \tkzGetPoint{P}
+  \begin{scope}[decoration={markings, mark=at position .5 with {\arrow[scale=2]{>}}}]
+     \tkzDrawSegments[postaction={decorate},dashed](C,A P,B)
   \end{scope}
   \tkzDrawSegment(A,C) \tkzDrawSegment[style=dashed](A,P)
   \tkzLabelPoints[below](B,C,D) \tkzLabelPoints[above](A,P)
@@ -336,14 +369,14 @@ Prove that $\dfrac{BC}{CD}=\dfrac{AB}{AD} \qquad$ (Angle Bisector).
   \tkzFillAngles[fill=green,  opacity=0.5](B,A,C A,B,P)
   \tkzFillAngles[fill=yellow, opacity=0.3](B,P,A C,A,D)
   \tkzFillAngles[fill=green,  opacity=0.6](B,A,C A,B,P B,P,A C,A,D)
-  \tkzLabelAngle[pos=1](B,A,C){1}   \tkzLabelAngle[pos=1](C,A,D){2}
-  \tkzLabelAngle[pos=1](A,B,P){3}    \tkzLabelAngle[pos=1](B,P,A){4}
+  \tkzLabelAngle[pos=1](B,A,C){1}  \tkzLabelAngle[pos=1](C,A,D){2}
+  \tkzLabelAngle[pos=1](A,B,P){3}  \tkzLabelAngle[pos=1](B,P,A){4}
   \tkzMarkSegments[mark=|](A,B A,P)
 \end{tikzpicture}
 \end{tkzexample}
 
+\subsubsection{Example 4: John Kitzmiller}
 
-\subsubsection{Example 4: author John Kitzmiller }
 Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
 
 \begin{tkzexample}[vbox,small]
@@ -376,30 +409,31 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
 
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}[scale=3]
-   \tkzDefPoints{0/0/A,2/0/B}
-   \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
-   \tkzDefPointBy[rotation=center D angle 45](C)\tkzGetPoint{G}
-   \tkzDefSquare(G,D)\tkzGetPoints{E}{F}
-   \tkzInterLL(B,C)(E,F)\tkzGetPoint{H}
-   \tkzFillPolygon[gray!10](D,E,H,C,D)
-   \tkzDrawPolygon(A,...,D)\tkzDrawPolygon(D,...,G)
-   \tkzDrawSegment(B,E)
-   \tkzMarkSegments[mark=|,size=3pt,color=gray](A,B B,C C,D D,A E,F F,G G,D D,E)
-   \tkzMarkSegments[mark=||,size=3pt,color=gray](B,E E,H)
-   \tkzLabelPoints[left](A,D)
-   \tkzLabelPoints[right](B,C,F,H)
-   \tkzLabelPoints[above](G)\tkzLabelPoints[below](E)
-   \tkzMarkRightAngles(D,A,B D,G,F)
+  \tkzDefPoints{0/0/A,2/0/B}
+  \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
+  \tkzDefPointBy[rotation=center D angle 45](C)\tkzGetPoint{G}
+  \tkzDefSquare(G,D)\tkzGetPoints{E}{F}
+  \tkzInterLL(B,C)(E,F)\tkzGetPoint{H}
+  \tkzFillPolygon[gray!10](D,E,H,C,D)
+  \tkzDrawPolygon(A,...,D)\tkzDrawPolygon(D,...,G)
+  \tkzDrawSegment(B,E)
+  \tkzMarkSegments[mark=|,size=3pt,color=gray](A,B B,C C,D D,A E,F F,G G,D D,E)
+  \tkzMarkSegments[mark=||,size=3pt,color=gray](B,E E,H)
+  \tkzLabelPoints[left](A,D)
+  \tkzLabelPoints[right](B,C,F,H)
+  \tkzLabelPoints[above](G)\tkzLabelPoints[below](E)
+  \tkzMarkRightAngles(D,A,B D,G,F)
 \end{tikzpicture}
 \end{tkzexample}
 
 \subsubsection{Example 2: from Indonesia}
+
 \begin{tkzexample}[vbox,small]
-  \begin{tikzpicture}[pol/.style={fill=brown!40,opacity=.5},
-                     seg/.style={tkzdotted,color=gray},
-                     hidden pt/.style={fill=gray!40},
-                     mra/.style={color=gray!70,tkzdotted,/tkzrightangle/size=.2},
-                     scale=3]
+\begin{tikzpicture}[pol/.style={fill=brown!40,opacity=.5},
+                    seg/.style={tkzdotted,color=gray},
+                    hidden pt/.style={fill=gray!40},
+                    mra/.style={color=gray!70,tkzdotted,/tkzrightangle/size=.2},
+                    scale=3]
   \tkzSetUpPoint[size=2]
   \tkzDefPoints{0/0/A,2.5/0/B,1.33/0.75/D,0/2.5/E,2.5/2.5/F}
   \tkzDefLine[parallel=through D](A,B) \tkzGetPoint{I1}
@@ -411,19 +445,18 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
   \tkzDefLine[parallel=through F](E,H) \tkzGetPoint{I5}
   \tkzDefLine[parallel=through H](E,F) \tkzGetPoint{I6}
   \tkzInterLL(F,I5)(H,I6) \tkzGetPoint{G}
-  \tkzDefMidPoint(G,H) \tkzGetPoint{P}
-  \tkzDefMidPoint(G,C) \tkzGetPoint{Q}
-  \tkzDefMidPoint(B,C) \tkzGetPoint{R}
-  \tkzDefMidPoint(A,B) \tkzGetPoint{S}
-  \tkzDefMidPoint(A,E) \tkzGetPoint{T}
-  \tkzDefMidPoint(E,H) \tkzGetPoint{U}
-  \tkzDefMidPoint(A,D) \tkzGetPoint{M}
-  \tkzDefMidPoint(D,C) \tkzGetPoint{N}
-  \tkzInterLL(B,D)(S,R) \tkzGetPoint{L}
-  \tkzInterLL(H,F)(U,P) \tkzGetPoint{K}
+  \tkzDefMidPoint(G,H)   \tkzGetPoint{P}
+  \tkzDefMidPoint(G,C)   \tkzGetPoint{Q}
+  \tkzDefMidPoint(B,C)   \tkzGetPoint{R}
+  \tkzDefMidPoint(A,B)   \tkzGetPoint{S}
+  \tkzDefMidPoint(A,E)   \tkzGetPoint{T}
+  \tkzDefMidPoint(E,H)   \tkzGetPoint{U}
+  \tkzDefMidPoint(A,D)   \tkzGetPoint{M}
+  \tkzDefMidPoint(D,C)   \tkzGetPoint{N}
+  \tkzInterLL(B,D)(S,R)  \tkzGetPoint{L}
+  \tkzInterLL(H,F)(U,P)  \tkzGetPoint{K}
   \tkzDefLine[parallel=through K](D,H) \tkzGetPoint{I7}
   \tkzInterLL(K,I7)(B,D) \tkzGetPoint{O}
-
   \tkzFillPolygon[pol](P,Q,R,S,T,U)
   \tkzDrawSegments[seg](K,O K,L P,Q R,S T,U
                     C,D H,D A,D M,N B,D)
@@ -435,7 +468,6 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
   \tkzMarkSegments[mark=|,size=1pt,thick,color=gray](A,S B,S B,R C,R
                     Q,C Q,G G,P H,P
                     E,U H,U E,T A,T)
-
   \tkzLabelAngle[pos=.3](K,L,O){$\alpha$}
   \tkzLabelPoints[below](O,A,S,B)
   \tkzLabelPoints[above](H,P,G)
@@ -445,14 +477,15 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
   \tkzLabelPoints[above right](L,N)
   \tkzLabelPoints[below right](F,R)
   \tkzLabelPoints[below left](K)
-  \end{tikzpicture}
+\end{tikzpicture}
 \end{tkzexample}
 
+\newpage
 
 \subsubsection{Three circles}
 
 \begin{tkzexample}[vbox,small]
-\begin{tikzpicture}[scale=1.5]
+\begin{tikzpicture}[scale=1.15]
   \tkzDefPoints{0/0/A,8/0/B,0/4/a,8/4/b,8/8/c}
   \tkzDefTriangle[equilateral](A,B) \tkzGetPoint{C}
   \tkzDrawPolygon(A,B,C)
@@ -486,10 +519,10 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{"The" Circle of APOLLONIUS}
+\subsubsection{The Circle of APOLLONIUS}
 
 \begin{tkzexample}[vbox,small]
-  \begin{tikzpicture}[scale=.5]
+\begin{tikzpicture}[scale=.5]
   \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
   \tkzDefTriangleCenter[euler](A,B,C)        \tkzGetPoint{N}
   \tkzDefTriangleCenter[circum](A,B,C)       \tkzGetPoint{O}
@@ -531,9 +564,7 @@ Prove that $\overline{AG}\cong\overline{EF} \qquad$ (Detour).
   \tkzDrawPoints(A,B,C,N,Ja,Jb,Jc,Xb,Xc,B',C',Za,Zb,Ba,Ca,Bc,Ac,Q,Sp,K,O)
   \tkzLabelPoints(A,B,C,N,Ja,Jb,Jc,Xb,Xc,B',C',Za,Zb,Ba,Ca,Bc,Ac,Q,Sp)
   \tkzLabelPoints[above](K,O)
-  \end{tikzpicture}
+\end{tikzpicture}
 \end{tkzexample}
-
-
 
 \endinput

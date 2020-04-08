@@ -1,7 +1,13 @@
 \section{The arcs}
+
 \begin{NewMacroBox}{tkzDrawArc}{\oarg{local options}\parg{O,\dots}\parg{\dots}}%
 
-This macro traces the arc of center $O$. Depending on the options, the arguments differ.   It is a question of determining a starting point and an end point. Either the starting point is given, which is the simplest, or the radius of the arc is given. In the latter case, it is necessary to have two angles. Either the angles can be given directly, or nodes associated with the center can be given to determine them. The angles are in degrees.
+This macro traces the arc of center $O$. Depending on the options, the arguments
+differ.   It is a question of determining a starting point and an end point.
+Either the starting point is given, which is the simplest, or the radius of the
+arc is given. In the latter case, it is necessary to have two angles. Either the
+angles can be given directly, or nodes associated with the center can be given
+to determine them. The angles are in degrees.
 
 \medskip
 
@@ -10,7 +16,8 @@ This macro traces the arc of center $O$. Depending on the options, the arguments
 options             & default & definition                        \\
 \midrule
 \TOline{towards}{towards}{$O$ is the center and the arc from $A$ to $(OB)$}
-\TOline{rotate} {towards}{the arc starts from $A$ and the angle determines its length}
+\TOline{rotate} {towards}{the arc starts from $A$ and the angle determines its
+length}
 \TOline{R}{towards}{We give the radius and two angles}
 \TOline{R with nodes}{towards}{We give the radius and two points}
 \TOline{angles}{towards}{We give the radius and two points}
@@ -19,7 +26,7 @@ options             & default & definition                        \\
 \end{tabular}
 
 \medskip
-Of course, you have to add all the styles of \TIKZ\ for the tracings...
+Of course, you have to add all the styles of \TIKZ\ for the tracings\dots
 
 \medskip
 
@@ -28,9 +35,11 @@ Of course, you have to add all the styles of \TIKZ\ for the tracings...
 options             & arguments & example                         \\
 \midrule
 \TOline{towards}{\parg{pt,pt}\parg{pt}}{\tkzcname{tkzDrawArc[delta=10](O,A)(B)}}
-\TOline{rotate} {\parg{pt,pt}\parg{an}}{\tkzcname{tkzDrawArc[rotate,color=red](O,A)(90)}}
+\TOline{rotate}
+{\parg{pt,pt}\parg{an}}{\tkzcname{tkzDrawArc[rotate,color=red](O,A)(90)}}
 \TOline{R}{\parg{pt,$r$}\parg{an,an}}{\tkzcname{tkzDrawArc[R](O,2 cm)(30,90)}}
-\TOline{R with nodes}{\parg{pt,$r$}\parg{pt,pt}}{\tkzcname{tkzDrawArc[R with nodes](O,2 cm)(A,B)}}
+\TOline{R with nodes}{\parg{pt,$r$}\parg{pt,pt}}{\tkzcname{tkzDrawArc[R with
+nodes](O,2 cm)(A,B)}}
 \TOline{angles}{\parg{pt,pt}\parg{an,an}}{\tkzcname{tkzDrawArc[angles](O,A)(0,90)}}
 \end{tabular}
 \end{NewMacroBox}
@@ -38,7 +47,11 @@ options             & arguments & example                         \\
 Here are a few examples:
 
 \subsection{Option \tkzname{towards}}
-It's useless to put \tkzname{towards}. In this first example the arc starts from $A$ and goes to $B$. The arc going from $B$ to $A$ is different. The salient is obtained by going in the direct direction of the trigonometric circle.
+
+It's useless to put \tkzname{towards}. In this first example the arc starts from
+$A$ and goes to $B$. The arc going from $B$ to $A$ is different. The salient is
+obtained by going in the direct direction of the trigonometric circle.
+
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){O}
@@ -53,11 +66,13 @@ It's useless to put \tkzname{towards}. In this first example the arc starts from
 \end{tikzpicture}
 \end{tkzexample}
 
+\newpage
 
 \subsection{Option \tkzname{towards}}
+
 In this one, the arc starts from A but stops on the right (OB).
 
-\begin{tkzexample}[latex=6cm,small]
+\begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[scale=1.5]
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-1){A}
@@ -72,7 +87,8 @@ In this one, the arc starts from A but stops on the right (OB).
 \end{tkzexample}
 
 \subsection{Option \tkzname{rotate}}
-\begin{tkzexample}[latex=5cm,small]
+
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-2){A}
@@ -86,7 +102,8 @@ In this one, the arc starts from A but stops on the right (OB).
 
 
 \subsection{Option \tkzname{R}}
-\begin{tkzexample}[latex=5cm,small]
+
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
   \tkzDefPoints{0/0/O}
   \tikzset{compass style/.append style={<->}}
@@ -97,8 +114,11 @@ In this one, the arc starts from A but stops on the right (OB).
 \end{tikzpicture}
 \end{tkzexample}
 
+\newpage
+
 \subsection{Option \tkzname{R with nodes}}
-\begin{tkzexample}[latex=5cm,small]
+
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(2,-1){A}
@@ -109,32 +129,36 @@ In this one, the arc starts from A but stops on the right (OB).
 \end{tkzexample}
 
 \subsection{Option \tkzname{delta}}
-This option allows a bit like \tkzcname{tkzCompass} to place an arc and overflow on either side. delta is a measure in degrees.
+
+This option allows a bit like \tkzcname{tkzCompass} to place an arc and overflow
+on either side. delta is a measure in degrees.
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
- \tkzDefPoint(0,0){A}
- \tkzDefPoint(5,0){B}
- \tkzDefPointBy[rotation= center A angle 60](B)
- \tkzGetPoint{C}
- \tkzSetUpLine[color=gray]
- \tkzDefPointBy[symmetry= center C](A)
- \tkzGetPoint{D}
- \tkzDrawSegments(A,B A,D)
- \tkzDrawLine(B,D)
- \tkzSetUpCompass[color=orange]
- \tkzDrawArc[orange,delta=10](A,B)(C)
- \tkzDrawArc[orange,delta=10](B,C)(A)
- \tkzDrawArc[orange,delta=10](C,D)(D)
- \tkzDrawPoints(A,B,C,D)
- \tkzLabelPoints(A,B,C,D)
- \tkzMarkRightAngle(D,B,A)
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,0){B}
+  \tkzDefPointBy[rotation= center A angle 60](B)
+  \tkzGetPoint{C}
+  \tkzSetUpLine[color=gray]
+  \tkzDefPointBy[symmetry= center C](A)
+  \tkzGetPoint{D}
+  \tkzDrawSegments(A,B A,D)
+  \tkzDrawLine(B,D)
+  \tkzSetUpCompass[color=orange]
+  \tkzDrawArc[orange,delta=10](A,B)(C)
+  \tkzDrawArc[orange,delta=10](B,C)(A)
+  \tkzDrawArc[orange,delta=10](C,D)(D)
+  \tkzDrawPoints(A,B,C,D)
+  \tkzLabelPoints(A,B,C,D)
+  \tkzMarkRightAngle(D,B,A)
 \end{tikzpicture}
 \end{tkzexample}
 
+\newpage
+
 \subsection{Option \tkzname{angles}: example 1}
 
-\begin{tkzexample}[latex=7cm,small]
+\begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(5,0){B}
@@ -156,23 +180,20 @@ This option allows a bit like \tkzcname{tkzCompass} to place an arc and overflow
 
 \subsection{Option \tkzname{angles}: example 2}
 
-
-\begin{tkzexample}[latex=7cm,small]
-  \begin{tikzpicture}
-   \tkzDefPoint(0,0){O}
-   \tkzDefPoint(5,0){I}
-   \tkzDefPoint(0,5){J}
-   \tkzInterCC(O,I)(I,O)\tkzGetPoints{B}{C}
-   \tkzInterCC(O,I)(J,O)\tkzGetPoints{D}{A}
-   \tkzInterCC(I,O)(J,O)\tkzGetPoints{L}{K}
-   \tkzDrawArc[angles](O,I)(0,90)
-   \tkzDrawArc[angles,color=gray,style=dashed](I,O)(90,180)
-   \tkzDrawArc[angles,color=gray,style=dashed](J,O)(-90,0)
-   \tkzDrawPoints(A,B,K)
-   \foreach \point in {I,A,B,J,K}{\tkzDrawSegment(O,\point)}
-  \end{tikzpicture}
+\begin{tkzexample}[latex=6cm,small]
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(5,0){I}
+  \tkzDefPoint(0,5){J}
+  \tkzInterCC(O,I)(I,O)\tkzGetPoints{B}{C}
+  \tkzInterCC(O,I)(J,O)\tkzGetPoints{D}{A}
+  \tkzInterCC(I,O)(J,O)\tkzGetPoints{L}{K}
+  \tkzDrawArc[angles](O,I)(0,90)
+  \tkzDrawArc[angles,color=gray,style=dashed](I,O)(90,180)
+  \tkzDrawArc[angles,color=gray,style=dashed](J,O)(-90,0)
+  \tkzDrawPoints(A,B,K)
+  \foreach \point in {I,A,B,J,K}{\tkzDrawSegment(O,\point)}
+\end{tikzpicture}
 \end{tkzexample}
 
-
- \endinput
-
+\endinput

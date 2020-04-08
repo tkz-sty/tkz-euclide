@@ -1,64 +1,79 @@
 \section{Miscellaneous tools}
+
 \subsection{Duplicate a segment}
-This involves constructing a segment on a given half-line of the same length as a given segment.
+
+This involves constructing a segment on a given half-line of the same length as
+a given segment.
 
 \begin{NewMacroBox}{tkzDuplicateSegment}{\parg{pt1,pt2}\parg{pt3,pt4}\marg{pt5}}%
-This involves creating a segment on a given half-line of the same length as a given segment . It is in fact the definition of a point.
+This involves creating a segment on a given half-line of the same length as a
+given segment . It is in fact the definition of a point.
+
 \tkzcname{tkzDuplicateSegment} is the new name of \tkzcname{tkzDuplicateLen}.
+
 \medskip
 \begin{tabular}{lll}%
 \toprule
 arguments             & example & explication                         \\
 
 \midrule
-\TAline{(pt1,pt2)(pt3,pt4)\{pt5\}} {\tkzcname{tkzDuplicateSegment}(A,B)(E,F)\{C\}}{AC=EF and $C \in [AB)$} \\
+\TAline{(pt1,pt2)(pt3,pt4)\{pt5\}}
+{\tkzcname{tkzDuplicateSegment}(A,B)(E,F)\{C\}}{AC=EF and $C \in [AB)$} \\
+
 \bottomrule
 \end{tabular}
 
 \medskip
+
 The macro \tkzcname{tkzDuplicateLength} is identical to this one.
 \end{NewMacroBox}
 
 \begin{tkzexample}[latex=6cm,small]
-   \begin{tikzpicture}
-   \tkzDefPoint(0,0){A}
-   \tkzDefPoint(2,-3){B}
-   \tkzDefPoint(2,5){C}
-   \tkzDrawSegments[red](A,B A,C)
-   \tkzDuplicateSegment(A,B)(A,C)
-   \tkzGetPoint{D}
-   \tkzDrawSegment[green](A,D)
-   \tkzDrawPoints[color=red](A,B,C,D)
-   \tkzLabelPoints[above right=3pt](A,B,C,D)
- \end{tikzpicture}
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(2,-3){B}
+  \tkzDefPoint(2,5){C}
+  \tkzDrawSegments[red](A,B A,C)
+  \tkzDuplicateSegment(A,B)(A,C)
+  \tkzGetPoint{D}
+  \tkzDrawSegment[green](A,D)
+  \tkzDrawPoints[color=red](A,B,C,D)
+  \tkzLabelPoints[above right=3pt](A,B,C,D)
+\end{tikzpicture}
 \end{tkzexample}
 
+\newpage
+
 \subsubsection{Proportion of gold with \tkzcname{tkzDuplicateSegment}}
-\begin{tkzexample}[latex=7cm,small]
+
+\begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[rotate=-90,scale=.75]
- \tkzDefPoint(0,0){A}
- \tkzDefPoint(10,0){B}
- \tkzDefMidPoint(A,B)
- \tkzGetPoint{I}
- \tkzDefPointWith[orthogonal,K=-.75](B,A)
- \tkzGetPoint{C}
- \tkzInterLC(B,C)(B,I)  \tkzGetSecondPoint{D}
- \tkzDuplicateSegment(B,D)(D,A) \tkzGetPoint{E}
- \tkzInterLC(A,B)(A,E)   \tkzGetPoints{N}{M}
- \tkzDrawArc[orange,delta=10](D,E)(B)
- \tkzDrawArc[orange,delta=10](A,M)(E)
- \tkzDrawLines(A,B B,C A,D)
- \tkzDrawArc[orange,delta=10](B,D)(I)
- \tkzDrawPoints(A,B,D,C,M,I,N)
- \tkzLabelPoints(A,B,D,C,M,I,N)
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(10,0){B}
+  \tkzDefMidPoint(A,B)
+  \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal,K=-.75](B,A)
+  \tkzGetPoint{C}
+  \tkzInterLC(B,C)(B,I)  \tkzGetSecondPoint{D}
+  \tkzDuplicateSegment(B,D)(D,A) \tkzGetPoint{E}
+  \tkzInterLC(A,B)(A,E)   \tkzGetPoints{N}{M}
+  \tkzDrawArc[orange,delta=10](D,E)(B)
+  \tkzDrawArc[orange,delta=10](A,M)(E)
+  \tkzDrawLines(A,B B,C A,D)
+  \tkzDrawArc[orange,delta=10](B,D)(I)
+  \tkzDrawPoints(A,B,D,C,M,I,N)
+  \tkzLabelPoints(A,B,D,C,M,I,N)
 \end{tikzpicture}
 \end{tkzexample}
 
 \subsection{Segment length \tkzcname{tkzCalcLength}}
-There's an option in \TIKZ\  named \tkzname{veclen}. This option
- is used to calculate AB if A and B are two points.
 
-The only problem for me is that the version of \TIKZ\ is not accurate enough in some cases. My version uses the \tkzNamePack{xfp} package and is slower, but more accurate.
+There's an option in \TIKZ\  named \tkzname{veclen}. This option
+is used to calculate AB if A and B are two points.
+
+The only problem for me is that the version of \TIKZ\ is not accurate enough in
+some cases. My version uses the \tkzNamePack{xfp} package and is slower, but
+more accurate.
 
 \begin{NewMacroBox}{tkzCalcLength}{\oarg{local options}\parg{pt1,pt2}\marg{name of macro}}%
 The result is stored in a macro.
@@ -68,7 +83,8 @@ The result is stored in a macro.
 \toprule
 arguments    & example & explication       \\
 \midrule
-\TAline{(pt1,pt2)\{name of macro\}} {\tkzcname{tkzCalcLength}(A,B)\{dAB\}}{\tkzcname{dAB} gives $AB$ in pt}
+\TAline{(pt1,pt2)\{name of macro\}}
+{\tkzcname{tkzCalcLength}(A,B)\{dAB\}}{\tkzcname{dAB} gives $AB$ in pt}
 \bottomrule
 \end{tabular}
 
@@ -80,19 +96,24 @@ Only one option
 \toprule
  options    & default & example       \\
 \midrule
-\TOline{cm}  {false}{\tkzcname{tkzCalcLength}[cm](A,B)\{dAB\} \tkzcname{dAB} gives $AB$ in cm}
+\TOline{cm}  {false}{\tkzcname{tkzCalcLength}[cm](A,B)\{dAB\} \tkzcname{dAB}
+gives $AB$ in cm}
 \end{tabular}
 \end{NewMacroBox}
 
+\newpage
+
 \subsubsection{Compass square construction}
 
-\begin{tkzexample}[latex=7cm,small]
+\begin{tkzexample}[latex=7.25cm,small]
 \begin{tikzpicture}[scale=1]
-  \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,0){B}
   \tkzDrawLine[add= .6 and .2](A,B)
   \tkzCalcLength[cm](A,B)\tkzGetLength{dAB}
   \tkzDefLine[perpendicular=through A](A,B)
-  \tkzDrawLine(A,tkzPointResult) \tkzGetPoint{D}
+  \tkzDrawLine(A,tkzPointResult)
+  \tkzGetPoint{D}
   \tkzShowLine[orthogonal=through A,gap=2](A,B)
   \tkzMarkRightAngle(B,A,D)
   \tkzVecKOrth[-1](B,A)\tkzGetPoint{C}
@@ -104,50 +125,61 @@ Only one option
 \end{tikzpicture}
 \end{tkzexample}
 
-
 \subsection{Transformation from pt to cm}
-Not sure if this is necessary and it is only a division by 28.45274 and a multiplication by the same number. The macros are:
+
+Not sure if this is necessary and it is only a division by 28.45274 and a
+multiplication by the same number. The macros are:
 
 \begin{NewMacroBox}{tkzpttocm}{\parg{nombre}\marg{name of macro}}%
 \begin{tabular}{lll}%
 arguments    & example & explication     \\
 \midrule
-\TAline{(number){name of macro}} {\tkzcname{tkzpttocm}(120)\{len\}}{\tkzcname{len} gives a number of \tkzname{cm}}
+\TAline{(number){name of macro}}
+{\tkzcname{tkzpttocm}(120)\{len\}}{\tkzcname{len} gives a number of
+\tkzname{cm}}
 \bottomrule
 \end{tabular}
 
 \medskip
-You'll have to use \tkzcname{len} along with \tkzname{cm}. The result is stored in a macro.
+You'll have to use \tkzcname{len} along with \tkzname{cm}. The result is stored
+in a macro.
 \end{NewMacroBox}
 
 \subsection{Transformation from cm to pt}
+
 \begin{NewMacroBox}{tkzcmtopt}{\parg{nombre}\marg{name of macro}}%
 \begin{tabular}{lll}%
 arguments             & example & explication                         \\
 \midrule
-\TAline{(nombre)\{name of macro\}}{\tkzcname{tkzcmtopt}(5)\{len\}}{\tkzcname{len} length in \tkzname{pt}}
+\TAline{(nombre)\{name of
+macro\}}{\tkzcname{tkzcmtopt}(5)\{len\}}{\tkzcname{len} length in \tkzname{pt}}
 \bottomrule
 \end{tabular}
 
 \medskip
-The result is stored in a macro. The result can be used with \tkzcname{len} \tkzname{pt}.
+The result is stored in a macro. The result can be used with \tkzcname{len}
+\tkzname{pt}.
 \end{NewMacroBox}
 
+\newpage
+
 \subsubsection{Example}
-The macro \tkzcname{tkzDefCircle[radius](A,B)} defines the radius that we retrieve with \tkzcname{tkzGetLength}, but this result is in \tkzname{pt}.
+
+The macro \tkzcname{tkzDefCircle[radius](A,B)} defines the radius that we
+retrieve with \tkzcname{tkzGetLength}, but this result is in \tkzname{pt}.
 
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=.5]
- \tkzDefPoint(0,0){A}
- \tkzDefPoint(3,-4){B}
- \tkzDefCircle[through](A,B)
- \tkzGetLength{rABpt}
- \tkzpttocm(\rABpt){rABcm}
- \tkzDrawCircle(A,B)
- \tkzDrawPoints(A,B)
- \tkzLabelPoints(A,B)
- \tkzDrawSegment[dashed](A,B)
- \tkzLabelSegment(A,B){$\pgfmathprintnumber{\rABcm}$}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,-4){B}
+  \tkzDefCircle[through](A,B)
+  \tkzGetLength{rABpt}
+  \tkzpttocm(\rABpt){rABcm}
+  \tkzDrawCircle(A,B)
+  \tkzDrawPoints(A,B)
+  \tkzLabelPoints(A,B)
+  \tkzDrawSegment[dashed](A,B)
+  \tkzLabelSegment(A,B){$\pgfmathprintnumber{\rABcm}$}
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -163,38 +195,42 @@ The macro \tkzcname{tkzDefCircle[radius](A,B)} defines the radius that we retrie
 \begin{tabular}{lll}%
 arguments             & example & explication                         \\
 \midrule
-\TAline{(point)\{name of macro\}} {\tkzcname{tkzGetPointCoord}(A)\{A\}}{\tkzcname{Ax} and \tkzcname{Ay} give coordinates for $A$}
+\TAline{(point)\{name of macro\}}
+{\tkzcname{tkzGetPointCoord}(A)\{A\}}{\tkzcname{Ax} and \tkzcname{Ay} give
+coordinates for $A$}
 \end{tabular}
 
 \medskip
-Stores in two macros the coordinates of a point. If the name of the macro is \tkzname{p}, then \tkzcname{px} and \tkzcname{py} give the coordinates of the chosen point with the cm as unit.
+Stores in two macros the coordinates of a point. If the name of the macro is
+\tkzname{p}, then \tkzcname{px} and \tkzcname{py} give the coordinates of the
+chosen point with the cm as unit.
 \end{NewMacroBox}
+
+\vspace*{-20pt}
 
 \subsubsection{Coordinate transfer with \tkzcname{tkzGetPointCoord}}
 
 \begin{tkzexample}[width=8cm,small]
 \begin{tikzpicture}
- \tkzInit[xmax=5,ymax=3]
- \tkzGrid[sub,orange]
- \tkzAxeXY
- \tkzDefPoint(1,0){A}
- \tkzDefPoint(4,2){B}
- \tkzGetPointCoord(A){a}
- \tkzGetPointCoord(B){b}
- \tkzDefPoint(\ax,\ay){C}
- \tkzDefPoint(\bx,\by){D}
- \tkzDrawPoints[color=red](C,D)
+  \tkzInit[xmax=5,ymax=3]
+  \tkzGrid[sub,orange]
+  \tkzAxeXY
+  \tkzDefPoint(1,0){A}
+  \tkzDefPoint(4,2){B}
+  \tkzGetPointCoord(A){a}
+  \tkzGetPointCoord(B){b}
+  \tkzDefPoint(\ax,\ay){C}
+  \tkzDefPoint(\bx,\by){D}
+  \tkzDrawPoints[color=red](C,D)
 \end{tikzpicture}
 \end{tkzexample}
 
 \subsubsection{Sum of vectors with \tkzcname{tkzGetPointCoord}}
 \begin{tkzexample}[width=6cm,small]
 \begin{tikzpicture}[>=latex]
-  \tkzDefPoint(1,4){a}
-  \tkzDefPoint(3,2){b}
+  \tkzDefPoint(1,4){a} \tkzDefPoint(3,2){b}
   \tkzDefPoint(1,1){c}
-  \tkzDrawSegment[->,red](a,b)
-  \tkzGetPointCoord(c){c}
+  \tkzDrawSegment[->,red](a,b) \tkzGetPointCoord(c){c}
   \draw[color=blue,->](a) -- ([shift=(b)]\cx,\cy) ;
   \draw[color=purple,->](b) -- ([shift=(b)]\cx,\cy) ;
   \tkzDrawSegment[->,blue](a,c)

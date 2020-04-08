@@ -1,4 +1,8 @@
 % !TEX TS-program = lualatex
+% arara: lualatex: { interaction: batchmode, draft: yes }
+% arara: makeindex
+% arara: lualatex: { interaction: batchmode, draft: yes }
+% arara: lualatex: { interaction: batchmode, draft: no }
 %  encoding : utf8
 %  Documentation of tkz-euclide
 % Copyright 2020  Alain Matthes
@@ -45,9 +49,9 @@
                headinclude = false,
                index       = totoc,
                footinclude = false,
-               twoside,
-               headings    = small
-               ]{tkz-doc}
+               %twoside,
+               headings    = small]{tkz-doc}
+\usepackage{etoc}
 \gdef\tkznameofpack{tkz-euclide}
 \gdef\tkzversionofpack{3.06c}
 \gdef\tkzdateofpack{2020/04/06}
@@ -83,7 +87,7 @@
       pdftitle={\tkznameofpack},
       pdfcreator={\tkzengine}
 }
-\usepackage{tkzexample}
+\usepackage{tkzexample}% [saved]
 \usepackage{fontspec}
 \setmainfont{texgyrepagella}%
  [Extension = .otf ,
@@ -94,10 +98,8 @@
   Ligatures=TeX,
   Numbers={Lowercase,Monospaced}]
 \usepackage{unicode-math}
-\usepackage{fourier-otf}
-\makeatletter
-\if@tkzcadre \usepackage{zorna} \fi
-\makeatother
+\usepackage{fourier-otf} % ,zorna
+\newfontfamily\zorna{ORNA4___.TTF}
 \usepackage{datetime,multicol,lscape}
 \usepackage[english]{babel}
 \usepackage[autolanguage]{numprint}
@@ -105,10 +107,12 @@
 \usepackage{microtype}
 \usepackage{array,multirow,multido,booktabs}
 \usepackage{shortvrb,fancyvrb}
-
+\usepackage{csquotes}
 \renewcommand{\labelitemi}{--}
-\setlength\parindent{0pt}
+\setlength{\parindent}{0pt}
 \RequirePackage{makeidx}
+\usepackage[includemp=false,a4paper,top=2cm,bottom=3cm,left=2cm,right=2.5cm,%
+            heightrounded,marginparsep=0.3cm,marginparwidth=1.75cm]{geometry}
 \makeindex
 % \def\tkzref{\arabic{section}-\arabic{subsection}-\arabic{subsubsection}}
 % \renewenvironment{tkzexample}[1][]{%
@@ -118,9 +122,36 @@
 % }
 %<--------------------------------------------------------------------------->
 \AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
+
+%\usepackage{lua-visual-debug} % for debug box
+% First
+% rm -rf *.{aux,log,ltx,ind,idx,ilg,out,tmp,toc,atfi} & lualatex --draftmode "\PassOptionsToPackage{samples}{tkzexample}\input{TKZdoc-euclide-main.tex}"
+% Second
+% arara TKZdoc-euclide-main.tex
+% \overfullrule=2cm
+
+%\pgfkeys{%
+  %tkzsavedcode/.cd,
+  %prefix = tkzEuclide, outext = ltx}
+%\makeatletter
+%\ExamplePreamble{%
+  %\\documentclass{standalone}\n
+  %\\usepackage{tkz-euclide,tkz-fct}\n
+  %\% Example \thetkzoutNr, Section \tkzref\n
+  %\\begin{document}%
+%}
+%\ExamplePostamble{\\end{document}}
+
+%\renewcommand{\marginfont}{\small}
+%\renewcommand{\marginnotevadjust}{2.125ex}
+%\AttachfileConfig{%
+  %\typeout{Attach example file:}%
+  %\marginnote{\raggedrightmarginnote\texttt{%
+  %Ex\,{\FourierOrns X}\,\thetkzoutNr\,\guilsinglright\,\textattachfile[color=MidnightBlue,print=false]{#1}{\faFile*[regular]}}}%
+%}
+
 \begin{document}
 
-\parindent=0pt
 \author{\tkzauthorofpack}
 \title{\tkznameofpack}
 \date{\today}
@@ -128,8 +159,6 @@
 \thispagestyle{empty}
 \maketitle
 \null
-\makeatletter
-\if@tkzcadre
 \AddToShipoutPicture*{%
 \setlength\unitlength{1mm}
 \put(70,120){%
@@ -142,17 +171,14 @@
  fill=myblue!10,opacity=.5] (0,0) rectangle (300pt,240pt);
  \node[text width=240pt] at (150 pt,120 pt){%
   \begin{center}
-	  \color{MidnightBlue}
+      \color{MidnightBlue}
       \fontsize{24}{48}
-	  \selectfont tkz-euclide\\
-                tool for \\
+      \selectfont tkz-euclide\par
+                tool for\par
                 Euclidean Geometry
  \end{center}};
 \end{tikzpicture}}
 }
-\else
-\fi
-\makeatother
 
 \clearpage
 \tkzSetUpColors[background=white,text=darkgray]
@@ -160,31 +186,50 @@
 \let\rmfamily\ttfamily
 \nameoffile{\tkznameofpack}
 \defoffile{\lefthand\
-The \tkzname{\tkznameofpack} is a set of convenient macros for drawing in a plane (fundamental two-dimensional object) with a Cartesian coordinate system. It  handles the most classic situations in Euclidean Geometry. \tkzname{\tkznameofpack} is built on top of PGF and its associated front-end \TIKZ\ and is a (La)TeX-friendly drawing package. The aim is to provide a high-level user interface  to build graphics  relatively simply. It uses a Cartesian coordinate system orthogonal provided by the \tkzimp{tkz-base} package as well as tools to define the unique coordinates of points and to manipulate them. The idea is to allow you to follow step by step a construction that would be done by hand as naturally as possible.\\
-Now the package needs the version 3.0 of \TIKZ.  English is  not my native language so there  might be some errors.
-}
+The \tkzname{\tkznameofpack} is a set of convenient macros for drawing in a
+plane (fundamental two-dimensional object) with a Cartesian coordinate system.
+It  handles the most classic situations in Euclidean Geometry.
+\tkzname{\tkznameofpack} is built on top of PGF and its associated front-end
+\TIKZ\ and is a (La)TeX-friendly drawing package. The aim is to provide a
+high-level user interface  to build graphics  relatively simply. It uses a
+Cartesian coordinate system orthogonal provided by the \tkzimp{tkz-base} package
+as well as tools to define the unique coordinates of points and to manipulate
+them. The idea is to allow you to follow step by step a construction that would
+be done by hand as naturally as possible.\par
+Now the package needs the version 3.0 of \TIKZ. English is  not my native
+language so there  might be some errors.}
 
 \presentation
 
 \vspace*{1cm}
-\lefthand\ Firstly, I would like to thank \textbf{Till Tantau} for the  beautiful \LaTeX{}  package, namely  \href{http://sourceforge.net/projects/pgf/}{\TIKZ}.
+\lefthand{} Firstly, I would like to thank \textbf{Till Tantau} for the
+beautiful \LaTeX{}  package, namely \href{https://github.com/pgf-tikz/pgf}{\TIKZ}.
 
 \vspace*{12pt}
-\lefthand\ I received much valuable advice, remarks, corrections and examples from \tkzimp{Jean-Côme Charpentier}, \tkzimp{Josselin Noirel}, \tkzimp{Manuel Pégourié-Gonnard}, \tkzimp{Franck Pastor}, \tkzimp{David Arnold}, \tkzimp{Ulrike Fischer}, \tkzimp{Stefan Kottwitz}, \tkzimp{Christian Tellechea}, \tkzimp{Nicolas Kisselhoff}, \tkzimp{David Arnold}, \tkzimp{Wolfgang Büchel}, \tkzimp{John Kitzmiller}, \tkzimp{Dimitri Kapetas}, \tkzimp{Gaétan Marris}, \tkzimp{Mark Wibrow}, \tkzimp{Yves Combe} for his work on a protractor, \tkzimp{Paul Gaborit} and \tkzimp{Laurent Van Deik} for all his corrections, remarks and questions.
+\lefthand{} I received much valuable advice, remarks, corrections and examples
+from \tkzimp{Jean-Côme Charpentier}, \tkzimp{Josselin Noirel}, \tkzimp{Manuel Pégourié-Gonnard},
+\tkzimp{Franck Pastor}, \tkzimp{David Arnold}, \tkzimp{Ulrike Fischer}, \tkzimp{Stefan Kottwitz},
+\tkzimp{Christian Tellechea}, \tkzimp{Nicolas Kisselhoff}, \tkzimp{David Arnold},
+\tkzimp{Wolfgang Büchel}, \tkzimp{John Kitzmiller}, \tkzimp{Dimitri Kapetas},
+\tkzimp{Gaétan Marris}, \tkzimp{Mark Wibrow}, \tkzimp{Yves Combe} for his work on a protractor,
+\tkzimp{Paul Gaborit} and \tkzimp{Laurent} for all his corrections, remarks and questions.
 
 \vspace*{12pt}
-\lefthand\ I would also like to thank Eric Weisstein, creator of MathWorld:
-\href{http://mathworld.wolfram.com/about/author.html}{MathWorld}.
+\lefthand{} I would also like to thank Eric Weisstein, creator of MathWorld:
+\href{https://mathworld.wolfram.com/about/author.html}{MathWorld}.
 
 \vspace*{12pt}
-\lefthand\ You can find some examples on my site:
+\lefthand{} You can find some examples on my site:
 \href{http://altermundus.fr}{altermundus.fr}. \hspace{2cm} under construction!
 
 \vfill
-Please report typos or any other comments to this documentation to: \href{mailto:al.ma@mac.com}{\textcolor{blue}{Alain Matthes}}.
+
+Please report typos or any other comments to this documentation to:
+\href{mailto:al.ma@mac.com}{\textcolor{blue}{Alain Matthes}}.
 
 This file can be redistributed and/or modified under the terms of the \LaTeX{}
-Project Public License Distributed from \href{http://www.ctan.org/}{CTAN}\  archives.
+Project Public License Distributed from \href{http://www.ctan.org/}{CTAN}\
+archives.
 
 \clearpage
 \tableofcontents

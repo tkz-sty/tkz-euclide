@@ -2,60 +2,81 @@
 
 \subsection{Utility of \tkzname{tkz-base}}
 
-First of all, you don't have to deal with \TIKZ\ the size of the bounding box. Early versions of \tkzNamePack{tkz-euclide} did not control the size of the bounding box, now the size of the bounding box is limited.
+First of all, you don't have to deal with \TIKZ\ the size of the bounding box.
+Early versions of \tkzNamePack{tkz-euclide} did not control the size of the
+bounding box, now the size of the bounding box is limited.
 
- However, it is sometimes necessary to control the size of what will be displayed.
- To do this, you need to have prepared the bounding box you are going to work in, this is the role of \tkzNamePack{tkz-base} and its main macro \tkzNameMacro{tkzInit}. It is recommended to leave the graphic unit equal to 1 cm. For some drawings, it is interesting to fix the extreme values (xmin,xmax,ymin and ymax) and to "clip" the definition rectangle in order to control the size of the figure as well as possible.
+However, it is sometimes necessary to control the size of what will be
+displayed.
+To do this, you need to have prepared the bounding box you are going to work
+in, this is the role of \tkzNamePack{tkz-base} and its main macro
+\tkzNameMacro{tkzInit}. It is recommended to leave the graphic unit equal to 1
+cm. For some drawings, it is interesting to fix the extreme values
+(xmin,xmax,ymin and ymax) and to "clip" the definition rectangle in order to
+control the size of the figure as well as possible.
 
 The two macros in \tkzNamePack{tkz-base} that are useful for \tkzNamePack{tkz-euclide} are:
+
 \begin{itemize}
    \item \tkzcname{tkzInit}
    \item \tkzcname{tkzClip}
 \end{itemize}
 \vspace{20pt}
 
-To this, I added macros directly linked to the bounding box. You can now view it, backup it, restore it (see the documentation of \tkzNamePack{tkz-base} section Bounding Box).
+To this, I added macros directly linked to the bounding box. You can now view
+it, backup it, restore it (see the documentation of \tkzNamePack{tkz-base}
+section Bounding Box).
 
 \subsection{\tkzcname{tkzInit} and \tkzcname{tkzShowBB}}
+
 The rectangle around the figure shows you the bounding box.
+
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
- \tkzInit[xmin=-1,xmax=3,ymin=-1, ymax=3]
- \tkzGrid
- \tkzShowBB[red,line width=2pt]
+  \tkzInit[xmin=-1,xmax=3,ymin=-1, ymax=3]
+  \tkzGrid
+  \tkzShowBB[red,line width=2pt]
 \end{tikzpicture}
 \end{tkzexample}
 
 \subsection{\tkzcname{tkzClip}}
-The role of this macro is to "clip" the initial rectangle so that only the paths contained in this rectangle are drawn.
+
+The role of this macro is to \enquote{clip} the initial rectangle so that only the paths
+contained in this rectangle are drawn.
 
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
- \tkzInit[xmax=4, ymax=3]
- \tkzAxeXY
- \tkzGrid
- \tkzClip
- \draw[red] (-1,-1)--(5,2);
+  \tkzInit[xmax=4, ymax=3]
+  \tkzAxeXY
+  \tkzGrid
+  \tkzClip
+  \draw[red] (-1,-1)--(5,2);
 \end{tikzpicture}
 \end{tkzexample}
 
 It is possible to add a bit of space
+
+\vspace*{-10pt}
+
 \begin{tkzltxexample}[]
   \tkzClip[space=1]
 \end{tkzltxexample}
 
 \subsection{\tkzcname{tkzClip} and the option \tkzname{space}}
-This option allows you to add some space around the "clipped" rectangle.
+
+This option allows you to add some space around the \enquote{clipped} rectangle.
+
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
- \tkzInit[xmax=4, ymax=3]
- \tkzAxeXY
- \tkzGrid
- \tkzClip[space=1]
- \draw[red] (-1,-1)--(5,2);
+  \tkzInit[xmax=4, ymax=3]
+  \tkzAxeXY
+  \tkzGrid
+  \tkzClip[space=1]
+  \draw[red] (-1,-1)--(5,2);
 \end{tikzpicture}
 \end{tkzexample}
-The dimensions of the "clipped" rectangle are \tkzname{xmin-1}, \tkzname{ymin-1}, \tkzname{xmax+1} and \tkzname{ymax+1}.
 
+The dimensions of the \enquote{clipped} rectangle are \tkzname{xmin-1},
+\tkzname{ymin-1}, \tkzname{xmax+1} and \tkzname{ymax+1}.
 
 \endinput
