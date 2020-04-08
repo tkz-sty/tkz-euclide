@@ -1,32 +1,32 @@
-\section{FAQ} 
+\section{FAQ}
 
 \subsection{Most common errors}
  For the moment, I'm basing myself on my own, because having changed syntax several times, I've made a number of mistakes. This section is going to be expanded.
- 
+
 \begin{itemize}\setlength{\itemsep}{10pt}
 \item \tkzcname{tkzDrawPoint(A,B)} when you need  \tkzcname{tkzDrawPoints}.
 
 \item  \tkzcname{tkzGetPoint(A)} When defining an object, use braces and not brackets, so write: \tkzcname{tkzGetPoint\{A\}}.
-  
-\item \tkzcname{tkzGetPoint\{A\}} in place of \tkzcname{tkzGetFirstPoint\{A\}}. When a macro gives two points as results, either we retrieve these points using \tkzcname{tkzGetPoints\{A\}\{B\}}, or we retrieve only one of the two points, using \tkzcname{tkzGetFirstPoint\{A\}} or 
-\tkzcname{tkzGetSecondPoint\{A\}}. These two points can be used with the reference \tkzname{tkzFirstPointResult} or 
-\tkzname{tkzSecondPointResult}. It is possible that a third point is given as \tkzname{tkzPointResult}.  
-     
+
+\item \tkzcname{tkzGetPoint\{A\}} in place of \tkzcname{tkzGetFirstPoint\{A\}}. When a macro gives two points as results, either we retrieve these points using \tkzcname{tkzGetPoints\{A\}\{B\}}, or we retrieve only one of the two points, using \tkzcname{tkzGetFirstPoint\{A\}} or
+\tkzcname{tkzGetSecondPoint\{A\}}. These two points can be used with the reference \tkzname{tkzFirstPointResult} or
+\tkzname{tkzSecondPointResult}. It is possible that a third point is given as \tkzname{tkzPointResult}.
+
 \item \tkzcname{tkzDrawSegment(A,B A,C)} when you need \tkzcname{tkzDrawSegments}. It is possible to use only the versions with an "s" but it is less efficient!
 
 \item Mixing options and arguments; all macros that use a circle need to know the radius of the circle. If the radius is given by a measure then the option includes a \tkzname{R}.
 
-\item  \tkzcname{tkzDrawSegments[color = gray,style=dashed]\{B,B' C,C'\}} is a mistake. Only macros that define an object use braces.   
+\item  \tkzcname{tkzDrawSegments[color = gray,style=dashed]\{B,B' C,C'\}} is a mistake. Only macros that define an object use braces.
 
-\item The angles are given in degrees, more rarely in radians.  
+\item The angles are given in degrees, more rarely in radians.
 \item If an error occurs in a calculation when passing parameters, then it is better to make these calculations before calling the macro.
- 
+
 \item Do not mix the syntax of \tkzNamePack{pgfmath} and \tkzNamePack{xfp}. I've often chosen \tkzNamePack{xfp} but if you prefer pgfmath then do your calculations before passing parameters.
 
-\item Use of \tkzcname{tkzClip}: In order to get accurate results, I avoided using normalized vectors. The advantage of normalization is to control the dimension of the manipulated objects, the disadvantage is that with TeX, this implies inaccuracies. These inaccuracies are often small, in the order of a thousandth, but they lead to disasters if the drawing is enlarged. Not normalizing implies that some points are far away from the working area and \tkzcname{tkzClip} allows you to reduce the size of the drawing. 
+\item Use of \tkzcname{tkzClip}: In order to get accurate results, I avoided using normalized vectors. The advantage of normalization is to control the dimension of the manipulated objects, the disadvantage is that with TeX, this implies inaccuracies. These inaccuracies are often small, in the order of a thousandth, but they lead to disasters if the drawing is enlarged. Not normalizing implies that some points are far away from the working area and \tkzcname{tkzClip} allows you to reduce the size of the drawing.
 
 \item  An error occurs if you use the macro \tkzcname{tkzDrawAngle}
  with too small an angle. The error is produced by the \NameLib{decoration} library when you want to place a mark on an arc. Even if the mark is absent, the error is still present. It is possible to get around this difficulty with the option \tkzname{mkpos=.2} for example, which will place the mark before the arc. Another possibility is to use the macro \tkzcname{tkzFillAngle}.
 
-\end{itemize}    
+\end{itemize}
 \endinput

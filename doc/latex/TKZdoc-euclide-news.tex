@@ -7,9 +7,9 @@ In the future, the definition macros being isolated, it will be easier to introd
 An important novelty is the recent replacement of the \tkzNamePack{fp} package by \tkzNamePack{xfp}.  This is to improve the calculations a little bit more and to make it easier to use.
 
 
-Here are some of the changes. 
+Here are some of the changes.
 \vspace{1cm}
- \begin{itemize}\setlength{\itemsep}{10pt} 
+ \begin{itemize}\setlength{\itemsep}{10pt}
 
 \item Improved code and bug fixes;
 
@@ -29,9 +29,9 @@ Here are some of the changes.
 \item |\tkzDrawMedians| trace and create midpoints on the sides of a triangle. The creation and drawing separation is not respected so it is preferable to first create the coordinates of these points with |\tkzSpcTriangle[median]| and then to choose the ones you are going to draw with |\tkzDrawSegments| or |\tkzDrawLines|;
 
 \item |\tkzDrawMedians(A,B)(C)| is now spelled |\tkzDrawMedians(A,C,B)|. This defines the median from $C$;
-  
+
 \item Another example |\tkzDrawTriangle[equilateral]| was handy but it is better to get the third point with |\tkzDefTriangle[equilateral]| and then draw with |\tkzDrawPolygon|;
-  
+
 \item |\tkzDefRandPointOn| is replaced by |\tkzGetRandPointOn|;\item now |\tkzTangent| is replaced by |\tkzDefTangent|;
 
 \item You can use |global path name| if you want find intersection  but it's very slow like in \TIKZ.

@@ -4,15 +4,15 @@
 
  \begin{NewMacroBox}{tkzShowLine}{\oarg{local options}\parg{pt1,pt2} or \parg{pt1,pt2,pt3}}%
 These constructions concern mediatrices, perpendicular or parallel lines passing through a given point and bisectors. The arguments are therefore lists of two or three points. Several options allow the adjustment of the constructions. The idea of this macro comes from \tkzimp{Yves Combe}.
-  
 
-\medskip 
+
+\medskip
 \begin{tabular}{lll}%
 \toprule
-options      & default & definition    \\ 
+options      & default & definition    \\
 \midrule
-\TOline{mediator}{mediator}{displays the constructions of a mediator} 
-\TOline{perpendicular}{mediator}{constructions for a perpendicular} 
+\TOline{mediator}{mediator}{displays the constructions of a mediator}
+\TOline{perpendicular}{mediator}{constructions for a perpendicular}
 \TOline{orthogonal}{mediator}{idem}
 \TOline{bisector}{mediator}{constructions for a bisector}
 \TOline{K}{1}{circle within a triangle }
@@ -26,57 +26,57 @@ options      & default & definition    \\
 You have to add, of course, all the styles of \TIKZ\ for tracings\dots
 \end{NewMacroBox}
 
-\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{parallel}} 
+\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{parallel}}
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
  \tkzDefPoints{-1.5/-0.25/A,1/-0.75/B,-1.5/2/C}
  \tkzDrawLine(A,B)
- \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{c} 
+ \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{c}
  \tkzShowLine[parallel=through C](A,B)
  \tkzDrawLine(C,c) \tkzDrawPoints(A,B,C,c)
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{perpendicular}} 
+\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{perpendicular}}
 \begin{tkzexample}[latex=5cm,small]
 \begin{tikzpicture}
-\tkzDefPoints{0/0/A, 3/2/B, 2/2/C} 
+\tkzDefPoints{0/0/A, 3/2/B, 2/2/C}
 \tkzDefLine[perpendicular=through C,K=-.5](A,B) \tkzGetPoint{c}
 \tkzShowLine[perpendicular=through C,K=-.5,gap=3](A,B)
-\tkzDefPointBy[projection=onto A--B](c)\tkzGetPoint{h} 
-\tkzMarkRightAngle[fill=lightgray](A,h,C) 
-\tkzDrawLines[add=.5 and .5](A,B C,c) 
+\tkzDefPointBy[projection=onto A--B](c)\tkzGetPoint{h}
+\tkzMarkRightAngle[fill=lightgray](A,h,C)
+\tkzDrawLines[add=.5 and .5](A,B C,c)
 \tkzDrawPoints(A,B,C,h,c)
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{bisector}} 
+\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{bisector}}
 \begin{tkzexample}[latex=7 cm,small]
 \begin{tikzpicture}[scale=1.25]
  \tkzDefPoints{0/0/A, 4/2/B, 1/4/C}
- \tkzDrawPolygon(A,B,C) 
+ \tkzDrawPolygon(A,B,C)
  \tkzSetUpCompass[color=brown,line width=.1 pt]
  \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
  \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
  \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
- \tkzDefPointBy[projection = onto A--B](I) 
+ \tkzDefPointBy[projection = onto A--B](I)
    \tkzGetPoint{H}
  \tkzShowLine[bisector,size=2,gap=3,blue](B,A,C)
- \tkzShowLine[bisector,size=2,gap=3,blue](C,B,A)   
+ \tkzShowLine[bisector,size=2,gap=3,blue](C,B,A)
  \tkzDrawCircle[radius,color=blue,%
- line width=.2pt](I,H) 
+ line width=.2pt](I,H)
  \tkzDrawSegments[color=red!50](I,tkzPointResult)
- \tkzDrawLines[add=0 and -0.3,color=red!50](A,a B,b) 
+ \tkzDrawLines[add=0 and -0.3,color=red!50](A,a B,b)
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{mediator}} 
+\subsubsection{Example of \tkzcname{tkzShowLine} and \tkzname{mediator}}
 \begin{tkzexample}[latex=7 cm,small]
 \begin{tikzpicture}
 \tkzDefPoint(2,2){A}
 \tkzDefPoint(5,4){B}
-\tkzDrawPoints(A,B) 
-\tkzShowLine[mediator,color=orange,length=1](A,B) 
+\tkzDrawPoints(A,B)
+\tkzShowLine[mediator,color=orange,length=1](A,B)
 \tkzGetPoints{i}{j}
 \tkzDrawLines[add=-0.1 and -0.1](i,j)
 \tkzDrawLines(A,B)
@@ -87,14 +87,14 @@ You have to add, of course, all the styles of \TIKZ\ for tracings\dots
 \subsection{Constructions of certain transformations \addbs{tkzShowTransformation}}
 \begin{NewMacroBox}{tkzShowTransformation}{\oarg{local options}\parg{pt1,pt2} or \parg{pt1,pt2,pt3}}%
 These constructions concern orthogonal symmetries, central symmetries, orthogonal projections and translations. Several options allow the adjustment of the constructions. The idea of this macro comes from \tkzimp{Yves Combe}.
-  
-\medskip 
+
+\medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                        \\ 
+options             & default & definition                        \\
 \midrule
-\TOline{reflection= over pt1--pt2}{reflection}{constructions of orthogonal symmetry} 
-\TOline{symmetry=center pt}{reflection}{constructions of central symmetry} 
+\TOline{reflection= over pt1--pt2}{reflection}{constructions of orthogonal symmetry}
+\TOline{symmetry=center pt}{reflection}{constructions of central symmetry}
 \TOline{projection=onto pt1--pt2}{reflection}{constructions of a projection}
 \TOline{translation=from pt1 to pt2}{reflection}{constructions of a translation}
 \TOline{K}{1}{circle within a triangle }
@@ -105,7 +105,7 @@ options             & default & definition                        \\
 \end{tabular}
 \end{NewMacroBox}
 
-\subsubsection{Example of the use of \tkzcname{tkzShowTransformation}} 
+\subsubsection{Example of the use of \tkzcname{tkzShowTransformation}}
 
 
 \begin{tkzexample}[latex=6cm,small]
@@ -114,54 +114,54 @@ options             & default & definition                        \\
   \tkzDefPoint(70:4){B} \tkzDrawPoints(A,O,B)
   \tkzLabelPoints(A,O,B)
   \tkzDrawLine[add= 2 and 2](O,A)
-  \tkzDefPointBy[translation=from O to A](B) 
+  \tkzDefPointBy[translation=from O to A](B)
   \tkzGetPoint{C}
   \tkzDrawPoint[color=orange](C)  \tkzLabelPoints(C)
   \tkzShowTransformation[translation=from O to A,%
-             length=2](B) 
-  \tkzDrawSegments[->,color=orange](O,A B,C)  
+             length=2](B)
+  \tkzDrawSegments[->,color=orange](O,A B,C)
   \tkzDefPointBy[reflection=over O--A](B) \tkzGetPoint{E}
   \tkzDrawSegment[blue](B,E)
-  \tkzDrawPoint[color=blue](E)\tkzLabelPoints(E) 
-  \tkzShowTransformation[reflection=over O--A,size=2](B)   
-  \tkzDefPointBy[symmetry=center O](B) \tkzGetPoint{F} 
+  \tkzDrawPoint[color=blue](E)\tkzLabelPoints(E)
+  \tkzShowTransformation[reflection=over O--A,size=2](B)
+  \tkzDefPointBy[symmetry=center O](B) \tkzGetPoint{F}
   \tkzDrawSegment[color=green](B,F)
   \tkzDrawPoint[color=green](F)\tkzLabelPoints(F)
   \tkzShowTransformation[symmetry=center O,%
-                      length=2](B) 
-  \tkzDefPointBy[projection=onto O--A](C) 
-  \tkzGetPoint{H}    
+                      length=2](B)
+  \tkzDefPointBy[projection=onto O--A](C)
+  \tkzGetPoint{H}
   \tkzDrawSegments[color=magenta](C,H)
   \tkzDrawPoint[color=magenta](H)\tkzLabelPoints(H)
   \tkzShowTransformation[projection=onto O--A,%
-                         color=red,size=3,gap=-2](C)   
+                         color=red,size=3,gap=-2](C)
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Another example of the use of \tkzcname{tkzShowTransformation}} 
+\subsubsection{Another example of the use of \tkzcname{tkzShowTransformation}}
 
 You'll find this figure again, but without the construction features.
-\begin{tkzexample}[latex=7cm,small]  
+\begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.6]
   \tkzDefPoints{0/0/A,8/0/B,3.5/10/I}
-  \tkzDefMidPoint(A,B) \tkzGetPoint{O} 
-  \tkzDefPointBy[projection=onto A--B](I) 
+  \tkzDefMidPoint(A,B) \tkzGetPoint{O}
+  \tkzDefPointBy[projection=onto A--B](I)
      \tkzGetPoint{J}
   \tkzInterLC(I,A)(O,A)  \tkzGetPoints{M'}{M}
-  \tkzInterLC(I,B)(O,A)  \tkzGetPoints{N}{N'}    
+  \tkzInterLC(I,B)(O,A)  \tkzGetPoints{N}{N'}
   \tkzDrawSemiCircle[diameter](A,B)
-  \tkzDrawSegments(I,A I,B A,B B,M A,N) 
-  \tkzMarkRightAngles(A,M,B A,N,B)  
+  \tkzDrawSegments(I,A I,B A,B B,M A,N)
+  \tkzMarkRightAngles(A,M,B A,N,B)
   \tkzDrawSegment[style=dashed,color=blue](I,J)
   \tkzShowTransformation[projection=onto A--B,
                   color=red,size=3,gap=-3](I)
   \tkzDrawPoints[color=red](M,N)
-  \tkzDrawPoints[color=blue](O,A,B,I) 
-  \tkzLabelPoints(O)  
-  \tkzLabelPoints[above right](N,I) 
-  \tkzLabelPoints[below left](M,A) 
-\end{tikzpicture} 
-\end{tkzexample} 
+  \tkzDrawPoints[color=blue](O,A,B,I)
+  \tkzLabelPoints(O)
+  \tkzLabelPoints[above right](N,I)
+  \tkzLabelPoints[below left](M,A)
+\end{tikzpicture}
+\end{tkzexample}
 
 %<---------------------------------------------------------------------->
 \section{Different points}

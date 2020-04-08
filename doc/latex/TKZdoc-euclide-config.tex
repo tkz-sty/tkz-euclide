@@ -5,16 +5,16 @@ It is a macro that allows you to define the style of all the lines.
 
 \begin{NewMacroBox}{tkzSetUpLine}{\oarg{local options}}%
 \begin{tabular}{lll}%
-options &  default & definition                 \\ 
+options &  default & definition                 \\
 \midrule
-\TOline{color}{black}{colour of the construction lines} 
-\TOline{line width}{0.4pt}{thickness of the construction lines} 
+\TOline{color}{black}{colour of the construction lines}
+\TOline{line width}{0.4pt}{thickness of the construction lines}
 \TOline{style}{solid}{style of construction lines}
-\TOline{add}{.2 and .2}{changing the length of a line segment} 
-\end{tabular}  
+\TOline{add}{.2 and .2}{changing the length of a line segment}
+\end{tabular}
 \end{NewMacroBox}
 
-\subsubsection{Example 1: change line width} 
+\subsubsection{Example 1: change line width}
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
    \tkzSetUpLine[color=blue,line width=1pt]
@@ -22,7 +22,7 @@ options &  default & definition                 \\
     \tkzDefPoint(10,6){C}
     \tkzDefPoint( 0,6){A}
     \tkzDefPoint(10,0){B}
-    \tkzDefPointBy[projection = onto B--A](C) 
+    \tkzDefPointBy[projection = onto B--A](C)
     \tkzGetPoint{H}
     \tkzDrawPolygon(A,B,C)
     \tkzMarkRightAngle[size=.4,fill=blue!20](B,C,A)
@@ -33,9 +33,9 @@ options &  default & definition                 \\
  \tkzLabelSegment[right](A,C){$b$}
  \tkzLabelSegment[left](A,B){$c$}
  \tkzLabelSegment[color=red](C,H){$h$}
- \tkzDrawPoints(A,B,C) 
+ \tkzDrawPoints(A,B,C)
  \tkzLabelPoints[above left](H)
- \tkzLabelPoints(B,C) 
+ \tkzLabelPoints(B,C)
  \tkzLabelPoints[above](A)
 \end{tikzpicture}
 \end{tkzexample}
@@ -43,25 +43,25 @@ options &  default & definition                 \\
 
 
 
-\subsubsection{Example 2: change style of line} 
+\subsubsection{Example 2: change style of line}
 
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}[scale=.6] 
+\begin{tikzpicture}[scale=.6]
  \tkzDefPoint(1,0){A} \tkzDefPoint(4,0){B}
  \tkzDefPoint(1,1){C} \tkzDefPoint(5,1){D}
  \tkzDefPoint(1,2){E} \tkzDefPoint(6,2){F}
  \tkzDefPoint(0,4){A'}\tkzDefPoint(3,4){B'}
  \tkzCalcLength[cm](C,D)  \tkzGetLength{rCD}
- \tkzCalcLength[cm](E,F)  \tkzGetLength{rEF} 
- \tkzInterCC[R](A',\rCD cm)(B',\rEF cm) 
- \tkzGetPoints{I}{J} 
+ \tkzCalcLength[cm](E,F)  \tkzGetLength{rEF}
+ \tkzInterCC[R](A',\rCD cm)(B',\rEF cm)
+ \tkzGetPoints{I}{J}
  \tkzSetUpLine[style=dashed,color=gray]
  \tkzDrawLine(A',B')
  \tkzCompass(A',B')
- \tkzDrawSegments(A,B C,D E,F) 
+ \tkzDrawSegments(A,B C,D E,F)
  \tkzDrawCircle[R](A',\rCD cm)
  \tkzDrawCircle[R](B',\rEF cm)
- \tkzSetUpLine[color=red] 
+ \tkzSetUpLine[color=red]
  \tkzDrawSegments(A',I B',I)
  \tkzDrawPoints(A,B,C,D,E,F,A',B',I,J)
  \tkzLabelPoints(A,B,C,D,E,F,A',B',I,J)
@@ -79,25 +79,25 @@ options &  default & definition                 \\
 \end{tkzexample}
 
 
-\subsection{Points style} 
+\subsection{Points style}
 \begin{NewMacroBox}{tkzSetUpPoint}{\oarg{local options}}%
 \begin{tabular}{lll}%
-options &  default & definition                 \\ 
+options &  default & definition                 \\
 \midrule
-\TOline{color}{black}{point color} 
-\TOline{size}{3pt}{point size} 
-\TOline{fill}{black!50}{inside point color} 
-\TOline{shape}{circle}{point shape circle or cross} 
+\TOline{color}{black}{point color}
+\TOline{size}{3pt}{point size}
+\TOline{fill}{black!50}{inside point color}
+\TOline{shape}{circle}{point shape circle or cross}
 \end{tabular}
 \end{NewMacroBox}
 
 \subsubsection{Use of \tkzcname{tkzSetUpPoint}}
 \begin{tkzexample}[latex=8cm,small]
-\begin{tikzpicture} 
-  \tkzSetUpPoint[shape = cross out,color=blue] 
-  \tkzInit[xmax=100,xstep=20,ymax=.5] 
-  \tkzDefPoint(20,1){A} 
-  \tkzDefPoint(80,0){B} 
+\begin{tikzpicture}
+  \tkzSetUpPoint[shape = cross out,color=blue]
+  \tkzInit[xmax=100,xstep=20,ymax=.5]
+  \tkzDefPoint(20,1){A}
+  \tkzDefPoint(80,0){B}
   \tkzDrawLine(A,B)
   \tkzDrawPoints(A,B)
 \end{tikzpicture}
@@ -123,36 +123,36 @@ options &  default & definition                 \\
   \end{tikzpicture}
 \end{tkzexample}
 
- 
- 
+
+
 \subsection{Use of \tkzcname{tkzSetUpCompass}}
 
 \begin{NewMacroBox}{tkzSetUpCompass}{\oarg{local options}}%
 \begin{tabular}{lll}%
-options &  default & definition                 \\ 
+options &  default & definition                 \\
 \midrule
-\TOline{color}{black}{color of construction arcs} 
-\TOline{line width}{0.4pt}{thickness of construction arcs} 
-\TOline{style}{solid}{style of the building arcs} 
+\TOline{color}{black}{color of construction arcs}
+\TOline{line width}{0.4pt}{thickness of construction arcs}
+\TOline{style}{solid}{style of the building arcs}
 \end{tabular}
-\end{NewMacroBox}   
+\end{NewMacroBox}
 
 \subsubsection{Use of \tkzcname{tkzSetUpCompass} with bisector}
 \begin{tkzexample}[latex=7cm,small]
   \begin{tikzpicture}[scale=0.75]
-    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}      
-    \tkzDrawPolygon(A,B,C)  
-    \tkzSetUpCompass[color=red,line width=.2 pt] 
+    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+    \tkzDrawPolygon(A,B,C)
+    \tkzSetUpCompass[color=red,line width=.2 pt]
     \tkzDefLine[bisector](A,C,B) \tkzGetPoint{c}
     \tkzDefLine[bisector](B,A,C) \tkzGetPoint{a}
-    \tkzDefLine[bisector](C,B,A) \tkzGetPoint{b} 
+    \tkzDefLine[bisector](C,B,A) \tkzGetPoint{b}
     \tkzShowLine[bisector,size=2,gap=3](A,C,B)
     \tkzShowLine[bisector,size=2,gap=3](B,A,C)
     \tkzShowLine[bisector,size=1,gap=2](C,B,A)
-    \tkzDrawLines[add=0 and 0 ](B,b)    
-    \tkzDrawLines[add=0 and -.4 ](A,a  C,c)  
+    \tkzDrawLines[add=0 and 0 ](B,b)
+    \tkzDrawLines[add=0 and -.4 ](A,a  C,c)
     \tkzLabelPoints(A,B) \tkzLabelPoints[above](C)
-  \end{tikzpicture}      
+  \end{tikzpicture}
   \end{tkzexample}
 
 \subsubsection{Another example of of\tkzcname{tkzSetUpCompass}}
@@ -165,7 +165,7 @@ options &  default & definition                 \\
     \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
     \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
     \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
-    \tkzDefPointBy[projection= onto A--B](I) 
+    \tkzDefPointBy[projection= onto A--B](I)
     \tkzGetPoint{H}
     \tkzMarkRightAngle(I,H,A)
     \tkzDrawCircle[radius,color=red](I,H)
@@ -182,14 +182,14 @@ options &  default & definition                 \\
 You can set the normal style with |tkzSetUpPoint| and your own style
 
 \begin{tkzexample}[latex=2cm,small]
-\tkzSetUpPoint[color=blue!50!white, fill=gray!20!red!50!white] 
+\tkzSetUpPoint[color=blue!50!white, fill=gray!20!red!50!white]
 \tikzset{/tikz/mystyle/.style={color=blue!20!black,fill=blue!20}}
   \begin{tikzpicture}
     \tkzDefPoint(0,0){O}
-    \tkzDefPoint(0,1){A} 
+    \tkzDefPoint(0,1){A}
     \tkzDrawPoints(O) % general style
     \tkzDrawPoints[mystyle,size=4](A) % my style
-    \tkzLabelPoints(O,A) 
+    \tkzLabelPoints(O,A)
   \end{tikzpicture}
 \end{tkzexample}
 

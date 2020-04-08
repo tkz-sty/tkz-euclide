@@ -9,11 +9,11 @@
 \end{itemize}
 
 Even if it's possible, I think it's a bad idea to work directly with coordinates. Preferable is to use named points.
-A point is defined if it has a name linked to a unique pair of decimal numbers. 
+A point is defined if it has a name linked to a unique pair of decimal numbers.
  Let $(x,y)$ or $(a:d)$  i.e. ($x$ abscissa, $y$ ordinate) or  ($a$ angle: $d$ distance).
  This is possible because the plan has been provided with an orthonormed Cartesian coordinate system.   The working axes are supposed to be (ortho)normed with unity equal to $1$~cm or something equivalent like $0.39370$~in.
  Now by default if you use a grid or axes, the rectangle used is defined by the coordinate points: $(0,0)$ and $(10,10)$. It's the macro \tkzcname{tkzInit} of the package \tkzNamePack{tkz-base} that creates this rectangle. Look at the following two codes and the result of their compilation:
- 
+
 \begin{tkzexample}[latex=10cm,small]
 \begin{tikzpicture}
 \tkzGrid
@@ -33,7 +33,7 @@ A point is defined if it has a name linked to a unique pair of decimal numbers.
  \tkzShowBB[line width=2pt,teal]
 \end{tikzpicture}
 \end{tkzexample}
- 
+
  The Cartesian coordinate $(a,b)$ refers to the
  point $a$ centimeters in the $x$-direction and $b$ centimeters in the
  $y$-direction.
@@ -41,23 +41,23 @@ A point is defined if it has a name linked to a unique pair of decimal numbers.
  A point in polar coordinates requires an angle $\alpha$, in degrees,
  and a distance  $d$ from the origin with a dimensional
  unit by default it's the \texttt{cm}.
- 
+
 
 \begin{minipage}[b]{0.5\textwidth}
- Cartesian coordinates 
+ Cartesian coordinates
 \begin{tkzexample}[vbox,small]
-\begin{tikzpicture}[scale=1] 
-  \tkzInit[xmax=5,ymax=5] 
+\begin{tikzpicture}[scale=1]
+  \tkzInit[xmax=5,ymax=5]
   \tkzDefPoints{0/0/O,1/0/I,0/1/J}
   \tkzDrawXY[noticks,>=latex]
-  \tkzDefPoint(3,4){A} 
-  \tkzDrawPoints(O,A) 
-  \tkzLabelPoint(A){$A_1 (x_1,y_1)$} 
+  \tkzDefPoint(3,4){A}
+  \tkzDrawPoints(O,A)
+  \tkzLabelPoint(A){$A_1 (x_1,y_1)$}
   \tkzShowPointCoord[xlabel=$x_1$,
-                     ylabel=$y_1$](A) 
+                     ylabel=$y_1$](A)
   \tkzLabelPoints(O,I)
   \tkzLabelPoints[left](J)
-  \tkzDrawPoints[shape=cross](I,J) 
+  \tkzDrawPoints[shape=cross](I,J)
 \end{tikzpicture}
 \end{tkzexample}%
 \end{minipage}
@@ -68,18 +68,18 @@ A point is defined if it has a name linked to a unique pair of decimal numbers.
   \tkzInit[xmax=5,ymax=5]
   \tkzDefPoints{0/0/O,1/0/I,0/1/J}
   \tkzDefPoint(40:4){P}
-  \tkzDrawXY[noticks,>=triangle 45]    
+  \tkzDrawXY[noticks,>=triangle 45]
   \tkzDrawSegment[dim={$d$,
                  16pt,above=6pt}](O,P)
-  \tkzDrawPoints(O,P) 
-  \tkzMarkAngle[mark=none,->](I,O,P) 
+  \tkzDrawPoints(O,P)
+  \tkzMarkAngle[mark=none,->](I,O,P)
   \tkzFillAngle[fill=blue!20,
-                opacity=.5](I,O,P) 
-  \tkzLabelAngle[pos=1.25](I,O,P){$\alpha$}  
-  \tkzLabelPoint(P){$P  (\alpha : d )$} 
-  \tkzDrawPoints[shape=cross](I,J) 
+                opacity=.5](I,O,P)
+  \tkzLabelAngle[pos=1.25](I,O,P){$\alpha$}
+  \tkzLabelPoint(P){$P  (\alpha : d )$}
+  \tkzDrawPoints[shape=cross](I,J)
   \tkzLabelPoints(O,I)
-  \tkzLabelPoints[left](J) 
+  \tkzLabelPoints[left](J)
 \end{tikzpicture}
 \end{tkzexample}
 \end{minipage}%
@@ -90,7 +90,7 @@ The \tkzNameMacro{tkzDefPoint} macro is used to define a point by assigning coor
 
 \begin{NewMacroBox}{tkzDefPoint}{\oarg{local options}\parg{$x,y$}\marg{name} or \parg{$\alpha$:$d$}\marg{name}}%
 \begin{tabular}{lll}%
-arguments &  default & definition  \\ 
+arguments &  default & definition  \\
 \midrule
 \TAline{($x,y$)}{no default}{$x$ and $y$ are two dimensions, by default in cm.}
 \TAline{($\alpha$:$d$)}{no default}{$\alpha$ is an angle in degrees, $d$ is a dimension}
@@ -104,7 +104,7 @@ The obligatory arguments of this macro are two dimensions expressed with decimal
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition  \\ 
+options             & default & definition  \\
 \midrule
 \TOline{label} {no default} {allows you to place a label at a predefined distance}
 \TOline{shift} {no default} {adds $(x,y)$ or $(\alpha:d)$ to all coordinates}
@@ -112,13 +112,13 @@ options             & default & definition  \\
 \end{NewMacroBox}
 
 \subsubsection{Cartesian coordinates }
- 
+
 \begin{tkzexample}[latex=7cm,small]
   \begin{tikzpicture}
   \tkzInit[xmax=5,ymax=5]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(4,0){B}
-  \tkzDefPoint(0,3){C} 
+  \tkzDefPoint(0,3){C}
   \tkzDrawPolygon(A,B,C)
   \tkzDrawPoints(A,B,C)
   \end{tikzpicture}
@@ -259,7 +259,7 @@ arguments &  default  & example  \\
 
 \medskip
 \begin{tabular}{lll}%
-options             & default & definition   \\ 
+options             & default & definition   \\
 \midrule
 \TOline{shift} {no default} {Adds $(x,y)$ or $(\alpha:d)$ to all coordinates}
 \end{tabular}
@@ -385,17 +385,17 @@ The centres of the two homotheties in which two circles correspond are called ex
 \begin{tikzpicture}[scale=.75,rotate=-30]
  \tkzDefPoint(0,0){O}
  \tkzDefPoint(4,-5){A}
- \tkzDefIntSimilitudeCenter(O,3)(A,1) 
+ \tkzDefIntSimilitudeCenter(O,3)(A,1)
  \tkzGetPoint{I}
- \tkzExtSimilitudeCenter(O,3)(A,1) 
+ \tkzExtSimilitudeCenter(O,3)(A,1)
  \tkzGetPoint{J}
- \tkzDefTangent[from with R= I](O,3 cm)  
+ \tkzDefTangent[from with R= I](O,3 cm)
  \tkzGetPoints{D}{E}
- \tkzDefTangent[from with R= I](A,1 cm)  
+ \tkzDefTangent[from with R= I](A,1 cm)
  \tkzGetPoints{D'}{E'}
- \tkzDefTangent[from  with R= J](O,3 cm) 
+ \tkzDefTangent[from  with R= J](O,3 cm)
  \tkzGetPoints{F}{G}
- \tkzDefTangent[from with R= J](A,1 cm)   
+ \tkzDefTangent[from with R= J](A,1 cm)
  \tkzGetPoints{F'}{G'}
  \tkzDrawCircle[R,fill=red!50,opacity=.3](O,3 cm)
  \tkzDrawCircle[R,fill=blue!50,opacity=.3](A,1 cm)
