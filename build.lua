@@ -2,10 +2,10 @@
 
 module = "tkz-euclide"
 
-tkzeuclidev = "3.05c"
-tkzeuclided = "2020/03/08"
-doctkzeuclv = tkzeuclidev -- Same as "3.05c"
-doctkzeucld = tkzeuclided -- Same as "2020/03/08"
+tkzeuclidev = "3.06c"
+tkzeuclided = "2020/04/06"
+doctkzeuclv = tkzeuclidev -- Same as "3.06c"
+doctkzeucld = tkzeuclided -- Same as "2020/04/06"
 
 -- Setting variables for .zip file (CTAN)
 textfiles  = {"README.md"}
