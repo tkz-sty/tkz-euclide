@@ -1,5 +1,5 @@
 % !TEX TS-program = lualatex
-%  encoding : utf8
+%  encoding : utf8 
 %  Documentation of tkz-euclide
 % Copyright 2020  Alain Matthes
 % This work may be distributed and/or modified under the
@@ -11,7 +11,7 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-%
+% 
 % The Current Maintainer of this work is Alain Matthes.
 %
 % This work consists of the files:
@@ -46,24 +46,24 @@
                index       = totoc,
                footinclude = false,
                twoside,
-               headings    = small]{tkz-doc}
-\usepackage{etoc}
+               headings    = small
+               ]{tkz-doc}
 \gdef\tkznameofpack{tkz-euclide}
-\gdef\tkzversionofpack{3.05c}
-\gdef\tkzdateofpack{2020/03/08}
+\gdef\tkzversionofpack{3.06c}
+\gdef\tkzdateofpack{2020/03/18}
 \gdef\tkznameofdoc{doc-tkz-euclide}
-\gdef\tkzversionofdoc{3.05c}
-\gdef\tkzdateofdoc{2020/03/08}
+\gdef\tkzversionofdoc{3.06c} 
+\gdef\tkzdateofdoc{2020/03/18}
 \gdef\tkzauthorofpack{Alain Matthes}
 \gdef\tkzadressofauthor{}
 \gdef\tkznamecollection{AlterMundus}
 \gdef\tkzurlauthor{}
 \gdef\tkzengine{lualatex}
 \gdef\tkzurlauthorcom{http://altermundus.fr}
-% -- Packages ---------------------------------------------------
+% -- Packages ---------------------------------------------------          
 \usepackage[dvipsnames,svgnames]{xcolor}
 \usepackage{calc}
-\usepackage{tkz-euclide}
+\usepackage{tkz-euclide} 
 \usepackage[colorlinks]{hyperref}
 \hypersetup{
       linkcolor=Gray,
@@ -94,48 +94,49 @@
   Ligatures=TeX,
   Numbers={Lowercase,Monospaced}]
 \usepackage{unicode-math}
-\usepackage{fourier-otf} % ,zorna
-\newfontfamily\zorna{ORNA4___.TTF}
+\usepackage{fourier-otf}
+\makeatletter
+\if@tkzcadre \usepackage{zorna} \fi
+\makeatother
 \usepackage{datetime,multicol,lscape}
 \usepackage[english]{babel}
 \usepackage[autolanguage]{numprint}
 \usepackage[normalem]{ulem}
 \usepackage{microtype}
 \usepackage{array,multirow,multido,booktabs}
-\usepackage{shortvrb,fancyvrb}
+\usepackage{shortvrb,fancyvrb} 
 
 \renewcommand{\labelitemi}{--}
 \setlength\parindent{0pt}
-\RequirePackage{makeidx}
-\makeindex
+\RequirePackage{makeidx} 
+\makeindex 
 % \def\tkzref{\arabic{section}-\arabic{subsection}-\arabic{subsubsection}}
 % \renewenvironment{tkzexample}[1][]{%
 %  \tkz@killienc \VerbatimOut{tkzeuclide-\tkzref.tex}%
 %   }{%
 % \endVerbatimOut
 % }
-%<--------------------------------------------------------------------------->
+%<---------------------------------------------------------------------------> 
 \AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
-\pgfkeys{%
-  tkzsavedcode/.cd,
-  prefix = tkzEuclide}
 \begin{document}
 
 \parindent=0pt
-\author{\tkzauthorofpack}
+\author{\tkzauthorofpack}  
 \title{\tkznameofpack}
 \date{\today}
 \clearpage
 \thispagestyle{empty}
 \maketitle
 \null
+\makeatletter
+\if@tkzcadre
 \AddToShipoutPicture*{%
 \setlength\unitlength{1mm}
 \put(70,120){%
 \begin{tikzpicture}
- \node at (30pt,30pt){\fontsize{60}{60}\selectfont \zorna{c}};
+ \node at (30pt,30pt){\fontsize{60}{60}\selectfont \zorna{c}};  
  \node at (270pt,30pt){\fontsize{60}{60}\selectfont \zorna{d}};
- \node at (30pt,210pt){\fontsize{60}{60}\selectfont \zorna{a}};
+ \node at (30pt,210pt){\fontsize{60}{60}\selectfont \zorna{a}};  
  \node at (270pt,210pt){\fontsize{60}{60}\selectfont \zorna{b}};
  \draw[line width=2pt,double,color=MidnightBlue,
  fill=myblue!10,opacity=.5] (0,0) rectangle (300pt,240pt);
@@ -143,12 +144,15 @@
   \begin{center}
 	  \color{MidnightBlue}
       \fontsize{24}{48}
-	  \selectfont tkz-euclide\\
+	  \selectfont tkz-euclide\\ 
                 tool for \\
-                Euclidean Geometry
+                Euclidean Geometry 
  \end{center}};
-\end{tikzpicture}}
-}
+\end{tikzpicture}}    
+} 
+\else
+\fi
+\makeatother
 
 \clearpage
 \tkzSetUpColors[background=white,text=darkgray]
@@ -166,7 +170,7 @@ Now the package needs the version 3.0 of \TIKZ.  English is  not my native langu
 \lefthand\ Firstly, I would like to thank \textbf{Till Tantau} for the  beautiful \LaTeX{}  package, namely  \href{http://sourceforge.net/projects/pgf/}{\TIKZ}.
 
 \vspace*{12pt}
-\lefthand\ I received much valuable advice, remarks, corrections and examples from \tkzimp{Jean-Côme Charpentier}, \tkzimp{Josselin Noirel}, \tkzimp{Manuel Pégourié-Gonnard}, \tkzimp{Franck Pastor}, \tkzimp{David Arnold}, \tkzimp{Ulrike Fischer}, \tkzimp{Stefan Kottwitz}, \tkzimp{Christian Tellechea}, \tkzimp{Nicolas Kisselhoff}, \tkzimp{David Arnold}, \tkzimp{Wolfgang Büchel}, \tkzimp{John Kitzmiller}, \tkzimp{Dimitri Kapetas}, \tkzimp{Gaétan Marris}, \tkzimp{Mark Wibrow}, \tkzimp{Yves Combe} for his work on a protractor, \tkzimp{Paul Gaborit} and \tkzimp{Laurent} for all his corrections, remarks and questions.
+\lefthand\ I received much valuable advice, remarks, corrections and examples from \tkzimp{Jean-Côme Charpentier}, \tkzimp{Josselin Noirel}, \tkzimp{Manuel Pégourié-Gonnard}, \tkzimp{Franck Pastor}, \tkzimp{David Arnold}, \tkzimp{Ulrike Fischer}, \tkzimp{Stefan Kottwitz}, \tkzimp{Christian Tellechea}, \tkzimp{Nicolas Kisselhoff}, \tkzimp{David Arnold}, \tkzimp{Wolfgang Büchel}, \tkzimp{John Kitzmiller}, \tkzimp{Dimitri Kapetas}, \tkzimp{Gaétan Marris}, \tkzimp{Mark Wibrow}, \tkzimp{Yves Combe} for his work on a protractor, \tkzimp{Paul Gaborit} and \tkzimp{Laurent Van Deik} for all his corrections, remarks and questions.
 
 \vspace*{12pt}
 \lefthand\ I would also like to thank Eric Weisstein, creator of MathWorld:
@@ -179,7 +183,7 @@ Now the package needs the version 3.0 of \TIKZ.  English is  not my native langu
 \vfill
 Please report typos or any other comments to this documentation to: \href{mailto:al.ma@mac.com}{\textcolor{blue}{Alain Matthes}}.
 
-This file can be redistributed and/or modified under the terms of the \LaTeX{}
+This file can be redistributed and/or modified under the terms of the \LaTeX{} 
 Project Public License Distributed from \href{http://www.ctan.org/}{CTAN}\  archives.
 
 \clearpage

@@ -9,16 +9,16 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-%
+% 
 % The Current Maintainer of this work is Alain Matthes.
 %  utf8 encoding
-\def\fileversion{3.05c}
-\def\filedate{2020/03/08}
-\typeout{2020/03/08 3.05c tkz-obj-eu-polygons.tex}
-% bug in regular polygon side 2020/03/03
-\makeatletter
+\def\fileversion{3.06c}
+\def\filedate{2020/03/18} 
+\typeout{2020/03/18 3.06c  tkz-obj-eu-polygons.tex} 
+% bug in regular polygon side 2020/03/18
+\makeatletter  
 %<--------------------------------------------------------------------------–>
-%                                 Polygon
+%                                 Polygon 
 %<--------------------------------------------------------------------------–>
 %<---------------------------   square  ------------------------------------–>
 %
@@ -53,7 +53,7 @@
 \endgroup
 }
 \def\tkzDrawGoldRectangle{\pgfutil@ifnextchar[{\tkz@DrawGoldRectangle}{%
-                                         		\tkz@DrawGoldRectangle[]}}
+                                         		\tkz@DrawGoldRectangle[]}} 
 
 %<----------------------------   Regular Polygon   -------------------------–>
 \def\tkz@numregpol{0}
@@ -65,31 +65,31 @@
 			name/.default				=  P,
 			sides/.default			=  5,
       center
-}
+} 
 \def\tkzDefRegPolygon{\pgfutil@ifnextchar[{\tkz@DefRegPolygon}{\tkz@DefRegPolygon[]}}
-\def\tkz@DefRegPolygon[#1](#2,#3){%
-\begingroup
-\pgfqkeys{/defregpoly}{#1}
+\def\tkz@DefRegPolygon[#1](#2,#3){% 
+\begingroup 
+\pgfqkeys{/defregpoly}{#1}  
 \ifcase\tkz@numregpol%
   \tkzRegPolygonCenter(#2,#3)
-  \or%
-  \tkzRegPolygonSide(#2,#3)
- \fi
+  \or%  
+  \tkzRegPolygonSide(#2,#3)  
+ \fi    
 \endgroup
-}
+} 
 \def\tkzRegPolygonCenter(#1,#2){
-\begingroup
+\begingroup 
    \foreach \v in {1,2,...,\tkz@regpolsides}
    {%
-   \pgfmathsetmacro{\tkz@regangle}{360/\tkz@regpolsides*(\v-1)}
-   \tkzDefPointBy[rotation= center #1 angle \tkz@regangle](#2)
+   \pgfmathsetmacro{\tkz@regangle}{360/\tkz@regpolsides*(\v-1)}  
+   \tkzDefPointBy[rotation= center #1 angle \tkz@regangle](#2)   
    \pgfnodealias{\tkz@regpolname\v}{tkzPointResult}
-   }
+   } 
 \endgroup
-}
+}     
 \def\tkzRegPolygonSide(#1,#2){
-\begingroup
-% get the center
+\begingroup  
+% get the center 
 \pgfmathsetmacro{\tkz@regangle}{360/\tkz@regpolsides*(\tkz@regpolsides-1)}
 \pgfmathsetmacro{\tkz@regangleside}{(180-\tkz@regangle)/2}
 \tkzDefMidPoint(#1,#2)
@@ -103,7 +103,7 @@
 \pgfnodealias{tkzPointResult}{tkz@RegPolCenter}
 \endgroup
 }
-
+    
 %<----------------------------   CLIP       --------------------------------–>
 %
 %<--------------------------------------------------------------------------–>
@@ -115,8 +115,5 @@
  \def\tkzClipOutPolygon(#1,#2){\clip[tkzreverseclip] (#1)
  \foreach \pt in {#1,#2}{--(\pt)}--cycle;
 }
-
-
-
 \makeatother
 \endinput

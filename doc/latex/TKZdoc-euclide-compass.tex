@@ -1,6 +1,6 @@
-\section{Using the compass}
+\section{Using the compass}    
 
-\subsection{Main macro \tkzcname{tkzCompass}}
+\subsection{Main macro \tkzcname{tkzCompass}} 
 \begin{NewMacroBox}{tkzCompass}{\oarg{local options}\parg{A,B}}%
 This macro allows you to leave a compass trace, i.e. an arc at a designated point. The center must be indicated. Several specific options will modify the appearance of the arc as well as TikZ options such as style, color, line thickness etc.
 
@@ -9,14 +9,14 @@ You can define the length of the arc with the option |length| or the option |del
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                        \\
+options             & default & definition                        \\ 
 \midrule
-\TOline{delta} {0 (deg)}{Modifies the angle of the arc by increasing it symmetrically (in degrees)}
-\TOline{length}{1 (cm)}{Changes the length (in cm)}
+\TOline{delta} {0 (deg)}{Modifies the angle of the arc by increasing it symmetrically (in degrees)} 
+\TOline{length}{1 (cm)}{Changes the length (in cm)} 
 \end{tabular}
-\end{NewMacroBox}
+\end{NewMacroBox} 
 
-\subsubsection{Option \tkzname{length}}
+\subsubsection{Option \tkzname{length}} 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(1,1){A}
@@ -30,41 +30,41 @@ options             & default & definition                        \\
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Option \tkzname{delta}}
+\subsubsection{Option \tkzname{delta}} 
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}
-  \tkzDefPoint(0,0){A}
+\begin{tikzpicture} 
+  \tkzDefPoint(0,0){A} 
   \tkzDefPoint(5,0){B}
   \tkzInterCC[R](A,4cm)(B,3cm)
   \tkzGetPoints{C}{D}
-  \tkzDrawPoints(A,B,C)
+  \tkzDrawPoints(A,B,C) 
   \tkzCompass[color=red,delta=20](A,C)
-  \tkzCompass[color=red,delta=20](B,C)
-  \tkzDrawPolygon(A,B,C)
+  \tkzCompass[color=red,delta=20](B,C) 
+  \tkzDrawPolygon(A,B,C)  
   \tkzMarkAngle(A,C,B)
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample} 
 
-\subsection{Multiple constructions \tkzcname{tkzCompasss}}
+\subsection{Multiple constructions \tkzcname{tkzCompasss}} 
 \begin{NewMacroBox}{tkzCompasss}{\oarg{local options}\parg{pt1,pt2 pt3,pt4,\dots}}%
 \tkzHandBomb\ Attention the arguments are lists of two points. This saves a few lines of code.
 
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                        \\
+options             & default & definition                        \\ 
 \midrule
-\TOline{delta} {0}{Modifies the angle of the arc by increasing it symmetrically}
-\TOline{length}{1}{Changes the length}
+\TOline{delta} {0}{Modifies the angle of the arc by increasing it symmetrically} 
+\TOline{length}{1}{Changes the length} 
 \end{tabular}
-\end{NewMacroBox}
+\end{NewMacroBox} 
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
  \tkzDefPoint(2,2){A}  \tkzDefPoint(5,-2){B}
- \tkzDefPoint(3,4){C}  \tkzDrawPoints(A,B)
- \tkzDrawPoint[color=red,shape=cross out](C)
- \tkzCompasss[color=orange](A,B A,C B,C C,B)
+ \tkzDefPoint(3,4){C}  \tkzDrawPoints(A,B) 
+ \tkzDrawPoint[color=red,shape=cross out](C)    
+ \tkzCompasss[color=orange](A,B A,C B,C C,B) 
  \tkzShowLine[mediator,color=red,
                              dashed,length = 2](A,B)
  \tkzShowLine[parallel = through C,
@@ -72,23 +72,23 @@ options             & default & definition                        \\
  \tkzDefLine[mediator](A,B)  \tkzGetPoints{i}{j}
  \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{D}
  \tkzDrawLines[add=.6 and .6](C,D A,C B,D)
- \tkzDrawLines(i,j) \tkzDrawPoints(A,B,C,i,j,D)
+ \tkzDrawLines(i,j) \tkzDrawPoints(A,B,C,i,j,D)  
  \tkzLabelPoints(A,B,C,i,j,D)
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample} 
 
 
-\subsection{Configuration macro \tkzcname{tkzSetUpCompass}}
+\subsection{Configuration macro \tkzcname{tkzSetUpCompass}} 
 
 \begin{NewMacroBox}{tkzSetUpCompass}{\oarg{local options}}%
 \begin{tabular}{lll}%
-options             & default & definition                        \\
+options             & default & definition                        \\ 
 \midrule
-\TOline{line width}  {0.4pt}{line thickness}
-\TOline{color}  {black!50}{line colour}
+\TOline{line width}  {0.4pt}{line thickness} 
+\TOline{color}  {black!50}{line colour} 
 \TOline{style}  {solid}{solid line style, dashed,dotted,...}
 \end{tabular}
-\end{NewMacroBox}
+\end{NewMacroBox} 
 
 \subsubsection{Use of \tkzcname{tkzSetUpCompass}}
 
@@ -97,18 +97,18 @@ options             & default & definition                        \\
 	      showbi/.style={bisector,size=2,gap=3}]
   \tkzSetUpCompass[color=blue,line width=.3 pt]
   \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
-  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPolygon(A,B,C)  
   \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
   \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
   \tkzShowLine[showbi](B,A,C)
-  \tkzShowLine[showbi](C,B,A)
+  \tkzShowLine[showbi](C,B,A)   
   \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
   \tkzDefPointBy[projection= onto A--B](I)
 	 \tkzGetPoint{H}
-  \tkzDrawCircle[radius,color=gray](I,H)
+  \tkzDrawCircle[radius,color=gray](I,H) 
   \tkzDrawSegments[color=gray!50](I,H)
-  \tkzDrawLines[add=0 and -.2,color=blue!50 ](A,a B,b)
+  \tkzDrawLines[add=0 and -.2,color=blue!50 ](A,a B,b) 
 	\tkzShowBB
-\end{tikzpicture}
-\end{tkzexample}
+\end{tikzpicture} 
+\end{tkzexample} 
 \endinput

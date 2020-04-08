@@ -9,12 +9,12 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status “maintained”.
-%
+% 
 % The Current Maintainer of this work is Alain Matthes.
 %  utf8 encoding
-\def\fileversion{3.05c}
-\def\filedate{2020/03/08}
-\typeout{2020/03/08 3.05c tkz-tools-math.tex}
+\def\fileversion{3.06c}
+\def\filedate{2020/03/18} 
+\typeout{2020/03/18 3.06c  tkz-tools-math.tex}     
 \makeatletter
 %<-------------------------------------------------------------------------->
 %  \tkzpointnormalised    normalise un point A-->A' tq ||v(OA')=1||
@@ -26,7 +26,7 @@
 
 % or
 % \pgf@x=1 cm
-% \pgf@y=12 cm
+% \pgf@y=12 cm 
 % \tkzpointnormalised{}
 %<--------------------------------------------------------------------------
 \def\tkzpointnormalised#1{%
@@ -44,27 +44,27 @@
 \def\tkz@save@length{%
 \global\let\tkz@temp@length\tkzLengthResult}%
 \def\tkz@restore@length{%
- \global\let\tkzLengthResult\tkz@temp@length }%
+ \global\let\tkzLengthResult\tkz@temp@length }% 
 %<-------------------------------------------------------------------------->
-%    \tkzCalcLength      Distance entre deux points en pt ou en cm  avec xfp
-% \veclen mais avec fp
+%    \tkzCalcLength      Distance entre deux points en pt ou en cm  avec xfp 
+% \veclen mais avec fp 
 %  option cm le rÃ©sultat est en cm sinon en pt
 %<-------------------------------------------------------------------------->
 \pgfkeys{tkzcalclen/.cd,
        cm/.is if         = tkzLengthIncm,
-       cm/.default       = true}
+       cm/.default       = true}   
 
-\def\tkzCalcLength{\pgfutil@ifnextchar[{\tkz@CalcLength}{\tkz@CalcLength[]}}
+\def\tkzCalcLength{\pgfutil@ifnextchar[{\tkz@CalcLength}{\tkz@CalcLength[]}}  
 \def\tkz@CalcLength[#1](#2,#3){%
 \pgfkeys{tkzcalclen/.cd, cm = false}
-\pgfqkeys{/tkzcalclen}{#1}%
+\pgfqkeys{/tkzcalclen}{#1}%   
 \begingroup
 \tkz@@CalcLength(#2,#3){tkzLengthResult}
-\iftkzLengthIncm
+\iftkzLengthIncm 
    \pgfmathparse{\tkz@xfpMathLen pt/1cm}
 	\edef\tkz@xfpMathLen{\fpeval{round(\pgfmathresult,5)}}
-   \global\let\tkzLengthResult\tkz@xfpMathLen
-\fi
+   \global\let\tkzLengthResult\tkz@xfpMathLen  
+\fi 
 \endgroup
 }%
 \def\tkz@@CalcLength(#1,#2)#3{%
@@ -76,29 +76,29 @@
 }
 %<-------------------------------------------------------------------------->
 \def\tkzGetLength#1{%
-\global\expandafter\edef\csname #1\endcsname{\tkzLengthResult}}
+\global\expandafter\edef\csname #1\endcsname{\tkzLengthResult}}  
 %<-------------------------------------------------------------------------->
 %     \tkzpttocm  passage de pt   cm div par 28.45274
 %<-------------------------------------------------------------------------->
 \def\tkzpttocm(#1)#2{%
-\begingroup
+\begingroup  
   \pgfmathparse{#1/1cm}
   \edef\tkz@mathresult{\fpeval{round(\pgfmathresult,5)}}
   \global\let\tkz@mathresult\tkz@mathresult
-  \global\expandafter\edef\csname #2\endcsname{\tkz@mathresult}%
+  \global\expandafter\edef\csname #2\endcsname{\tkz@mathresult}% 
 \endgroup
 }%
 %<-------------------------------------------------------------------------->
 %     \tkzcmtopt  passage de cm   pt mul par 28.45274
 %<--------------------------------------------------------------------------
 \def\tkzcmtopt(#1)#2{%
-\begingroup
+\begingroup 
    \pgfmathparse{#1/1pt}
   \edef\tkz@mathresult{\fpeval{round(\pgfmathresult,5)}}
   \global\let\tkz@mathresult\tkz@mathresult
-  \global\expandafter\edef\csname #2\endcsname{\tkz@mathresult}%
-\endgroup
-}%
+  \global\expandafter\edef\csname #2\endcsname{\tkz@mathresult}% 
+\endgroup  
+}% 
 %<-------------------------------------------------------------------------->
 %                          Slope
 %<-------------------------------------------------------------------------->
@@ -109,7 +109,7 @@
                                     {\pgfpointanchor{#2}{center}}}
      \edef\tkz@Slope{\fpeval{\pgfmath@tonumber{\pgf@y}/\pgfmath@tonumber{\pgf@x}}}
      \edef\tkz@Slope{\fpeval{round(\tkz@Slope,5)}}
-    \global\expandafter\edef\csname #3\endcsname{\tkz@Slope}%
+    \global\expandafter\edef\csname #3\endcsname{\tkz@Slope}%  
 \endgroup
 }
 %  Schrodinger's cat idea 03/01/20
@@ -122,5 +122,5 @@
     \pgfmath@returnone\tkz@xfpMathLen pt%
 \endgroup%
 }}}
- \makeatother
+\makeatother 
 \endinput

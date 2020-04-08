@@ -4,19 +4,19 @@ Among the following macros, one will allow you to draw a circle, which is not a 
 
 \begin{itemize}
   \item  I have created a first macro \tkzcname{tkzDefCircle} which allows, according to a particular circle, to retrieve its center and the measurement of the radius in cm. This recovery is done with the macros \tkzcname{tkzGetPoint} and \tkzcname{tkzGetLength};
-
+ 
  \item then a macro \tkzcname{tkzDrawCircle};
-
+ 
  \item then a macro that allows you to color in a disc, but without drawing the circle \tkzcname{tkzFillCircle};
-
+ 
  \item sometimes, it is necessary for a drawing to be contained in a disk, this is the role assigned to \tkzcname{tkzClipCircle};
 
-
+ 
  \item  it finally remains to be able to give a label to designate a circle and if several possibilities are offered, we will see here \tkzcname{tkzLabelCircle}.
-\end{itemize}
+\end{itemize} 
 
 \subsection{Characteristics of a circle: \tkzcname{tkzDefCircle}}
-
+ 
 This macro allows you to retrieve the characteristics (center and radius) of certain circles.
 
 \begin{NewMacroBox}{tkzDefCircle}{\oarg{local options}\parg{A,B} or \parg{A,B,C}}%
@@ -29,31 +29,31 @@ arguments           & example & explication                         \\
 \midrule
 \TAline{\parg{pt1,pt2} or \parg{pt1,pt2,pt3}}{\parg{A,B}} {$[AB]$ is radius $A$ is the center}
 \bottomrule
-\end{tabular}
+\end{tabular} 
 
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
-\TOline{through}      {through}{circle characterized by two points defining a radius}
+\TOline{through}      {through}{circle characterized by two points defining a radius} 
 \TOline{diameter}     {through}{circle characterized by two points defining a diameter}
-\TOline{circum}       {through}{circle circumscribed of a triangle}
-\TOline{in}           {through}{incircle a triangle}
+\TOline{circum}       {through}{circle circumscribed of a triangle} 
+\TOline{in}           {through}{incircle a triangle} 
 \TOline{ex}           {through}{excircle of a  triangle}
 \TOline{euler or nine}{through}{Euler's Circle}
 \TOline{spieker}      {through}{Spieker Circle}
-\TOline{apollonius}   {through}{circle of Apollonius}
+\TOline{apollonius}   {through}{circle of Apollonius} 
 \TOline{orthogonal}   {through}{circle of given centre orthogonal to another circle}
-\TOline{orthogonal through}{through}{circle orthogonal circle passing through 2 points}
-\TOline{K} {1}{coefficient used for a circle of Apollonius}
+\TOline{orthogonal through}{through}{circle orthogonal circle passing through 2 points} 
+\TOline{K} {1}{coefficient used for a circle of Apollonius} 
  \bottomrule
 \end{tabular}
 
 {In the following examples, I draw the circles with a macro not yet presented, but this is not necessary. In some cases you may only need the center or the radius.}
-\end{NewMacroBox}
+\end{NewMacroBox}  
 
- \subsubsection{Example with a random point and  option \tkzname{through}}
+ \subsubsection{Example with a random point and  option \tkzname{through}} 
 
 \begin{tkzexample}[latex=7 cm,small]
  \begin{tikzpicture}[scale=1]
@@ -62,55 +62,55 @@ options             & default & definition                         \\
  \tkzDefMidPoint(A,B) \tkzGetPoint{I}
  \tkzDefRandPointOn[segment = I--B]
   \tkzGetPoint{C}
- \tkzDefCircle[through](A,C)
+ \tkzDefCircle[through](A,C) 
  \tkzGetLength{rACpt}
- \tkzpttocm(\rACpt){rACcm}
+ \tkzpttocm(\rACpt){rACcm} 
  \tkzDrawCircle(A,C)
  \tkzDrawPoints(A,B,C)
- \tkzLabelPoints(A,B,C)
+ \tkzLabelPoints(A,B,C) 
  \tkzLabelCircle[draw,fill=orange,
           text width=3cm,text centered,
           font=\scriptsize](A,C)(-90)%
  {The radius measurement is:
-  \rACpt pt i.e. \rACcm cm}
- \end{tikzpicture}
- \end{tkzexample}
-
- \subsubsection{Example with  option \tkzname{diameter}}
+  \rACpt pt i.e. \rACcm cm}  
+ \end{tikzpicture}     
+ \end{tkzexample}  
+ 
+ \subsubsection{Example with  option \tkzname{diameter}}  
  It is simpler here to search directly for the middle of $[AB]$.
- \begin{tkzexample}[latex=7cm,small]
+ \begin{tkzexample}[latex=7cm,small]  
  \begin{tikzpicture}[scale=1]
-    \tkzDefPoint(0,0){A}
+    \tkzDefPoint(0,0){A} 
     \tkzDefPoint(2,2){B}
-    \tkzDefCircle[diameter](A,B)
-    \tkzGetPoint{O}
-    \tkzDrawCircle[blue,fill=blue!20](O,B)
+    \tkzDefCircle[diameter](A,B)  
+    \tkzGetPoint{O}  
+    \tkzDrawCircle[blue,fill=blue!20](O,B) 
     \tkzDrawSegment(A,B)
-    \tkzDrawPoints(A,B,O)
+    \tkzDrawPoints(A,B,O)   
     \tkzLabelPoints(A,B,O)
- \end{tikzpicture}
- \end{tkzexample}
+ \end{tikzpicture} 
+ \end{tkzexample}    
 
  \subsubsection{Circles inscribed and circumscribed for a given triangle}
- You can also obtain the center of the inscribed circle and its projection on one side of the triangle with \tkzcname{tkzGetFirstPoint{I}} and \tkzcname{tkzGetSecondPoint{Ib}}.
-
-
-\begin{tkzexample}[latex=7cm,small]
+ You can also obtain the center of the inscribed circle and its projection on one side of the triangle with \tkzcname{tkzGetFirstPoint{I}} and \tkzcname{tkzGetSecondPoint{Ib}}. 
+ 
+ 
+\begin{tkzexample}[latex=7cm,small]  
 \begin{tikzpicture}[scale=1]
-   \tkzDefPoint(2,2){A}
+   \tkzDefPoint(2,2){A} 
    \tkzDefPoint(5,-2){B}
    \tkzDefPoint(1,-2){C}
    \tkzDefCircle[in](A,B,C)
    \tkzGetPoint{I}    \tkzGetLength{rIN}
    \tkzDefCircle[circum](A,B,C)
    \tkzGetPoint{K}   \tkzGetLength{rCI}
-   \tkzDrawPoints(A,B,C,I,K)
-   \tkzDrawCircle[R,blue](I,\rIN pt)
-   \tkzDrawCircle[R,red](K,\rCI pt)
+   \tkzDrawPoints(A,B,C,I,K)    
+   \tkzDrawCircle[R,blue](I,\rIN pt) 
+   \tkzDrawCircle[R,red](K,\rCI pt) 
    \tkzLabelPoints[below](B,C)
    \tkzLabelPoints[above left](A,I,K)
    \tkzDrawPolygon(A,B,C)
-\end{tikzpicture}
+\end{tikzpicture} 
 \end{tkzexample}
 
  \subsubsection{Example with option \tkzname{ex}}
@@ -119,21 +119,21 @@ We want to define an excircle of a  triangle relatively to point $C$
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[scale=.75]
 	\tkzDefPoints{ 0/0/A,4/0/B,0.8/4/C}
-	\tkzDefCircle[ex](B,C,A)
+	\tkzDefCircle[ex](B,C,A) 		               
   \tkzGetPoint{J_c} \tkzGetLength{rc}
-	\tkzDefPointBy[projection=onto A--C ](J_c)
+	\tkzDefPointBy[projection=onto A--C ](J_c)	 
   \tkzGetPoint{X_c}
-  \tkzDefPointBy[projection=onto A--B ](J_c)
-  \tkzGetPoint{Y_c}
+  \tkzDefPointBy[projection=onto A--B ](J_c)	 
+  \tkzGetPoint{Y_c}	 	  
   \tkzGetPoint{I}
   \tkzDrawPolygon[color=blue](A,B,C)
   \tkzDrawCircle[R,color=lightgray](J_c,\rc pt)
-  % possible  \tkzDrawCircle[ex](A,B,C)
-  \tkzDrawCircle[in,color=red](A,B,C)    \tkzGetPoint{I}
-	\tkzDefPointBy[projection=onto A--C ](I)
-  \tkzGetPoint{F}
-	\tkzDefPointBy[projection=onto A--B ](I)
-  \tkzGetPoint{D}
+  % possible  \tkzDrawCircle[ex](A,B,C) 
+  \tkzDrawCircle[in,color=red](A,B,C)    \tkzGetPoint{I} 
+	\tkzDefPointBy[projection=onto A--C ](I)	 
+  \tkzGetPoint{F} 
+	\tkzDefPointBy[projection=onto A--B ](I)	 
+  \tkzGetPoint{D}    
 	\tkzDrawLines[add=0 and 2.2,dashed](C,A C,B)
 	\tkzDrawSegments[dashed](J_c,X_c I,D  I,F J_c,Y_c)
 	\tkzMarkRightAngles(A,F,I B,D,I J_c,X_c,A J_c,Y_c,B)
@@ -141,32 +141,32 @@ We want to define an excircle of a  triangle relatively to point $C$
  	\tkzLabelPoints(B,A,J_c,I,D,X_c,Y_c)
  	\tkzLabelPoints[above left](C)
 	\tkzLabelPoints[left](F)
-\end{tikzpicture}
+\end{tikzpicture}    
 \end{tkzexample}
-
+  
  \subsubsection{Euler's circle for a given triangle with option \tkzname{euler}}
-
+ 
 We verify that this circle passes through the middle of each side.
-\begin{tkzexample}[latex=8cm,small]
+\begin{tkzexample}[latex=8cm,small]  
 \begin{tikzpicture}[scale=.75]
-   \tkzDefPoint(5,3.5){A}
+   \tkzDefPoint(5,3.5){A} 
    \tkzDefPoint(0,0){B} \tkzDefPoint(7,0){C}
    \tkzDefCircle[euler](A,B,C)
    \tkzGetPoint{E}  \tkzGetLength{rEuler}
    \tkzDefSpcTriangle[medial](A,B,C){M_a,M_b,M_c}
-   \tkzDrawPoints(A,B,C,E,M_a,M_b,M_c)
+   \tkzDrawPoints(A,B,C,E,M_a,M_b,M_c)    
    \tkzDrawCircle[R,blue](E,\rEuler pt)
-   \tkzDrawPolygon(A,B,C)
-   \tkzLabelPoints[below](B,C)
-   \tkzLabelPoints[left](A,E)
+   \tkzDrawPolygon(A,B,C)    
+   \tkzLabelPoints[below](B,C)  
+   \tkzLabelPoints[left](A,E)   
 \end{tikzpicture}
 \end{tkzexample}
 
- \subsubsection{Apollonius circles for a given segment option \tkzname{apollonius}}
-
-\begin{tkzexample}[latex=9cm,small]
+ \subsubsection{Apollonius circles for a given segment option \tkzname{apollonius}} 
+ 
+\begin{tkzexample}[latex=9cm,small]    
 \begin{tikzpicture}[scale=0.75]
-  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(0,0){A} 
   \tkzDefPoint(4,0){B}
   \tkzDefCircle[apollonius,K=2](A,B)
   \tkzGetPoint{K1}
@@ -176,31 +176,31 @@ We verify that this circle passes through the middle of each side.
   \tkzDefCircle[apollonius,K=3](A,B)
   \tkzGetPoint{K2}   \tkzGetLength{rAp}
   \tkzDrawCircle[R,color=red!50!black,
-   fill=red!20,opacity=.4](K2,\rAp pt)
+   fill=red!20,opacity=.4](K2,\rAp pt) 
   \tkzLabelPoints[below](A,B,K1,K2)
-  \tkzDrawPoints(A,B,K1,K2)
-  \tkzDrawLine[add=.2 and 1](A,B)
+  \tkzDrawPoints(A,B,K1,K2) 
+  \tkzDrawLine[add=.2 and 1](A,B)  
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample}  
 
  \subsubsection{Circles exinscribed to a given triangle option \tkzname{ex}}
- You can also get the center and the projection of it on one side of the triangle.
-
+ You can also get the center and the projection of it on one side of the triangle. 
+ 
  with \tkzcname{tkzGetFirstPoint\{Jb\}} and \tkzcname{tkzGetSecondPoint\{Tb\}}.
-
-\begin{tkzexample}[latex=8cm,small]
+ 
+\begin{tkzexample}[latex=8cm,small]  
 \begin{tikzpicture}[scale=.6]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(3,0){B}
   \tkzDefPoint(1,2.5){C}
-  \tkzDefCircle[ex](A,B,C) \tkzGetPoint{I}
+  \tkzDefCircle[ex](A,B,C) \tkzGetPoint{I} 
     \tkzGetLength{rI}
-  \tkzDefCircle[ex](C,A,B) \tkzGetPoint{J}
+  \tkzDefCircle[ex](C,A,B) \tkzGetPoint{J} 
     \tkzGetLength{rJ}
-  \tkzDefCircle[ex](B,C,A) \tkzGetPoint{K}
+  \tkzDefCircle[ex](B,C,A) \tkzGetPoint{K} 
     \tkzGetLength{rK}
    \tkzDefCircle[in](B,C,A) \tkzGetPoint{O}
-     \tkzGetLength{rO}
+     \tkzGetLength{rO} 
   \tkzDrawLines[add=1.5 and 1.5](A,B A,C B,C)
   \tkzDrawPoints(I,J,K)
   \tkzDrawPolygon(A,B,C)
@@ -208,19 +208,19 @@ We verify that this circle passes through the middle of each side.
   \tkzDrawCircle[R,blue!50!black](O,\rO)
   \tkzDrawSegments[dashed](A,K B,J C,I)
   \tkzDrawPoints(A,B,C)
-  \tkzDrawCircles[R](J,{\rJ} I,{\rI} K,{\rK})
+  \tkzDrawCircles[R](J,{\rJ} I,{\rI} K,{\rK})    
   \tkzLabelPoints(A,B,C,I,J,K)
 \end{tikzpicture}
 \end{tkzexample}
-
-  \subsubsection{Spieker circle with option \tkzname{spieker}}
+ 
+  \subsubsection{Spieker circle with option \tkzname{spieker}}   
 The  incircle of the medial triangle $M_aM_bM_c$ is the Spieker circle:
 
 \begin{tkzexample}[latex=8cm, small]
 \begin{tikzpicture}[scale=1]
   \tkzDefPoints{ 0/0/A,4/0/B,0.8/4/C}
    \tkzDefSpcTriangle[medial](A,B,C){M_a,M_b,M_c}
-   \tkzDefTriangleCenter[spieker](A,B,C)
+   \tkzDefTriangleCenter[spieker](A,B,C) 
    \tkzGetPoint{S_p}
    \tkzDrawPolygon[blue](A,B,C)
    \tkzDrawPolygon[red](M_a,M_b,M_c)
@@ -232,28 +232,28 @@ The  incircle of the medial triangle $M_aM_bM_c$ is the Spieker circle:
    \tkzAutoLabelPoints[center=S_p](A,B,C)
 \end{tikzpicture}
 \end{tkzexample}
-
-
- \subsubsection{Orthogonal circle passing through two given points, option \tkzname{orthogonal through}}
-
-\begin{tkzexample}[latex=8cm,small]
+ 
+   
+ \subsubsection{Orthogonal circle passing through two given points, option \tkzname{orthogonal through}} 
+ 
+\begin{tkzexample}[latex=8cm,small]  
 \begin{tikzpicture}[scale=1]
   \tkzDefPoint(0,0){O}
   \tkzDefPoint(1,0){A}
-  \tkzDrawCircle(O,A)
+  \tkzDrawCircle(O,A) 
   \tkzDefPoint(-1.5,-1.5){z1}
-  \tkzDefPoint(1.5,-1.25){z2}
+  \tkzDefPoint(1.5,-1.25){z2} 
   \tkzDefCircle[orthogonal through=z1 and z2](O,A)
-   \tkzGetPoint{c}
+   \tkzGetPoint{c}    
   \tkzDrawCircle[thick,color=red](tkzPointResult,z1)
   \tkzDrawPoints[fill=red,color=black,
   size=4](O,A,z1,z2,c)
-  \tkzLabelPoints(O,A,z1,z2,c)
+  \tkzLabelPoints(O,A,z1,z2,c) 
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Orthogonal circle of given center}
-
+\subsubsection{Orthogonal circle of given center} 
+ 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoints{0/0/O,1/0/A}
@@ -276,15 +276,15 @@ The  incircle of the medial triangle $M_aM_bM_c$ is the Spieker circle:
 \section{Draw, Label the Circles}
 \begin{itemize}
  \item  I created a first macro  \tkzcname{tkzDrawCircle},
-
+ 
  \item then a macro that allows you to color a disc, but without drawing the circle. \tkzcname{tkzFillCircle},
-
+ 
  \item sometimes, it is necessary for a drawing to be contained in a disc,this is the role assigned to \tkzcname{tkzClipCircle},
 
-
+ 
  \item  It finally remains to be able to give a label to designate a circle and if several possibilities are offered, we will see here \tkzcname{tkzLabelCircle}.
 \end{itemize}
-
+ 
 \subsection{Draw a circle}
 \begin{NewMacroBox}{tkzDrawCircle}{\oarg{local options}\parg{A,B}}%
 \tkzHandBomb\ Attention you need only two points to define a radius or a diameter.  An additional option \tkzname{R} is available  to give a measure directly.
@@ -296,12 +296,12 @@ arguments           & example & explication                         \\
 \midrule
 \TAline{\parg{pt1,pt2}}{\parg{A,B}} {two points to define a radius or a diameter}
 \bottomrule
-\end{tabular}
+\end{tabular}   
 
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
 \TOline{through}{through}{circle with two points defining a radius}
 \TOline{diameter}{through}{circle with two points defining a diameter}
@@ -312,27 +312,27 @@ options             & default & definition                         \\
 \medskip
 Of course, you have to add all the styles of \TIKZ\ for the tracings...
 \end{NewMacroBox}
-
+ 
  \subsubsection{Circles and styles, draw a circle and color the disc}
  We'll see that it's possible to colour in a disc while tracing the circle.
-
+ 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
-  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(0,0){O} 
   \tkzDefPoint(3,0){A}
  % circle with centre O and passing through A
-  \tkzDrawCircle[color=blue](O,A)
+  \tkzDrawCircle[color=blue](O,A) 
  % diameter circle $[OA]$
   \tkzDrawCircle[diameter,color=red,%
                  line width=2pt,fill=red!40,%
                  opacity=.5](O,A)
  % circle with centre O and radius = exp(1) cm
   \edef\rayon{\fpeval{0.25*exp(1)}}
-  \tkzDrawCircle[R,color=orange](O,\rayon cm)
-\end{tikzpicture}
-\end{tkzexample}
+  \tkzDrawCircle[R,color=orange](O,\rayon cm) 
+\end{tikzpicture} 
+\end{tkzexample}  
 
-\subsection{Drawing circles}
+\subsection{Drawing circles}  
 \begin{NewMacroBox}{tkzDrawCircles}{\oarg{local options}\parg{A,B C,D}}%
 \tkzHandBomb\ Attention, the arguments are lists of two points. The circles that can be drawn are the same as in the previous macro. An additional option \tkzname{R} is available to give  a measure directly.
 
@@ -343,12 +343,12 @@ arguments           & example & explication                         \\
 \midrule
 \TAline{\parg{pt1,pt2 pt3,pt4 ...}}{\parg{A,B C,D}} {List of two points}
 \bottomrule
-\end{tabular}
+\end{tabular}   
 
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
 \TOline{through}{through}{circle with two points defining a radius}
 \TOline{diameter}{through}{circle with two points defining a diameter}
@@ -360,8 +360,8 @@ options             & default & definition                         \\
 Of course, you have to add all the styles of \TIKZ\ for the tracings...
 \end{NewMacroBox}
 
- \subsubsection{Circles defined by a triangle.}
-
+ \subsubsection{Circles defined by a triangle.} 
+ 
 \begin{tkzexample}[latex=9cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){A}
@@ -370,12 +370,12 @@ Of course, you have to add all the styles of \TIKZ\ for the tracings...
   \tkzDrawPolygon(A,B,C)
   \tkzDrawCircles(A,B B,C C,A)
   \tkzDrawPoints(A,B,C)
-  \tkzLabelPoints(A,B,C)
-\end{tikzpicture}
+  \tkzLabelPoints(A,B,C) 
+\end{tikzpicture} 
 \end{tkzexample}
 
- \subsubsection{Concentric circles.}
-
+ \subsubsection{Concentric circles.} 
+ 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
    \tkzDefPoint(0,0){A}
@@ -385,15 +385,15 @@ Of course, you have to add all the styles of \TIKZ\ for the tracings...
 \end{tikzpicture}
 \end{tkzexample}
 
- \subsubsection{Exinscribed circles.}
+ \subsubsection{Exinscribed circles.} 
 
-\begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}[scale=1]
+\begin{tkzexample}[latex=7cm,small] 
+\begin{tikzpicture}[scale=1] 
 \tkzDefPoints{0/0/A,4/0/B,1/2.5/C}
 \tkzDrawPolygon(A,B,C)
-\tkzDefCircle[ex](B,C,A)
+\tkzDefCircle[ex](B,C,A) 
 \tkzGetPoint{J_c} \tkzGetSecondPoint{T_c}
-\tkzGetLength{rJc}
+\tkzGetLength{rJc} 
 \tkzDrawCircle[R](J_c,{\rJc pt})
 \tkzDrawLines[add=0 and 1](C,A C,B)
 \tkzDrawSegment(J_c,T_c)
@@ -401,21 +401,21 @@ Of course, you have to add all the styles of \TIKZ\ for the tracings...
 \tkzDrawPoints(A,B,C,J_c,T_c)
 \end{tikzpicture}
 \end{tkzexample}
-
-\subsubsection{Cardioid}
+ 
+\subsubsection{Cardioid}  
 Based on an idea by O. Reboux made with pst-eucl (Pstricks module) by D. Rodriguez.
 
- Its name comes from the Greek \textit{kardia (heart)}, in reference to its shape, and was given to it by Johan Castillon (Wikipedia).
-
+ Its name comes from the Greek \textit{kardia (heart)}, in reference to its shape, and was given to it by Johan Castillon (Wikipedia).     
+ 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.5]
-  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(0,0){O} 
   \tkzDefPoint(2,0){A}
   \foreach \ang in {5,10,...,360}{%
      \tkzDefPoint(\ang:2){M}
-     \tkzDrawCircle(M,A)
-   }
-\end{tikzpicture}
+     \tkzDrawCircle(M,A) 
+   }  
+\end{tikzpicture} 
 \end{tkzexample}
 
 \subsection{Draw a semicircle}
@@ -428,19 +428,19 @@ arguments           & example & explication                         \\
 \midrule
 \TAline{\parg{pt1,pt2}}{\parg{O,A} or\parg{A,B}} {radius or diameter}
 \bottomrule
-\end{tabular}
-
+\end{tabular} 
+    
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
-\TOline{through}  {through}{circle characterized by two points defining a radius}
+\TOline{through}  {through}{circle characterized by two points defining a radius} 
 \TOline{diameter} {through}{circle characterized by two points defining a diameter}
 \end{tabular}
-\end{NewMacroBox}
+\end{NewMacroBox}  
 
-\subsubsection{Use of \tkzcname{tkzDrawSemiCircle}}
+\subsubsection{Use of \tkzcname{tkzDrawSemiCircle}}   
 
 \begin{tkzexample}[latex=6cm,small]
   \begin{tikzpicture}
@@ -463,10 +463,10 @@ options             & default & definition                         \\
 
 \subsection{Colouring a disc}
 This was possible with the previous macro, but disk tracing was mandatory, this is no longer the case.
-
+  
 \begin{NewMacroBox}{tkzFillCircle}{\oarg{local options}\parg{A,B}}%
 \begin{tabular}{lll}%
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
 \TOline{radius}  {radius}{two points define a radius}
 \TOline{R} {radius}{a point and the measurement of a radius }
@@ -475,31 +475,31 @@ options             & default & definition                         \\
 
 \medskip
 You don't need to put \tkzname{radius} because that's the default option. Of course, you have to add all the styles of \TIKZ\ for the plots.
-\end{NewMacroBox}
+\end{NewMacroBox}  
 
- \subsubsection{Example from a sangaku}
+ \subsubsection{Example from a sangaku} 
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}
-   \tkzInit[xmin=0,xmax = 6,ymin=0,ymax=6]
+   \tkzInit[xmin=0,xmax = 6,ymin=0,ymax=6] 
    \tkzDefPoint(0,0){B}  \tkzDefPoint(6,0){C}%
-   \tkzDefSquare(B,C)    \tkzGetPoints{D}{A}
-   \tkzClipPolygon(B,C,D,A)
+   \tkzDefSquare(B,C)    \tkzGetPoints{D}{A} 
+   \tkzClipPolygon(B,C,D,A) 
    \tkzDefMidPoint(A,D)  \tkzGetPoint{F}
    \tkzDefMidPoint(B,C)  \tkzGetPoint{E}
-   \tkzDefMidPoint(B,D)  \tkzGetPoint{Q}
-   \tkzDefTangent[from = B](F,A) \tkzGetPoints{G}{H}
+   \tkzDefMidPoint(B,D)  \tkzGetPoint{Q}           
+   \tkzDefTangent[from = B](F,A) \tkzGetPoints{G}{H} 
    \tkzInterLL(F,G)(C,D) \tkzGetPoint{J}
    \tkzInterLL(A,J)(F,E) \tkzGetPoint{K}
-   \tkzDefPointBy[projection=onto B--A](K)
-	 \tkzGetPoint{M}
+   \tkzDefPointBy[projection=onto B--A](K)   
+	 \tkzGetPoint{M}  
    \tkzFillPolygon[color = green](A,B,C,D)
    \tkzFillCircle[color = orange](B,A)
    \tkzFillCircle[color = blue!50!black](M,A)
    \tkzFillCircle[color = purple](E,B)
-   \tkzFillCircle[color = yellow](K,Q)
+   \tkzFillCircle[color = yellow](K,Q)  
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample} 
 
 \subsection{Clipping a disc}
 
@@ -510,14 +510,14 @@ arguments           & example & explication                         \\
 \midrule
 \TAline{\parg{A,B} or \parg{A,r}}{\parg{A,B} or \parg{A,2cm}} {AB radius or diameter }
 \bottomrule
-\end{tabular}
-
+\end{tabular}  
+ 
 \medskip
 \begin{tabular}{lll}%
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
-\TOline{radius} {radius}{circle characterized by two points defining a radius}
-\TOline{R} {radius}{circle characterized by a point and the measurement of a radius }
+\TOline{radius} {radius}{circle characterized by two points defining a radius} 
+\TOline{R} {radius}{circle characterized by a point and the measurement of a radius }  
 \bottomrule
 \end{tabular}
 
@@ -525,22 +525,22 @@ options             & default & definition                         \\
 It is not necessary to put \tkzname{radius} because that is the default option.
 \end{NewMacroBox}
 
- \subsubsection{Example}
-\begin{tkzexample}[latex=6cm,small]
+ \subsubsection{Example} 
+\begin{tkzexample}[latex=6cm,small] 
   \begin{tikzpicture}
   \tkzInit[xmax=5,ymax=5]
-  \tkzGrid \tkzClip
+  \tkzGrid \tkzClip 
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(2,2){O}
   \tkzDefPoint(4,4){B}
   \tkzDefPoint(6,6){C}
-  \tkzDrawPoints(O,A,B,C)
+  \tkzDrawPoints(O,A,B,C) 
   \tkzLabelPoints(O,A,B,C)
-  \tkzDrawCircle(O,A)
+  \tkzDrawCircle(O,A) 
   \tkzClipCircle(O,A)
   \tkzDrawLine(A,C)
-  \tkzDrawCircle[fill=red!20,opacity=.5](C,O)
-\end{tikzpicture}
+  \tkzDrawCircle[fill=red!20,opacity=.5](C,O) 
+\end{tikzpicture} 
 \end{tkzexample}
 
 
@@ -552,30 +552,30 @@ options             & default & definition                         \\
 \TOline{radius}  {radius}{circle characterized by two points defining a radius}
 \TOline{R} {radius}{circle characterized by a point and the measurement of a radius }
 \bottomrule
-\end{tabular}
+\end{tabular} 
 
 \medskip
 You don't need to put \tkzname{radius} because that's the default option. We can use the styles from \TIKZ. The label is created and therefore "passed" between braces.
-\end{NewMacroBox}
+\end{NewMacroBox} 
 
-\subsubsection{Example}
-\begin{tkzexample}[latex=5cm,small]
+\subsubsection{Example}  
+\begin{tkzexample}[latex=5cm,small] 
 \begin{tikzpicture}
  \tkzDefPoint(0,0){O} \tkzDefPoint(2,0){N}
- \tkzDefPointBy[rotation=center O angle 50](N)
+ \tkzDefPointBy[rotation=center O angle 50](N) 
      \tkzGetPoint{M}
- \tkzDefPointBy[rotation=center O angle -20](N)
+ \tkzDefPointBy[rotation=center O angle -20](N) 
       \tkzGetPoint{P}
- \tkzDefPointBy[rotation=center O angle 125](N)
+ \tkzDefPointBy[rotation=center O angle 125](N) 
       \tkzGetPoint{P'}
  \tkzLabelCircle[above=4pt](O,N)(120){$\mathcal{C}$}
- \tkzDrawCircle(O,M)
- \tkzFillCircle[color=blue!20,opacity=.4](O,M)
+ \tkzDrawCircle(O,M) 
+ \tkzFillCircle[color=blue!20,opacity=.4](O,M) 
  \tkzLabelCircle[R,draw,fill=orange,%
        text width=2cm,text centered](O,3 cm)(-60)%
-          {The circle\\ $\mathcal{C}$}
- \tkzDrawPoints(M,P)\tkzLabelPoints[right](M,P)
-\end{tikzpicture}
-\end{tkzexample}
+          {The circle\\ $\mathcal{C}$}  
+ \tkzDrawPoints(M,P)\tkzLabelPoints[right](M,P)   
+\end{tikzpicture}      
+\end{tkzexample} 
 
 \endinput

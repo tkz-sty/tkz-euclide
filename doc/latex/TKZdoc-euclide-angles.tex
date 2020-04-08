@@ -1,4 +1,4 @@
-\section{The angles}
+\section{The angles} 
 
 \subsection{Colour an angle: fill}
 
@@ -10,21 +10,21 @@ $O$ is the vertex of the angle. $OA$ and $OB$ are the sides. Attention the angle
 
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                        \\
+options             & default & definition                        \\ 
 \midrule
 \TOline{size}{1 cm}{this option determines the radius of the coloured angular sector.}
 
 \bottomrule
-\end{tabular}
+\end{tabular} 
 
 \medskip
-Of course, you have to add all the styles of \TIKZ, like the use of fill and shade...
-\end{NewMacroBox}
+Of course, you have to add all the styles of \TIKZ, like the use of fill and shade... 
+\end{NewMacroBox}  
 
-\subsubsection{Example with \tkzname{size}}
+\subsubsection{Example with \tkzname{size}}  
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}
-   \tkzInit
+\begin{tikzpicture} 
+   \tkzInit 
    \tkzDefPoints{0/0/O,2.5/0/A,1.5/2/B}
    \tkzFillAngle[size=2cm, fill=gray!10](A,O,B)
    \tkzDrawLines(O,A O,B)
@@ -33,10 +33,10 @@ Of course, you have to add all the styles of \TIKZ, like the use of fill and sha
 \end{tkzexample}
 
 
-\subsubsection{Changing the order of items}
+\subsubsection{Changing the order of items} 
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}
-   \tkzInit
+\begin{tikzpicture} 
+   \tkzInit 
    \tkzDefPoints{0/0/O,2.5/0/A,1.5/2/B}
    \tkzFillAngle[size=2cm,fill=gray!10](B,O,A)
    \tkzDrawLines(O,A O,B)
@@ -45,11 +45,11 @@ Of course, you have to add all the styles of \TIKZ, like the use of fill and sha
 \end{tkzexample}
 
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}
-   \tkzInit
+\begin{tikzpicture} 
+   \tkzInit 
    \tkzDefPoints{0/0/O,5/0/A,3/4/B}
    % Don't forget {} to get, () to use
-   \tkzFillAngle[size=4cm,left color=white,
+   \tkzFillAngle[size=4cm,left color=white, 
                  right color=red!50](A,O,B)
    \tkzDrawLines(O,A O,B)
    \tkzDrawPoints(O,A,B)
@@ -58,9 +58,9 @@ Of course, you have to add all the styles of \TIKZ, like the use of fill and sha
 
 \begin{NewMacroBox}{tkzFillAngles}{\oarg{local options}\parg{A,O,B}\parg{A',O',B'}etc.}%
 With common options, there is a macro for multiple angles.
-  \end{NewMacroBox}
-
-\subsubsection{Multiples angles}
+  \end{NewMacroBox}  
+  
+\subsubsection{Multiples angles}  
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=0.75]
   \tkzDefPoint(0,0){B}
@@ -68,28 +68,28 @@ With common options, there is a macro for multiple angles.
   \tkzDefPoint(0,8){A}
   \tkzDefPoint(8,8){D}
   \tkzDrawPolygon(B,C,D,A)
-  \tkzDefTriangle[equilateral](B,C)
+  \tkzDefTriangle[equilateral](B,C) 
   \tkzGetPoint{M}
   \tkzInterLL(D,M)(A,B) \tkzGetPoint{N}
-  \tkzDefPointBy[rotation=center N angle -60](D)
+  \tkzDefPointBy[rotation=center N angle -60](D) 
   \tkzGetPoint{L}
   \tkzInterLL(N,L)(M,B)     \tkzGetPoint{P}
   \tkzInterLL(M,C)(D,L)     \tkzGetPoint{Q}
   \tkzDrawSegments(D,N N,L L,D B,M M,C)
-  \tkzDrawPoints(L,N,P,Q,M,A,D)
+  \tkzDrawPoints(L,N,P,Q,M,A,D) 
   \tkzLabelPoints[left](N,P,Q)
   \tkzLabelPoints[above](M,A,D)
   \tkzLabelPoints(L,B,C)
-  \tkzMarkAngles(C,B,M B,M,C M,C,B
+  \tkzMarkAngles(C,B,M B,M,C M,C,B%
                  D,L,N L,N,D N,D,L)
-  \tkzFillAngles[fill=red!20,opacity=.2](C,B,M
+  \tkzFillAngles[fill=red!20,opacity=.2](C,B,M%
       B,M,C M,C,B D,L,N L,N,D N,D,L)
 \end{tikzpicture}
-\end{tkzexample}
-
+\end{tkzexample} 
+ 
 \subsection{Mark an angle mark}
 More delicate operation because there are many options. The symbols used for marking in addition to those of \TIKZ\ are defined in the file |tkz-lib-marks.tex| and designated by the following characters:\begin{tkzltxexample}[]
-|, ||,|||, z, s, x, o, oo
+|, ||,|||, z, s, x, o, oo 
 \end{tkzltxexample}
 
 Their definitions are as follows
@@ -117,7 +117,7 @@ Their definitions are as follows
     \pgfpathmoveto{\pgfqpoint{3\pgflinewidth}{\pgfplotmarksize}}
     \pgfpathlineto{\pgfqpoint{3\pgflinewidth}{-\pgfplotmarksize}}
     \pgfusepathqstroke
-  }
+  } 
 \end{tkzltxexample}
 
 \begin{tkzltxexample}[]
@@ -129,7 +129,7 @@ Their definitions are as follows
     \pgfpathlineto{\pgfqpoint{.70710678\pgfplotmarksize}%
                              {.70710678\pgfplotmarksize}}
     \pgfusepathqstroke
-  }
+  } 
 \end{tkzltxexample}
 
 
@@ -138,11 +138,11 @@ Their definitions are as follows
   \pgfdeclareplotmark{s||}
   {%
    \pgfpathmoveto{\pgfqpoint{-0.75\pgfplotmarksize}{-\pgfplotmarksize}}
-   \pgfpathlineto{\pgfqpoint{0.25\pgfplotmarksize}{\pgfplotmarksize}}
+   \pgfpathlineto{\pgfqpoint{0.25\pgfplotmarksize}{\pgfplotmarksize}} 
    \pgfpathmoveto{\pgfqpoint{0\pgfplotmarksize}{-\pgfplotmarksize}}
-   \pgfpathlineto{\pgfqpoint{1\pgfplotmarksize}{\pgfplotmarksize}}
+   \pgfpathlineto{\pgfqpoint{1\pgfplotmarksize}{\pgfplotmarksize}} 
    \pgfusepathqstroke
-  }
+  }   
 \end{tkzltxexample}
 
 
@@ -150,7 +150,7 @@ Their definitions are as follows
   % z
   \pgfdeclareplotmark{z}
   {%
-    \pgfpathmoveto{\pgfqpoint{0.75\pgfplotmarksize}{-\pgfplotmarksize}}
+    \pgfpathmoveto{\pgfqpoint{0.75\pgfplotmarksize}{-\pgfplotmarksize}} 
     \pgfpathlineto{\pgfqpoint{-0.75\pgfplotmarksize}{-\pgfplotmarksize}}
     \pgfpathlineto{\pgfqpoint{0.75\pgfplotmarksize}{\pgfplotmarksize}}
     \pgfpathlineto{\pgfqpoint{-0.75\pgfplotmarksize}{\pgfplotmarksize}}
@@ -162,46 +162,46 @@ Their definitions are as follows
   % s
   \pgfdeclareplotmark{s}
   {%
-     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}} 
      \pgfpathcurveto
          {\pgfpoint{0pt}{0pt}}
          {\pgfpoint{-\pgfplotmarksize}{\pgfplotmarksize}}
          {\pgfpoint{\pgfplotmarksize}{\pgfplotmarksize}}
-     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}} 
       \pgfpathcurveto
          {\pgfpoint{0pt}{0pt}}
          {\pgfpoint{\pgfplotmarksize}{-\pgfplotmarksize}}
-         {\pgfpoint{-\pgfplotmarksize}{-\pgfplotmarksize}}
+         {\pgfpoint{-\pgfplotmarksize}{-\pgfplotmarksize}} 
       \pgfusepathqstroke
-  }
+  }  
 \end{tkzltxexample}
 
 \begin{tkzltxexample}[]
   % infinity
   \pgfdeclareplotmark{oo}
   {%
-     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}} 
      \pgfpathcurveto
          {\pgfpoint{0pt}{0pt}}
          {\pgfpoint{.5\pgfplotmarksize}{1\pgfplotmarksize}}
          {\pgfpoint{\pgfplotmarksize}{0pt}}
-     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}} 
       \pgfpathcurveto
          {\pgfpoint{0pt}{0pt}}
          {\pgfpoint{-.5\pgfplotmarksize}{1\pgfplotmarksize}}
-         {\pgfpoint{-\pgfplotmarksize}{0pt}}
-     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+         {\pgfpoint{-\pgfplotmarksize}{0pt}}  
+     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}  
         \pgfpathcurveto
          {\pgfpoint{0pt}{0pt}}
          {\pgfpoint{.5\pgfplotmarksize}{-1\pgfplotmarksize}}
          {\pgfpoint{\pgfplotmarksize}{0pt}}
-     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+     \pgfpathmoveto{\pgfqpoint{0pt}{0pt}} 
       \pgfpathcurveto
          {\pgfpoint{0pt}{0pt}}
          {\pgfpoint{-.5\pgfplotmarksize}{-1\pgfplotmarksize}}
-         {\pgfpoint{-\pgfplotmarksize}{0pt}}
+         {\pgfpoint{-\pgfplotmarksize}{0pt}}      
       \pgfusepathqstroke
-  }
+  } 
 \end{tkzltxexample}
 
 
@@ -211,7 +211,7 @@ Their definitions are as follows
 % Marque d'angle
 % arc de cercle (simple/double/triple) et marque d'églité.
 %
-% Par défaut:
+% Par défaut: 
 %                 arc       = simple
 %                 mksize  = 1cm (rayon de l'arc)
 %                 style traits pleins
@@ -225,7 +225,7 @@ Their definitions are as follows
 %             dist    : 1?
 %             style   : type de traits
 %             mkpos   : 0.5
-%             mark    : none  , |, ||,|||, z, s, x, o, oo mais tous les
+%             mark    : none  , |, ||,|||, z, s, x, o, oo mais tous les 
 %  % symboles de tikz sont permis
 
 \begin{NewMacroBox}{tkzMarkAngle}{\oarg{local options}\parg{A,O,B}}%
@@ -235,7 +235,7 @@ $O$ is the vertex. Attention the arguments vary according to the options. Severa
 
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                        \\
+options             & default & definition                        \\ 
 \midrule
 \TOline{arc}{l}{choice of l, ll and lll (single, double or triple).}
 \TOline{size}{1 cm}{arc radius.}
@@ -243,8 +243,8 @@ options             & default & definition                        \\
 \TOline{mksize}{4pt}{symbol size (mark).}
 \TOline{mkcolor}{black}{symbol color (mark).}
 \TOline{mkpos}{0.5}{position of the symbol on the arc.}
-\end{tabular}
-\end{NewMacroBox}
+\end{tabular} 
+\end{NewMacroBox}  
 
 \subsubsection{Example with \tkzname{mark = x}}
 \begin{tkzexample}[latex=6cm,small]
@@ -271,9 +271,9 @@ options             & default & definition                        \\
 
 \begin{NewMacroBox}{tkzMarkAngles}{\oarg{local options}\parg{A,O,B}\parg{A',O',B'}etc.}%
 With common options, there is a macro for multiple angles.
-  \end{NewMacroBox}
-
-
+  \end{NewMacroBox}  
+  
+  
 \subsection{Label at an angle}
 
 \begin{NewMacroBox}{tkzLabelAngle}{\oarg{local options}\parg{A,O,B}}%
@@ -281,40 +281,40 @@ There is only one option, dist (with or without unit), which can be replaced by 
 
 \begin{tabular}{lll}%
 	\toprule
-options             & default & definition                        \\
+options             & default & definition                        \\ 
 \midrule
 \TOline{pos}{1}{ or dist, controls the distance from the top to the label.}
 \bottomrule
-\end{tabular}
+\end{tabular} 
 
-\medskip
+\medskip 
 It is possible to move the label with all TikZ options : rotate, shift, below, etc.
-\end{NewMacroBox}
+\end{NewMacroBox}  
 
-\subsubsection{Example with \tkzname{pos}}
+\subsubsection{Example with \tkzname{pos}} 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoints{0/0/O,5/0/A,3/4/B}
   \tkzMarkAngle[size = 4cm,mark = ||,
-      arc=ll,color = red](A,O,B)%
+      arc=ll,color = red](A,O,B)%     
   \tkzDrawLines(O,A O,B)
   \tkzDrawPoints(O,A,B)
   \tkzLabelAngle[pos=2,draw,circle,
-      fill=blue!10](A,O,B){$\alpha$}
+      fill=blue!10](A,O,B){$\alpha$} 
 \end{tikzpicture}
 \end{tkzexample}
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[rotate=30]
-  \tkzDefPoint(2,1){S}
+  \tkzDefPoint(2,1){S} 
   \tkzDefPoint(7,3){T}
   \tkzDefPointBy[rotation=center S angle 60](T)
-  \tkzGetPoint{P}
+  \tkzGetPoint{P} 
   \tkzDefLine[bisector,normed](T,S,P)
   \tkzGetPoint{s}
-  \tkzDrawPoints(S,T,P)
-  \tkzDrawPolygon[color=blue](S,T,P)
-  \tkzDrawLine[dashed,color=blue,add=0 and 3](S,s)
+  \tkzDrawPoints(S,T,P)   
+  \tkzDrawPolygon[color=blue](S,T,P) 
+  \tkzDrawLine[dashed,color=blue,add=0 and 3](S,s)  
   \tkzLabelPoint[above right](P){$P$}
   \tkzLabelPoints(S,T)
   \tkzMarkAngle[size = 1.8cm,mark = |,arc=ll,
@@ -322,16 +322,16 @@ It is possible to move the label with all TikZ options : rotate, shift, below, e
   \tkzMarkAngle[size = 2.1cm,mark = |,arc=l,
                     color = blue](T,S,s)
   \tkzMarkAngle[size = 2.3cm,mark = |,arc=l,
-                    color = blue](s,S,P)
- \tkzLabelAngle[pos = 1.5](T,S,P){$60^{\circ}$}%
- \tkzLabelAngles[pos = 2.7](T,S,s s,S,P){$30^{\circ}$}%
+                    color = blue](s,S,P)  
+ \tkzLabelAngle[pos = 1.5](T,S,P){$60^{\circ}$}%    
+ \tkzLabelAngles[pos = 2.7](T,S,s s,S,P){$30^{\circ}$}%   
 \end{tikzpicture}
 \end{tkzexample}
 
 \begin{NewMacroBox}{tkzLabelAngles}{\oarg{local options}\parg{A,O,B}\parg{A',O',B'}etc.}%
 With common options, there is a macro for multiple angles.
-\end{NewMacroBox}
-
+\end{NewMacroBox}  
+  
 \subsection{Marking a right angle}
 
 \begin{NewMacroBox}{tkzMarkRightAngle}{\oarg{local options}\parg{A,O,B}}%
@@ -340,46 +340,46 @@ The \tkzname{german} option allows you to change the style of the drawing. The o
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition         \\
+options             & default & definition         \\ 
 \midrule
 \TOline{german}{normal}{ german arc with inner point.}
 \TOline{size}{0.2}{ side size.}
-\end{tabular}
-\end{NewMacroBox}
+\end{tabular} 
+\end{NewMacroBox}  
 
-\subsubsection{Example of marking a right angle}
+\subsubsection{Example of marking a right angle} 
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}
   \tkzDefPoints{0/0/A,3/1/B,0.9/-1.2/P}
   \tkzDefPointBy[projection = onto B--A](P)  \tkzGetPoint{H}
   \tkzDrawLines[add=.5 and .5](P,H)
-  \tkzMarkRightAngle[fill=blue!20,size=.5,draw](A,H,P)
+  \tkzMarkRightAngle[fill=blue!20,size=.5,draw](A,H,P) 
   \tkzDrawLines[add=.5 and .5](A,B)
   \tkzMarkRightAngle[fill=red!20,size=.8](B,H,P)
-  \tkzDrawPoints[](A,B,P,H)
+  \tkzDrawPoints[](A,B,P,H)  
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of marking a right angle, german style}
+\subsubsection{Example of marking a right angle, german style} 
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}
   \tkzDefPoints{0/0/A,3/1/B,0.9/-1.2/P}
   \tkzDefPointBy[projection = onto B--A](P)  \tkzGetPoint{H}
   \tkzDrawLines[add=.5 and .5](P,H)
-  \tkzMarkRightAngle[german,size=.5,draw](A,H,P)
-  \tkzDrawPoints[](A,B,P,H)
+  \tkzMarkRightAngle[german,size=.5,draw](A,H,P) 
+  \tkzDrawPoints[](A,B,P,H) 
   \tkzDrawLines[add=.5 and .5,fill=blue!20](A,B)
-  \tkzMarkRightAngle[german,size=.8](P,H,B)
+  \tkzMarkRightAngle[german,size=.8](P,H,B) 
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Mix of styles}
+\subsubsection{Mix of styles} 
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(4,1){B}
   \tkzDefPoint(2,5){C}
-  \tkzDefPointBy[projection=onto B--A](C)
+  \tkzDefPointBy[projection=onto B--A](C) 
       \tkzGetPoint{H}
   \tkzDrawLine(A,B)
   \tkzDrawLine[add = .5 and .2,color=red](C,H)
@@ -391,7 +391,7 @@ options             & default & definition         \\
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Full example}
+\subsubsection{Full example} 
 
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[rotate=-90]
@@ -417,8 +417,8 @@ options             & default & definition         \\
 \tkzMarkAngle[size=0.75cm,color=orange,mark=||](B,A,C)
 \tkzMarkRightAngle[german](A,C,B)
 \tkzMarkRightAngle[german](B,P,C)
-\end{tikzpicture}
-\end{tkzexample}
+\end{tikzpicture} 
+\end{tkzexample} 
 
 \subsection{\tkzcname{tkzMarkRightAngles}}
 \begin{NewMacroBox}{tkzMarkRightAngles}{\oarg{local options}\parg{A,O,B}\parg{A',O',B'}etc.}%
@@ -449,17 +449,17 @@ arguments             & example & explication             \\
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}
   \tkzInit
-  \tkzDefPoint(1,5){A} \tkzDefPoint(5,2){B}
+  \tkzDefPoint(1,5){A} \tkzDefPoint(5,2){B}  
   \tkzDrawSegment(A,B)
   \tkzFindSlopeAngle(A,B)\tkzGetAngle{tkzang}
   \tkzDefPointBy[rotation= center A angle \tkzang ](B)
    \tkzGetPoint{C}
-  \tkzDefPointBy[rotation= center A angle -\tkzang ](B)
+  \tkzDefPointBy[rotation= center A angle -\tkzang ](B) 
   \tkzGetPoint{D}
   \tkzCompass[length=1,dashed,color=red](A,C)
-  \tkzCompass[delta=10,brown](B,C)
+  \tkzCompass[delta=10,brown](B,C)  
    \tkzDrawPoints(A,B,C,D)
-  \tkzLabelPoints(B,C,D)
+  \tkzLabelPoints(B,C,D)  
   \tkzLabelPoints[above left](A)
   \tkzDrawSegments[style=dashed,color=orange!30](A,C A,D)
 \end{tikzpicture}
@@ -485,9 +485,9 @@ arguments     & example & explication     \\
 \medskip
 The result is between -180 degrees and +180 degrees. pt2 is the vertex and \tkzcname{tkzGetAngle} can retrieve the angle.
 \end{NewMacroBox}
-
+ 
 \subsubsection{Verification of angle measurement}
-
+    
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoint(-1,1){A}
@@ -495,10 +495,10 @@ The result is between -180 degrees and +180 degrees. pt2 is the vertex and \tkzc
   \tkzDefEquilateral(A,B)
   \tkzGetPoint{C}
   \tkzDrawPolygon(A,B,C)
-  \tkzFindAngle(B,A,C)
+  \tkzFindAngle(B,A,C) 
   \tkzGetAngle{angleBAC}
   \edef\angleBAC{\fpeval{round(\angleBAC)}}
-  \tkzDrawPoints(A,B,C)
+  \tkzDrawPoints(A,B,C) 
   \tkzLabelPoints(A,B)
   \tkzLabelPoint[right](C){$C$}
   \tkzLabelAngle(B,A,C){\angleBAC$^\circ$}
@@ -511,23 +511,23 @@ The result is between -180 degrees and +180 degrees. pt2 is the vertex and \tkzc
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}
    \tkzInit[xmin=-1,ymin=-1,xmax=7,ymax=7]
-   \tkzClip
+   \tkzClip  
    \tkzDefPoint (0,0){O}  \tkzDefPoint (6,0){A}
    \tkzDefPoint (5,5){B}  \tkzDefPoint (3,4){M}
-   \tkzFindAngle (A,O,M)  \tkzGetAngle{an}
-   \tkzDefPointBy[rotation=center O angle \an](A)
+   \tkzFindAngle (A,O,M)  \tkzGetAngle{an}   
+   \tkzDefPointBy[rotation=center O angle \an](A) 
    \tkzGetPoint{C}
    \tkzDrawSector[fill = blue!50,opacity=.5](O,A)(C)
    \tkzFindAngle(M,B,A)   \tkzGetAngle{am}
-   \tkzDefPointBy[rotation = center O angle \am](A)
-   \tkzGetPoint{D}
-   \tkzDrawSector[fill = red!50,opacity = .5](O,A)(D)
-   \tkzDrawPoints(O,A,B,M,C,D)
-   \tkzLabelPoints(O,A,B,M,C,D)
+   \tkzDefPointBy[rotation = center O angle \am](A) 
+   \tkzGetPoint{D} 
+   \tkzDrawSector[fill = red!50,opacity = .5](O,A)(D) 
+   \tkzDrawPoints(O,A,B,M,C,D)   
+   \tkzLabelPoints(O,A,B,M,C,D) 
 	\edef\an{\fpeval{round(\an,2)}}\edef\am{\fpeval{round(\am,2)}}
    \tkzDrawSegments(M,B B,A)
-   \tkzText(4,2){$\widehat{AOC}=\widehat{AOM}=\an^{\circ}$}
-   \tkzText(1,4){$\widehat{AOD}=\widehat{MBA}=\am^{\circ}$}
+   \tkzText(4,2){$\widehat{AOC}=\widehat{AOM}=\an^{\circ}$} 
+   \tkzText(1,4){$\widehat{AOD}=\widehat{MBA}=\am^{\circ}$}  
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -536,23 +536,23 @@ The result is between -180 degrees and +180 degrees. pt2 is the vertex and \tkzc
 \begin{tkzexample}[latex=7cm,small]
   \begin{tikzpicture}[scale=1.25,rotate=30]
   \tkzDefPoints{0.5/1.5/A, 3.5/4/B, 6/2.5/C}
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,B,C)
+  \tkzDrawPolygon(A,B,C) 
+  \tkzDrawPoints(A,B,C) 
   \tkzLabelPoints[below](A,C)
   \tkzLabelPoints[above](B)
   \tkzMarkAngle[size=1cm](B,C,A)
-  \tkzFindAngle(B,C,A)
+  \tkzFindAngle(B,C,A) 
   \tkzGetAngle{angleBCA}
   \edef\angleBCA{\fpeval{round(\angleBCA,2)}}
   \tkzLabelAngle[pos = 1](B,C,A){$\angleBCA^{\circ}$}
   \tkzMarkAngle[size=1cm](C,A,B)
-  \tkzFindAngle(C,A,B)
+  \tkzFindAngle(C,A,B) 
   \tkzGetAngle{angleBAC}
   \edef\angleBAC{\fpeval{round(\angleBAC,2)}}
   \tkzLabelAngle[pos = 1.8](C,A,B){%
-             $\angleBAC^{\circ}$}
+             $\angleBAC^{\circ}$} 
   \tkzMarkAngle[size=1cm](A,B,C)
-  \tkzFindAngle(A,B,C)
+  \tkzFindAngle(A,B,C) 
   \tkzGetAngle{angleABC}
   \edef\angleABC{\fpeval{round(\angleABC,2)}}
   \tkzLabelAngle[pos = 1](A,B,C){$\angleABC^{\circ}$}
@@ -586,15 +586,15 @@ arguments             & example & explication                         \\
   \tkzDefPoint(1,2){A}    \tkzDefPoint(3,4){B}
   \tkzDefPoint(3,2){C}    \tkzDefPoint(3,1){D}
   \tkzDrawSegments(A,B A,C A,D)
-  \tkzDrawPoints[color=red](A,B,C,D)
+  \tkzDrawPoints[color=red](A,B,C,D)  
   \tkzLabelPoints(A,B,C,D)
   \tkzFindSlope(A,B){SAB} \tkzFindSlope(A,C){SAC}
   \tkzFindSlope(A,D){SAD}
   \pgfkeys{/pgf/number format/.cd,fixed,precision=2}
   \tkzText[fill=Gold!50,draw=brown](1,4)%
-  {The slope of (AB) is : $\pgfmathprintnumber{\SAB}$}
+  {The slope of (AB) is : $\pgfmathprintnumber{\SAB}$}     
   \tkzText[fill=Gold!50,draw=brown](1,3.5)%
-  {The slope of (AC) is : $\pgfmathprintnumber{\SAC}$}
+  {The slope of (AC) is : $\pgfmathprintnumber{\SAC}$}    
   \tkzText[fill=Gold!50,draw=brown](1,3)%
   {The slope of (AD) is : $\pgfmathprintnumber{\SAD}$}
 \end{tikzpicture}
@@ -618,24 +618,24 @@ arguments  & example & explication     \\
 \medskip
 \tkzcname{tkzGetAngle} can retrieve the result. If retrieval is not necessary, you can use \tkzcname{tkzAngleResult}.
 \end{NewMacroBox}
-
+ 
  \subsubsection{Folding}
 \begin{tkzexample}[latex=6cm,small]
-\begin{tikzpicture}
+\begin{tikzpicture} 
   \tkzDefPoint(1,5){A}
-  \tkzDefPoint(5,2){B}
-  \tkzDrawSegment(A,B)
+  \tkzDefPoint(5,2){B}  
+  \tkzDrawSegment(A,B) 
   \tkzFindSlopeAngle(A,B)
   \tkzGetAngle{tkzang}
-  \tkzDefPointBy[rotation= center A angle \tkzang ](B)
-  \tkzGetPoint{C}
-  \tkzDefPointBy[rotation= center A angle -\tkzang ](B)
-  \tkzGetPoint{D}
-  \tkzCompass[orange,length=1](A,C)
-  \tkzCompass[orange,delta=10](B,C)
-  \tkzDrawPoints(A,B,C,D)
-  \tkzLabelPoints(B,C,D)
-  \tkzLabelPoints[above left](A)
+  \tkzDefPointBy[rotation= center A angle \tkzang ](B) 
+  \tkzGetPoint{C} 
+  \tkzDefPointBy[rotation= center A angle -\tkzang ](B) 
+  \tkzGetPoint{D} 
+  \tkzCompass[orange,length=1](A,C) 
+  \tkzCompass[orange,delta=10](B,C)   
+  \tkzDrawPoints(A,B,C,D) 
+  \tkzLabelPoints(B,C,D)  
+  \tkzLabelPoints[above left](A) 
   \tkzDrawSegments[style=dashed,color=orange](A,C A,D)
 \end{tikzpicture}
 \end{tkzexample}
@@ -646,27 +646,27 @@ Here is another version of the construction of a mediator
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}
  \tkzInit
- \tkzDefPoint(0,0){A}
+ \tkzDefPoint(0,0){A}        
  \tkzDefPoint(3,2){B}
- \tkzDefLine[mediator](A,B)
+ \tkzDefLine[mediator](A,B)  
  \tkzGetPoints{I}{J}
- \tkzCalcLength[cm](A,B)
+ \tkzCalcLength[cm](A,B)     
  \tkzGetLength{dAB}
- \tkzFindSlopeAngle(A,B)
+ \tkzFindSlopeAngle(A,B)     
  \tkzGetAngle{tkzangle}
  \begin{scope}[rotate=\tkzangle]
    \tikzset{arc/.style={color=gray,delta=10}}
    \tkzDrawArc[orange,R,arc](B,3/4*\dAB)(120,240)
    \tkzDrawArc[orange,R,arc](A,3/4*\dAB)(-45,60)
-   \tkzDrawLine(I,J)
+   \tkzDrawLine(I,J)         
    \tkzDrawSegment(A,B)
   \end{scope}
-  \tkzDrawPoints(A,B,I,J)
+  \tkzDrawPoints(A,B,I,J)    
   \tkzLabelPoints(A,B)
    \tkzLabelPoints[right](I,J)
 \end{tikzpicture}
 \end{tkzexample}
-
+ 
 \endinput
 
 

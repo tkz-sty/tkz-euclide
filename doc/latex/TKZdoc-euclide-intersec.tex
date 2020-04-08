@@ -13,12 +13,12 @@ Defines the intersection point \tkzname{tkzPointResult} of the two lines $(AB)$ 
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[rotate=-45,scale=.75]
-  \tkzDefPoint(2,1){A}
+  \tkzDefPoint(2,1){A}   
      \tkzDefPoint(6,5){B}
-  \tkzDefPoint(3,6){C}
+  \tkzDefPoint(3,6){C}   
      \tkzDefPoint(5,2){D}
   \tkzDrawLines(A,B C,D)
-  \tkzInterLL(A,B)(C,D)
+  \tkzInterLL(A,B)(C,D)  
      \tkzGetPoint{I}
   \tkzDrawPoints[color=blue](A,B,C,D)
    \tkzDrawPoint[color=red](I)
@@ -35,20 +35,20 @@ As before, the line is defined by a couple of points. The circle
 \end{itemize}
 
 \begin{NewMacroBox}{tkzInterLC}{\oarg{options}\parg{$A,B$}\parg{$O,C$} or \parg{$O,r$} or \parg{$O,C,D$}}%
-So the arguments are two couples.
+So the arguments are two couples. 
 
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options            & default & definition                         \\
+options            & default & definition                         \\ 
 \midrule
 \TOline{N}         {N}    { (O,C) determines the circle}
-\TOline{R}         {N}    { (O, 1 cm) or (O, 120 pt)}
-\TOline{with nodes}{N}    { (O,C,D) CD is a radius}
+\TOline{R}         {N}    { (O, 1 cm) or (O, 120 pt)}  
+\TOline{with nodes}{N}    { (O,C,D) CD is a radius}  
 \bottomrule
 \end{tabular}
 
-\medskip
+\medskip   
 The macro defines the intersection points $I$ and $J$ of the line $(AB)$ and the center circle $O$ with radius $r$ if they exist; otherwise, an error will be reported in the |.log| file.
 \end{NewMacroBox}
 
@@ -59,17 +59,17 @@ In the following example, the drawing of the circle uses two points and the inte
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
  \tkzInit[xmax=5,ymax=4]
- \tkzDefPoint(1,1){O}
- \tkzDefPoint(0,4){A}
- \tkzDefPoint(5,0){B}
+ \tkzDefPoint(1,1){O} 
+ \tkzDefPoint(0,4){A} 
+ \tkzDefPoint(5,0){B} 
  \tkzDefPoint(3,3){C}
- \tkzInterLC(A,B)(O,C)  \tkzGetPoints{D}{E}
+ \tkzInterLC(A,B)(O,C)  \tkzGetPoints{D}{E}  
  \tkzDrawCircle(O,C)
  \tkzDrawPoints[color=blue](O,A,B,C)
  \tkzDrawPoints[color=red](D,E)
  \tkzDrawLine(A,B)
  \tkzLabelPoints[above right](O,A,B,C,D,E)
-\end{tikzpicture}
+\end{tikzpicture} 
 \end{tkzexample}
 
 \subsubsection{More complex example of a line-circle intersection}
@@ -77,26 +77,26 @@ Figure from  \url{http://gogeometry.com/problem/p190_tangent_circle}
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
-  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(0,0){A}  
   \tkzDefPoint(8,0){B}
-  \tkzDefMidPoint(A,B)
+  \tkzDefMidPoint(A,B)  
   \tkzGetPoint{O}
   \tkzDrawCircle(O,B)
-  \tkzDefMidPoint(O,B)
+  \tkzDefMidPoint(O,B)  
   \tkzGetPoint{O'}
   \tkzDrawCircle(O',B)
-  \tkzDefTangent[from=A](O',B)
+  \tkzDefTangent[from=A](O',B) 
   \tkzGetSecondPoint{E}
-  \tkzInterLC(A,E)(O,B)
+  \tkzInterLC(A,E)(O,B)     
   \tkzGetSecondPoint{D}
-  \tkzDefPointBy[projection=onto A--B](D)
+  \tkzDefPointBy[projection=onto A--B](D)  
    \tkzGetPoint{F}
   \tkzMarkRightAngle(D,F,B)
-  \tkzDrawSegments(A,D A,B D,F)
+  \tkzDrawSegments(A,D A,B D,F) 
   \tkzDrawSegments[color=red,line width=1pt,
       opacity=.4](A,O F,B)
-  \tkzDrawPoints(A,B,O,O',E,D)
-  \tkzLabelPoints(A,B,O,O',E,D)
+  \tkzDrawPoints(A,B,O,O',E,D) 
+  \tkzLabelPoints(A,B,O,O',E,D) 
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -126,20 +126,20 @@ Let's look at some special cases like straight lines tangent to the circle.
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=1.25]
-  \tkzDefPoint(0,1){J}
+  \tkzDefPoint(0,1){J} 
   \tkzDefPoint(0,0){O}
   \tkzDrawArc[R,line width=1pt,color=red](J,2.5 cm)(180,0)
   \foreach \i in {0,-5,-10,...,-85,-90}{
     \tkzDefPoint({2.5*cosd(\i)},{1+2.5*sind(\i)}){P}
      \tkzDrawSegment[color=orange](J,P)
-     \tkzInterLC[R](P,J)(O,1 cm)
+     \tkzInterLC[R](P,J)(O,1 cm) 
      \tkzGetPoints{M}{N}
      \tkzDrawPoints[red](N)
      }
   \foreach \i in {-90,-95,...,-175,-180}{
      \tkzDefPoint({2.5*cosd(\i)},{1+2.5*sind(\i)}){P}
      \tkzDrawSegment[color=orange](J,P)
-     \tkzInterLC[R](P,J)(O,1 cm)
+     \tkzInterLC[R](P,J)(O,1 cm) 
      \tkzGetPoints{M}{N}
      \tkzDrawPoints[red](M)
      }
@@ -151,7 +151,7 @@ Let's look at some special cases like straight lines tangent to the circle.
 
 The radius measurement may be the result of a calculation that is not done within the intersection macro, but before.
 A length can be calculated in several ways. It is possible of course,
- to use the module \tkzname{pgfmath} and the macro \tkzcname{pgfmathsetmacro}. In some cases, the results obtained are not precise enough, so the following calculation $0.0002 \div 0.0001$ gives $1.98$ with pgfmath while xfp will give $2$.
+ to use the module \tkzname{pgfmath} and the macro \tkzcname{pgfmathsetmacro}. In some cases, the results obtained are not precise enough, so the following calculation $0.0002 \div 0.0001$ gives $1.98$ with pgfmath while xfp will give $2$. 
 
 \subsubsection{Calculation of radius example 2}
 With \tkzname{xfp} and \tkzcname{fpeval}:
@@ -204,7 +204,7 @@ A Sangaku look! It is a question of proving that one can inscribe in a half-disc
  \tkzDrawSector[fill=brown!30](I,B)(A)
  \tkzFillPolygon[color=red!40](H,E,F,G)
  \tkzFillPolygon[color=blue!40](H,J,K,L)
- \tkzDrawPolySeg[color=red](H,E,F,G)
+ \tkzDrawPolySeg[color=red](H,E,F,G) 
  \tkzDrawPolySeg[color=red](J,K,L)
  \tkzDrawPoints(E,G,H,F,J,K,L)
 \end{tikzpicture}
@@ -214,10 +214,10 @@ A Sangaku look! It is a question of proving that one can inscribe in a half-disc
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[scale=.75]
 \tkzDefPoints{0/0/A,4/0/B,1/1/D,2/0/E}
-\tkzDefTriangle[equilateral](A,B)
+\tkzDefTriangle[equilateral](A,B) 
 \tkzGetPoint{C}
 \tkzDrawCircle(C,A)
-\tkzInterLC[with nodes](D,E)(C,A,B)
+\tkzInterLC[with nodes](D,E)(C,A,B) 
 \tkzGetPoints{F}{G}
 \tkzDrawPolygon(A,B,C)
 \tkzDrawPoints(A,...,G)
@@ -298,34 +298,34 @@ It is also possible to use directly \tkzcname{tkzInterCCN} and \tkzcname{tkzInte
 
 \subsubsection{Segment trisection}
  The idea here is to divide a segment with a ruler and a compass into three segments of equal length.
-
+ 
 \begin{tkzexample}[latex=9cm,small]
 \begin{tikzpicture}[scale=.8]
- \tkzDefPoint(0,0){A}
+ \tkzDefPoint(0,0){A}  
  \tkzDefPoint(3,2){B}
- \tkzInterCC(A,B)(B,A)
+ \tkzInterCC(A,B)(B,A) 
  \tkzGetPoints{C}{D}
- \tkzInterCC(D,B)(B,A)
+ \tkzInterCC(D,B)(B,A) 
  \tkzGetPoints{A}{E}
- \tkzInterCC(D,B)(A,B)
+ \tkzInterCC(D,B)(A,B) 
  \tkzGetPoints{F}{B}
- \tkzInterLC(E,F)(F,A)
+ \tkzInterLC(E,F)(F,A) 
  \tkzGetPoints{D}{G}
- \tkzInterLL(A,G)(B,E)
+ \tkzInterLL(A,G)(B,E) 
  \tkzGetPoint{O}
- \tkzInterLL(O,D)(A,B)
+ \tkzInterLL(O,D)(A,B) 
  \tkzGetPoint{J}
- \tkzInterLL(O,F)(A,B)
+ \tkzInterLL(O,F)(A,B) 
  \tkzGetPoint{I}
- \tkzDrawCircle(D,A)
+ \tkzDrawCircle(D,A)    
  \tkzDrawCircle(A,B)
- \tkzDrawCircle(B,A)
+ \tkzDrawCircle(B,A)    
  \tkzDrawCircle(F,A)
  \tkzDrawSegments[color=red](O,G
   O,B O,D O,F)
- \tkzDrawPoints(A,B,D,E,F,G,I,J)
+ \tkzDrawPoints(A,B,D,E,F,G,I,J)  
  \tkzLabelPoints(A,B,D,E,F,G,I,J)
- \tkzDrawSegments[blue](A,B B,D A,D
+ \tkzDrawSegments[blue](A,B B,D A,D%
   A,F F,G E,G B,E)
  \tkzMarkSegments[mark=s|](A,I I,J J,B)
 \end{tikzpicture}
@@ -336,22 +336,22 @@ It is also possible to use directly \tkzcname{tkzInterCCN} and \tkzcname{tkzInte
 \begin{tikzpicture}[scale=.5]
  \tkzDefPoints{0/0/a,0/5/B,5/0/C}
  \tkzDefPoint(54:5){F}
- \tkzDrawCircle[color=gray](A,C)
- \tkzInterCC[with nodes](A,A,C)(C,B,F)
+ \tkzDrawCircle[color=gray](A,C) 
+ \tkzInterCC[with nodes](A,A,C)(C,B,F) 
  \tkzGetPoints{a}{e}
  \tkzInterCC(A,C)(a,e) \tkzGetFirstPoint{b}
  \tkzInterCC(A,C)(b,a) \tkzGetFirstPoint{c}
  \tkzInterCC(A,C)(c,b) \tkzGetFirstPoint{d}
- \tkzDrawPoints(a,b,c,d,e)
+ \tkzDrawPoints(a,b,c,d,e)  
  \tkzDrawPolygon[color=red](a,b,c,d,e)
  \foreach \vertex/\num in {a/36,b/108,c/180,
                           d/252,e/324}{%
  \tkzDrawPoint(\vertex)
- \tkzLabelPoint[label=\num:$\vertex$](\vertex){}
+ \tkzLabelPoint[label=\num:$\vertex$](\vertex){} 
  \tkzDrawSegment[color=gray,style=dashed](A,\vertex)
- }
+ }  
 \end{tikzpicture}
 \end{tkzexample}
 
- \endinput
+ \endinput 
 

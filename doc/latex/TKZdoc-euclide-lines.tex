@@ -1,6 +1,6 @@
 \section{The straight lines}
 
-It is of course essential to draw straight lines, but before this can be done, it is necessary to be able to define certain particular lines such as mediators, bisectors, parallels or even perpendiculars. The principle is to determine two points on the straight line.
+It is of course essential to draw straight lines, but before this can be done, it is necessary to be able to define certain particular lines such as mediators, bisectors, parallels or even perpendiculars. The principle is to determine two points on the straight line. 
 
 
 \subsection{Definition of straight lines}
@@ -20,9 +20,9 @@ arguments           & example & explication                         \\
 \medskip
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\
-\TOline{mediator}{}{two points are defined}
-\TOline{perpendicular=through\dots}{mediator}{perpendicular to a straight line passing through a point}
+options             & default & definition                         \\ 
+\TOline{mediator}{}{two points are defined} 
+\TOline{perpendicular=through\dots}{mediator}{perpendicular to a straight line passing through a point} 
 \TOline{orthogonal=through\dots}{mediator}{see above }
 \TOline{parallel=through\dots}{mediator}{parallel to a straight line passing through a point}
 \TOline{bisector}{mediator}{bisector of an angle defined by three points}
@@ -30,9 +30,9 @@ options             & default & definition                         \\
 \TOline{K}{1}{coefficient for the perpendicular line}
 \TOline{normed}{false}{normalizes the created segment}
 \end{tabular}
-\end{NewMacroBox}
+\end{NewMacroBox}  
 
-\subsubsection{Example with \tkzname{mediator}}
+\subsubsection{Example with \tkzname{mediator}}  
 \begin{tkzexample}[latex=5 cm,small]
 \begin{tikzpicture}[rotate=25]
  \tkzDefPoints{-2/0/A,1/2/B}
@@ -41,14 +41,14 @@ options             & default & definition                         \\
  \tkzDefMidPoint(A,B)                \tkzGetPoint{I}
  \tkzFillPolygon[color=orange!30](A,C,B,D)
  \tkzDrawSegments(A,B C,D)
- \tkzMarkRightAngle(B,I,C)
+ \tkzMarkRightAngle(B,I,C) 
  \tkzDrawSegments(D,B D,A)
  \tkzDrawSegments(C,B C,A)
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample}  
 
-\subsubsection{Example with \tkzname{bisector} and \tkzname{normed}}
-\begin{tkzexample}[latex=7 cm,small]
+\subsubsection{Example with \tkzname{bisector} and \tkzname{normed}} 
+\begin{tkzexample}[latex=7 cm,small] 
 \begin{tikzpicture}[rotate=25,scale=.75]
  \tkzDefPoints{0/0/C, 2/-3/A, 4/0/B}
  \tkzDefLine[bisector,normed](B,A,C) \tkzGetPoint{a}
@@ -56,9 +56,9 @@ options             & default & definition                         \\
  \tkzShowLine[bisector,gap=4,size=2,color=red](B,A,C)
  \tkzDrawLines[blue!50,dashed,add= 0 and 3](A,a)
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample} 
 
-\subsubsection{Example with \tkzname{orthogonal} and \tkzname{parallel}}
+\subsubsection{Example with \tkzname{orthogonal} and \tkzname{parallel}}    
 \begin{tkzexample}[latex=5 cm,small]
 \begin{tikzpicture}
    \tkzDefPoints{-1.5/-0.25/A,1/-0.75/B,-0.7/1/C}
@@ -66,14 +66,14 @@ options             & default & definition                         \\
    \tkzLabelLine[pos=1.25,below left](A,B){$(d_1)$}
    \tkzDrawPoints(A,B,C)
    \tkzDefLine[orthogonal=through C](B,A) \tkzGetPoint{c}
-   \tkzDrawLine(C,c)
+   \tkzDrawLine(C,c) 
    \tkzLabelLine[pos=1.25,left](C,c){$(\delta)$}
    \tkzInterLL(A,B)(C,c) \tkzGetPoint{I}
-   \tkzMarkRightAngle(C,I,B)
+   \tkzMarkRightAngle(C,I,B) 
    \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{c'}
-   \tkzDrawLine(C,c')
+   \tkzDrawLine(C,c') 
    \tkzLabelLine[pos=1.25,below left](C,c'){$(d_2)$}
-   \tkzMarkRightAngle(I,C,c')
+   \tkzMarkRightAngle(I,C,c')   
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -84,7 +84,7 @@ Based on a figure from O. Reboux with pst-eucl by D Rodriguez.
 \begin{tikzpicture}[scale=.75]
  \tkzInit[xmin=-6,ymin=-4,xmax=6,ymax=6] % necessary
  \tkzClip
- \tkzDefPoint(0,0){O}
+ \tkzDefPoint(0,0){O} 
  \tkzDefPoint(132:4){A}
  \tkzDefPoint(5,0){B}
  \foreach \ang in {5,10,...,360}{%
@@ -100,21 +100,21 @@ It is not necessary to name the two points that define the mediator.
 
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}[scale=.75]
- \tkzInit[xmin=-6,ymin=-4,xmax=6,ymax=6]
+ \tkzInit[xmin=-6,ymin=-4,xmax=6,ymax=6] 
  \tkzClip
- \tkzDefPoint(0,0){O}
+ \tkzDefPoint(0,0){O} 
  \tkzDefPoint(132:5){A}
  \tkzDefPoint(4,0){B}
  \foreach \ang in {5,10,...,360}{%
   \tkzDefPoint(\ang:4){M}
-  \tkzDefLine[mediator](A,M)
+  \tkzDefLine[mediator](A,M) 
   \tkzDrawLine[color=magenta,add= 3 and 3](tkzFirstPointResult,tkzSecondPointResult)}
 \end{tikzpicture}
 \end{tkzexample}
 
 %<---------------------------------------------------------------------------->
 \subsection{Specific lines:  Tangent to a circle}
-Two constructions are proposed. The first one is the construction of a tangent to a circle at a given point of this circle and the second one is the construction of a tangent to a circle passing through a given point outside a disc.
+Two constructions are proposed. The first one is the construction of a tangent to a circle at a given point of this circle and the second one is the construction of a tangent to a circle passing through a given point outside a disc. 
 
 \begin{NewMacroBox}{tkzDefTangent}{\oarg{local options}\parg{pt1,pt2} or \parg{pt1,dim}}%
 The parameter in brackets is the center of the circle or the center of the circle and a point on the circle or the center and the radius. This macro replaces the old one: \tkzcname{tkzTangent}.
@@ -126,22 +126,22 @@ arguments           & example & explication                         \\
 \midrule
 \TAline{\parg{pt1,pt2 or \parg{pt1,dim}} }{\parg{A,B} or \parg{A,2cm}} {$[AB]$ is radius $A$ is the center}
 \bottomrule
-\end{tabular}
+\end{tabular} 
 
 \medskip
 \begin{tabular}{lll}%
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
-\TOline{at=pt}{at}{tangent to a point on the circle}
+\TOline{at=pt}{at}{tangent to a point on the circle} 
 \TOline{from=pt} {at}{tangent to a circle passing through a point}
-\TOline{from with R=pt} {at}{idem, but the circle is defined by center = radius}
+\TOline{from with R=pt} {at}{idem, but the circle is defined by center = radius}  
 \bottomrule
 \end{tabular}
 
 The tangent is not drawn. A second point of the tangent is given by \tkzname{tkzPointResult}.
 \end{NewMacroBox}
 
-\subsubsection{Example of a tangent passing through a point on the circle }
+\subsubsection{Example of a tangent passing through a point on the circle } 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoint(0,0){O}
@@ -157,29 +157,29 @@ The tangent is not drawn. A second point of the tangent is given by \tkzname{tkz
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of tangents passing through an external point }
+\subsubsection{Example of tangents passing through an external point } 
 \begin{tkzexample}[latex=7cm,small]
-\begin{tikzpicture}[scale=.8]
+\begin{tikzpicture}[scale=.8] 
   \tkzDefPoint(3,3){c}
-  \tkzDefPoint(6,3){a0}
-  \tkzRadius=1 cm
-  \tkzDrawCircle[R](c,\tkzRadius)
+  \tkzDefPoint(6,3){a0}  
+  \tkzRadius=1 cm 
+  \tkzDrawCircle[R](c,\tkzRadius) 
   \foreach \an in {0,10,...,350}{
-     \tkzDefPointBy[rotation=center c angle \an](a0)
-     \tkzGetPoint{a}
-     \tkzDefTangent[from with R = a](c,\tkzRadius)
-     \tkzGetPoints{e}{f}
-     \tkzDrawLines[color=magenta](a,f a,e)
+     \tkzDefPointBy[rotation=center c angle \an](a0)  
+     \tkzGetPoint{a}  
+     \tkzDefTangent[from with R = a](c,\tkzRadius)  
+     \tkzGetPoints{e}{f} 
+     \tkzDrawLines[color=magenta](a,f a,e) 
       \tkzDrawSegments(c,e c,f)
       }%
-\end{tikzpicture}
+\end{tikzpicture} 
 \end{tkzexample}
 
 \subsubsection{Example of Andrew Mertz}
 \begin{tkzexample}[latex=6cm,small]
- \begin{tikzpicture}[scale=.5]
- \tkzDefPoint(100:8){A}\tkzDefPoint(50:8){B}
- \tkzDefPoint(0,0){C} \tkzDefPoint(0,4){R}
+ \begin{tikzpicture}[scale=.5] 
+ \tkzDefPoint(100:8){A}\tkzDefPoint(50:8){B}  
+ \tkzDefPoint(0,0){C} \tkzDefPoint(0,4){R} 
  \tkzDrawCircle(C,R)
  \tkzDefTangent[from = A](C,R)  \tkzGetPoints{D}{E}
  \tkzDefTangent[from = B](C,R)  \tkzGetPoints{F}{G}
@@ -189,18 +189,18 @@ The tangent is not drawn. A second point of the tangent is given by \tkzname{tkz
  \tkzDrawPoint[color=black](I)
  \end{tikzpicture}
 \end{tkzexample}
-\url{http://www.texample.net/tikz/examples/}
+\url{http://www.texample.net/tikz/examples/}  
 
 \subsubsection{Drawing a tangent option \tkzimp{from with R} and \tkzimp{at}}
 \begin{tkzexample}[latex=7cm,small]
-  \begin{tikzpicture}[scale=.5]
+  \begin{tikzpicture}[scale=.5] 
   \tkzDefPoint(0,0){O}
   \tkzDefRandPointOn[circle=center O radius 4cm]
   \tkzGetPoint{A}
   \tkzDefTangent[at=A](O)
   \tkzGetPoint{h}
-  \tkzDrawSegments(O,A)
-  \tkzDrawCircle(O,A)
+  \tkzDrawSegments(O,A) 
+  \tkzDrawCircle(O,A) 
   \tkzDrawLine[add = 1 and 1](A,h)
   \tkzMarkRightAngle[fill=red!30](O,A,h)
   \end{tikzpicture}
@@ -208,9 +208,9 @@ The tangent is not drawn. A second point of the tangent is given by \tkzname{tkz
 
 \subsubsection{Drawing a tangent option \tkzimp{from}}
 \begin{tkzexample}[latex=5cm,small]
-\begin{tikzpicture}[scale=.5]
- \tkzDefPoint(0,0){B}
- \tkzDefPoint(0,8){A}
+\begin{tikzpicture}[scale=.5] 
+ \tkzDefPoint(0,0){B} 
+ \tkzDefPoint(0,8){A} 
  \tkzDefSquare(A,B)
  \tkzGetPoints{C}{D}
  \tkzDrawSquare(A,B)
@@ -220,11 +220,11 @@ The tangent is not drawn. A second point of the tangent is given by \tkzname{tkz
  \tkzDefPoint(4,4){Q}
  \tkzFillPolygon[color = green](A,B,C,D)
  \tkzDrawCircle[fill = orange](B,A)
- \tkzDrawCircle[fill = purple](E,B)
+ \tkzDrawCircle[fill = purple](E,B)  
  \tkzDefTangent[from=B](F,A)
  \tkzInterLL(F,tkzFirstPointResult)(C,D)
- \tkzInterLL(A,tkzPointResult)(F,E)
- \tkzDrawCircle[fill = yellow](tkzPointResult,Q)
+ \tkzInterLL(A,tkzPointResult)(F,E) 
+ \tkzDrawCircle[fill = yellow](tkzPointResult,Q)  
  \tkzDefPointBy[projection= onto B--A](tkzPointResult)
  \tkzDrawCircle[fill = blue!50!black](tkzPointResult,A)
 \end{tikzpicture}
@@ -234,7 +234,7 @@ The tangent is not drawn. A second point of the tangent is given by \tkzname{tkz
 \section{Drawing, naming the lines}
 The following macros are simply used to draw, name lines.
 \subsection{Draw a straight line}
-To draw a normal straight line, just give a couple of points. You can  use the \tkzname{add} option to extend the line (This option is due to \tkzimp{Mark Wibrow}, see the code below).
+To draw a normal straight line, just give a couple of points. You can  use the \tkzname{add} option to extend the line (This option is due to \tkzimp{Mark Wibrow}, see the code below). 
 
 \begin{tkzltxexample}[]
   \tikzset{%
@@ -251,13 +251,13 @@ The arguments are a list of two points or three points.
 
 \begin{tabular}{lll}%
 \toprule
-options             & default & definition                         \\
+options             & default & definition                         \\ 
 \midrule
 \TOline{median}{none}{[median](A,B,C) median from $B$}
-\TOline{altitude}{none}{[altitude](C,A,B) altitude from $A$}
+\TOline{altitude}{none}{[altitude](C,A,B) altitude from $A$} 
 \TOline{bisector}{none}{[bisector](B,C,A) bisector from $C$}
-\TOline{none}{none}{draw the straight line $(AB)$}
-\TOline{add= nb1 and nb2}{.2 and .2}{extends the segment}
+\TOline{none}{none}{draw the straight line $(AB)$} 
+\TOline{add= nb1 and nb2}{.2 and .2}{extends the segment} 
  \bottomrule
 \end{tabular}
 
@@ -270,48 +270,48 @@ options             & default & definition                         \\
  \tkzInit[xmin=-2,xmax=3,ymin=-2.25,ymax=2.25]
  \tkzClip[space=.25]
  \tkzDefPoint(0,0){A} \tkzDefPoint(2,0.5){B}
- \tkzDefPoint(0,-1){C}\tkzDefPoint(2,-0.5){D}
- \tkzDefPoint(0,1){E} \tkzDefPoint(2,1.5){F}
+ \tkzDefPoint(0,-1){C}\tkzDefPoint(2,-0.5){D} 
+ \tkzDefPoint(0,1){E} \tkzDefPoint(2,1.5){F} 
  \tkzDefPoint(0,-2){G} \tkzDefPoint(2,-1.5){H}
- \tkzDrawLine(A,B)    \tkzDrawLine[add = 0 and .5](C,D)
+ \tkzDrawLine(A,B)    \tkzDrawLine[add = 0 and .5](C,D) 
  \tkzDrawLine[add = 1 and 0](E,F)
- \tkzDrawLine[add = 0 and 0](G,H)
- \tkzDrawPoints(A,B,C,D,E,F,G,H)
- \tkzLabelPoints(A,B,C,D,E,F,G,H)
+ \tkzDrawLine[add = 0 and 0](G,H) 
+ \tkzDrawPoints(A,B,C,D,E,F,G,H)    
+ \tkzLabelPoints(A,B,C,D,E,F,G,H)  
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample} 
 
-It is possible to draw several lines, but with the same options.
-\begin{NewMacroBox}{tkzDrawLines}{\oarg{local options}\parg{pt1,pt2 pt3,pt4 ...}}%
-Arguments are a list of pairs of  points separated by spaces.  The styles of \TIKZ\ are available for the draws.
-\end{NewMacroBox}
+It is possible to draw several lines, but with the same options. 
+\begin{NewMacroBox}{tkzDrawLines}{\oarg{local options}\parg{pt1,pt2 pt3,pt4 ...}}% 
+Arguments are a list of pairs of  points separated by spaces.  The styles of \TIKZ\ are available for the draws. 
+\end{NewMacroBox}      
 
-\subsubsection{Example with \tkzcname{tkzDrawLines}}
+\subsubsection{Example with \tkzcname{tkzDrawLines}}    
 
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(2,0){B}
   \tkzDefPoint(1,2){C}
-  \tkzDefPoint(3,2){D}
+  \tkzDefPoint(3,2){D}   
   \tkzDrawLines(A,B C,D A,C B,D)
   \tkzLabelPoints(A,B,C,D)
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example with  the option \tkzname{add}}
+\subsubsection{Example with  the option \tkzname{add}}   
 \begin{tkzexample}[latex=8cm,small]
 \begin{tikzpicture}[scale=.5]
  \tkzDefPoint(0,0){O}
  \tkzDefPoint(3,1){I}
  \tkzDefPoint(1,4){J}
- \tkzDefLine[bisector](I,O,J)
-   \tkzGetPoint{i}
- \tkzDefLine[bisector out](I,O,J)
+ \tkzDefLine[bisector](I,O,J)     
+   \tkzGetPoint{i}   
+ \tkzDefLine[bisector out](I,O,J) 
    \tkzGetPoint{j}
- \tkzDrawLines[add = 1 and .5,color=red](O,I O,J)
- \tkzDrawLines[add = 1 and .5,color=blue](O,i O,j)
-\end{tikzpicture}
+ \tkzDrawLines[add = 1 and .5,color=red](O,I O,J) 
+ \tkzDrawLines[add = 1 and .5,color=blue](O,i O,j) 
+\end{tikzpicture} 
 \end{tkzexample}
 
 \subsubsection{Medians in a triangle}
@@ -352,19 +352,19 @@ You have to give the angles in a straight line.
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsection{Add labels on a straight line \tkzcname{tkzLabelLine}}%
+\subsection{Add labels on a straight line \tkzcname{tkzLabelLine}}% 
 \begin{NewMacroBox}{tkzLabelLine}{\oarg{local options}\parg{pt1,pt2}\marg{label}}
 \begin{tabular}{lll}%
-arguments &  default & definition   \\
+arguments &  default & definition   \\ 
 \midrule
 \TAline{label}{}{\tkzcname{tkzLabelLine(A,B)}\{\$\tkzcname{Delta}\$\}}
 \bottomrule
 \end{tabular}
 
 \begin{tabular}{lll}%
-options             & default & definition   \\
+options             & default & definition   \\ 
 \midrule
-\TOline{pos}{.5}{\tkzname{pos} is an option for \TIKZ, but essential in this case\dots}
+\TOline{pos}{.5}{\tkzname{pos} is an option for \TIKZ, but essential in this case\dots} 
 \end{tabular}
 
 As an option, and in addition to the \tkzname{pos}, you can use all styles of \TIKZ, especially the placement with \tkzname{above}, \tkzname{right}, \dots
@@ -379,25 +379,25 @@ An important option is \tkzname{pos}, it's the one that allows you to place the 
    \tkzDefLine[perpendicular=through C,K=-1](A,B)
    \tkzGetPoint{c}
    \tkzDrawLines(A,B C,c)
-   \tkzLabelLine[pos=1.25,blue,right](C,c){$(\delta)$}
-   \tkzLabelLine[pos=-0.25,red,left](C,c){again $(\delta)$}
+   \tkzLabelLine[pos=1.25,blue,right](C,c){$(\delta)$} 
+   \tkzLabelLine[pos=-0.25,red,left](C,c){again $(\delta)$} 
 \end{tikzpicture}
 \end{tkzexample}
 
 \section{Draw, Mark segments}
 There is, of course, a macro to simply draw a segment (it would be possible, as for a half line, to create a style with \tkzcname{add}).
-\subsection{Draw a segment \tkzcname{tkzDrawSegment}}
+\subsection{Draw a segment \tkzcname{tkzDrawSegment}} 
 \begin{NewMacroBox}{tkzDrawSegment}{\oarg{local options}\parg{pt1,pt2}}%
 The arguments are a list of two points. The styles of \TIKZ\ are available for the drawings.
-
+ 
 \medskip
 \begin{tabular}{lll}%
 argument    & example & definition    \\
 \midrule
 \TAline{(pt1,pt2)}{(A,B)}{draw the segment $[A,B]$}
-\bottomrule
+\bottomrule 
 \end{tabular}
-
+ 
 \medskip
 \begin{tabular}{lll}%
 options    & example & definition    \\
@@ -407,30 +407,30 @@ options    & example & definition    \\
 \TOline{\dots}{\dots}{allows the segment to be extended to the left and right. }
 \TOline{dim}{no default}{dim = \{label,dim,option\}, \dots}
 \TOline{\dots}{\dots}{allows you to add dimensions to a figure.}
-\bottomrule
+\bottomrule 
 \end{tabular}
 
-This is of course equivalent to \tkzcname{draw (A)--(B);}
+This is of course equivalent to \tkzcname{draw (A)--(B);} 
 \end{NewMacroBox}
 
-\subsubsection{Example with point references}
+\subsubsection{Example with point references}     
 
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=1.5]
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(2,1){B}
   \tkzDrawSegment[color=red,thin](A,B)
-  \tkzDrawPoints(A,B)
-  \tkzLabelPoints(A,B)
+  \tkzDrawPoints(A,B)    
+  \tkzLabelPoints(A,B)  
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of extending an segment with option \tkzname{add}}
+\subsubsection{Example of extending an segment with option \tkzname{add}} 
 
 \begin{tkzexample}[latex=7cm,small]
   \begin{tikzpicture}
   \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
-  \tkzDefTriangleCenter[euler](A,B,C)
+  \tkzDefTriangleCenter[euler](A,B,C) 
   \tkzGetPoint{E}
   \tkzDrawCircle[euler,red](A,B,C)
   \tkzDrawLines[add=.5 and .5](A,B A,C B,C)
@@ -439,7 +439,7 @@ This is of course equivalent to \tkzcname{draw (A)--(B);}
   \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Example of adding dimensions with option \tkzname{dim}}
+\subsubsection{Example of adding dimensions with option \tkzname{dim}} 
 \begin{tkzexample}[vbox,small]
 \begin{tikzpicture}[scale=4]
  \pgfkeys{/pgf/number format/.cd,fixed,precision=2}
@@ -461,9 +461,9 @@ This is of course equivalent to \tkzcname{draw (A)--(B);}
 \end{tikzpicture}
 \end{tkzexample}
 
-
-\subsection{Drawing segments \tkzcname{tkzDrawSegments}}
-If the options are the same we can plot several segments with the same macro.
+ 
+\subsection{Drawing segments \tkzcname{tkzDrawSegments}} 
+If the options are the same we can plot several segments with the same macro. 
 
 \begin{NewMacroBox}{tkzDrawSegments}{\oarg{local options}\parg{pt1,pt2 pt3,pt4 ...}}%
 The arguments are a two-point couple list. The styles of \TIKZ\ are available for the plots.
@@ -474,12 +474,12 @@ The arguments are a two-point couple list. The styles of \TIKZ\ are available fo
   \tkzInit[xmin=-1,xmax=3,ymin=-1,ymax=2]
   \tkzClip[space=1]
   \tkzDefPoint(0,0){A}
-  \tkzDefPoint(2,1){B}
-  \tkzDefPoint(3,0){C}
+  \tkzDefPoint(2,1){B} 
+  \tkzDefPoint(3,0){C} 
   \tkzDrawSegments(A,B B,C)
-  \tkzDrawPoints(A,B,C)
-  \tkzLabelPoints(A,C)
-  \tkzLabelPoints[above](B)
+  \tkzDrawPoints(A,B,C)    
+  \tkzLabelPoints(A,C) 
+  \tkzLabelPoints[above](B)  
 \end{tikzpicture}
 \end{tkzexample}
 
@@ -488,20 +488,20 @@ The arguments are a two-point couple list. The styles of \TIKZ\ are available fo
 \begin{tikzpicture}
   \tikzset{
     arr/.style={postaction=decorate,
-    decoration={markings,
+    decoration={markings, 
     mark=at position .5 with {\arrow[thick]{#1}}
       }}}
   \tkzDefPoint(0,0){A}
   \tkzDefPoint(4,-4){B}
   \tkzDrawSegments[arr=stealth](A,B)
-  \tkzDrawPoints(A,B)
+  \tkzDrawPoints(A,B) 
 \end{tikzpicture}
 \end{tkzexample}
 
 \subsection{Mark a segment \tkzcname{tkzMarkSegment}}
-\hypertarget{tms}{}
-
- \begin{NewMacroBox}{tkzMarkSegment}{\oarg{local options}\parg{pt1,pt2}}%
+\hypertarget{tms}{}  
+  
+ \begin{NewMacroBox}{tkzMarkSegment}{\oarg{local options}\parg{pt1,pt2}}% 
 The macro allows you to place a mark on a segment.
 
 \medskip
@@ -509,32 +509,32 @@ The macro allows you to place a mark on a segment.
 \toprule
 options             & default & definition   \\
 \midrule
-\TOline{pos}{.5}{position of the mark}
-\TOline{color}{black}{color of the mark}
-\TOline{mark}{none}{choice of the mark}
+\TOline{pos}{.5}{position of the mark} 
+\TOline{color}{black}{color of the mark} 
+\TOline{mark}{none}{choice of the mark} 
 \TOline{size}{4pt}{size of the mark}
 \bottomrule
 \end{tabular}
 
 Possible marks are those provided by \TIKZ, but other marks have been created based on an idea by Yves Combe.
-\end{NewMacroBox}
+\end{NewMacroBox} 
 
 \subsubsection{Several marks }
-\begin{tkzexample}[latex=5cm,small]
+\begin{tkzexample}[latex=5cm,small] 
 \begin{tikzpicture}
   \tkzDefPoint(2,1){A}
   \tkzDefPoint(6,4){B}
   \tkzDrawSegment(A,B)
-  \tkzMarkSegment[color=brown,size=2pt,pos=0.4, mark=z](A,B)
+  \tkzMarkSegment[color=brown,size=2pt,pos=0.4, mark=z](A,B) 
   \tkzMarkSegment[color=blue,pos=0.2, mark=oo](A,B)
-  \tkzMarkSegment[pos=0.8,mark=s,color=red](A,B)
+  \tkzMarkSegment[pos=0.8,mark=s,color=red](A,B) 
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsubsection{Use of \tkzname{mark}}
-\begin{tkzexample}[latex=5cm,small]
+\subsubsection{Use of \tkzname{mark}}      
+\begin{tkzexample}[latex=5cm,small] 
 \begin{tikzpicture}
-  \tkzDefPoint(2,1){A}
+  \tkzDefPoint(2,1){A} 
   \tkzDefPoint(6,4){B}
   \tkzDrawSegment(A,B)
   \tkzMarkSegment[color=gray,pos=0.2,mark=s|](A,B)
@@ -546,27 +546,27 @@ Possible marks are those provided by \TIKZ, but other marks have been created ba
 
 
 \subsection{Marking segments \tkzcname{tkzMarkSegments}}
-\hypertarget{tmss}{}
-
+\hypertarget{tmss}{} 
+ 
 \begin{NewMacroBox}{tkzMarkSegments}{\oarg{local options}\parg{pt1,pt2 pt3,pt4 ...}}%
 Arguments are a list of pairs of points separated by spaces. The styles of \TIKZ\ are available for plots.
-\end{NewMacroBox}
+\end{NewMacroBox} 
 
-\subsubsection{Marks for an isosceles triangle}
+\subsubsection{Marks for an isosceles triangle}      
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=1]
  \tkzDefPoints{0/0/O,2/2/A,4/0/B,6/2/C}
  \tkzDrawSegments(O,A A,B)
  \tkzDrawPoints(O,A,B)
- \tkzDrawLine(O,B)
+ \tkzDrawLine(O,B)   
  \tkzMarkSegments[mark=||,size=6pt](O,A A,B)
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample} 
 
-\subsection{Another marking}
-\begin{tkzexample}[latex=5cm,small]
+\subsection{Another marking}   
+\begin{tkzexample}[latex=5cm,small] 
  \begin{tikzpicture}[scale=1]
-  \tkzDefPoint(0,0){A}\tkzDefPoint(3,2){B}
+  \tkzDefPoint(0,0){A}\tkzDefPoint(3,2){B} 
   \tkzDefPoint(4,0){C}\tkzDefPoint(2.5,1){P}
   \tkzDrawPolygon(A,B,C)
   \tkzDefEquilateral(A,P) \tkzGetPoint{P'}
@@ -576,14 +576,14 @@ Arguments are a list of pairs of points separated by spaces. The styles of \TIKZ
   \tkzDrawSegment(C,P)
   \tkzDrawPoints(A,B,C,C',P,P')
   \tkzMarkSegments[mark=s|,size=6pt,
-  color=blue](A,P P,P' P',A)
+  color=blue](A,P P,P' P',A) 
   \tkzMarkSegments[mark=||,color=orange](B,P P',C')
-  \tkzLabelPoints(A,C) \tkzLabelPoints[below](P)
-  \tkzLabelPoints[above right](P',C',B)
-\end{tikzpicture}
-\end{tkzexample}
+  \tkzLabelPoints(A,C) \tkzLabelPoints[below](P) 
+  \tkzLabelPoints[above right](P',C',B) 
+\end{tikzpicture} 
+\end{tkzexample}  
 
-\hypertarget{tls}{}
+\hypertarget{tls}{}  
 \begin{NewMacroBox}{tkzLabelSegment}{\oarg{local options}\parg{pt1,pt2}\marg{label}}
 This macro allows you to place a label along a segment or a line. The options are those of \TIKZ\ for example \tkzname{pos}.
 
@@ -591,8 +591,8 @@ This macro allows you to place a label along a segment or a line. The options ar
 \begin{tabular}{lll}%%
 argument    & example & definition    \\
 \midrule
-\TAline{label}{\tkzcname{tkzLabelSegment(A,B)\{$5$\}}}{label text}
-\TAline{(pt1,pt2)}{(A,B)}{label along $[AB]$}
+\TAline{label}{\tkzcname{tkzLabelSegment(A,B)\{$5$\}}}{label text} 
+\TAline{(pt1,pt2)}{(A,B)}{label along $[AB]$} 
 \bottomrule
 \end{tabular}
 
@@ -601,11 +601,11 @@ argument    & example & definition    \\
 \begin{tabular}{lll}%
 options  & default & definition    \\
 \midrule
-\TOline{pos}{.5}{label's position}
+\TOline{pos}{.5}{label's position} 
 \end{tabular}
-\end{NewMacroBox}
+\end{NewMacroBox}  
 
-\subsubsection{Multiple labels}
+\subsubsection{Multiple labels}      
 \begin{tkzexample}[latex=7 cm,small]
 \begin{tikzpicture}
 \tkzInit
@@ -614,8 +614,8 @@ options  & default & definition    \\
 \tkzDrawSegment(A,B)
 \tkzLabelSegment[above,pos=.8](A,B){$a$}
 \tkzLabelSegment[below,pos=.2](A,B){$4$}
-\end{tikzpicture}
-\end{tkzexample}
+\end{tikzpicture} 
+\end{tkzexample}  
 
 \subsubsection{Labels and right-angled triangle}
 \begin{tkzexample}[latex=7cm,small]
@@ -644,22 +644,22 @@ options  & default & definition    \\
 \tkzMarkAngle[size=0.75cm,
       color=orange,mark=||](B,A,C)
 \tkzMarkRightAngles[german](A,C,B B,P,C)
-\end{tikzpicture}
+\end{tikzpicture} 
 \end{tkzexample}
 
-\hypertarget{tlss}{}
+\hypertarget{tlss}{} 
  \begin{NewMacroBox}{tkzLabelSegments}{\oarg{local options}\parg{pt1,pt2 pt3,pt4 ...}}%
 The arguments are a two-point couple list. The styles of \TIKZ\ are available for plotting.
-\end{NewMacroBox}
-
-\subsubsection{Labels for an isosceles triangle}
+\end{NewMacroBox} 
+ 
+\subsubsection{Labels for an isosceles triangle}      
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=1]
  \tkzDefPoints{0/0/O,2/2/A,4/0/B,6/2/C}
  \tkzDrawSegments(O,A A,B)
  \tkzDrawPoints(O,A,B)
- \tkzDrawLine(O,B)
+ \tkzDrawLine(O,B)   
  \tkzLabelSegments[color=red,above=4pt](O,A A,B){$a$}
 \end{tikzpicture}
-\end{tkzexample}
+\end{tkzexample}  
 \endinput

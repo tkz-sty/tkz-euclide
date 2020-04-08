@@ -11,10 +11,10 @@ In the general case this distance is the distance between the 2 points given as 
  It is in fact the definition of a point meeting vectorial conditions.
 
 \medskip
-
+  
 \begin{tabular}{lll}%
 \toprule
-arguments             & definition & explication                         \\
+arguments             & definition & explication                         \\ 
 \midrule
 \TAline{(pt1,pt2)} {point couple}{the result is a point in \tkzname{tkzPointResult} } \\
 
@@ -26,12 +26,12 @@ In what follows, it is assumed that the point is recovered by \tkzNameMacro{tkzG
 
 \begin{tabular}{lll}%
 \toprule
-options             & example & explication                         \\
+options             & example & explication                         \\ 
 \midrule
 \TOline{orthogonal}{[orthogonal](A,B)}{$AC=AB$ and $\overrightarrow{AC} \perp \overrightarrow{AB}$}
-\TOline{orthogonal normed}{[orthogonal normed](A,B)}{$AC=1$ and $\overrightarrow{AC} \perp \overrightarrow{AB}$}
+\TOline{orthogonal normed}{[orthogonal normed](A,B)}{$AC=1$ and $\overrightarrow{AC} \perp \overrightarrow{AB}$} 
 \TOline{linear}{[linear](A,B)}{$\overrightarrow{AC}=K \times \overrightarrow{AB}$}
-\TOline{linear normed}{[linear normed](A,B)}{$AC=K$ and $\overrightarrow{AC}=k\times \overrightarrow{AB}$ }
+\TOline{linear normed}{[linear normed](A,B)}{$AC=K$ and $\overrightarrow{AC}=k\times \overrightarrow{AB}$ }  
 \TOline{colinear= at \#1}{[colinear= at C](A,B)}{$\overrightarrow{CD}= \overrightarrow{AB}$ }
 \TOline{colinear normed= at \#1}{[colinear normed= at C](A,B)}{$\overrightarrow{CD}= \overrightarrow{AB}$ }
 \TOline{K}{[linear](A,B),K=2}{$\overrightarrow{AC}=2\times \overrightarrow{AB}$}
@@ -91,7 +91,7 @@ AB=AC since $K=1$.
 \begin{tkzexample}[latex=6cm,small]
 \begin{tikzpicture}[scale=1.2,
   vect/.style={->,shorten >=3pt,>=latex'}]
-   \tkzDefPoint(2,3){A}
+   \tkzDefPoint(2,3){A}   
 	   \tkzDefPoint(4,2){B}
    \tkzDefPointWith[orthogonal,K=1](A,B)
      \tkzGetPoint{C}
@@ -112,7 +112,7 @@ OK=OI since $\lvert K \rvert=1$ then OI=OJ=OK.
 \begin{tikzpicture}[scale=.75]
   \tkzDefPoint(1,2){O}
   \tkzDefPoint(2,5){I}
-  \tkzDefPointWith[orthogonal](O,I)
+  \tkzDefPointWith[orthogonal](O,I) 
   \tkzGetPoint{J}
   \tkzDefPointWith[orthogonal,K=-1](O,I)
   \tkzGetPoint{K}
@@ -130,7 +130,7 @@ OK=OI since $\lvert K \rvert=1$ then OI=OJ=OK.
   \tkzDefPoints{0/0/A,6/0/B}
   \tkzDefMidPoint(A,B)
 	  \tkzGetPoint{I}
-  \tkzDefPointWith[orthogonal,K=-.75](B,A)
+  \tkzDefPointWith[orthogonal,K=-.75](B,A) 
   \tkzGetPoint{C}
   \tkzInterLC(B,C)(B,I)
 	   \tkzGetPoints{D}{F}
@@ -153,9 +153,9 @@ OK=OI since $\lvert K \rvert=1$ then OI=OJ=OK.
   vect/.style={->,shorten >=3pt,>=latex'}]
    \tkzDefPoint(2,1){A}
    \tkzDefPoint(6,2){B}
-   \tkzDefPointWith[orthogonal,K=.5](A,B)
+   \tkzDefPointWith[orthogonal,K=.5](A,B) 
    \tkzGetPoint{C}
-   \tkzDefPointWith[colinear=at C,K=.5](A,B)
+   \tkzDefPointWith[colinear=at C,K=.5](A,B) 
    \tkzGetPoint{D}
    \tkzMarkRightAngle[fill=gray!20](B,A,C)
    \tkzDrawSegments[vect](A,B A,C C,D)
@@ -197,7 +197,7 @@ $K=2$ therefore $AC=2$.
 
 \subsubsection{Option \tkzname{linear}}
 Here $K=0.5$.
-
+ 
 This amounts to applying a homothety or a multiplication of a vector by a real. Here is the middle of $[AB]$.
 
 \begin{tkzexample}[latex=7cm,small]
@@ -229,11 +229,11 @@ In the following example $AC=1$ and $C$ belongs to $(AB)$.
 
 
 %<--------------------------------------------------------------------------–>
-%         tkzGetVectxy
+%         tkzGetVectxy  
 %<--------------------------------------------------------------------------–>
 
 
-\subsection{\tkzcname{tkzGetVectxy} }
+\subsection{\tkzcname{tkzGetVectxy} } 
 Retrieving the coordinates of a vector.
 
 \begin{NewMacroBox}{tkzGetVectxy}{\parg{$A,B$}\var{text}}%
@@ -268,4 +268,4 @@ arguments    & example & explication      \\
 
 
 
-\endinput
+\endinput  

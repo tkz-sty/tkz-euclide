@@ -1,6 +1,6 @@
-# tkz-euclide — Tools for drawing Euclidean geometry
+# tkz-euclide — for euclidan geometry
 
-Release 3.05c 2020/03/08
+Release 3.0§c 2020/04/06
 
 ## Description
 
@@ -13,7 +13,7 @@ that would be done by hand as naturally as possible.
 
 ## Licence
 
-The `tkz-euclide` package may be modified and distributed under the terms and
+The scontents package may be modified and distributed under the terms and
 conditions of the [LaTeX Project Public License](https://www.latex-project.org/lppl/), version 1.3c or greater.
 
 
@@ -84,7 +84,7 @@ The new version of `tkz-euclide` is *not* fully compatible with the version
 1.16 but the differences are minor.
 
 ## History
-
+- 3.06 correction of bugs, amelioration of the documentation. 
 - 3.05 correction of bugs, amelioration of the documentation.
 - 3.02 replacement french documentation by english documentation, correction of bugs.
 - 3.01 replacement `fp` for `xfp`, addition of some macros, correction of bugs
