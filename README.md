@@ -1,4 +1,4 @@
-# tkz-euclide — for euclidan geometry
+# tkz-euclide — Tools for drawing Euclidean geometry
 
 Release 3.06c 2020/04/06
 
@@ -65,7 +65,7 @@ package conflicts.
 ## Documentation
 
 Documentation for `tkz-euclide` is available on `CTAN`. You have two
-cheatsheets about tkz-euclide in the archive. Use `texdoc tkz-euclide`.
+cheatsheets about `tkz-euclide` in the archive. Use `texdoc tkz-euclide`.
 
 ## Examples
 
