@@ -70,7 +70,7 @@ cheatsheets about `tkz-euclide` in the archive. Use `texdoc tkz-euclide` for ful
 ## Examples
 
 All  examples given in documentation will be stored on `CTAN` as standalone
-files, ready for compilation. You can use the main.tex file to load and
+files, ready for compilation. You can use the `main.tex` file to load and
 compile  an example.
 
 The archive contains a litle document about Euclidean Geometry with four
