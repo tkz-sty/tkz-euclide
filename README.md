@@ -65,7 +65,7 @@ package conflicts.
 ## Documentation
 
 Documentation for `tkz-euclide` is available on `CTAN`. You have two
-cheatsheets about tkz-euclide in the archive. Use `texdoc tkz-euclide`.
+cheatsheets about `tkz-euclide` in the archive. Use `texdoc tkz-euclide` for full documentation.
 
 ## Examples
 
@@ -84,12 +84,13 @@ The new version of `tkz-euclide` is *not* fully compatible with the version
 1.16 but the differences are minor.
 
 ## History
+
 - 3.06 correction of bugs, amelioration of the documentation.
 - 3.05 correction of bugs, amelioration of the documentation.
 - 3.02 replacement french documentation by english documentation, correction of bugs.
-- 3.01 replacement `fp` for `xfp`, addition of some macros, correction of bugs
-- 1.16 correction of bugs
-- 1.13 first version
+- 3.01 replacement `fp` for `xfp`, addition of some macros, correction of bugs.
+- 1.16 correction of bugs.
+- 1.13 first version.
 
 ## Author
 

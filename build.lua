@@ -57,10 +57,10 @@ if options["target"] == "doc" or options["target"] == "ctan" or options["target"
 end
 
 if options["target"] == "clean" then
- errorlevel = (cleandir("code") + cleandir("doc/sourcedoc") + cleandir("doc/examples"))
- lfs.rmdir("code")
- lfs.rmdir("doc/sourcedoc")
- lfs.rmdir("doc/examples")
+  errorlevel = (cleandir("code") + cleandir("doc/sourcedoc") + cleandir("doc/examples"))
+  lfs.rmdir("code")
+  lfs.rmdir("doc/sourcedoc")
+  lfs.rmdir("doc/examples")
 end
 
 -- Setting variables for package files
@@ -439,6 +439,7 @@ local function type_manual()
     error("Error!!: Typesetting "..file..".tex")
     return errorlevel
   end
+  ren("doc/sourcedoc", "TKZdoc-euclide.tex", "TKZdoc-euclide-main.tex")
   return 0
 end
 

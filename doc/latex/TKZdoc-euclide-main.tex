@@ -50,7 +50,8 @@
                index       = totoc,
                footinclude = false,
                %twoside,
-               headings    = small]{tkz-doc}
+               headings    = small,
+               cadre]{tkz-doc}
 \usepackage{etoc}
 \gdef\tkznameofpack{tkz-euclide}
 \gdef\tkzversionofpack{3.06c}
@@ -98,19 +99,19 @@
   Ligatures=TeX,
   Numbers={Lowercase,Monospaced}]
 \usepackage{unicode-math}
-\usepackage{fourier-otf} % ,zorna
-\newfontfamily\zorna{ORNA4___.TTF}
-\usepackage{datetime,multicol,lscape}
+\usepackage{fourier-otf}
 \usepackage[english]{babel}
 \usepackage[autolanguage]{numprint}
 \usepackage[normalem]{ulem}
 \usepackage{microtype}
 \usepackage{array,multirow,multido,booktabs}
 \usepackage{shortvrb,fancyvrb}
-\usepackage{csquotes}
 \renewcommand{\labelitemi}{--}
 \setlength{\parindent}{0pt}
 \RequirePackage{makeidx}
+\usepackage{csquotes}
+\usepackage{pgfornament}
+% \usepackage{lua-visual-debug} % for debug boxes
 \usepackage[includemp=false,a4paper,top=2cm,bottom=3cm,left=2cm,right=2.5cm,%
             heightrounded,marginparsep=0.3cm,marginparwidth=1.75cm]{geometry}
 \makeindex
@@ -122,34 +123,6 @@
 % }
 %<--------------------------------------------------------------------------->
 \AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
-
-%\usepackage{lua-visual-debug} % for debug box
-% First
-% rm -rf *.{aux,log,ltx,ind,idx,ilg,out,tmp,toc,atfi} & lualatex --draftmode "\PassOptionsToPackage{samples}{tkzexample}\input{TKZdoc-euclide-main.tex}"
-% Second
-% arara TKZdoc-euclide-main.tex
-% \overfullrule=2cm
-
-%\pgfkeys{%
-  %tkzsavedcode/.cd,
-  %prefix = tkzEuclide, outext = ltx}
-%\makeatletter
-%\ExamplePreamble{%
-  %\\documentclass{standalone}\n
-  %\\usepackage{tkz-euclide,tkz-fct}\n
-  %\% Example \thetkzoutNr, Section \tkzref\n
-  %\\begin{document}%
-%}
-%\ExamplePostamble{\\end{document}}
-
-%\renewcommand{\marginfont}{\small}
-%\renewcommand{\marginnotevadjust}{2.125ex}
-%\AttachfileConfig{%
-  %\typeout{Attach example file:}%
-  %\marginnote{\raggedrightmarginnote\texttt{%
-  %Ex\,{\FourierOrns X}\,\thetkzoutNr\,\guilsinglright\,\textattachfile[color=MidnightBlue,print=false]{#1}{\faFile*[regular]}}}%
-%}
-
 \begin{document}
 
 \author{\tkzauthorofpack}
@@ -159,27 +132,65 @@
 \thispagestyle{empty}
 \maketitle
 \null
+\makeatletter
+\if@tkzcadre
+% Check to see if this font is installed system-wide or is on the path
+\IfFontExistsTF{ORNA4___.TTF}{%
+\typeout{Load ORNA4 font}
+\newfontfamily\zorna{ORNA4___.TTF}
 \AddToShipoutPicture*{%
 \setlength\unitlength{1mm}
 \put(70,120){%
 \begin{tikzpicture}
- \node at (30pt,30pt){\fontsize{60}{60}\selectfont \zorna{c}};
- \node at (270pt,30pt){\fontsize{60}{60}\selectfont \zorna{d}};
- \node at (30pt,210pt){\fontsize{60}{60}\selectfont \zorna{a}};
- \node at (270pt,210pt){\fontsize{60}{60}\selectfont \zorna{b}};
- \draw[line width=2pt,double,color=MidnightBlue,
- fill=myblue!10,opacity=.5] (0,0) rectangle (300pt,240pt);
- \node[text width=240pt] at (150 pt,120 pt){%
+  \node at (30pt,30pt){\fontsize{60}{60}\selectfont \zorna{c}};
+  \node at (270pt,30pt){\fontsize{60}{60}\selectfont \zorna{d}};
+  \node at (30pt,210pt){\fontsize{60}{60}\selectfont \zorna{a}};
+  \node at (270pt,210pt){\fontsize{60}{60}\selectfont \zorna{b}};
+  \draw[line width=2pt,double,color=MidnightBlue,
+        fill=myblue!10,opacity=.5] (0,0) rectangle (300pt,240pt);
+  \node[text width=240pt] at (150 pt,120 pt){%
   \begin{center}
-      \color{MidnightBlue}
-      \fontsize{24}{48}
-      \selectfont tkz-euclide\par
+    \color{MidnightBlue}
+    \fontsize{24}{48}
+    \selectfont tkz-euclide\par
                 tool for\par
                 Euclidean Geometry
- \end{center}};
-\end{tikzpicture}}
+  \end{center}};
+\end{tikzpicture}}}
+}{
+% If not, use pgfornament :)
+\typeout{Load pgfornament font}
+\AddToShipoutPicture*{%
+\setlength\unitlength{1mm}
+\put(70,120){%
+\begin{tikzpicture}
+  \coordinate (A) at (0pt,240pt);
+  \coordinate (B) at (300pt,240pt);
+  \coordinate (C) at (300pt,0pt);
+  \coordinate (D) at (0pt,0pt);
+  \begin{scope}[opacity=0.5] % for opacity
+    \pgfornamentline[color=MidnightBlue]{[xshift=1.65cm,yshift=-1mm]A}{[xshift=-1.58cm,,yshift=-1mm]B}{1}{88}; % AB
+    \pgfornamentline[color=MidnightBlue]{[xshift=1.65cm,yshift=1.5mm]D}{[xshift=-1.58cm,yshift=1.5mm]C}{1}{88};
+    \pgfornamentline[color=MidnightBlue]{[xshift=2.2mm,yshift=-1.59cm]A}{[xshift=2.2mm,yshift=1.59cm]D}{1}{88};
+    \pgfornamentline[color=MidnightBlue]{[xshift=-1.2mm,yshift=-1.59cm]B}{[xshift=-1.2mm,yshift=1.59cm]C}{1}{88};
+  \end{scope}
+  \node[anchor=north west] at (A) {\pgfornament[color=MidnightBlue,opacity=0.5,width=1.5cm]{61}}; % A
+  \node[anchor=north east] at (B) {\pgfornament[color=MidnightBlue,opacity=0.5,width=1.5cm,symmetry=v]{61}};% B
+  \node[anchor=south east] at (C) {\pgfornament[color=MidnightBlue,opacity=0.5,width=1.5cm,symmetry=c]{61}}; % C
+  \node[anchor=south west] at (D) {\pgfornament[color=MidnightBlue,opacity=0.5,width=1.5cm,symmetry=h]{61}}; % D
+  \node[text width=240pt] at (150 pt,120 pt){%
+  \begin{center}
+    \color{MidnightBlue}
+    \fontsize{24}{48}
+    \selectfont tkz-euclide\par
+                tool for\par
+                Euclidean Geometry
+  \end{center}};
+\end{tikzpicture}}}
 }
-
+\else
+\fi
+\makeatother
 \clearpage
 \tkzSetUpColors[background=white,text=darkgray]
 
