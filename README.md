@@ -1,4 +1,4 @@
-# tkz-euclide — for euclidan geometry
+# tkz-euclide — Tools for drawing Euclidean geometry
 
 Release 3.06c 2020/04/06
 
