@@ -44,6 +44,7 @@
       mkpos/.code                      = {},
       mksize/.code                     = {},
       mkcolor/.code                    = {},
+      lbpos/.code                      = {},
       type/.default                    =  towards,
       delta/.store in                  = \tkz@delta,
       delta                            = 0,
@@ -171,6 +172,33 @@
       \draw[shift = {(#2)},arc style,/tkzdrawarc/.cd,#1]%
        (\tkz@FirstAngle:#3) arc (\tkz@FirstAngle:\tkz@SecondAngle:#3);
 \endgroup
+}
+%<--------------------------------------------------------------------------–>
+%  ARC    label        #2 center #3 first point last point #4
+% example : \tkzLabelArc[lbpos=0.5,above right,red](O,A)(B)
+% adapt from https://tex.stackexchange.com/questions/542375/perfect-labels-for-minor-major-arcs-of-circle-using-tkz-euclide
+%<--------------------------------------------------------------------------–>
+\pgfkeys{
+ /tkzlabelarc/.cd,
+ lbpos/.store in     = \tkz@lbpos,
+ lbpos                 = .5,
+ /tkzlabelarc/.search also={/tikz},
+}
+
+\def\tkzLabelArc{\pgfutil@ifnextchar[{\tkz@LabelArc}{\tkz@LabelArc[]}}   
+\def\tkz@LabelArc[#1](#2,#3)(#4)#5{% 
+ \begingroup
+  \pgfqkeys{/tkzlabelarc}{#1}
+  \tkzCalcLength[cm](#2,#3) \tkzGetLength{tkz@len}
+  \tkzFindSlopeAngle(#2,#3)\tkzGetAngle{tkz@anga}
+  \tkzFindSlopeAngle(#2,#4)\tkzGetAngle{tkz@angb}
+  \tkzNormalizeAngle(\tkz@anga,\tkz@angb)
+  \edef\tkz@An{\fpeval{(\tkz@SecondAngle-\tkz@FirstAngle)}}
+  \global\let\tkzAngleResult\tkz@An
+  \edef\tkz@Angle{\fpeval{(\tkz@FirstAngle+\tkz@lbpos*(\tkz@SecondAngle-\tkz@FirstAngle))}}
+  \tkzDefPoint(\tkz@Angle :\tkz@len){tkzPointResult}
+  \node[] at (tkzPointResult) {#5};
+ \endgroup 
 }
 %<--------------------------------------------------------------------------–>
 
